@@ -2,3 +2,26 @@
 .Rhistory
 .RData
 .Ruserdata
+
+# Ignore local files #
+######################
+
+local.*
+local-files
+
+# Ignore git files #
+####################
+
+.git
+
+# Ignore OS specific files #
+############################
+.DS_Store
+.directory
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+.directory
