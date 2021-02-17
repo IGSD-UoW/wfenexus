@@ -1,11 +1,25 @@
 Package: wfenexus
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Water-Food-Energy Nexus Exploration
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Authors@R: c(
+    person("Carlos", "Cámara", "", "carlos@carloscamara.es", 
+      role = c("aut", "cre"),comment = c(ORCID = "0000-0002-9378-0549")),
+    person("Grant", "Tregonning", "", "grant.tregonning@warwick.ac.uk", 
+      role = c("aut", "cre"),comment = c(ORCID = "0000-0001-9649-7653")),  
+    person("Institute for Global and Sustainable Development, University of Warwick", 
+      role = c("org"))
+      )
+Description: This is a prototype for Creating interfaces's WP4, aimed to 
+    Visualizing Water-Food-Energy Nexus
+License: GNU + file LICENSE
+BugReports: https://github.com/IGSD-UoW/wfenexus/issues
 Encoding: UTF-8
 LazyData: true
+RoxygenNote: 7.1.1
+Depends:
+  flexdashboard,
+  plotly,
+  tidyverse,
+  renv
+  
