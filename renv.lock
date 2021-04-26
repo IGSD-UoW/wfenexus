@@ -452,7 +452,7 @@
     },
     "mgcv": {
       "Package": "mgcv",
-      "Version": "1.8-33",
+      "Version": "1.8-34",
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "eb7b6439bc6d812eed2cddba5edc6be3"
@@ -613,7 +613,7 @@
     },
     "renv": {
       "Package": "renv",
-      "Version": "0.12.0",
+      "Version": "0.13.2",
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "7340c71f46a0fd16506cfa804e224e44"
