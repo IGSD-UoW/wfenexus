@@ -33,4 +33,4 @@ This package uses the following datasets:
 
 * [Water footprint](https://waterfootprint.org/en/resources/waterstat/product-water-footprint-statistics/): 
   * https://foodprint.org/issues/the-water-footprint-of-food/
-  # https://www.waterfootprint.org/media/downloads/Hoekstra-2008-WaterfootprintFood.pdf
+  * https://www.waterfootprint.org/media/downloads/Hoekstra-2008-WaterfootprintFood.pdf
