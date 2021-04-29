@@ -9,10 +9,13 @@ Authors@R: c(
       role = c("aut", "ctb"),comment = c(ORCID = "0000-0001-9649-7653")),  
     person("Greg", "McInerny", "", "G.McInerny@warwick.ac.uk", 
       role = c("aut", "ctb"),comment = c(ORCID = "0000-0002-4535-7682")),  
-    person("João", "Porto de Albuquerque ", "", "J.Porto@warwick.ac.uk", 
+    person("João", "Porto de Albuquerque", "", "J.Porto@warwick.ac.uk", 
       role = c("aut", "ctb"),comment = c(ORCID = "0000-0002-3160-3168")),  
     person("Institute for Global and Sustainable Development, University of Warwick", 
-      role = c("org"))
+      role = c("org", "aut")),
+    person("Belmont Forum", role = "fnd"),
+    person("Joint Programming Initiative (JPI)", role ="fnd"),
+    person("UKRI Economic and Social Research Council", role = "fnd")
       )
 Description: This is a prototype for Creating interfaces's WP4, aimed to 
     Visualizing Water-Food-Energy Nexus
