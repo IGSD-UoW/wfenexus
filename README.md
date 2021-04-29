@@ -1,5 +1,10 @@
 # Visualizing Water-Food-Energy Nexus
 
+<!-- badges: start -->
+[![R-CMD-check](https://github.com/IGSD-UoW/wfenexus/workflows/R-CMD-check/badge.svg)](https://github.com/IGSD-UoW/wfenexus/actions)
+<!-- badges: end -->
+
+
 An open source prototype for a visual interface to support research and Nexus engagements, designed collaborativelly as part of [Creating interfaces](https://creatinginterfaces.eifer.kit.edu/)' WP4.
 
 ![](man/figures/logo_creating-interfaces_250x104.png)
