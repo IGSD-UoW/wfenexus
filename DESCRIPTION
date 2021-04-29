@@ -6,7 +6,11 @@ Authors@R: c(
     person("Carlos", "Cámara", "", "carlos@carloscamara.es", 
       role = c("aut", "cre"),comment = c(ORCID = "0000-0002-9378-0549")),
     person("Grant", "Tregonning", "", "grant.tregonning@warwick.ac.uk", 
-      role = c("aut", "cre"),comment = c(ORCID = "0000-0001-9649-7653")),  
+      role = c("aut", "ctb"),comment = c(ORCID = "0000-0001-9649-7653")),  
+    person("Greg", "McInerny", "", "G.McInerny@warwick.ac.uk", 
+      role = c("aut", "ctb"),comment = c(ORCID = "0000-0002-4535-7682")),  
+    person("João", "Porto de Albuquerque ", "", "J.Porto@warwick.ac.uk", 
+      role = c("aut", "ctb"),comment = c(ORCID = "0000-0002-3160-3168")),  
     person("Institute for Global and Sustainable Development, University of Warwick", 
       role = c("org"))
       )
