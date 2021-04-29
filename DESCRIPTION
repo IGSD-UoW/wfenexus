@@ -26,7 +26,11 @@ LazyData: true
 RoxygenNote: 7.1.1
 Depends:
   flexdashboard,
+  here,
+  janitor,
   plotly,
+  readxl,
+  renv,
   tidyverse,
-  renv
+  zoo
   
