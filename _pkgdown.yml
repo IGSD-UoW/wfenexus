@@ -1,0 +1,33 @@
+home:
+  title: Visualizing Water-Food-Energy Nexus
+  description: >
+    An open source prototype for a visual interface to support research and
+    Nexus engagements, designed collaborativelly as part of Creating Interfaces'
+    WP4.
+
+template:
+  params:
+    bootswatch: flatly
+
+authors:
+  Carlos Cámara:
+    href: "https://carloscamara.es/en"
+  Grant Tregonning:
+    href: "https://warwick.ac.uk/fac/arts/schoolforcross-facultystudies/igsd/about/people/gtregonning"
+  Greg McInerny:
+    href: "https://warwick.ac.uk/fac/cross_fac/cim/people/greg-mcinerny/"
+  João Porto de Albuquerque:
+    href: "https://warwick.ac.uk/fac/arts/schoolforcross-facultystudies/igsd/about/people/jpdealbuquerque/"
+  Institute for Global and Sustainable Development, University of Warwick:
+    href: "https://warwick.ac.uk/fac/arts/schoolforcross-facultystudies/igsd/"
+    # html: "<img src='https://pbs.twimg.com/profile_images/1156578660058587136/KLM4YUk9_400x400.png' height='120'>"
+    html: "<img src='https://avatars.githubusercontent.com/u/65400159' height='65'>"
+  Belmont Forum:
+    href: "https://www.belmontforum.org/"
+    html: "<img src='https://www.belmontforum.org/wp-content/uploads/2017/03/bf-logo.png' height='30'>"
+  Joint Programming Initiative (JPI):
+    href: "https://ec.europa.eu/programmes/horizon2020/en/h2020-section/joint-programming-initiatives"
+    html: "<img src='https://ec.europa.eu/programmes/horizon2020//sites/default/themes/h2020_europa/images/logo.svg' height='30'>"
+  UKRI Economic and Social Research Council:
+    href: "https://esrc.ukri.org/"
+    html: "<img src='https://esrc.ukri.org/esrc/includes/themes/MasterSite/images/logo-1.png' height='30'>"
