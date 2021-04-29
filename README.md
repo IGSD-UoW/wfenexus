@@ -26,3 +26,11 @@ Sys.setenv(RENV_DOWNLOAD_METHOD = "wininet")
 #Sys.setenv(RENV_DOWNLOAD_METHOD = "libcurl")
 ```
 
+
+## Datasets
+
+This package uses the following datasets:
+
+* [Water footprint](https://waterfootprint.org/en/resources/waterstat/product-water-footprint-statistics/): 
+  * https://foodprint.org/issues/the-water-footprint-of-food/
+  # https://www.waterfootprint.org/media/downloads/Hoekstra-2008-WaterfootprintFood.pdf
