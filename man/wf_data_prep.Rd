@@ -4,17 +4,23 @@
 \alias{wf_data_prep}
 \title{Reads and cleans water footprint dataset.}
 \usage{
-wf_data_prep(filename, country = NULL)
+wf_data_prep(filename, sheetname = "App-II-WF_perTon", country = NULL)
 }
 \arguments{
 \item{filename}{String with the XLSX file name containing the water
 footprint. File should be stored in data/data-raw folder.}
 
+\item{sheetname}{String with the name of the Excel's sheet to be imported.}
+
 \item{country}{String with the country name we want to get water footprint
 from.}
+}
+\value{
+Dataframe in a tidy format, providing values for the selected country
+  only.
 }
 \description{
 Reads and cleans water footprint dataset from
   https://waterfootprint.org/en/resources/waterstat/product-water-footprint-statistics/
-   and converts it to tidy format.
+  and converts it to tidy format.
 }

@@ -12,16 +12,19 @@
 #' Reads and cleans water footprint dataset.
 #' @description Reads and cleans water footprint dataset from
 #'   https://waterfootprint.org/en/resources/waterstat/product-water-footprint-statistics/
-#'    and converts it to tidy format.
+#'   and converts it to tidy format.
 #' @param filename String with the XLSX file name containing the water
 #'   footprint. File should be stored in data/data-raw folder.
+#' @param sheetname String with the name of the Excel's sheet to be imported.
 #' @param country String with the country name we want to get water footprint
 #'   from.
-wf_data_prep <- function(filename, country = NULL) {
+#' @return Dataframe in a tidy format, providing values for the selected country
+#'   only.
+wf_data_prep <- function(filename, sheetname ="App-II-WF_perTon", country = NULL) {
 
-  wf_df <- readxl::read_excel(here::here(
-    "data/data-raw/water_footprint/Report47-Appendix-II.xlsx"),
-    sheet = "App-II-WF_perTon", skip = 3) %>%
+  wf_df <- readxl::read_excel(
+    here::here(paste0("data/data-raw/water_footprint/", filename)),
+    sheet = sheetname, skip = 3) %>%
     janitor::clean_names() %>%
     # Drop country-specific data for countries other than Poland.
     select(1:10, starts_with(country)) %>%
