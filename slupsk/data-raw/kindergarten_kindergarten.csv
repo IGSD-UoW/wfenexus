@@ -1,0 +1,20 @@
+id,name,address,toggle,geometry,latitude,longitude,accuracy,email,facebook,phone,website
+1,Przedszkole Miejskie nr 1 Zaczarowany Ogród,"Kilińskiego 33, 76-200 Słupsk",manual,,54.471523,17.036565,150,,,,
+2,Przedszkole Miejskie nr 2,"Zamkowa 6, 76-200 Słupsk",manual,,54.462979,17.034063,150,,,,
+3,Przedszkole Miejskie nr 3,"Zygmunta Augusta 62a, 76-200 Słupsk",manual,,54.467653,16.999942,150,,,,
+4,Przedszkole Miejskie nr 4 Królestwo Skrzatów,"Lutosławskiego 6, 76-200 Słupsk",manual,,54.459275,17.027969,150,,,,
+5,Przedszkole Miejskie nr 5,"Juliana Nimcewicza 9, 76-200 Słupsk",manual,,54.474074,17.021958,150,,,,
+6,Przedszkole Miejskie nr 6,"Wandy 3, 76-200 Słupsk",manual,,54.47072,17.03052,150,,,,
+7,Przedszkole Miejskie nr 7,"Wileńska 2 , 76-200 Słupsk",manual,,54.465283,17.020263,150,,,,
+8,Przedszkole Miejskie Integracyjne nr 8,"Wiatraczna 10, 76-200 Słupsk",manual,,54.47794,17.000978,150,,,,
+9,Przedszkole Miejskie nr 9 Akademia Uśmiechu,"Sportowa 10, 76-200 Słupsk",manual,,54.479068,17.041956,150,,,,
+10,Przedszkole Miejskie nr 10 Świat Fantazji,"Zygmunta Augusta 10 , 76-200 Słupsk",manual,,54.466684,17.00794,150,,,,
+11,Przedszkole Miejskie nr 11 Calineczka,"Kosynierów Gdyńskich 6, 76-200 Słupsk",manual,,54.457017,17.057623,150,,,,
+13,Przedszkole Miejskie nr 15,"Wiatraczna 6, 76-200 Słupsk",manual,,54.476456,17.005227,150,,,,
+14,Przedszkole Miejskie nr 19 Słupskiego Chłopczyka,"Norwida 4, 76-200 Słupsk",manual,,54.464423,16.994943,150,,,,
+15,Przedszkole Miejskie nr 23 Promyczek,"Wazów 1 , 76-200 Słupsk",manual,,54.473277,17.006214,150,,,,
+16,Przedszkole Miejskie nr 24 Słupski Niedźwiadek Szczęścia,"3 Maja 15 , 76-200 Słupsk",manual,,54.474262,17.011342,150,,,,
+17,Przedszkole Miejskie nr 31 Bajkowa Kraina,"Witosa 1, 76-200 Słupsk",manual,,54.461292,16.983678,150,,,,
+18,Przedszkole Miejskie Integracyjne nr 32 Tęczowa Kraina,"Kasztanowa 1 , 76-200 Słupsk",manual,,54.457117,17.052988,150,,,,
+22,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,"Powstańców Wielkopolskich 1, 76-200 Słupsk",interactive,0101000020E6100000010000766EFB3040C7462D23BB3A4B40,54.458702,16.982329,150,pm25slupsk@wp.pl,https://www.facebook.com/Przedszkole-Miejskie-nr-25-Kubu%C5%9B-Puchatek-w-S%C5%82upsku-1910201105972534/,514 830 863,http://www.puchatek.slupsk.pl
+12,Przedszkole Miejskie nr 12 Niezapominajka,"Sławieńska 2, 76-200 Słupsk",manual,,54.456091,16.996595,150,pm12slupsk@wp.pl,http://www.facebook.com/PM12niezapominajka,513 787 398,https://edu.slupsk.eu/placowki/514/

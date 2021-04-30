@@ -1,0 +1,110 @@
+---
+title: "Slupsk dashboard"
+output: 
+  flexdashboard::flex_dashboard:
+    theme: bootstrap
+    logo: "img/logo_creating-interfaces_100x48.png"
+    # favicon: favicon.png
+    orientation: rows
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+library(lubridate)
+library(plotly)
+library(tidyverse)
+
+# Load data
+kindergarten_df <- read_csv("data-raw/kindergarten_kindergarten.csv")
+dishes_df <- read_csv("data-raw/kindergartendish_kindergartendish.csv")
+ingredients_df <- read_csv("data-raw/ingredient_ingredient.csv")
+
+dishrating <- read_delim("data-raw/dishrating.csv", 
+                         delim = ";", col_types = c(id = "i")) %>%
+  filter(!is.na(id)) %>% 
+  filter(!is.na(date)) %>% 
+  mutate(date = dmy(date)) %>% 
+  # mutate(date = as.Date(date)) %>% 
+  mutate_at(c("children_satisfaction","parent_satisfaction", "health"), 
+            funs(recode(., one = 1, two = 2, three = 3, four = 4, five = 5)))
+  
+
+```
+
+Overview
+=====================================
+
+Valueboxes
+---------------------------------------
+
+### kindergartens {.value-box .no-mobile}
+
+```{r}
+
+valueBox(value = format(nrow(kindergarten_df), big.mark = "."), 
+         caption = "Kindergartens involved in the project.", 
+         icon = "fas fa-school")
+```
+
+### dishes {.value-box .no-mobile}
+
+```{r}
+
+valueBox(value = nrow(ingredients_df), 
+         caption = "Number of dishes.", 
+         icon = "fas fa-utensils")
+```
+
+### ingredients {.value-box .no-mobile}
+
+```{r}
+
+valueBox(value = nrow(dishes_df), 
+         caption = "Number of ingredients.", 
+         icon = "fas fa-lemon")
+```
+
+Dishes
+===================================== 
+
+Column
+-----------------------------------------------------------------------
+
+### Dish Satisfaction
+
+```{r}
+
+# Load dataset.
+
+
+
+```
+
+Column 
+-----------------------------------------------------------------------
+
+### Chart B
+
+```{r}
+
+```
+
+### Chart C
+
+```{r}
+
+```
+
+About
+===================================== 
+
+#### About this dashboard
+
+
+An open source prototype for a visual interface to support research and Nexus engagements, designed collaborativelly as part of [Creating interfaces](https://creatinginterfaces.eifer.kit.edu/)' WP4, developed by the [Institute for Global Sustainable Development](https://warwick.ac.uk/fac/arts/schoolforcross-facultystudies/igsd) at the [University of Warwick](https://warwick.ac.uk/).
+
+![](img/IGSD_logo.jpg)
+
+
+* Source Code: https://github.com/IGSD-UoW/wfenexus
+* Licence: [GPL](https://github.com/IGSD-UoW/wfenexus/blob/main/LICENSE)

@@ -1,0 +1,224 @@
+id;date;children_satisfaction;parent_satisfaction;health;comment;dish_id;kindergarten_id
+1;06.10.2020;three;four;three;więcej kolorów;12;22
+2;;;;;;;
+3;06.10.2020;three;five;three;Może udałoby się uruchomić  w przedszkolu hodowlę kiełków? Wystarczy słoik, woda i kiełki - chętnie opowiem dzieciom w tym jak zdrowe są kiełki i nauczę je hodować. Krzysztof Ś.;9;12
+4;06.10.2020;two;four;four;Marcel ma kłopot z zupą mleczną - w domu używamy głównie zamienników bez laktozy. Może czasem udałoby się wprowadzić zupę mleczną z zamienników sojowych czy owsianych? Służę przepisem na przesmaczną zupę z kaszą jaglaną.;12;22
+5;06.10.2020;;;;;4;22
+6;07.12.2020;five;five;five;;15;12
+7;07.12.2020;five;five;five;;16;12
+8;07.12.2020;five;five;five;;17;12
+9;07.12.2020;five;five;five;;18;12
+10;07.12.2020;three;four;four;połączenie makaronu z marchewką nie przypadło dziecku do gustu;23;12
+11;07.12.2020;five;five;five;;18;12
+12;07.12.2020;five;five;five;;15;12
+13;07.12.2020;five;five;five;;23;12
+14;07.12.2020;five;five;five;;17;12
+15;07.12.2020;five;five;five;;16;12
+16;07.12.2020;five;five;five;;15;12
+17;07.12.2020;five;five;five;;18;12
+18;07.12.2020;five;five;five;;16;12
+19;07.12.2020;five;five;five;;17;12
+20;07.12.2020;five;five;five;;20;22
+21;07.12.2020;five;five;five;;23;12
+22;07.12.2020;five;five;five;;22;22
+23;07.12.2020;three;five;five;;21;22
+24;07.12.2020;five;five;five;;15;12
+25;07.12.2020;five;five;five;;19;22
+26;07.12.2020;five;five;five;nie powinno być pestek w pomarańczach;20;22
+27;07.12.2020;five;five;two;Synek powiedział, ze racuchy były pyszne, ale nie zdrowe, ponieważ było w nich za dużo cukru.;22;22
+28;07.12.2020;three;five;five;;21;22
+29;07.12.2020;one;four;four;Dla Szymona brzydka zupa;17;12
+30;07.12.2020;five;five;five;;16;12
+31;07.12.2020;five;five;four;;18;12
+32;07.12.2020;three;five;five;Syn nie chciał jeść zupki, ponieważ był na niej kożuszek. Wg mnie świadczy to o tym, ze mleko było naturalne, ale niestety sama pamiętam jak nie jadłam takich zup , jeżeli na wierzchu się coś osadzało :-);19;22
+33;07.12.2020;four;four;four;Lepsze bez marchewki;23;12
+34;07.12.2020;three;four;four;Bez kanapki z dżemem -zdanie  mojego synka;15;12
+35;07.12.2020;five;five;three;;22;22
+36;07.12.2020;five;five;five;4 latka informuje, że cukier puder był niezdrowy ale sama zjadła dwie porcje ;;
+37;07.12.2020;four;five;five;;19;22
+38;07.12.2020;three;five;five;;21;22
+39;07.12.2020;five;;five;"5 latka krzyczy ""pochwalam to danie voila!""";20;22
+40;07.12.2020;five;five;five;Pomarańcza była troszkę kwaśna. A mandarynki nie jadła.;20;22
+41;07.12.2020;one;five;three;Racuszki córka zjadłaby ale bez nadzienia jabłkowego.;22;22
+42;07.12.2020;three;five;five;Klopsiki zjadła a zupy tylko troszkę, bo zdaniem córeczki była kwaśna.;21;22
+43;07.12.2020;three;five;five;Córka chętnie zjadłaby zupę mleczną, ale może tylko mleko bez laktozy. Pomidorków nie lubi . Zjadła więc tylko suchy chleb i ogórka kiszonego.;19;22
+44;;;;;;;
+45;07.12.2020;five;five;five;;17;12
+46;07.12.2020;five;five;five;;23;12
+47;07.12.2020;five;five;five;;15;12
+48;07.12.2020;five;five;five;;18;12
+49;07.12.2020;four;four;four;;17;12
+50;07.12.2020;five;five;five;;16;12
+51;07.12.2020;three;four;four;Marchewka i makaron osobno super sprawa, natomiast samo połączęnie?! Jak dla mnie niebardzo ;;
+52;07.12.2020;three;five;four;Mam wątpliwości co do szynki, są pełne ulepszaczy. Lepiej wyglądałoby mięso samodzielnie upieczone.;19;22
+53;07.12.2020;one;four;four;;21;22
+54;07.12.2020;two;two;three;Nie jestem przekonana, czy dzieci do końca lubią obiady na słodko. Moje nie.;;
+Na podwieczorek;" ok.""";22;22;;;;
+55;07.12.2020;three;two;four;;20;22
+56;08.12.2020;five;five;five;;25;12
+57;08.12.2020;five;five;five;;27;12
+58;08.12.2020;one;five;five;;26;12
+59;08.12.2020;five;five;five;;32;12
+60;08.12.2020;five;five;five;;31;22
+61;08.12.2020;one;four;four;za mało słodkie;25;12
+62;08.12.2020;five;five;four;;27;12
+63;08.12.2020;two;four;four;nie podobał się zapach zupy;26;12
+64;08.12.2020;four;four;four;lepsze bez pomidora i za mało kanapek dali;24;12
+65;08.12.2020;five;five;five;bardzo lubi;32;12
+66;08.12.2020;five;five;five;;25;12
+67;08.12.2020;five;five;five;;27;12
+68;08.12.2020;five;five;five;;26;12
+69;;;;;;;
+70;08.12.2020;five;five;five;;24;12
+71;08.12.2020;five;five;five;;32;12
+72;;;;;;;12
+73;08.12.2020;three;four;five;Brzydko pachniało;26;12
+74;08.12.2020;three;four;four;;28;22
+75;08.12.2020;three;five;five;;29;22
+76;08.12.2020;three;five;five;;30;22
+77;08.12.2020;four;three;two;Uważam, że zamiast kotleta schabowego mógłby być kotlet drobiowy. Poza tym mógłby być smażony sote, bez panierki lub grillowany.;31;22
+78;08.12.2020;five;five;five;;28;22
+79;08.12.2020;five;five;five;Dziewczyny mówią, że ich dzieci w Grupie chętnie jadły ;;
+80;08.12.2020;;;;Podobnie jak ostatnio córka nie może dań mlecznych, gdyż jest uczulona na laktozę. Czy byłaby możliwość posiłku na mleku, jogurcie bez laktozy?;29;22
+81;08.12.2020;five;five;five;;30;22
+82;08.12.2020;five;five;five;;31;22
+83;08.12.2020;three;five;four;Kotlet był za słony, dlatego córka zjadła tylko połowę.;31;22
+84;08.12.2020;four;five;five;;28;22
+85;08.12.2020;five;five;five;;30;22
+86;08.12.2020;four;five;four;;28;22
+87;08.12.2020;three;four;two;;29;22
+88;08.12.2020;five;five;five;;30;22
+89;08.12.2020;four;four;four;Surówka była ostra powiedział synek, nie lubi cebuli ;;
+90;08.12.2020;four;four;four;;28;22
+91;08.12.2020;three;four;four;;29;22
+92;08.12.2020;five;five;five;;30;22
+93;08.12.2020;five;five;four;;31;22
+197;11.12.2020;four;four;four;zjadłem tylko kotlecika i ziemniaczki, picie było różowe i nie dobre;60;22
+94;08.12.2020;five;five;five;porcja duża jak dla 5latki, pomidora zamieniła bym na inne warzywo,w okresie zimowym nie mają specjalnego smaku, np zamiana na rzodkiewkę, paprykę do pochrupania;24;12
+95;08.12.2020;five;five;five;;32;12
+96;08.12.2020;five;five;five;;25;12
+97;08.12.2020;five;five;five;była pyszna;26;12
+98;08.12.2020;five;five;five;gotowane warzywa bleeee;27;12
+99;;;;;;;
+100;08.12.2020;five;five;five;;27;12
+101;09.12.2020;five;four;four;;37;12
+102;09.12.2020;four;four;five;;33;12
+103;09.12.2020;five;four;four;;33;12
+104;09.12.2020;four;five;five;Z poziomu pojedynczego dania w dalszym ciągu nie wyświetla się zdjęcie;33;12
+105;09.12.2020;five;four;four;;36;12
+106;09.12.2020;three;five;five;Miały pestki;;12
+107;09.12.2020;five;five;five;"Cyt. ""Była przepyszna !""";35;12
+108;09.12.2020;four;four;four;;36;12
+109;09.12.2020;four;five;five;Uwaga techniczna. Łatwiej byłoby gdyby po wyborze przedszkola wyświetliły się wszystkie dania z danego dnia wraz z możliwością oceny. Na koniec wysyłane oceny jednym 'kliknięciem'.;37;12
+110;09.12.2020;four;four;four;bez pomidora i zielska mówi mój syn;33;12
+111;09.12.2020;four;four;four;Szymek mówi że mają pestki;34;12
+112;09.12.2020;four;four;four;syn mówi że brzydko wygląda zupa;35;12
+113;09.12.2020;four;four;four;;37;12
+114;09.12.2020;five;five;five;najpyszniejsza kawka z mleczkiem :);33;12
+115;09.12.2020;five;five;five;pyszne wafle;36;12
+116;09.12.2020;five;five;five;jest dobry jak nie ma pestek :);34;12
+117;09.12.2020;five;five;five;;35;12
+118;09.12.2020;five;five;five;nie lubie rodzynek;37;12
+119;09.12.2020;four;five;five;;39;22
+120;09.12.2020;four;four;four;;40;22
+121;09.12.2020;four;four;four;;38;22
+122;09.12.2020;two;four;four;;41;22
+123;09.12.2020;five;five;five;;36;12
+124;09.12.2020;five;five;five;córka o wszystkich daniach mówi że były pyszne dla innych dzieci.ocena dań jest mało wiarygodna. punktację może zamienić na buźki?;33;12
+125;09.12.2020;five;five;five;"błąd w opisie.""wybierz danie"" a nie ""wybierz datę""";34;12
+126;09.12.2020;five;five;five;kolorystyka strony jest smutna;37;12
+127;09.12.2020;five;five;five;powinna być lista dań najlepiej od ocenianych do najmniej;35;12
+128;09.12.2020;five;five;five;skróciłabym widok strony umieszczając punktację poziomo przy pytaniu;37;12
+129;09.12.2020;five;five;five;Szkoda że nie było produktów mlecznych bez laktozy.;38;22
+130;09.12.2020;;;;zrobiłabym jeszcze podział wg posiłków jeśli ktoś szuka inspiracji np.na obiad podczas przerwy wakacyjnej;;12
+131;09.12.2020;five;five;five;;39;22
+132;09.12.2020;one;three;two;;40;22
+133;09.12.2020;three;four;five;;41;22
+134;09.12.2020;five;five;five;;39;22
+135;09.12.2020;four;five;five;;40;22
+136;09.12.2020;four;five;five;;38;22
+137;09.12.2020;five;five;five;;41;22
+138;09.12.2020;five;five;five;;39;22
+139;09.12.2020;five;five;five;;38;22
+140;09.12.2020;five;five;five;;41;22
+141;09.12.2020;four;four;five;"Mamo, Dzieci nie mogą jeść grzybów a dzisiaj była zupa z grzybami "" ";;
+142;09.12.2020;five;five;five;;39;22
+143;09.12.2020;two;two;four;;40;22
+144;09.12.2020;four;five;five;;38;22
+145;09.12.2020;three;five;five;;41;22
+146;10.12.2020;three;five;five;;48;22
+147;10.12.2020;five;three;three;;49;22
+148;10.12.2020;three;four;five;;50;22
+149;10.12.2020;five;five;five;;51;22
+150;09.12.2020;four;four;five;;39;22
+151;09.12.2020;one;one;one;;;22
+152;09.12.2020;four;four;four;;38;22
+153;09.12.2020;five;five;five;;41;22
+154;10.12.2020;five;five;five;"""Pyszne! zdjęłam wszystko z chlebka i zjadłam""";42;12
+155;10.12.2020;five;five;five;"""To najpyszniej. Zjadłam cały.To mój ulubiony""";43;12
+156;10.12.2020;five;five;five;"""yhymmm.To było dobre, zjadłam całą""";47;12
+157;10.12.2020;five;five;five;"""bardzo smakowały mi chrupki""";45;12
+158;10.12.2020;three;five;five;"""bardzo smakował mi sos i mięsko.surówka to nie"".";46;12
+159;10.12.2020;five;five;five;;48;22
+160;10.12.2020;five;five;five;;;22
+161;10.12.2020;five;five;five;;50;22
+162;10.12.2020;five;five;five;;51;22
+163;10.12.2020;five;five;five;;48;22
+164;10.12.2020;five;five;five;;49;22
+165;10.12.2020;one;two;five;;50;22
+166;10.12.2020;five;five;five;;51;22
+167;10.12.2020;four;four;four;;46;12
+168;10.12.2020;four;four;five;;45;12
+169;10.12.2020;two;three;four;;47;12
+170;10.12.2020;two;four;four;;43;12
+171;10.12.2020;four;four;four;bez pomidora i zielska mówi mój syn;42;12
+172;10.12.2020;four;five;five;bleeeee kiełki,pyszne kakałko :);42;12
+173;10.12.2020;five;five;five;to ja uwielbiam :);43;12
+174;10.12.2020;five;five;five;;45;12
+175;10.12.2020;five;five;five;;47;12
+176;10.12.2020;five;five;five;pyszne,sama bym zjadła ;;
+177;10.12.2020;four;five;five;;48;22
+178;10.12.2020;five;five;five;Nie pojawiają się zdjęcia potraw;49;22
+179;10.12.2020;five;five;five;;50;22
+180;10.12.2020;five;five;five;;51;22
+181;10.12.2020;four;four;four;;48;22
+182;10.12.2020;three;three;three;;49;22
+183;10.12.2020;two;three;three;;50;22
+184;10.12.2020;four;four;four;;51;22
+185;11.12.2020;five;five;five;;;12
+186;;;;;;;
+187;10.12.2020;four;five;five;;48;22
+188;10.12.2020;three;five;five;;49;22
+189;10.12.2020;two;four;five;;50;22
+190;10.12.2020;five;five;five;;51;22
+191;11.12.2020;one;five;five;;57;22
+192;11.12.2020;five;five;five;;58;22
+193;11.12.2020;two;four;five;;59;22
+194;11.12.2020;five;five;five;Smakowało, ale bez pomidora :);57;22
+195;11.12.2020;five;five;five;uwielbiam obrane gruszeczki i jabłuszka;58;22
+196;11.12.2020;three;four;four;barszczyk był nie pyszny, zjadłem jajeczko i chlebek;59;22
+198;11.12.2020;five;five;five;;57;22
+199;11.12.2020;five;five;five;Zjadłem wszystko jablko, gruszke i jeszcze mandarynke bo byla😉😅;58;22
+200;11.12.2020;five;five;five;Zjadlem prawie wszystko, ale Zosia to zjadla caly talerz wiesz Mama?:);59;22
+201;11.12.2020;five;five;five;;60;22
+202;11.12.2020;three;four;four;bez zielska dalej  w meni;52;12
+203;11.12.2020;one;four;four;;53;12
+204;11.12.2020;one;four;four;z tego zestawu tylko chleb zjadł mój syn;54;12
+205;11.12.2020;four;four;four;ładnie wygląda;56;12
+206;11.12.2020;three;four;four;;55;12
+207;11.12.2020;five;five;five;kawka i pieczywko najlepsze :);52;12
+208;11.12.2020;five;five;five;mój ulubiony;53;12
+209;11.12.2020;five;five;five;;54;12
+210;11.12.2020;five;five;five;;55;12
+211;11.12.2020;five;five;five;;56;12
+212;;;;;;;
+213;11.12.2020;five;five;five;najbardziej dziś smakowała;54;12
+214;11.12.2020;four;five;five;bardzo apetyczne, podoba mi się że są zdjęcia;52;12
+215;11.12.2020;five;five;five;"""bardzo pyszny. może ugotujesz mi taki koktajl w domu""";53;12
+216;11.12.2020;five;five;five;"""wszystko zjadłam tylko surówkę nie.wszystko zjadłam z mięska""";55;12
+217;11.12.2020;five;five;five;;56;12
+218;11.12.2020;five;five;five;;57;22
+219;11.12.2020;five;five;five;;60;22
+220;11.12.2020;five;five;five;;58;22
+221;;;;;;;
+222;11.12.2020;three;three;two;;59;22
