@@ -19,7 +19,7 @@ Authors@R: c(
       )
 Description: This is a prototype for Creating interfaces's WP4, aimed to 
     Visualizing Water-Food-Energy Nexus
-License: GNU + file LICENSE
+License: GPL
 BugReports: https://github.com/IGSD-UoW/wfenexus/issues
 Encoding: UTF-8
 LazyData: true
