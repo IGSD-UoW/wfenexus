@@ -14,21 +14,17 @@ library(DT)
 library(lubridate)
 library(plotly)
 library(tidyverse)
+library(wfenexus)
 
 # Load data
 kindergarten_df <- read_csv("data-raw/kindergarten_kindergarten.csv")
-dishes_df <- read_csv("data-raw/kindergartendish_kindergartendish.csv")
 ingredients_df <- read_csv("data-raw/ingredient_ingredient.csv")
+dish_composition <- read_csv("data-raw/kindergartendish_composition.csv")
+dishrating <- ci_dishratings_prep("data-raw/dishrating.csv")
+dishes_df <- read_csv("data-raw/kindergartendish_kindergartendish.csv")
 
-dishrating <- read_delim("data-raw/dishrating.csv", 
-                         delim = ";", col_types = c(id = "i")) %>%
-  filter(!is.na(id)) %>% 
-  filter(!is.na(date)) %>% 
-  mutate(date = dmy(date)) %>% 
-  # mutate(date = as.Date(date)) %>% 
-  mutate_at(c("children_satisfaction","parent_satisfaction", "health"), 
-            funs(recode(., one = 1, two = 2, three = 3, four = 4, five = 5)))
-  
+
+dishes_df <- ci_dishratings(dishes_df, dishrating)
 
 ```
 
@@ -77,6 +73,11 @@ Column
 
 # Load dataset.
 
+dishes_df %>% 
+  select(kindergarten_id, type, name, health, waste, allergens, calories, 
+         rating_children, rating_parents) %>% 
+  arrange(kindergarten_id, type) %>% 
+  datatable()
 
 
 ```
@@ -87,6 +88,14 @@ Column
 ### Chart B
 
 ```{r}
+library(formattable)
+
+dishes_df %>% 
+  select(kindergarten_id, type, name, waste, allergens, calories, 
+         rating_children, rating_parents) %>% 
+  arrange(kindergarten_id, type) %>% 
+  formattable()
+
 
 ```
 
