@@ -31,3 +31,14 @@ authors:
   UKRI Economic and Social Research Council:
     href: "https://esrc.ukri.org/"
     html: "<img src='https://esrc.ukri.org/esrc/includes/themes/MasterSite/images/logo-1.png' height='30'>"
+
+reference:
+- title: "Water Footprint"
+  desc: >
+    Functions for preparing and visualising water footprint data.
+- contents:
+  - starts_with("ci_wf_")
+- title: "Food"
+  desc: "Functions for preparing and visualising food data."
+- contents:
+  - starts_with("ci_dishratings")
