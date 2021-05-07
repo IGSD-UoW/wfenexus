@@ -28,6 +28,17 @@ dishes_df <- ci_dishratings(dishes_df, dishrating)
 
 ```
 
+<!-- Inputs {.sidebar} -->
+<!-- ------------------------------------- -->
+
+<!-- This is not working. That would require configuring a shiny server. -->
+
+<!-- ```{r} -->
+<!-- # shiny inputs defined here -->
+<!-- ``` -->
+
+
+
 Overview
 =====================================
 
@@ -61,13 +72,36 @@ valueBox(value = nrow(dishes_df),
          icon = "fas fa-lemon")
 ```
 
-Dishes
+
+* What are the consequences of our choices?
+* Which small changes can we make in our food to make them more sustainable?
+
+
+Food
 ===================================== 
 
-Column
+
+Meals {.tabset}
 -----------------------------------------------------------------------
 
-### Dish Satisfaction
+### Ingredients 
+
+Some information about ingredients here:
+
+* Ingredients table with the following info:
+  * Name
+  * Kcals -> Not available
+  * Water footprint -> we'd need to calculate that by ourselves
+
+
+### Meals
+
+Possible ideas:
+
+* Top meals by parents/children
+* Most difference of rating between parents and children
+
+### Meals' summary table
 
 ```{r}
 
@@ -81,6 +115,11 @@ dishes_df %>%
 
 
 ```
+
+### Producers 
+
+Map + figures stating the amount of savings that we could get if all ingredients were produced from them.
+We'd need to know what they produce.
 
 Column 
 -----------------------------------------------------------------------
@@ -104,6 +143,17 @@ dishes_df %>%
 ```{r}
 
 ```
+
+
+Water
+===================================== 
+
+
+Energy
+===================================== 
+
+We do not have any data regarding energy.
+
 
 About
 ===================================== 
