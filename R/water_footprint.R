@@ -84,7 +84,8 @@ ci_wf_prep_animals <- function(filename = "Report48-Appendix-V.xlsx",
     rename(world_grazing = world_average,
            world_mixed = x11,
            world_industrial = x12,
-           world_wgt_avg = x13) %>%
+           world_wgt_avg = x13,
+           product_description_hs = product_discription_hs) %>%
     # Drop country-specific data for countries other than Poland.
     select(1:13, starts_with(tolower(country))) %>%
     # Renames columns (quick and dirty solution)
@@ -104,7 +105,7 @@ ci_wf_prep_animals <- function(filename = "Report48-Appendix-V.xlsx",
     zoo::na.locf() %>%
     # Manually add a row name.
     rename(wf_type = country) %>%
-    mutate(across(c(hs_pc_tas_code, sitc_rev_3_sita_code, product_discription_hs,
+    mutate(across(c(hs_pc_tas_code, sitc_rev_3_sita_code, product_description_hs,
                     product_description_sitc, rootproduct_hs, rootproduct_sitc,
                     wf_type),
                   as.factor)) %>%
