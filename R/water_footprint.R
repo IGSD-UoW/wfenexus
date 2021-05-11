@@ -43,7 +43,9 @@ ci_wf_prep_crops <- function(filename = "Report47-Appendix-II.xlsx",
                     product_description_hs, product_description_faostat,
                     root_product_hs, wf_type),
                   as.factor)) %>%
-    mutate(across(where(is.character), as.numeric))
+    mutate(across(where(is.character), as.numeric)) %>%
+    # Removes three last rows, which do not contain data, but notes.
+    head(-3)
 
   return(df)
 
