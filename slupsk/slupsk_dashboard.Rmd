@@ -72,9 +72,32 @@ valueBox(value = nrow(dishes_df),
          icon = "fas fa-lemon")
 ```
 
+Notes
+--------
 
 * What are the consequences of our choices?
 * Which small changes can we make in our food to make them more sustainable?
+
+
+
+Notes
+--------
+
+![](https://www.r-graph-gallery.com/143-spider-chart-with-saveral-individuals_files/figure-html/thecode2-1.png)
+
+Links: https://www.datanovia.com/en/blog/beautiful-radar-chart-in-r-using-fmsb-and-ggplot-packages/
+
+Notes
+--------
+
+The possible radar's axis could be:
+
+* Health (Food)
+* Rating parents (Food)
+* Rating children (Food)
+* Water Footprint
+* Energy Footprint
+* calories? (Energy?)
 
 
 Food
