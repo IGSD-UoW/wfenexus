@@ -92,7 +92,8 @@ tmp_wfp_crops <- wfp_crops %>%
          description = product_description_faostat) %>%
   filter(!is.na(description)) %>%
   relocate(id, name, name_en, .before = name_wf) %>%
-  distinct(name_en, .keep_all= TRUE)
+  distinct(name_en, .keep_all= TRUE) %>%
+  mutate(type = "crops")
 
 
 tmp_wfp_animals <- wfp_animals %>%
@@ -100,7 +101,8 @@ tmp_wfp_animals <- wfp_animals %>%
   rename(name_wf = product_description_hs,
          description = product_description_sitc) %>%
   filter(!is.na(description)) %>%
-  relocate(id, name, name_en, .before = name_wf)
+  relocate(id, name, name_en, .before = name_wf) %>%
+  mutate(type = "animals")
 
 
 tmp_wf_combined <- tmp_wfp_crops %>%

@@ -187,12 +187,6 @@ dishes_df %>%
 Water
 ===================================== 
 
-
-Water {.tabset}
------------------------------------------------------------------------
-
-### Ingredients 
-
 ```{r}
 wfp_combined <- read.csv(file = "data/wfp_combined.csv") %>% 
   select(-id, -name, -name_wf, -description) %>% 
@@ -206,7 +200,68 @@ wfp_combined <- read.csv(file = "data/wfp_combined.csv") %>%
   relocate(blue_variation, .after = country_blue) %>%
   relocate(grey_variation, .after = country_grey) %>%
   relocate(total_variation, .after = country_total) %>%
-  arrange(desc(world_total)) 
+  arrange(desc(world_total)) %>% 
+  relocate(type, .before = "name_en")
+
+stats_wfp <- wfp_combined %>% 
+  group_by(type) %>% 
+  summarise(mean = mean(world_total), total = sum(world_total),
+            mean_local = mean(country_total, na.rm=T), total_local = sum(country_total))
+
+avg_wfp_animals <- round(stats_wfp$mean[1], 2)
+avg_wfp_crops <- round(stats_wfp$mean[2], 2)
+
+avg_wfp_animals_local <- round(stats_wfp$mean_local[1], 2)
+avg_wfp_crops_local <- round(stats_wfp$mean_local[2], 2)
+  
+```
+
+Valueboxes
+---------------------------------------
+
+### wfp_animals {.value-box .no-mobile}
+
+```{r}
+
+valueBox(value = paste0(format(avg_wfp_animals, big.mark = ","), " m3/Ton"), 
+         caption = "is the average water footprint of the ingredients from animal origin", 
+         icon = "fas fa-paw")
+```
+
+### wfp_crops {.value-box .no-mobile}
+
+```{r}
+
+valueBox(value = paste0(format(avg_wfp_crops, big.mark = ","), " m3/Ton"), 
+         caption = "is the average water footprint per crops worldwide", 
+         icon = "fas fa-leaf")
+```
+
+### wfp_animals_local {.value-box .no-mobile}
+
+```{r}
+
+valueBox(value = paste0(format(avg_wfp_animals_local, big.mark = ","), " m3/Ton"), 
+         caption = "is the average water footprint if animals were grazed localy", 
+         icon = "fas fa-paw")
+```
+
+### wfp_crops_local {.value-box .no-mobile}
+
+```{r}
+
+valueBox(value = paste0(format(avg_wfp_crops_local, big.mark = ","), " m3/Ton"), 
+         caption = "is the average water footprint if using local crops only (if possible). this represents XX less", 
+         icon = "fas fa-leaf")
+```
+
+Water {.tabset}
+-----------------------------------------------------------------------
+
+### Ingredients 
+
+```{r}
+
 
 formattable(
   wfp_combined,  
@@ -239,14 +294,68 @@ formattable(
                  scroller = TRUE)
   )
   
-  
+```
 
+### Ingredients 2
 
+```{r}
+wfp_combined %>% 
+  select(-green_variation, -blue_variation, -grey_variation) %>% 
+  formattable(list(
+    world_green = color_tile("transparent", color_wfp_green),
+    world_blue = color_tile("transparent", color_wfp_blue),
+    world_grey = color_tile("transparent", color_wfp_grey),
+    world_total = color_tile("transparent", color_water),
+    country_green = color_tile("transparent", color_wfp_green),
+    country_blue = color_tile("transparent", color_wfp_blue),
+    country_grey = color_tile("transparent", color_wfp_grey),
+    country_total = color_tile("transparent", color_water),
+    green_variation =  formatter("span", 
+      style = ~ style(color = ifelse(green_variation < 0, "green", "red"))),
+    blue_variation =  formatter("span", 
+      style = ~ style(color = ifelse(blue_variation < 0, "green", "red"))),
+    grey_variation =  formatter("span", 
+      style = ~ style(color = ifelse(grey_variation < 0, "green", "red"))),
+    total_variation =  formatter("span", 
+      style = ~ style(color = ifelse(total_variation < 0, "green", "red")))
+  )
+) %>%
+  as.datatable(escape = FALSE,
+               class= "hover",
+               # options = list(scrollX = TRUE),
+               rownames = FALSE,
+               extensions = 'Scroller', options = list(
+                 deferRender = TRUE,
+                 scrollY = 200,
+                 scroller = TRUE)
+  )
   
 ```
 
+### Ingredients 3
+
+Try this other library: https://glin.github.io/reactable/articles/examples.html#footers-1
+
+Heatmaps could be implemented this way: https://glin.github.io/reactable/articles/conditional-styling.html and this: https://glin.github.io/reactable/articles/cookbook/cookbook.html
+
+Also try with custom filters: https://glin.github.io/reactable/articles/examples.html#cross-widget-interactions-1
+
+Links:
+
+* https://clarewest.github.io/blog/post/making-tables-shiny/
 
 ### Meals 
+
+-------
+### Things to consider
+
+* Water footprint units are m3/Tonne
+* Water footprint figures were obtained from https://waterfootprint.org/
+* Not all the ingredients used in Slupsk's kindergartens were listed in Hoepstra's work.
+* Fishes' water footprint is NULL (check that. At least, they do not appear in Hoepstra's work)
+* Not all crops can't be cultivated in Poland
+
+
 
 Energy
 ===================================== 
