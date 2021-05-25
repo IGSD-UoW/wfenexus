@@ -10,10 +10,12 @@ output:
 
 ```{r setup, include=FALSE}
 library(flexdashboard)
-library(DT)
-library(lubridate)
 library(plotly)
+library(DT)
+library(formattable)
+library(lubridate)
 library(tidyverse)
+library(scales)
 library(wfenexus)
 
 # Load data
@@ -25,6 +27,19 @@ dishes_df <- read_csv("data-raw/kindergartendish_kindergartendish.csv")
 
 
 dishes_df <- ci_dishratings(dishes_df, dishrating)
+
+
+# Colours
+color_food <- "#95C448"
+color_water <- "#00A9AE"
+color_energy <- "#EBC11F"
+
+color_background <- "#34767A"
+
+color_wfp_blue <- "#65C6F0"
+color_wfp_green <- "#A2D729"
+color_wfp_grey <- "#8f8f98"
+
 
 ```
 
@@ -117,6 +132,7 @@ Some information about ingredients here:
   * Water footprint -> we'd need to calculate that by ourselves
 
 
+
 ### Meals
 
 Possible ideas:
@@ -171,6 +187,66 @@ dishes_df %>%
 Water
 ===================================== 
 
+
+Water {.tabset}
+-----------------------------------------------------------------------
+
+### Ingredients 
+
+```{r}
+wfp_combined <- read.csv(file = "data/wfp_combined.csv") %>% 
+  select(-id, -name, -name_wf, -description) %>% 
+  mutate(green_variation = (-world_green + country_green)/world_green,
+         blue_variation = (-world_blue + country_blue)/world_blue,
+         grey_variation = (-world_grey + country_grey)/world_grey,
+         total_variation = (-world_total + country_total)/world_total) %>%
+  # mutate(across(ends_with("_variation"), scales::percent)) %>%
+  mutate(across(is.numeric, round, 2)) %>%
+  relocate(green_variation, .after = country_green) %>%
+  relocate(blue_variation, .after = country_blue) %>%
+  relocate(grey_variation, .after = country_grey) %>%
+  relocate(total_variation, .after = country_total) %>%
+  arrange(desc(world_total)) 
+
+formattable(
+  wfp_combined,  
+  list(
+    world_green = color_tile("transparent", color_wfp_green),
+    world_blue = color_tile("transparent", color_wfp_blue),
+    world_grey = color_tile("transparent", color_wfp_grey),
+    world_total = color_tile("transparent", color_water),
+    country_green = color_tile("transparent", color_wfp_green),
+    country_blue = color_tile("transparent", color_wfp_blue),
+    country_grey = color_tile("transparent", color_wfp_grey),
+    country_total = color_tile("transparent", color_water),
+    green_variation =  formatter("span", 
+      style = ~ style(color = ifelse(green_variation < 0, "green", "red"))),
+    blue_variation =  formatter("span", 
+      style = ~ style(color = ifelse(blue_variation < 0, "green", "red"))),
+    grey_variation =  formatter("span", 
+      style = ~ style(color = ifelse(grey_variation < 0, "green", "red"))),
+    total_variation =  formatter("span", 
+      style = ~ style(color = ifelse(total_variation < 0, "green", "red")))
+  )
+) %>%
+  as.datatable(escape = FALSE,
+               class= "hover",
+               # options = list(scrollX = TRUE),
+               rownames = FALSE,
+               extensions = 'Scroller', options = list(
+                 deferRender = TRUE,
+                 scrollY = 200,
+                 scroller = TRUE)
+  )
+  
+  
+
+
+  
+```
+
+
+### Meals 
 
 Energy
 ===================================== 

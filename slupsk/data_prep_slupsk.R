@@ -110,7 +110,8 @@ tmp_wf_combined <- tmp_wfp_crops %>%
 wfp_combined <- ingredients_df %>%
   left_join(tmp_wf_combined, by = "name_en")
 
-write.csv(wfp_combined, file = "slupsk/data/wfp_combined.csv")
+write.csv(wfp_combined, file = "slupsk/data/wfp_combined.csv",
+          row.names = FALSE)
 
 
 # Cleanup -----------------------------------------------------------------
@@ -126,4 +127,5 @@ base::remove(tmp_wf_combined)
 pot_local_ingredients <- wfp_animals %>%
   filter(!is.na(country_total))
 
-write.csv(pot_local_ingredients, file = "slupsk/data/pot_local_ingredients.csv")
+write.csv(pot_local_ingredients, file = "slupsk/data/pot_local_ingredients.csv",
+          row.names = FALSE)
