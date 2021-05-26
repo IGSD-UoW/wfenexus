@@ -19,11 +19,11 @@ library(scales)
 library(wfenexus)
 
 # Load data
-kindergarten_df <- read_csv("data-raw/kindergarten_kindergarten.csv")
-ingredients_df <- read_csv("data-raw/ingredient_ingredient.csv")
-dish_composition <- read_csv("data-raw/kindergartendish_composition.csv")
+kindergarten_df <- read_csv("data-raw/kindergartens.csv")
+ingredients_df <- read_csv("data-raw/ingredients.csv")
+dish_composition <- read_csv("data-raw/dishes_composition.csv")
 dishrating <- ci_dishratings_prep("data-raw/dishrating.csv")
-dishes_df <- read_csv("data-raw/kindergartendish_kindergartendish.csv")
+dishes_df <- read_csv("data-raw/dishes.csv")
 
 
 dishes_df <- ci_dishratings(dishes_df, dishrating)
