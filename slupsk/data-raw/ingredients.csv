@@ -1,0 +1,130 @@
+id,name,label
+36,Arbuz,Arbuz
+37,Awokado,Awokado
+38,Banan,Banan
+39,Brokuły,Brokuły
+40,Brukselka,Brukselka
+41,Brzoskwinia,Brzoskwinia
+42,Bułka grahamka,Bułka grahamka
+43,Burak,Burak
+44,Cebula,Cebula
+45,Chleb wieloziarnisty,Chleb wieloziarnisty
+46,Chrzan,Chrzan
+47,Cukier,Cukier
+48,Cukinia,Cukinia
+49,Cytryna,Cytryna
+50,Czarne jagody,Czarne jagody
+51,Czereśnie,Czereśnie
+52,Czosnek,Czosnek
+53,Dorsz,Dorsz
+54,Dynia,Dynia
+55,Dżem z owoców,Dżem z owoców
+56,Fasola biała,Fasola biała
+57,Fasola czerwona,Fasola czerwona
+58,Fasola szparagowa,Fasola szparagowa
+59,Flądra,Flądra
+60,Grejpfrut,Grejpfrut
+61,Groszek zielony,Groszek zielony
+62,Gruszka,Gruszka
+63,Jabłko,Jabłko
+64,Jaja kurze,Jaja kurze
+65,Jarmuż,Jarmuż
+66,Jogurt bananowy,Jogurt bananowy
+67,Jogurt jagodowy,Jogurt jagodowy
+68,Jogurt morelowy,Jogurt morelowy
+69,Jogurt naturalny,Jogurt naturalny
+70,Jogurt truskawkowy,Jogurt truskawkowy
+71,Jogurt wiśniowy,Jogurt wiśniowy
+72,Kalafior,Kalafior
+73,Kalarepa,Kalarepa
+74,Kapusta biała,Kapusta biała
+75,Kapusta czerwona,Kapusta czerwona
+76,Kasza jaglana,Kasza jaglana
+77,Kasza jęczmienna,Kasza jęczmienna
+78,Kefir,Kefir
+79,Kiwi,Kiwi
+80,Koncentrat pomidorowy,Koncentrat pomidorowy
+81,Koper ogrodowy,Koper ogrodowy
+82,Kukurydza,Kukurydza
+83,Łosoś,Łosoś
+84,Makaron,Makaron
+85,Makrela,Makrela
+86,Maliny,Maliny
+87,Mandarynki,Mandarynki
+88,Mango,Mango
+89,Marchew,Marchew
+90,Mąka pszenna,Mąka pszenna
+91,Mąka żytnia,Mąka żytnia
+92,Melon,Melon
+93,Mięso wieprzowe,Mięso wieprzowe
+94,Mięso wołowe,Mięso wołowe
+95,Mięso z indyka,Mięso z indyka
+96,Mięso z kurczaka,Mięso z kurczaka
+97,Miód pszczeli,Miód pszczeli
+98,Mleko roślinne,Mleko roślinne
+99,Mleko spożywcze,Mleko spożywcze
+100,Morele,Morele
+101,Nektarynka,Nektarynka
+102,Ogórek,Ogórek
+103,Ogórek kiszony,Ogórek kiszony
+104,Olej rzepakowy,Olej rzepakowy
+105,Olej słonecznikowy,Olej słonecznikowy
+106,Papryka czerwona,Papryka czerwona
+107,Papryka zielona,Papryka zielona
+108,Parówki,Parówki
+109,"Pietruszka, korzeń","Pietruszka, korzeń"
+110,"Pietruszka, liście","Pietruszka, liście"
+111,Płatki kukurydziane,Płatki kukurydziane
+112,Płatki owsiane,Płatki owsiane
+113,Pomarańcza,Pomarańcza
+114,Pomidor,Pomidor
+115,Por,Por
+116,Porzeczki,Porzeczki
+117,Pstrąg,Pstrąg
+118,Ryż biały,Ryż biały
+119,Ryż brązowy,Ryż brązowy
+120,Rzodkiewka,Rzodkiewka
+121,Sałata,Sałata
+122,Seler korzeniowy,Seler korzeniowy
+123,Seler naciowy,Seler naciowy
+124,Ser pleśniowy,Ser pleśniowy
+125,Ser twarogowy,Ser twarogowy
+126,Ser żółty,Ser żółty
+127,Serek twarogowy homogenizowany,Serek twarogowy homogenizowany
+128,Soczewica czerwona,Soczewica czerwona
+129,Sos keczup,Sos keczup
+130,Sól,Sól
+131,Szczypiorek,Szczypiorek
+132,"Szparagi, konserwowe","Szparagi, konserwowe"
+133,Szpinak,Szpinak
+134,Szynka wieprzowa,Szynka wieprzowa
+135,Szynka z indyka,Szynka z indyka
+136,Szynka z kurczaka,Szynka z kurczaka
+137,Śliwki,Śliwki
+138,"Śmietana, 12% tłuszczu","Śmietana, 12% tłuszczu"
+139,"Śmietana, 18% tłuszczu","Śmietana, 18% tłuszczu"
+140,Śmietanka kremowa 30% tłuszczu,Śmietanka kremowa 30% tłuszczu
+141,Tuńczyk,Tuńczyk
+142,Winogrona,Winogrona
+143,Wiśnie,Wiśnie
+144,Ziemniaki,Ziemniaki
+145,Kapusta pekińska,Kapusta pekińska
+146,Masło,Masło
+147,Kiełbaski wieprzowe,Kiełbaski wieprzowe
+148,Groch łuskany,Groch łuskany
+149,Płatki orkiszowe,Płatki orkiszowe
+150,Chleb zwykły (pszenno-żytni),Chleb zwykły (pszenno-żytni)
+151,Kiełki,Kiełki
+152,Cukier puder,Cukier puder
+153,Truskawki mrożone,Truskawki mrożone
+154,Por,Por
+155,Papryka żółta,Papryka żółta
+156,Mandarynka,Mandarynka
+157,Wafle ryżowe,Wafle ryżowe
+158,Chałka,Chałka
+159,Pieczarki,Pieczarki
+160,Kasza gryczana,Kasza gryczana
+161,Płatki jęczmienne,Płatki jęczmienne
+162,Wafle kukurydziane,Wafle kukurydziane
+163,Sok jabłkowy,Sok jabłkowy
+164,Sandacz,Sandacz

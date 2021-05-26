@@ -1,13 +1,58 @@
 # Generates the required datasets for the visualisations.
 
 library(wfenexus)
+# library(jsonlite)
 
 
 # Variables ---------------------------------------------------------------
 
 sel_country <- "Poland"
+# Set TRUE if you want to generate a tidy Waterfootprint dataset for selected
+# country to be generated. Otherwise, it will read a csv file containing a
+# previously generated dataset, saving time.
 calc_wf <- FALSE
 
+url_kindergartens <- "https://creatinginterfaces.demo.52north.org/slupsk-tool/kindergartens.json"
+url_ingredients <- "https://creatinginterfaces.demo.52north.org/slupsk-tool/ingredients.json"
+url_dishes <- "https://creatinginterfaces.demo.52north.org/slupsk-tool/kindergartendishs.json"
+url_ratings <- "https://creatinginterfaces.demo.52north.org/slupsk-tool/dishratings.json"
+url_producers <- "https://creatinginterfaces.demo.52north.org/slupsk-tool/producers.json"
+
+urls_all <- c(url_dishes, url_ingredients, url_kindergartens, url_producers,
+              url_ratings)
+
+# Download datasets -------------------------------------------------------
+
+
+get_tool_data <- function(json, filename) {
+  df <- as.data.frame(fromJSON(json)[["list"]])
+
+  write_csv(df, file = here::here("slupsk/data-raw/", filename))
+
+  return(df)
+}
+
+kindergartens <- get_tool_data(url_kindergartens, "kindergartens.csv")
+
+ingredients <- get_tool_data(url_ingredients, "ingredients.csv")
+
+dishrating <- get_tool_data(url_ratings, "dishrating.csv")
+
+dishes_nested <- as.data.frame(fromJSON(url_dishes)[["list"]])
+
+dish_composition <- dishes %>%
+  # unnest(compositions, names_repair = "universal")
+  unnest(compositions, names_sep = ".") %>%
+  select(id, starts_with("compositions."), -`compositions.@index`,
+         -compositions.id) %>%
+  rename(dish_id = id) %>%
+  rename_with(~str_remove(., 'compositions.'))
+
+dishes <- dishes_nested %>%
+  select(-compositions)
+
+write_csv(dishes, here::here("slupsk/data-raw/", "dishes.csv"))
+write_csv(dish_composition, here::here("slupsk/data-raw/", "dishes_composition.csv"))
 
 # Generate waterfootprint files. ------------------------------------------
 

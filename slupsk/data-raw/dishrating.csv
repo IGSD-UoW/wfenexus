@@ -1,224 +1,224 @@
-id;date;children_satisfaction;parent_satisfaction;health;comment;dish_id;kindergarten_id
-1;06.10.2020;three;four;three;więcej kolorów;12;22
-2;;;;;;;
-3;06.10.2020;three;five;three;Może udałoby się uruchomić  w przedszkolu hodowlę kiełków? Wystarczy słoik, woda i kiełki - chętnie opowiem dzieciom w tym jak zdrowe są kiełki i nauczę je hodować. Krzysztof Ś.;9;12
-4;06.10.2020;two;four;four;Marcel ma kłopot z zupą mleczną - w domu używamy głównie zamienników bez laktozy. Może czasem udałoby się wprowadzić zupę mleczną z zamienników sojowych czy owsianych? Służę przepisem na przesmaczną zupę z kaszą jaglaną.;12;22
-5;06.10.2020;;;;;4;22
-6;07.12.2020;five;five;five;;15;12
-7;07.12.2020;five;five;five;;16;12
-8;07.12.2020;five;five;five;;17;12
-9;07.12.2020;five;five;five;;18;12
-10;07.12.2020;three;four;four;połączenie makaronu z marchewką nie przypadło dziecku do gustu;23;12
-11;07.12.2020;five;five;five;;18;12
-12;07.12.2020;five;five;five;;15;12
-13;07.12.2020;five;five;five;;23;12
-14;07.12.2020;five;five;five;;17;12
-15;07.12.2020;five;five;five;;16;12
-16;07.12.2020;five;five;five;;15;12
-17;07.12.2020;five;five;five;;18;12
-18;07.12.2020;five;five;five;;16;12
-19;07.12.2020;five;five;five;;17;12
-20;07.12.2020;five;five;five;;20;22
-21;07.12.2020;five;five;five;;23;12
-22;07.12.2020;five;five;five;;22;22
-23;07.12.2020;three;five;five;;21;22
-24;07.12.2020;five;five;five;;15;12
-25;07.12.2020;five;five;five;;19;22
-26;07.12.2020;five;five;five;nie powinno być pestek w pomarańczach;20;22
-27;07.12.2020;five;five;two;Synek powiedział, ze racuchy były pyszne, ale nie zdrowe, ponieważ było w nich za dużo cukru.;22;22
-28;07.12.2020;three;five;five;;21;22
-29;07.12.2020;one;four;four;Dla Szymona brzydka zupa;17;12
-30;07.12.2020;five;five;five;;16;12
-31;07.12.2020;five;five;four;;18;12
-32;07.12.2020;three;five;five;Syn nie chciał jeść zupki, ponieważ był na niej kożuszek. Wg mnie świadczy to o tym, ze mleko było naturalne, ale niestety sama pamiętam jak nie jadłam takich zup , jeżeli na wierzchu się coś osadzało :-);19;22
-33;07.12.2020;four;four;four;Lepsze bez marchewki;23;12
-34;07.12.2020;three;four;four;Bez kanapki z dżemem -zdanie  mojego synka;15;12
-35;07.12.2020;five;five;three;;22;22
-36;07.12.2020;five;five;five;4 latka informuje, że cukier puder był niezdrowy ale sama zjadła dwie porcje ;;
-37;07.12.2020;four;five;five;;19;22
-38;07.12.2020;three;five;five;;21;22
-39;07.12.2020;five;;five;"5 latka krzyczy ""pochwalam to danie voila!""";20;22
-40;07.12.2020;five;five;five;Pomarańcza była troszkę kwaśna. A mandarynki nie jadła.;20;22
-41;07.12.2020;one;five;three;Racuszki córka zjadłaby ale bez nadzienia jabłkowego.;22;22
-42;07.12.2020;three;five;five;Klopsiki zjadła a zupy tylko troszkę, bo zdaniem córeczki była kwaśna.;21;22
-43;07.12.2020;three;five;five;Córka chętnie zjadłaby zupę mleczną, ale może tylko mleko bez laktozy. Pomidorków nie lubi . Zjadła więc tylko suchy chleb i ogórka kiszonego.;19;22
-44;;;;;;;
-45;07.12.2020;five;five;five;;17;12
-46;07.12.2020;five;five;five;;23;12
-47;07.12.2020;five;five;five;;15;12
-48;07.12.2020;five;five;five;;18;12
-49;07.12.2020;four;four;four;;17;12
-50;07.12.2020;five;five;five;;16;12
-51;07.12.2020;three;four;four;Marchewka i makaron osobno super sprawa, natomiast samo połączęnie?! Jak dla mnie niebardzo ;;
-52;07.12.2020;three;five;four;Mam wątpliwości co do szynki, są pełne ulepszaczy. Lepiej wyglądałoby mięso samodzielnie upieczone.;19;22
-53;07.12.2020;one;four;four;;21;22
-54;07.12.2020;two;two;three;Nie jestem przekonana, czy dzieci do końca lubią obiady na słodko. Moje nie.;;
-Na podwieczorek;" ok.""";22;22;;;;
-55;07.12.2020;three;two;four;;20;22
-56;08.12.2020;five;five;five;;25;12
-57;08.12.2020;five;five;five;;27;12
-58;08.12.2020;one;five;five;;26;12
-59;08.12.2020;five;five;five;;32;12
-60;08.12.2020;five;five;five;;31;22
-61;08.12.2020;one;four;four;za mało słodkie;25;12
-62;08.12.2020;five;five;four;;27;12
-63;08.12.2020;two;four;four;nie podobał się zapach zupy;26;12
-64;08.12.2020;four;four;four;lepsze bez pomidora i za mało kanapek dali;24;12
-65;08.12.2020;five;five;five;bardzo lubi;32;12
-66;08.12.2020;five;five;five;;25;12
-67;08.12.2020;five;five;five;;27;12
-68;08.12.2020;five;five;five;;26;12
-69;;;;;;;
-70;08.12.2020;five;five;five;;24;12
-71;08.12.2020;five;five;five;;32;12
-72;;;;;;;12
-73;08.12.2020;three;four;five;Brzydko pachniało;26;12
-74;08.12.2020;three;four;four;;28;22
-75;08.12.2020;three;five;five;;29;22
-76;08.12.2020;three;five;five;;30;22
-77;08.12.2020;four;three;two;Uważam, że zamiast kotleta schabowego mógłby być kotlet drobiowy. Poza tym mógłby być smażony sote, bez panierki lub grillowany.;31;22
-78;08.12.2020;five;five;five;;28;22
-79;08.12.2020;five;five;five;Dziewczyny mówią, że ich dzieci w Grupie chętnie jadły ;;
-80;08.12.2020;;;;Podobnie jak ostatnio córka nie może dań mlecznych, gdyż jest uczulona na laktozę. Czy byłaby możliwość posiłku na mleku, jogurcie bez laktozy?;29;22
-81;08.12.2020;five;five;five;;30;22
-82;08.12.2020;five;five;five;;31;22
-83;08.12.2020;three;five;four;Kotlet był za słony, dlatego córka zjadła tylko połowę.;31;22
-84;08.12.2020;four;five;five;;28;22
-85;08.12.2020;five;five;five;;30;22
-86;08.12.2020;four;five;four;;28;22
-87;08.12.2020;three;four;two;;29;22
-88;08.12.2020;five;five;five;;30;22
-89;08.12.2020;four;four;four;Surówka była ostra powiedział synek, nie lubi cebuli ;;
-90;08.12.2020;four;four;four;;28;22
-91;08.12.2020;three;four;four;;29;22
-92;08.12.2020;five;five;five;;30;22
-93;08.12.2020;five;five;four;;31;22
-197;11.12.2020;four;four;four;zjadłem tylko kotlecika i ziemniaczki, picie było różowe i nie dobre;60;22
-94;08.12.2020;five;five;five;porcja duża jak dla 5latki, pomidora zamieniła bym na inne warzywo,w okresie zimowym nie mają specjalnego smaku, np zamiana na rzodkiewkę, paprykę do pochrupania;24;12
-95;08.12.2020;five;five;five;;32;12
-96;08.12.2020;five;five;five;;25;12
-97;08.12.2020;five;five;five;była pyszna;26;12
-98;08.12.2020;five;five;five;gotowane warzywa bleeee;27;12
-99;;;;;;;
-100;08.12.2020;five;five;five;;27;12
-101;09.12.2020;five;four;four;;37;12
-102;09.12.2020;four;four;five;;33;12
-103;09.12.2020;five;four;four;;33;12
-104;09.12.2020;four;five;five;Z poziomu pojedynczego dania w dalszym ciągu nie wyświetla się zdjęcie;33;12
-105;09.12.2020;five;four;four;;36;12
-106;09.12.2020;three;five;five;Miały pestki;;12
-107;09.12.2020;five;five;five;"Cyt. ""Była przepyszna !""";35;12
-108;09.12.2020;four;four;four;;36;12
-109;09.12.2020;four;five;five;Uwaga techniczna. Łatwiej byłoby gdyby po wyborze przedszkola wyświetliły się wszystkie dania z danego dnia wraz z możliwością oceny. Na koniec wysyłane oceny jednym 'kliknięciem'.;37;12
-110;09.12.2020;four;four;four;bez pomidora i zielska mówi mój syn;33;12
-111;09.12.2020;four;four;four;Szymek mówi że mają pestki;34;12
-112;09.12.2020;four;four;four;syn mówi że brzydko wygląda zupa;35;12
-113;09.12.2020;four;four;four;;37;12
-114;09.12.2020;five;five;five;najpyszniejsza kawka z mleczkiem :);33;12
-115;09.12.2020;five;five;five;pyszne wafle;36;12
-116;09.12.2020;five;five;five;jest dobry jak nie ma pestek :);34;12
-117;09.12.2020;five;five;five;;35;12
-118;09.12.2020;five;five;five;nie lubie rodzynek;37;12
-119;09.12.2020;four;five;five;;39;22
-120;09.12.2020;four;four;four;;40;22
-121;09.12.2020;four;four;four;;38;22
-122;09.12.2020;two;four;four;;41;22
-123;09.12.2020;five;five;five;;36;12
-124;09.12.2020;five;five;five;córka o wszystkich daniach mówi że były pyszne dla innych dzieci.ocena dań jest mało wiarygodna. punktację może zamienić na buźki?;33;12
-125;09.12.2020;five;five;five;"błąd w opisie.""wybierz danie"" a nie ""wybierz datę""";34;12
-126;09.12.2020;five;five;five;kolorystyka strony jest smutna;37;12
-127;09.12.2020;five;five;five;powinna być lista dań najlepiej od ocenianych do najmniej;35;12
-128;09.12.2020;five;five;five;skróciłabym widok strony umieszczając punktację poziomo przy pytaniu;37;12
-129;09.12.2020;five;five;five;Szkoda że nie było produktów mlecznych bez laktozy.;38;22
-130;09.12.2020;;;;zrobiłabym jeszcze podział wg posiłków jeśli ktoś szuka inspiracji np.na obiad podczas przerwy wakacyjnej;;12
-131;09.12.2020;five;five;five;;39;22
-132;09.12.2020;one;three;two;;40;22
-133;09.12.2020;three;four;five;;41;22
-134;09.12.2020;five;five;five;;39;22
-135;09.12.2020;four;five;five;;40;22
-136;09.12.2020;four;five;five;;38;22
-137;09.12.2020;five;five;five;;41;22
-138;09.12.2020;five;five;five;;39;22
-139;09.12.2020;five;five;five;;38;22
-140;09.12.2020;five;five;five;;41;22
-141;09.12.2020;four;four;five;"Mamo, Dzieci nie mogą jeść grzybów a dzisiaj była zupa z grzybami "" ";;
-142;09.12.2020;five;five;five;;39;22
-143;09.12.2020;two;two;four;;40;22
-144;09.12.2020;four;five;five;;38;22
-145;09.12.2020;three;five;five;;41;22
-146;10.12.2020;three;five;five;;48;22
-147;10.12.2020;five;three;three;;49;22
-148;10.12.2020;three;four;five;;50;22
-149;10.12.2020;five;five;five;;51;22
-150;09.12.2020;four;four;five;;39;22
-151;09.12.2020;one;one;one;;;22
-152;09.12.2020;four;four;four;;38;22
-153;09.12.2020;five;five;five;;41;22
-154;10.12.2020;five;five;five;"""Pyszne! zdjęłam wszystko z chlebka i zjadłam""";42;12
-155;10.12.2020;five;five;five;"""To najpyszniej. Zjadłam cały.To mój ulubiony""";43;12
-156;10.12.2020;five;five;five;"""yhymmm.To było dobre, zjadłam całą""";47;12
-157;10.12.2020;five;five;five;"""bardzo smakowały mi chrupki""";45;12
-158;10.12.2020;three;five;five;"""bardzo smakował mi sos i mięsko.surówka to nie"".";46;12
-159;10.12.2020;five;five;five;;48;22
-160;10.12.2020;five;five;five;;;22
-161;10.12.2020;five;five;five;;50;22
-162;10.12.2020;five;five;five;;51;22
-163;10.12.2020;five;five;five;;48;22
-164;10.12.2020;five;five;five;;49;22
-165;10.12.2020;one;two;five;;50;22
-166;10.12.2020;five;five;five;;51;22
-167;10.12.2020;four;four;four;;46;12
-168;10.12.2020;four;four;five;;45;12
-169;10.12.2020;two;three;four;;47;12
-170;10.12.2020;two;four;four;;43;12
-171;10.12.2020;four;four;four;bez pomidora i zielska mówi mój syn;42;12
-172;10.12.2020;four;five;five;bleeeee kiełki,pyszne kakałko :);42;12
-173;10.12.2020;five;five;five;to ja uwielbiam :);43;12
-174;10.12.2020;five;five;five;;45;12
-175;10.12.2020;five;five;five;;47;12
-176;10.12.2020;five;five;five;pyszne,sama bym zjadła ;;
-177;10.12.2020;four;five;five;;48;22
-178;10.12.2020;five;five;five;Nie pojawiają się zdjęcia potraw;49;22
-179;10.12.2020;five;five;five;;50;22
-180;10.12.2020;five;five;five;;51;22
-181;10.12.2020;four;four;four;;48;22
-182;10.12.2020;three;three;three;;49;22
-183;10.12.2020;two;three;three;;50;22
-184;10.12.2020;four;four;four;;51;22
-185;11.12.2020;five;five;five;;;12
-186;;;;;;;
-187;10.12.2020;four;five;five;;48;22
-188;10.12.2020;three;five;five;;49;22
-189;10.12.2020;two;four;five;;50;22
-190;10.12.2020;five;five;five;;51;22
-191;11.12.2020;one;five;five;;57;22
-192;11.12.2020;five;five;five;;58;22
-193;11.12.2020;two;four;five;;59;22
-194;11.12.2020;five;five;five;Smakowało, ale bez pomidora :);57;22
-195;11.12.2020;five;five;five;uwielbiam obrane gruszeczki i jabłuszka;58;22
-196;11.12.2020;three;four;four;barszczyk był nie pyszny, zjadłem jajeczko i chlebek;59;22
-198;11.12.2020;five;five;five;;57;22
-199;11.12.2020;five;five;five;Zjadłem wszystko jablko, gruszke i jeszcze mandarynke bo byla😉😅;58;22
-200;11.12.2020;five;five;five;Zjadlem prawie wszystko, ale Zosia to zjadla caly talerz wiesz Mama?:);59;22
-201;11.12.2020;five;five;five;;60;22
-202;11.12.2020;three;four;four;bez zielska dalej  w meni;52;12
-203;11.12.2020;one;four;four;;53;12
-204;11.12.2020;one;four;four;z tego zestawu tylko chleb zjadł mój syn;54;12
-205;11.12.2020;four;four;four;ładnie wygląda;56;12
-206;11.12.2020;three;four;four;;55;12
-207;11.12.2020;five;five;five;kawka i pieczywko najlepsze :);52;12
-208;11.12.2020;five;five;five;mój ulubiony;53;12
-209;11.12.2020;five;five;five;;54;12
-210;11.12.2020;five;five;five;;55;12
-211;11.12.2020;five;five;five;;56;12
-212;;;;;;;
-213;11.12.2020;five;five;five;najbardziej dziś smakowała;54;12
-214;11.12.2020;four;five;five;bardzo apetyczne, podoba mi się że są zdjęcia;52;12
-215;11.12.2020;five;five;five;"""bardzo pyszny. może ugotujesz mi taki koktajl w domu""";53;12
-216;11.12.2020;five;five;five;"""wszystko zjadłam tylko surówkę nie.wszystko zjadłam z mięska""";55;12
-217;11.12.2020;five;five;five;;56;12
-218;11.12.2020;five;five;five;;57;22
-219;11.12.2020;five;five;five;;60;22
-220;11.12.2020;five;five;five;;58;22
-221;;;;;;;
-222;11.12.2020;three;three;two;;59;22
+id,kindergarten_id,date,dish_id,children_satisfaction,parent_satisfaction,health,comment,label,children_satisfaction_label,parent_satisfaction_label,health_label,kindergarten_label,dish_label
+1,22,2020-10-06,12,three,four,three,więcej kolorów,Płatki owsiane na mleku; pieczywo z pastą jajeczną; jogurt naturalny z musem owocowym,3,4,3,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,Płatki owsiane na mleku; pieczywo z pastą jajeczną; jogurt naturalny z musem owocowym
+2,NA,NA,NA,NA,NA,NA,,None,NA,NA,NA,NA,NA
+3,12,2020-10-06,9,three,five,three,"Może udałoby się uruchomić  w przedszkolu hodowlę kiełków? Wystarczy słoik, woda i kiełki - chętnie opowiem dzieciom w tym jak zdrowe są kiełki i nauczę je hodować. Krzysztof Ś.",Kanapki z wędliną i warzywami; budyń z musem malinowym,3,5,3,Przedszkole Miejskie nr 12 Niezapominajka,Kanapki z wędliną i warzywami; budyń z musem malinowym
+4,22,2020-10-06,12,two,four,four,Marcel ma kłopot z zupą mleczną - w domu używamy głównie zamienników bez laktozy. Może czasem udałoby się wprowadzić zupę mleczną z zamienników sojowych czy owsianych? Służę przepisem na przesmaczną zupę z kaszą jaglaną.,Płatki owsiane na mleku; pieczywo z pastą jajeczną; jogurt naturalny z musem owocowym,2,4,4,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,Płatki owsiane na mleku; pieczywo z pastą jajeczną; jogurt naturalny z musem owocowym
+5,22,2020-10-06,4,NA,NA,NA,,Klopsiki drobiowe w sosie śmietanowo - koperkowym z ziemniakami,NA,NA,NA,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,Klopsiki drobiowe w sosie śmietanowo - koperkowym z ziemniakami
+6,12,2020-12-07,15,five,five,five,,"Płatki owsiane z mlekiem, bułka z dżemem",5,5,5,Przedszkole Miejskie nr 12 Niezapominajka,"Płatki owsiane z mlekiem, bułka z dżemem"
+7,12,2020-12-07,16,five,five,five,,Banan,5,5,5,Przedszkole Miejskie nr 12 Niezapominajka,Banan
+8,12,2020-12-07,17,five,five,five,,"Zupa grochowa z kiełbasą, pieczywo",5,5,5,Przedszkole Miejskie nr 12 Niezapominajka,"Zupa grochowa z kiełbasą, pieczywo"
+9,12,2020-12-07,18,five,five,five,,"Jabłko, piernik świąteczny",5,5,5,Przedszkole Miejskie nr 12 Niezapominajka,"Jabłko, piernik świąteczny"
+10,12,2020-12-07,23,three,four,four,połączenie makaronu z marchewką nie przypadło dziecku do gustu,"Makaron z twarogiem, polewa śmietanowo- jogurtowa, mini marchewki",3,4,4,Przedszkole Miejskie nr 12 Niezapominajka,"Makaron z twarogiem, polewa śmietanowo- jogurtowa, mini marchewki"
+11,12,2020-12-07,18,five,five,five,,"Jabłko, piernik świąteczny",5,5,5,Przedszkole Miejskie nr 12 Niezapominajka,"Jabłko, piernik świąteczny"
+12,12,2020-12-07,15,five,five,five,,"Płatki owsiane z mlekiem, bułka z dżemem",5,5,5,Przedszkole Miejskie nr 12 Niezapominajka,"Płatki owsiane z mlekiem, bułka z dżemem"
+13,12,2020-12-07,23,five,five,five,,"Makaron z twarogiem, polewa śmietanowo- jogurtowa, mini marchewki",5,5,5,Przedszkole Miejskie nr 12 Niezapominajka,"Makaron z twarogiem, polewa śmietanowo- jogurtowa, mini marchewki"
+14,12,2020-12-07,17,five,five,five,,"Zupa grochowa z kiełbasą, pieczywo",5,5,5,Przedszkole Miejskie nr 12 Niezapominajka,"Zupa grochowa z kiełbasą, pieczywo"
+15,12,2020-12-07,16,five,five,five,,Banan,5,5,5,Przedszkole Miejskie nr 12 Niezapominajka,Banan
+16,12,2020-12-07,15,five,five,five,,"Płatki owsiane z mlekiem, bułka z dżemem",5,5,5,Przedszkole Miejskie nr 12 Niezapominajka,"Płatki owsiane z mlekiem, bułka z dżemem"
+17,12,2020-12-07,18,five,five,five,,"Jabłko, piernik świąteczny",5,5,5,Przedszkole Miejskie nr 12 Niezapominajka,"Jabłko, piernik świąteczny"
+18,12,2020-12-07,16,five,five,five,,Banan,5,5,5,Przedszkole Miejskie nr 12 Niezapominajka,Banan
+19,12,2020-12-07,17,five,five,five,,"Zupa grochowa z kiełbasą, pieczywo",5,5,5,Przedszkole Miejskie nr 12 Niezapominajka,"Zupa grochowa z kiełbasą, pieczywo"
+20,22,2020-12-07,20,five,five,five,,Pomarańcza,5,5,5,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,Pomarańcza
+21,12,2020-12-07,23,five,five,five,,"Makaron z twarogiem, polewa śmietanowo- jogurtowa, mini marchewki",5,5,5,Przedszkole Miejskie nr 12 Niezapominajka,"Makaron z twarogiem, polewa śmietanowo- jogurtowa, mini marchewki"
+22,22,2020-12-07,22,five,five,five,,"Racuchy z jabłkami, polewą śmietankową i cukrem pudrem; kompot truskawkowy",5,5,5,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,"Racuchy z jabłkami, polewą śmietankową i cukrem pudrem; kompot truskawkowy"
+23,22,2020-12-07,21,three,five,five,,Zupa porowa z klopsikami wieprzowymi,3,5,5,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,Zupa porowa z klopsikami wieprzowymi
+24,12,2020-12-07,15,five,five,five,,"Płatki owsiane z mlekiem, bułka z dżemem",5,5,5,Przedszkole Miejskie nr 12 Niezapominajka,"Płatki owsiane z mlekiem, bułka z dżemem"
+25,22,2020-12-07,19,five,five,five,,"Płatki orkiszowe na mleku, pieczywo z szynką i warzywami",5,5,5,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,"Płatki orkiszowe na mleku, pieczywo z szynką i warzywami"
+26,22,2020-12-07,20,five,five,five,nie powinno być pestek w pomarańczach,Pomarańcza,5,5,5,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,Pomarańcza
+27,22,2020-12-07,22,five,five,two,"Synek powiedział, ze racuchy były pyszne, ale nie zdrowe, ponieważ było w nich za dużo cukru.","Racuchy z jabłkami, polewą śmietankową i cukrem pudrem; kompot truskawkowy",5,5,2,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,"Racuchy z jabłkami, polewą śmietankową i cukrem pudrem; kompot truskawkowy"
+28,22,2020-12-07,21,three,five,five,,Zupa porowa z klopsikami wieprzowymi,3,5,5,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,Zupa porowa z klopsikami wieprzowymi
+29,12,2020-12-07,17,one,four,four,Dla Szymona brzydka zupa,"Zupa grochowa z kiełbasą, pieczywo",1,4,4,Przedszkole Miejskie nr 12 Niezapominajka,"Zupa grochowa z kiełbasą, pieczywo"
+30,12,2020-12-07,16,five,five,five,,Banan,5,5,5,Przedszkole Miejskie nr 12 Niezapominajka,Banan
+31,12,2020-12-07,18,five,five,four,,"Jabłko, piernik świąteczny",5,5,4,Przedszkole Miejskie nr 12 Niezapominajka,"Jabłko, piernik świąteczny"
+32,22,2020-12-07,19,three,five,five,"Syn nie chciał jeść zupki, ponieważ był na niej kożuszek. Wg mnie świadczy to o tym, ze mleko było naturalne, ale niestety sama pamiętam jak nie jadłam takich zup , jeżeli na wierzchu się coś osadzało :-)","Płatki orkiszowe na mleku, pieczywo z szynką i warzywami",3,5,5,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,"Płatki orkiszowe na mleku, pieczywo z szynką i warzywami"
+33,12,2020-12-07,23,four,four,four,Lepsze bez marchewki,"Makaron z twarogiem, polewa śmietanowo- jogurtowa, mini marchewki",4,4,4,Przedszkole Miejskie nr 12 Niezapominajka,"Makaron z twarogiem, polewa śmietanowo- jogurtowa, mini marchewki"
+34,12,2020-12-07,15,three,four,four,Bez kanapki z dżemem -zdanie  mojego synka,"Płatki owsiane z mlekiem, bułka z dżemem",3,4,4,Przedszkole Miejskie nr 12 Niezapominajka,"Płatki owsiane z mlekiem, bułka z dżemem"
+35,22,2020-12-07,22,five,five,three,,"Racuchy z jabłkami, polewą śmietankową i cukrem pudrem; kompot truskawkowy",5,5,3,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,"Racuchy z jabłkami, polewą śmietankową i cukrem pudrem; kompot truskawkowy"
+36,22,2020-12-07,22,five,five,five,"4 latka informuje, że cukier puder był niezdrowy ale sama zjadła dwie porcje ;)","Racuchy z jabłkami, polewą śmietankową i cukrem pudrem; kompot truskawkowy",5,5,5,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,"Racuchy z jabłkami, polewą śmietankową i cukrem pudrem; kompot truskawkowy"
+37,22,2020-12-07,19,four,five,five,,"Płatki orkiszowe na mleku, pieczywo z szynką i warzywami",4,5,5,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,"Płatki orkiszowe na mleku, pieczywo z szynką i warzywami"
+38,22,2020-12-07,21,three,five,five,,Zupa porowa z klopsikami wieprzowymi,3,5,5,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,Zupa porowa z klopsikami wieprzowymi
+39,22,2020-12-07,20,five,NA,five,"5 latka krzyczy ""pochwalam to danie voila!""",Pomarańcza,5,NA,5,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,Pomarańcza
+40,22,2020-12-07,20,five,five,five,Pomarańcza była troszkę kwaśna. A mandarynki nie jadła.,Pomarańcza,5,5,5,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,Pomarańcza
+41,22,2020-12-07,22,one,five,three,Racuszki córka zjadłaby ale bez nadzienia jabłkowego.,"Racuchy z jabłkami, polewą śmietankową i cukrem pudrem; kompot truskawkowy",1,5,3,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,"Racuchy z jabłkami, polewą śmietankową i cukrem pudrem; kompot truskawkowy"
+42,22,2020-12-07,21,three,five,five,"Klopsiki zjadła a zupy tylko troszkę, bo zdaniem córeczki była kwaśna.",Zupa porowa z klopsikami wieprzowymi,3,5,5,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,Zupa porowa z klopsikami wieprzowymi
+43,22,2020-12-07,19,three,five,five,"Córka chętnie zjadłaby zupę mleczną, ale może tylko mleko bez laktozy. Pomidorków nie lubi . Zjadła więc tylko suchy chleb i ogórka kiszonego.","Płatki orkiszowe na mleku, pieczywo z szynką i warzywami",3,5,5,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,"Płatki orkiszowe na mleku, pieczywo z szynką i warzywami"
+44,NA,NA,NA,NA,NA,NA,,None,NA,NA,NA,NA,NA
+45,12,2020-12-07,17,five,five,five,,"Zupa grochowa z kiełbasą, pieczywo",5,5,5,Przedszkole Miejskie nr 12 Niezapominajka,"Zupa grochowa z kiełbasą, pieczywo"
+46,12,2020-12-07,23,five,five,five,,"Makaron z twarogiem, polewa śmietanowo- jogurtowa, mini marchewki",5,5,5,Przedszkole Miejskie nr 12 Niezapominajka,"Makaron z twarogiem, polewa śmietanowo- jogurtowa, mini marchewki"
+47,12,2020-12-07,15,five,five,five,,"Płatki owsiane z mlekiem, bułka z dżemem",5,5,5,Przedszkole Miejskie nr 12 Niezapominajka,"Płatki owsiane z mlekiem, bułka z dżemem"
+48,12,2020-12-07,18,five,five,five,,"Jabłko, piernik świąteczny",5,5,5,Przedszkole Miejskie nr 12 Niezapominajka,"Jabłko, piernik świąteczny"
+49,12,2020-12-07,17,four,four,four,,"Zupa grochowa z kiełbasą, pieczywo",4,4,4,Przedszkole Miejskie nr 12 Niezapominajka,"Zupa grochowa z kiełbasą, pieczywo"
+50,12,2020-12-07,16,five,five,five,,Banan,5,5,5,Przedszkole Miejskie nr 12 Niezapominajka,Banan
+51,12,2020-12-07,23,three,four,four,"Marchewka i makaron osobno super sprawa, natomiast samo połączęnie?! Jak dla mnie niebardzo ;)","Makaron z twarogiem, polewa śmietanowo- jogurtowa, mini marchewki",3,4,4,Przedszkole Miejskie nr 12 Niezapominajka,"Makaron z twarogiem, polewa śmietanowo- jogurtowa, mini marchewki"
+52,22,2020-12-07,19,three,five,four,"Mam wątpliwości co do szynki, są pełne ulepszaczy. Lepiej wyglądałoby mięso samodzielnie upieczone.","Płatki orkiszowe na mleku, pieczywo z szynką i warzywami",3,5,4,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,"Płatki orkiszowe na mleku, pieczywo z szynką i warzywami"
+53,22,2020-12-07,21,one,four,four,,Zupa porowa z klopsikami wieprzowymi,1,4,4,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,Zupa porowa z klopsikami wieprzowymi
+54,22,2020-12-07,22,two,two,three,"Nie jestem przekonana, czy dzieci do końca lubią obiady na słodko. Moje nie.
+Na podwieczorek, ok.","Racuchy z jabłkami, polewą śmietankową i cukrem pudrem; kompot truskawkowy",2,2,3,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,"Racuchy z jabłkami, polewą śmietankową i cukrem pudrem; kompot truskawkowy"
+55,22,2020-12-07,20,three,two,four,,Pomarańcza,3,2,4,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,Pomarańcza
+56,12,2020-12-08,25,five,five,five,,Kisiel z jabłkiem,5,5,5,Przedszkole Miejskie nr 12 Niezapominajka,Kisiel z jabłkiem
+57,12,2020-12-08,27,five,five,five,,Kotlet z piersi kurczaka z ziemniakami i bukietem warzyw,5,5,5,Przedszkole Miejskie nr 12 Niezapominajka,Kotlet z piersi kurczaka z ziemniakami i bukietem warzyw
+58,12,2020-12-08,26,one,five,five,,"Zupa ogórkowa, pieczywo",1,5,5,Przedszkole Miejskie nr 12 Niezapominajka,"Zupa ogórkowa, pieczywo"
+59,12,2020-12-08,32,five,five,five,,Śliwki,5,5,5,Przedszkole Miejskie nr 12 Niezapominajka,Śliwki
+60,22,2020-12-08,31,five,five,five,,"Kotlet schabowy, ziemniaki z koperkiem, surówka z czerwonej kapusty",5,5,5,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,"Kotlet schabowy, ziemniaki z koperkiem, surówka z czerwonej kapusty"
+61,12,2020-12-08,25,one,four,four,za mało słodkie,Kisiel z jabłkiem,1,4,4,Przedszkole Miejskie nr 12 Niezapominajka,Kisiel z jabłkiem
+62,12,2020-12-08,27,five,five,four,,Kotlet z piersi kurczaka z ziemniakami i bukietem warzyw,5,5,4,Przedszkole Miejskie nr 12 Niezapominajka,Kotlet z piersi kurczaka z ziemniakami i bukietem warzyw
+63,12,2020-12-08,26,two,four,four,nie podobał się zapach zupy,"Zupa ogórkowa, pieczywo",2,4,4,Przedszkole Miejskie nr 12 Niezapominajka,"Zupa ogórkowa, pieczywo"
+64,12,2020-12-08,24,four,four,four,lepsze bez pomidora i za mało kanapek dali,"Pieczywo z pastą z jajek z warzywami, kakao z mlekiem",4,4,4,Przedszkole Miejskie nr 12 Niezapominajka,"Pieczywo z pastą z jajek z warzywami, kakao z mlekiem"
+65,12,2020-12-08,32,five,five,five,bardzo lubi,Śliwki,5,5,5,Przedszkole Miejskie nr 12 Niezapominajka,Śliwki
+66,12,2020-12-08,25,five,five,five,,Kisiel z jabłkiem,5,5,5,Przedszkole Miejskie nr 12 Niezapominajka,Kisiel z jabłkiem
+67,12,2020-12-08,27,five,five,five,,Kotlet z piersi kurczaka z ziemniakami i bukietem warzyw,5,5,5,Przedszkole Miejskie nr 12 Niezapominajka,Kotlet z piersi kurczaka z ziemniakami i bukietem warzyw
+68,12,2020-12-08,26,five,five,five,,"Zupa ogórkowa, pieczywo",5,5,5,Przedszkole Miejskie nr 12 Niezapominajka,"Zupa ogórkowa, pieczywo"
+69,NA,NA,NA,NA,NA,NA,,None,NA,NA,NA,NA,NA
+70,12,2020-12-08,24,five,five,five,,"Pieczywo z pastą z jajek z warzywami, kakao z mlekiem",5,5,5,Przedszkole Miejskie nr 12 Niezapominajka,"Pieczywo z pastą z jajek z warzywami, kakao z mlekiem"
+71,12,2020-12-08,32,five,five,five,,Śliwki,5,5,5,Przedszkole Miejskie nr 12 Niezapominajka,Śliwki
+72,12,NA,NA,NA,NA,NA,,None,NA,NA,NA,Przedszkole Miejskie nr 12 Niezapominajka,NA
+73,12,2020-12-08,26,three,four,five,Brzydko pachniało,"Zupa ogórkowa, pieczywo",3,4,5,Przedszkole Miejskie nr 12 Niezapominajka,"Zupa ogórkowa, pieczywo"
+74,22,2020-12-08,28,three,four,four,,"Pieczywo z paprykarzem domowym i żółtym serem, warzywa; płatki owsiane na mleku",3,4,4,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,"Pieczywo z paprykarzem domowym i żółtym serem, warzywa; płatki owsiane na mleku"
+75,22,2020-12-08,29,three,five,five,,Jogurt naturalny z brzoskwinią,3,5,5,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,Jogurt naturalny z brzoskwinią
+76,22,2020-12-08,30,three,five,five,,Krupnik,3,5,5,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,Krupnik
+77,22,2020-12-08,31,four,three,two,"Uważam, że zamiast kotleta schabowego mógłby być kotlet drobiowy. Poza tym mógłby być smażony sote, bez panierki lub grillowany.","Kotlet schabowy, ziemniaki z koperkiem, surówka z czerwonej kapusty",4,3,2,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,"Kotlet schabowy, ziemniaki z koperkiem, surówka z czerwonej kapusty"
+78,22,2020-12-08,28,five,five,five,,"Pieczywo z paprykarzem domowym i żółtym serem, warzywa; płatki owsiane na mleku",5,5,5,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,"Pieczywo z paprykarzem domowym i żółtym serem, warzywa; płatki owsiane na mleku"
+79,22,2020-12-08,29,five,five,five,"Dziewczyny mówią, że ich dzieci w Grupie chętnie jadły ;)",Jogurt naturalny z brzoskwinią,5,5,5,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,Jogurt naturalny z brzoskwinią
+80,22,2020-12-08,29,NA,NA,NA,"Podobnie jak ostatnio córka nie może dań mlecznych, gdyż jest uczulona na laktozę. Czy byłaby możliwość posiłku na mleku, jogurcie bez laktozy?",Jogurt naturalny z brzoskwinią,NA,NA,NA,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,Jogurt naturalny z brzoskwinią
+81,22,2020-12-08,30,five,five,five,,Krupnik,5,5,5,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,Krupnik
+82,22,2020-12-08,31,five,five,five,,"Kotlet schabowy, ziemniaki z koperkiem, surówka z czerwonej kapusty",5,5,5,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,"Kotlet schabowy, ziemniaki z koperkiem, surówka z czerwonej kapusty"
+83,22,2020-12-08,31,three,five,four,"Kotlet był za słony, dlatego córka zjadła tylko połowę.","Kotlet schabowy, ziemniaki z koperkiem, surówka z czerwonej kapusty",3,5,4,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,"Kotlet schabowy, ziemniaki z koperkiem, surówka z czerwonej kapusty"
+84,22,2020-12-08,28,four,five,five,,"Pieczywo z paprykarzem domowym i żółtym serem, warzywa; płatki owsiane na mleku",4,5,5,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,"Pieczywo z paprykarzem domowym i żółtym serem, warzywa; płatki owsiane na mleku"
+85,22,2020-12-08,30,five,five,five,,Krupnik,5,5,5,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,Krupnik
+86,22,2020-12-08,28,four,five,four,,"Pieczywo z paprykarzem domowym i żółtym serem, warzywa; płatki owsiane na mleku",4,5,4,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,"Pieczywo z paprykarzem domowym i żółtym serem, warzywa; płatki owsiane na mleku"
+87,22,2020-12-08,29,three,four,two,,Jogurt naturalny z brzoskwinią,3,4,2,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,Jogurt naturalny z brzoskwinią
+88,22,2020-12-08,30,five,five,five,,Krupnik,5,5,5,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,Krupnik
+89,22,2020-12-08,31,four,four,four,"Surówka była ostra powiedział synek, nie lubi cebuli ;-)","Kotlet schabowy, ziemniaki z koperkiem, surówka z czerwonej kapusty",4,4,4,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,"Kotlet schabowy, ziemniaki z koperkiem, surówka z czerwonej kapusty"
+90,22,2020-12-08,28,four,four,four,,"Pieczywo z paprykarzem domowym i żółtym serem, warzywa; płatki owsiane na mleku",4,4,4,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,"Pieczywo z paprykarzem domowym i żółtym serem, warzywa; płatki owsiane na mleku"
+91,22,2020-12-08,29,three,four,four,,Jogurt naturalny z brzoskwinią,3,4,4,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,Jogurt naturalny z brzoskwinią
+92,22,2020-12-08,30,five,five,five,,Krupnik,5,5,5,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,Krupnik
+93,22,2020-12-08,31,five,five,four,,"Kotlet schabowy, ziemniaki z koperkiem, surówka z czerwonej kapusty",5,5,4,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,"Kotlet schabowy, ziemniaki z koperkiem, surówka z czerwonej kapusty"
+197,22,2020-12-11,60,four,four,four,"zjadłem tylko kotlecika i ziemniaczki, picie było różowe i nie dobre","Kotlet rybny z sandacza z ziemniakami, surówka z białej kapusty i marchwii",4,4,4,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,"Kotlet rybny z sandacza z ziemniakami, surówka z białej kapusty i marchwii"
+94,12,2020-12-08,24,five,five,five,"porcja duża jak dla 5latki, pomidora zamieniła bym na inne warzywo,w okresie zimowym nie mają specjalnego smaku, np zamiana na rzodkiewkę, paprykę do pochrupania","Pieczywo z pastą z jajek z warzywami, kakao z mlekiem",5,5,5,Przedszkole Miejskie nr 12 Niezapominajka,"Pieczywo z pastą z jajek z warzywami, kakao z mlekiem"
+95,12,2020-12-08,32,five,five,five,,Śliwki,5,5,5,Przedszkole Miejskie nr 12 Niezapominajka,Śliwki
+96,12,2020-12-08,25,five,five,five,,Kisiel z jabłkiem,5,5,5,Przedszkole Miejskie nr 12 Niezapominajka,Kisiel z jabłkiem
+97,12,2020-12-08,26,five,five,five,była pyszna,"Zupa ogórkowa, pieczywo",5,5,5,Przedszkole Miejskie nr 12 Niezapominajka,"Zupa ogórkowa, pieczywo"
+98,12,2020-12-08,27,five,five,five,gotowane warzywa bleeee,Kotlet z piersi kurczaka z ziemniakami i bukietem warzyw,5,5,5,Przedszkole Miejskie nr 12 Niezapominajka,Kotlet z piersi kurczaka z ziemniakami i bukietem warzyw
+99,NA,NA,NA,NA,NA,NA,,None,NA,NA,NA,NA,NA
+100,12,2020-12-08,27,five,five,five,,Kotlet z piersi kurczaka z ziemniakami i bukietem warzyw,5,5,5,Przedszkole Miejskie nr 12 Niezapominajka,Kotlet z piersi kurczaka z ziemniakami i bukietem warzyw
+101,12,2020-12-09,37,five,four,four,,"Pierogi leniwe z bułką tartą i masłem, surówka z selera, marchewki z rodzynkami i jogurtem",5,4,4,Przedszkole Miejskie nr 12 Niezapominajka,"Pierogi leniwe z bułką tartą i masłem, surówka z selera, marchewki z rodzynkami i jogurtem"
+102,12,2020-12-09,33,four,four,five,,"Pieczywo z wędliną i warzywami, kawa z mlekiem",4,4,5,Przedszkole Miejskie nr 12 Niezapominajka,"Pieczywo z wędliną i warzywami, kawa z mlekiem"
+103,12,2020-12-09,33,five,four,four,,"Pieczywo z wędliną i warzywami, kawa z mlekiem",5,4,4,Przedszkole Miejskie nr 12 Niezapominajka,"Pieczywo z wędliną i warzywami, kawa z mlekiem"
+104,12,2020-12-09,33,four,five,five,Z poziomu pojedynczego dania w dalszym ciągu nie wyświetla się zdjęcie,"Pieczywo z wędliną i warzywami, kawa z mlekiem",4,5,5,Przedszkole Miejskie nr 12 Niezapominajka,"Pieczywo z wędliną i warzywami, kawa z mlekiem"
+105,12,2020-12-09,36,five,four,four,,Wafle z amarantusem mandarynka,5,4,4,Przedszkole Miejskie nr 12 Niezapominajka,Wafle z amarantusem mandarynka
+106,12,2020-12-09,NA,three,five,five,Miały pestki,None,3,5,5,Przedszkole Miejskie nr 12 Niezapominajka,NA
+107,12,2020-12-09,35,five,five,five,"Cyt. ""Była przepyszna !""","Zupa jarzynowa, pieczywo",5,5,5,Przedszkole Miejskie nr 12 Niezapominajka,"Zupa jarzynowa, pieczywo"
+108,12,2020-12-09,36,four,four,four,,Wafle z amarantusem mandarynka,4,4,4,Przedszkole Miejskie nr 12 Niezapominajka,Wafle z amarantusem mandarynka
+109,12,2020-12-09,37,four,five,five,Uwaga techniczna. Łatwiej byłoby gdyby po wyborze przedszkola wyświetliły się wszystkie dania z danego dnia wraz z możliwością oceny. Na koniec wysyłane oceny jednym 'kliknięciem'.,"Pierogi leniwe z bułką tartą i masłem, surówka z selera, marchewki z rodzynkami i jogurtem",4,5,5,Przedszkole Miejskie nr 12 Niezapominajka,"Pierogi leniwe z bułką tartą i masłem, surówka z selera, marchewki z rodzynkami i jogurtem"
+110,12,2020-12-09,33,four,four,four,bez pomidora i zielska mówi mój syn,"Pieczywo z wędliną i warzywami, kawa z mlekiem",4,4,4,Przedszkole Miejskie nr 12 Niezapominajka,"Pieczywo z wędliną i warzywami, kawa z mlekiem"
+111,12,2020-12-09,34,four,four,four,Szymek mówi że mają pestki,Winogrono,4,4,4,Przedszkole Miejskie nr 12 Niezapominajka,Winogrono
+112,12,2020-12-09,35,four,four,four,syn mówi że brzydko wygląda zupa,"Zupa jarzynowa, pieczywo",4,4,4,Przedszkole Miejskie nr 12 Niezapominajka,"Zupa jarzynowa, pieczywo"
+113,12,2020-12-09,37,four,four,four,,"Pierogi leniwe z bułką tartą i masłem, surówka z selera, marchewki z rodzynkami i jogurtem",4,4,4,Przedszkole Miejskie nr 12 Niezapominajka,"Pierogi leniwe z bułką tartą i masłem, surówka z selera, marchewki z rodzynkami i jogurtem"
+114,12,2020-12-09,33,five,five,five,najpyszniejsza kawka z mleczkiem :),"Pieczywo z wędliną i warzywami, kawa z mlekiem",5,5,5,Przedszkole Miejskie nr 12 Niezapominajka,"Pieczywo z wędliną i warzywami, kawa z mlekiem"
+115,12,2020-12-09,36,five,five,five,pyszne wafle,Wafle z amarantusem mandarynka,5,5,5,Przedszkole Miejskie nr 12 Niezapominajka,Wafle z amarantusem mandarynka
+116,12,2020-12-09,34,five,five,five,jest dobry jak nie ma pestek :),Winogrono,5,5,5,Przedszkole Miejskie nr 12 Niezapominajka,Winogrono
+117,12,2020-12-09,35,five,five,five,,"Zupa jarzynowa, pieczywo",5,5,5,Przedszkole Miejskie nr 12 Niezapominajka,"Zupa jarzynowa, pieczywo"
+118,12,2020-12-09,37,five,five,five,nie lubie rodzynek,"Pierogi leniwe z bułką tartą i masłem, surówka z selera, marchewki z rodzynkami i jogurtem",5,5,5,Przedszkole Miejskie nr 12 Niezapominajka,"Pierogi leniwe z bułką tartą i masłem, surówka z selera, marchewki z rodzynkami i jogurtem"
+119,22,2020-12-09,39,four,five,five,,Winogrono białe i ciemne,4,5,5,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,Winogrono białe i ciemne
+120,22,2020-12-09,40,four,four,four,,"Zupa pieczarkowa, pieczywo",4,4,4,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,"Zupa pieczarkowa, pieczywo"
+121,22,2020-12-09,38,four,four,four,,"Zupa mleczna z makaronem, chałka z dżemem i serkiem homogenizowanym",4,4,4,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,"Zupa mleczna z makaronem, chałka z dżemem i serkiem homogenizowanym"
+122,22,2020-12-09,41,two,four,four,,Potrawka z kurczaka z warzywami i ryżem; fasolka szparagowa,2,4,4,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,Potrawka z kurczaka z warzywami i ryżem; fasolka szparagowa
+123,12,2020-12-09,36,five,five,five,,Wafle z amarantusem mandarynka,5,5,5,Przedszkole Miejskie nr 12 Niezapominajka,Wafle z amarantusem mandarynka
+124,12,2020-12-09,33,five,five,five,córka o wszystkich daniach mówi że były pyszne dla innych dzieci.ocena dań jest mało wiarygodna. punktację może zamienić na buźki?,"Pieczywo z wędliną i warzywami, kawa z mlekiem",5,5,5,Przedszkole Miejskie nr 12 Niezapominajka,"Pieczywo z wędliną i warzywami, kawa z mlekiem"
+125,12,2020-12-09,34,five,five,five,"błąd w opisie.""wybierz danie"" a nie ""wybierz datę""",Winogrono,5,5,5,Przedszkole Miejskie nr 12 Niezapominajka,Winogrono
+126,12,2020-12-09,37,five,five,five,kolorystyka strony jest smutna,"Pierogi leniwe z bułką tartą i masłem, surówka z selera, marchewki z rodzynkami i jogurtem",5,5,5,Przedszkole Miejskie nr 12 Niezapominajka,"Pierogi leniwe z bułką tartą i masłem, surówka z selera, marchewki z rodzynkami i jogurtem"
+127,12,2020-12-09,35,five,five,five,powinna być lista dań najlepiej od ocenianych do najmniej,"Zupa jarzynowa, pieczywo",5,5,5,Przedszkole Miejskie nr 12 Niezapominajka,"Zupa jarzynowa, pieczywo"
+128,12,2020-12-09,37,five,five,five,skróciłabym widok strony umieszczając punktację poziomo przy pytaniu,"Pierogi leniwe z bułką tartą i masłem, surówka z selera, marchewki z rodzynkami i jogurtem",5,5,5,Przedszkole Miejskie nr 12 Niezapominajka,"Pierogi leniwe z bułką tartą i masłem, surówka z selera, marchewki z rodzynkami i jogurtem"
+129,22,2020-12-09,38,five,five,five,Szkoda że nie było produktów mlecznych bez laktozy.,"Zupa mleczna z makaronem, chałka z dżemem i serkiem homogenizowanym",5,5,5,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,"Zupa mleczna z makaronem, chałka z dżemem i serkiem homogenizowanym"
+130,12,2020-12-09,NA,NA,NA,NA,zrobiłabym jeszcze podział wg posiłków jeśli ktoś szuka inspiracji np.na obiad podczas przerwy wakacyjnej,None,NA,NA,NA,Przedszkole Miejskie nr 12 Niezapominajka,NA
+131,22,2020-12-09,39,five,five,five,,Winogrono białe i ciemne,5,5,5,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,Winogrono białe i ciemne
+132,22,2020-12-09,40,one,three,two,,"Zupa pieczarkowa, pieczywo",1,3,2,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,"Zupa pieczarkowa, pieczywo"
+133,22,2020-12-09,41,three,four,five,,Potrawka z kurczaka z warzywami i ryżem; fasolka szparagowa,3,4,5,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,Potrawka z kurczaka z warzywami i ryżem; fasolka szparagowa
+134,22,2020-12-09,39,five,five,five,,Winogrono białe i ciemne,5,5,5,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,Winogrono białe i ciemne
+135,22,2020-12-09,40,four,five,five,,"Zupa pieczarkowa, pieczywo",4,5,5,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,"Zupa pieczarkowa, pieczywo"
+136,22,2020-12-09,38,four,five,five,,"Zupa mleczna z makaronem, chałka z dżemem i serkiem homogenizowanym",4,5,5,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,"Zupa mleczna z makaronem, chałka z dżemem i serkiem homogenizowanym"
+137,22,2020-12-09,41,five,five,five,,Potrawka z kurczaka z warzywami i ryżem; fasolka szparagowa,5,5,5,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,Potrawka z kurczaka z warzywami i ryżem; fasolka szparagowa
+138,22,2020-12-09,39,five,five,five,,Winogrono białe i ciemne,5,5,5,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,Winogrono białe i ciemne
+139,22,2020-12-09,38,five,five,five,,"Zupa mleczna z makaronem, chałka z dżemem i serkiem homogenizowanym",5,5,5,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,"Zupa mleczna z makaronem, chałka z dżemem i serkiem homogenizowanym"
+140,22,2020-12-09,41,five,five,five,,Potrawka z kurczaka z warzywami i ryżem; fasolka szparagowa,5,5,5,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,Potrawka z kurczaka z warzywami i ryżem; fasolka szparagowa
+141,22,2020-12-09,40,four,four,five,"Mamo, Dzieci nie mogą jeść grzybów a dzisiaj była zupa z grzybami "" ;)","Zupa pieczarkowa, pieczywo",4,4,5,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,"Zupa pieczarkowa, pieczywo"
+142,22,2020-12-09,39,five,five,five,,Winogrono białe i ciemne,5,5,5,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,Winogrono białe i ciemne
+143,22,2020-12-09,40,two,two,four,,"Zupa pieczarkowa, pieczywo",2,2,4,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,"Zupa pieczarkowa, pieczywo"
+144,22,2020-12-09,38,four,five,five,,"Zupa mleczna z makaronem, chałka z dżemem i serkiem homogenizowanym",4,5,5,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,"Zupa mleczna z makaronem, chałka z dżemem i serkiem homogenizowanym"
+145,22,2020-12-09,41,three,five,five,,Potrawka z kurczaka z warzywami i ryżem; fasolka szparagowa,3,5,5,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,Potrawka z kurczaka z warzywami i ryżem; fasolka szparagowa
+146,22,2020-12-10,48,three,five,five,,"Płatki jęczmienne na mleku, pieczywo z twarożkiem i warzywami oraz z szynką",3,5,5,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,"Płatki jęczmienne na mleku, pieczywo z twarożkiem i warzywami oraz z szynką"
+147,22,2020-12-10,49,five,three,three,,"Kisiel jabłkowy do picia, wafle ryżowe",5,3,3,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,"Kisiel jabłkowy do picia, wafle ryżowe"
+148,22,2020-12-10,50,three,four,five,,Pieczeń rzymska z kaszą gryczaną i surówką z białej rzodkiewki,3,4,5,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,Pieczeń rzymska z kaszą gryczaną i surówką z białej rzodkiewki
+149,22,2020-12-10,51,five,five,five,,Rosół z makaronem; mandarynka,5,5,5,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,Rosół z makaronem; mandarynka
+150,22,2020-12-09,39,four,four,five,,Winogrono białe i ciemne,4,4,5,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,Winogrono białe i ciemne
+151,22,2020-12-09,NA,one,one,one,,None,1,1,1,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,NA
+152,22,2020-12-09,38,four,four,four,,"Zupa mleczna z makaronem, chałka z dżemem i serkiem homogenizowanym",4,4,4,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,"Zupa mleczna z makaronem, chałka z dżemem i serkiem homogenizowanym"
+153,22,2020-12-09,41,five,five,five,,Potrawka z kurczaka z warzywami i ryżem; fasolka szparagowa,5,5,5,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,Potrawka z kurczaka z warzywami i ryżem; fasolka szparagowa
+154,12,2020-12-10,42,five,five,five,"""Pyszne! zdjęłam wszystko z chlebka i zjadłam""","Pieczywo z serem żółtym i warzywami, kakao z mlekiem",5,5,5,Przedszkole Miejskie nr 12 Niezapominajka,"Pieczywo z serem żółtym i warzywami, kakao z mlekiem"
+155,12,2020-12-10,43,five,five,five,"""To najpyszniej. Zjadłam cały.To mój ulubiony""",Jogurt naturalny z musem owocowym,5,5,5,Przedszkole Miejskie nr 12 Niezapominajka,Jogurt naturalny z musem owocowym
+156,12,2020-12-10,47,five,five,five,"""yhymmm.To było dobre, zjadłam całą""",Krem brokułowy z grzankami czosnkowymi,5,5,5,Przedszkole Miejskie nr 12 Niezapominajka,Krem brokułowy z grzankami czosnkowymi
+157,12,2020-12-10,45,five,five,five,"""bardzo smakowały mi chrupki""","Kiwi, crypsy owocowe",5,5,5,Przedszkole Miejskie nr 12 Niezapominajka,"Kiwi, crypsy owocowe"
+158,12,2020-12-10,46,three,five,five,"""bardzo smakował mi sos i mięsko.surówka to nie"".","Zrazy wołowo-wieprzowe z kaszą gryczaną, buraczki z cebulą i olejem",3,5,5,Przedszkole Miejskie nr 12 Niezapominajka,"Zrazy wołowo-wieprzowe z kaszą gryczaną, buraczki z cebulą i olejem"
+159,22,2020-12-10,48,five,five,five,,"Płatki jęczmienne na mleku, pieczywo z twarożkiem i warzywami oraz z szynką",5,5,5,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,"Płatki jęczmienne na mleku, pieczywo z twarożkiem i warzywami oraz z szynką"
+160,22,2020-12-10,NA,five,five,five,,None,5,5,5,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,NA
+161,22,2020-12-10,50,five,five,five,,Pieczeń rzymska z kaszą gryczaną i surówką z białej rzodkiewki,5,5,5,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,Pieczeń rzymska z kaszą gryczaną i surówką z białej rzodkiewki
+162,22,2020-12-10,51,five,five,five,,Rosół z makaronem; mandarynka,5,5,5,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,Rosół z makaronem; mandarynka
+163,22,2020-12-10,48,five,five,five,,"Płatki jęczmienne na mleku, pieczywo z twarożkiem i warzywami oraz z szynką",5,5,5,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,"Płatki jęczmienne na mleku, pieczywo z twarożkiem i warzywami oraz z szynką"
+164,22,2020-12-10,49,five,five,five,,"Kisiel jabłkowy do picia, wafle ryżowe",5,5,5,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,"Kisiel jabłkowy do picia, wafle ryżowe"
+165,22,2020-12-10,50,one,two,five,,Pieczeń rzymska z kaszą gryczaną i surówką z białej rzodkiewki,1,2,5,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,Pieczeń rzymska z kaszą gryczaną i surówką z białej rzodkiewki
+166,22,2020-12-10,51,five,five,five,,Rosół z makaronem; mandarynka,5,5,5,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,Rosół z makaronem; mandarynka
+167,12,2020-12-10,46,four,four,four,,"Zrazy wołowo-wieprzowe z kaszą gryczaną, buraczki z cebulą i olejem",4,4,4,Przedszkole Miejskie nr 12 Niezapominajka,"Zrazy wołowo-wieprzowe z kaszą gryczaną, buraczki z cebulą i olejem"
+168,12,2020-12-10,45,four,four,five,,"Kiwi, crypsy owocowe",4,4,5,Przedszkole Miejskie nr 12 Niezapominajka,"Kiwi, crypsy owocowe"
+169,12,2020-12-10,47,two,three,four,,Krem brokułowy z grzankami czosnkowymi,2,3,4,Przedszkole Miejskie nr 12 Niezapominajka,Krem brokułowy z grzankami czosnkowymi
+170,12,2020-12-10,43,two,four,four,,Jogurt naturalny z musem owocowym,2,4,4,Przedszkole Miejskie nr 12 Niezapominajka,Jogurt naturalny z musem owocowym
+171,12,2020-12-10,42,four,four,four,bez pomidora i zielska mówi mój syn,"Pieczywo z serem żółtym i warzywami, kakao z mlekiem",4,4,4,Przedszkole Miejskie nr 12 Niezapominajka,"Pieczywo z serem żółtym i warzywami, kakao z mlekiem"
+172,12,2020-12-10,42,four,five,five,"bleeeee kiełki,pyszne kakałko :)","Pieczywo z serem żółtym i warzywami, kakao z mlekiem",4,5,5,Przedszkole Miejskie nr 12 Niezapominajka,"Pieczywo z serem żółtym i warzywami, kakao z mlekiem"
+173,12,2020-12-10,43,five,five,five,to ja uwielbiam :),Jogurt naturalny z musem owocowym,5,5,5,Przedszkole Miejskie nr 12 Niezapominajka,Jogurt naturalny z musem owocowym
+174,12,2020-12-10,45,five,five,five,,"Kiwi, crypsy owocowe",5,5,5,Przedszkole Miejskie nr 12 Niezapominajka,"Kiwi, crypsy owocowe"
+175,12,2020-12-10,47,five,five,five,,Krem brokułowy z grzankami czosnkowymi,5,5,5,Przedszkole Miejskie nr 12 Niezapominajka,Krem brokułowy z grzankami czosnkowymi
+176,12,2020-12-10,46,five,five,five,"pyszne,sama bym zjadła ;)","Zrazy wołowo-wieprzowe z kaszą gryczaną, buraczki z cebulą i olejem",5,5,5,Przedszkole Miejskie nr 12 Niezapominajka,"Zrazy wołowo-wieprzowe z kaszą gryczaną, buraczki z cebulą i olejem"
+177,22,2020-12-10,48,four,five,five,,"Płatki jęczmienne na mleku, pieczywo z twarożkiem i warzywami oraz z szynką",4,5,5,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,"Płatki jęczmienne na mleku, pieczywo z twarożkiem i warzywami oraz z szynką"
+178,22,2020-12-10,49,five,five,five,Nie pojawiają się zdjęcia potraw,"Kisiel jabłkowy do picia, wafle ryżowe",5,5,5,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,"Kisiel jabłkowy do picia, wafle ryżowe"
+179,22,2020-12-10,50,five,five,five,,Pieczeń rzymska z kaszą gryczaną i surówką z białej rzodkiewki,5,5,5,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,Pieczeń rzymska z kaszą gryczaną i surówką z białej rzodkiewki
+180,22,2020-12-10,51,five,five,five,,Rosół z makaronem; mandarynka,5,5,5,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,Rosół z makaronem; mandarynka
+181,22,2020-12-10,48,four,four,four,,"Płatki jęczmienne na mleku, pieczywo z twarożkiem i warzywami oraz z szynką",4,4,4,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,"Płatki jęczmienne na mleku, pieczywo z twarożkiem i warzywami oraz z szynką"
+182,22,2020-12-10,49,three,three,three,,"Kisiel jabłkowy do picia, wafle ryżowe",3,3,3,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,"Kisiel jabłkowy do picia, wafle ryżowe"
+183,22,2020-12-10,50,two,three,three,,Pieczeń rzymska z kaszą gryczaną i surówką z białej rzodkiewki,2,3,3,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,Pieczeń rzymska z kaszą gryczaną i surówką z białej rzodkiewki
+184,22,2020-12-10,51,four,four,four,,Rosół z makaronem; mandarynka,4,4,4,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,Rosół z makaronem; mandarynka
+185,12,2020-12-11,NA,five,five,five,,None,5,5,5,Przedszkole Miejskie nr 12 Niezapominajka,NA
+186,NA,NA,NA,NA,NA,NA,,None,NA,NA,NA,NA,NA
+187,22,2020-12-10,48,four,five,five,,"Płatki jęczmienne na mleku, pieczywo z twarożkiem i warzywami oraz z szynką",4,5,5,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,"Płatki jęczmienne na mleku, pieczywo z twarożkiem i warzywami oraz z szynką"
+188,22,2020-12-10,49,three,five,five,,"Kisiel jabłkowy do picia, wafle ryżowe",3,5,5,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,"Kisiel jabłkowy do picia, wafle ryżowe"
+189,22,2020-12-10,50,two,four,five,,Pieczeń rzymska z kaszą gryczaną i surówką z białej rzodkiewki,2,4,5,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,Pieczeń rzymska z kaszą gryczaną i surówką z białej rzodkiewki
+190,22,2020-12-10,51,five,five,five,,Rosół z makaronem; mandarynka,5,5,5,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,Rosół z makaronem; mandarynka
+191,22,2020-12-11,57,one,five,five,,"Płatki kukurydziane na mleku, pieczywo z gotowaną piersią z indyka, warzywa",1,5,5,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,"Płatki kukurydziane na mleku, pieczywo z gotowaną piersią z indyka, warzywa"
+192,22,2020-12-11,58,five,five,five,,"Gruszka, jabłko",5,5,5,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,"Gruszka, jabłko"
+193,22,2020-12-11,59,two,four,five,,"Żurek z jajkiem i kiełbasą, chleb pszenno-żytni",2,4,5,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,"Żurek z jajkiem i kiełbasą, chleb pszenno-żytni"
+194,22,2020-12-11,57,five,five,five,"Smakowało, ale bez pomidora :)","Płatki kukurydziane na mleku, pieczywo z gotowaną piersią z indyka, warzywa",5,5,5,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,"Płatki kukurydziane na mleku, pieczywo z gotowaną piersią z indyka, warzywa"
+195,22,2020-12-11,58,five,five,five,uwielbiam obrane gruszeczki i jabłuszka,"Gruszka, jabłko",5,5,5,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,"Gruszka, jabłko"
+196,22,2020-12-11,59,three,four,four,"barszczyk był nie pyszny, zjadłem jajeczko i chlebek","Żurek z jajkiem i kiełbasą, chleb pszenno-żytni",3,4,4,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,"Żurek z jajkiem i kiełbasą, chleb pszenno-żytni"
+198,22,2020-12-11,57,five,five,five,,"Płatki kukurydziane na mleku, pieczywo z gotowaną piersią z indyka, warzywa",5,5,5,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,"Płatki kukurydziane na mleku, pieczywo z gotowaną piersią z indyka, warzywa"
+199,22,2020-12-11,58,five,five,five,"Zjadłem wszystko jablko, gruszke i jeszcze mandarynke bo byla😉😅","Gruszka, jabłko",5,5,5,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,"Gruszka, jabłko"
+200,22,2020-12-11,59,five,five,five,"Zjadlem prawie wszystko, ale Zosia to zjadla caly talerz wiesz Mama?:)","Żurek z jajkiem i kiełbasą, chleb pszenno-żytni",5,5,5,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,"Żurek z jajkiem i kiełbasą, chleb pszenno-żytni"
+201,22,2020-12-11,60,five,five,five,,"Kotlet rybny z sandacza z ziemniakami, surówka z białej kapusty i marchwii",5,5,5,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,"Kotlet rybny z sandacza z ziemniakami, surówka z białej kapusty i marchwii"
+202,12,2020-12-11,52,three,four,four,bez zielska dalej  w meni,"Pieczywo z twarogiem na słodko i z twarogiem z warzywami, kawa z mlekiem",3,4,4,Przedszkole Miejskie nr 12 Niezapominajka,"Pieczywo z twarogiem na słodko i z twarogiem z warzywami, kawa z mlekiem"
+203,12,2020-12-11,53,one,four,four,,Koktajl truskawkowo-bananowy,1,4,4,Przedszkole Miejskie nr 12 Niezapominajka,Koktajl truskawkowo-bananowy
+204,12,2020-12-11,54,one,four,four,z tego zestawu tylko chleb zjadł mój syn,Zupa pomidorowa z brązowym ryżem i bazyli,1,4,4,Przedszkole Miejskie nr 12 Niezapominajka,Zupa pomidorowa z brązowym ryżem i bazyli
+205,12,2020-12-11,56,four,four,four,ładnie wygląda,Pomarańcza,4,4,4,Przedszkole Miejskie nr 12 Niezapominajka,Pomarańcza
+206,12,2020-12-11,55,three,four,four,,"Pulpety  z łososia w sosie koperkowym z ziemniakami, surówka z czerwonej i białej kapusty",3,4,4,Przedszkole Miejskie nr 12 Niezapominajka,"Pulpety  z łososia w sosie koperkowym z ziemniakami, surówka z czerwonej i białej kapusty"
+207,12,2020-12-11,52,five,five,five,kawka i pieczywko najlepsze :),"Pieczywo z twarogiem na słodko i z twarogiem z warzywami, kawa z mlekiem",5,5,5,Przedszkole Miejskie nr 12 Niezapominajka,"Pieczywo z twarogiem na słodko i z twarogiem z warzywami, kawa z mlekiem"
+208,12,2020-12-11,53,five,five,five,mój ulubiony,Koktajl truskawkowo-bananowy,5,5,5,Przedszkole Miejskie nr 12 Niezapominajka,Koktajl truskawkowo-bananowy
+209,12,2020-12-11,54,five,five,five,,Zupa pomidorowa z brązowym ryżem i bazyli,5,5,5,Przedszkole Miejskie nr 12 Niezapominajka,Zupa pomidorowa z brązowym ryżem i bazyli
+210,12,2020-12-11,55,five,five,five,,"Pulpety  z łososia w sosie koperkowym z ziemniakami, surówka z czerwonej i białej kapusty",5,5,5,Przedszkole Miejskie nr 12 Niezapominajka,"Pulpety  z łososia w sosie koperkowym z ziemniakami, surówka z czerwonej i białej kapusty"
+211,12,2020-12-11,56,five,five,five,,Pomarańcza,5,5,5,Przedszkole Miejskie nr 12 Niezapominajka,Pomarańcza
+212,NA,NA,NA,NA,NA,NA,,None,NA,NA,NA,NA,NA
+213,12,2020-12-11,54,five,five,five,najbardziej dziś smakowała,Zupa pomidorowa z brązowym ryżem i bazyli,5,5,5,Przedszkole Miejskie nr 12 Niezapominajka,Zupa pomidorowa z brązowym ryżem i bazyli
+214,12,2020-12-11,52,four,five,five,"bardzo apetyczne, podoba mi się że są zdjęcia","Pieczywo z twarogiem na słodko i z twarogiem z warzywami, kawa z mlekiem",4,5,5,Przedszkole Miejskie nr 12 Niezapominajka,"Pieczywo z twarogiem na słodko i z twarogiem z warzywami, kawa z mlekiem"
+215,12,2020-12-11,53,five,five,five,"""bardzo pyszny. może ugotujesz mi taki koktajl w domu""",Koktajl truskawkowo-bananowy,5,5,5,Przedszkole Miejskie nr 12 Niezapominajka,Koktajl truskawkowo-bananowy
+216,12,2020-12-11,55,five,five,five,"""wszystko zjadłam tylko surówkę nie.wszystko zjadłam z mięska""","Pulpety  z łososia w sosie koperkowym z ziemniakami, surówka z czerwonej i białej kapusty",5,5,5,Przedszkole Miejskie nr 12 Niezapominajka,"Pulpety  z łososia w sosie koperkowym z ziemniakami, surówka z czerwonej i białej kapusty"
+217,12,2020-12-11,56,five,five,five,,Pomarańcza,5,5,5,Przedszkole Miejskie nr 12 Niezapominajka,Pomarańcza
+218,22,2020-12-11,57,five,five,five,,"Płatki kukurydziane na mleku, pieczywo z gotowaną piersią z indyka, warzywa",5,5,5,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,"Płatki kukurydziane na mleku, pieczywo z gotowaną piersią z indyka, warzywa"
+219,22,2020-12-11,60,five,five,five,,"Kotlet rybny z sandacza z ziemniakami, surówka z białej kapusty i marchwii",5,5,5,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,"Kotlet rybny z sandacza z ziemniakami, surówka z białej kapusty i marchwii"
+220,22,2020-12-11,58,five,five,five,,"Gruszka, jabłko",5,5,5,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,"Gruszka, jabłko"
+221,NA,NA,NA,NA,NA,NA,,None,NA,NA,NA,NA,NA
+222,22,2020-12-11,59,three,three,two,,"Żurek z jajkiem i kiełbasą, chleb pszenno-żytni",3,3,2,Przedszkole Miejskie nr 25 im. Kubusia Puchatka,"Żurek z jajkiem i kiełbasą, chleb pszenno-żytni"

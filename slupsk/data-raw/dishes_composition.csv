@@ -1,0 +1,227 @@
+dish_id,ingredient_id,weight_grams,from_producer,label,from_producer_label,ingredient_label
+17,148,25,yes,Composition object (61),Tak,Groch łuskany
+17,150,20,yes,Composition object (62),Tak,Chleb zwykły (pszenno-żytni)
+17,147,9,yes,Composition object (63),Tak,Kiełbaski wieprzowe
+4,106,10,yes,Composition object (8),Tak,Papryka czerwona
+4,96,60,yes,Composition object (5),Tak,Mięso z kurczaka
+4,144,120,yes,Composition object (6),Tak,Ziemniaki
+4,43,70,yes,Composition object (7),Tak,Burak
+5,84,40,uncertain,Composition object (9),Nie wiem,Makaron
+5,93,15,yes,Composition object (10),Tak,Mięso wieprzowe
+5,126,10,yes,Composition object (11),Tak,Ser żółty
+5,44,3,yes,Composition object (12),Tak,Cebula
+5,114,500,yes,Composition object (13),Tak,Pomidor
+6,93,80,yes,Composition object (14),Tak,Mięso wieprzowe
+6,77,50,uncertain,Composition object (15),Nie wiem,Kasza jęczmienna
+6,63,80,yes,Composition object (16),Tak,Jabłko
+6,122,20,yes,Composition object (17),Tak,Seler korzeniowy
+6,69,9,yes,Composition object (18),Tak,Jogurt naturalny
+3,125,70,yes,Composition object (2),Tak,Ser twarogowy
+3,89,50,yes,Composition object (3),Tak,Marchew
+3,113,15,no,Composition object (4),Nie,Pomarańcza
+7,NA,60,yes,Composition object (19),Tak,NA
+7,NA,30,yes,Composition object (20),Tak,NA
+7,NA,40,no,Composition object (21),Nie,NA
+8,NA,50,yes,Composition object (23),Tak,NA
+8,NA,40,uncertain,Composition object (24),Nie wiem,NA
+8,74,40,yes,Composition object (25),Tak,Kapusta biała
+9,45,35,yes,Composition object (26),Tak,Chleb wieloziarnisty
+9,135,25,yes,Composition object (27),Tak,Szynka z indyka
+9,114,25,yes,Composition object (28),Tak,Pomidor
+9,102,15,yes,Composition object (29),Tak,Ogórek
+9,121,10,yes,Composition object (30),Tak,Sałata
+10,45,35,yes,Composition object (31),Tak,Chleb wieloziarnisty
+10,95,30,yes,Composition object (32),Tak,Mięso z indyka
+10,114,20,yes,Composition object (33),Tak,Pomidor
+10,102,10,yes,Composition object (34),Tak,Ogórek
+10,70,125,no,Composition object (35),Nie,Jogurt truskawkowy
+25,63,15,yes,Composition object (89),Tak,Jabłko
+12,NA,200,yes,Composition object (37),Tak,NA
+12,NA,100,no,Composition object (38),Nie,NA
+12,NA,45,yes,Composition object (39),Tak,NA
+12,NA,56,yes,Composition object (40),Tak,NA
+12,NA,7,yes,Composition object (41),Tak,NA
+12,NA,20,yes,Composition object (42),Tak,NA
+12,102,15,yes,Composition object (43),Tak,Ogórek
+14,NA,200,yes,Composition object (48),Tak,NA
+14,NA,15,no,Composition object (49),Nie,NA
+14,NA,50,yes,Composition object (50),Tak,NA
+14,NA,20,yes,Composition object (51),Tak,NA
+14,NA,20,yes,Composition object (52),Tak,NA
+14,NA,15,yes,Composition object (53),Tak,NA
+14,121,10,yes,Composition object (54),Tak,Sałata
+27,96,60,yes,Composition object (93),Tak,Mięso z kurczaka
+27,144,280,yes,Composition object (94),Tak,Ziemniaki
+26,93,5,yes,Composition object (90),Tak,Mięso wieprzowe
+26,103,30,yes,Composition object (91),Tak,Ogórek kiszony
+26,89,25,yes,Composition object (92),Tak,Marchew
+13,45,50,yes,Composition object (44),Tak,Chleb wieloziarnisty
+13,36,100,no,Composition object (45),Nie,Arbuz
+13,89,50,yes,Composition object (46),Tak,Marchew
+13,142,50,no,Composition object (47),Nie,Winogrona
+16,38,212,yes,Composition object (60),Tak,Banan
+36,157,15,yes,Composition object (124),Tak,Wafle ryżowe
+36,156,95,yes,Composition object (125),Tak,Mandarynka
+18,63,180,yes,Composition object (64),Tak,Jabłko
+24,106,5,yes,Composition object (88),Tak,Papryka czerwona
+24,45,35,yes,Composition object (82),Tak,Chleb wieloziarnisty
+24,146,5,yes,Composition object (83),Tak,Masło
+24,64,36,yes,Composition object (84),Tak,Jaja kurze
+24,114,10,yes,Composition object (85),Tak,Pomidor
+24,102,6,NA,Composition object (86),NA,Ogórek
+24,99,200,yes,Composition object (87),Tak,Mleko spożywcze
+28,99,250,yes,Composition object (95),Tak,Mleko spożywcze
+28,112,15,uncertain,Composition object (96),Nie wiem,Płatki owsiane
+28,45,40,yes,Composition object (97),Tak,Chleb wieloziarnisty
+28,146,6,yes,Composition object (98),Tak,Masło
+28,155,11,yes,Composition object (99),Tak,Papryka żółta
+28,106,10,yes,Composition object (100),Tak,Papryka czerwona
+28,117,18,yes,Composition object (101),Tak,Pstrąg
+29,69,100,yes,Composition object (102),Tak,Jogurt naturalny
+29,41,40,uncertain,Composition object (103),Nie wiem,Brzoskwinia
+20,113,200,yes,Composition object (73),Tak,Pomarańcza
+30,93,33,yes,Composition object (104),Tak,Mięso wieprzowe
+30,77,47,yes,Composition object (105),Tak,Kasza jęczmienna
+30,144,47,yes,Composition object (106),Tak,Ziemniaki
+30,89,28,yes,Composition object (107),Tak,Marchew
+22,63,37,yes,Composition object (76),Tak,Jabłko
+22,139,11,yes,Composition object (77),Tak,"Śmietana, 18% tłuszczu"
+22,152,2,no,Composition object (78),Nie,Cukier puder
+22,153,58,yes,Composition object (22),Tak,Truskawki mrożone
+23,89,75,yes,Composition object (81),Tak,Marchew
+23,84,100,yes,Composition object (79),Tak,Makaron
+23,125,46,yes,Composition object (80),Tak,Ser twarogowy
+21,154,18,yes,Composition object (74),Tak,Por
+21,93,20,yes,Composition object (75),Tak,Mięso wieprzowe
+19,99,250,yes,Composition object (65),Tak,Mleko spożywcze
+19,149,15,uncertain,Composition object (66),Nie wiem,Płatki orkiszowe
+19,45,40,yes,Composition object (67),Tak,Chleb wieloziarnisty
+19,114,18,yes,Composition object (68),Tak,Pomidor
+19,103,14,uncertain,Composition object (69),Nie wiem,Ogórek kiszony
+19,121,14,yes,Composition object (70),Tak,Sałata
+19,146,6,yes,Composition object (71),Tak,Masło
+19,121,3,yes,Composition object (72),Tak,Sałata
+15,99,250,yes,Composition object (55),Tak,Mleko spożywcze
+15,112,10,uncertain,Composition object (56),Nie wiem,Płatki owsiane
+15,42,35,yes,Composition object (57),Tak,Bułka grahamka
+15,146,5,yes,Composition object (58),Tak,Masło
+15,55,8,yes,Composition object (59),Tak,Dżem z owoców
+31,93,70,yes,Composition object (108),Tak,Mięso wieprzowe
+31,144,120,yes,Composition object (109),Tak,Ziemniaki
+31,75,80,yes,Composition object (110),Tak,Kapusta czerwona
+32,137,200,NA,Composition object (111),NA,Śliwki
+33,45,35,yes,Composition object (112),Tak,Chleb wieloziarnisty
+33,146,5,yes,Composition object (113),Tak,Masło
+33,135,25,yes,Composition object (114),Tak,Szynka z indyka
+33,102,10,yes,Composition object (115),Tak,Ogórek
+33,106,10,yes,Composition object (116),Tak,Papryka czerwona
+33,114,10,yes,Composition object (117),Tak,Pomidor
+34,142,120,yes,Composition object (118),Tak,Winogrona
+35,93,60,yes,Composition object (119),Tak,Mięso wieprzowe
+35,39,20,yes,Composition object (120),Tak,Brokuły
+35,58,22,yes,Composition object (121),Tak,Fasola szparagowa
+35,72,15,yes,Composition object (122),Tak,Kalafior
+35,89,40,yes,Composition object (123),Tak,Marchew
+37,125,100,yes,Composition object (126),Tak,Ser twarogowy
+37,146,2.5,yes,Composition object (127),Tak,Masło
+37,122,50,yes,Composition object (128),Tak,Seler korzeniowy
+37,89,10,yes,Composition object (129),Tak,Marchew
+37,69,10,yes,Composition object (130),Tak,Jogurt naturalny
+39,142,100,yes,Composition object (137),Tak,Winogrona
+40,93,34,yes,Composition object (138),Tak,Mięso wieprzowe
+40,144,97,yes,Composition object (139),Tak,Ziemniaki
+40,89,30,yes,Composition object (140),Tak,Marchew
+40,150,15,yes,Composition object (141),Tak,Chleb zwykły (pszenno-żytni)
+40,159,37,yes,Composition object (142),Tak,Pieczarki
+42,45,35,yes,Composition object (147),Tak,Chleb wieloziarnisty
+42,146,5,yes,Composition object (148),Tak,Masło
+42,126,35,yes,Composition object (149),Tak,Ser żółty
+42,99,250,yes,Composition object (150),Tak,Mleko spożywcze
+42,114,10,yes,Composition object (151),Tak,Pomidor
+42,102,10,yes,Composition object (152),Tak,Ogórek
+42,121,5,yes,Composition object (153),Tak,Sałata
+38,84,50,yes,Composition object (132),Tak,Makaron
+38,55,60,yes,Composition object (133),Tak,Dżem z owoców
+38,127,22,yes,Composition object (135),Tak,Serek twarogowy homogenizowany
+38,99,250,yes,Composition object (131),Tak,Mleko spożywcze
+38,146,6,yes,Composition object (134),Tak,Masło
+38,158,50,yes,Composition object (136),Tak,Chałka
+41,96,60,yes,Composition object (143),Tak,Mięso z kurczaka
+41,118,40,yes,Composition object (144),Tak,Ryż biały
+41,58,65,yes,Composition object (145),Tak,Fasola szparagowa
+41,106,25,yes,Composition object (146),Tak,Papryka czerwona
+43,69,50,yes,Composition object (154),Tak,Jogurt naturalny
+43,86,26,yes,Composition object (155),Tak,Maliny
+43,153,15,yes,Composition object (156),Tak,Truskawki mrożone
+43,97,2,yes,Composition object (157),Tak,Miód pszczeli
+47,39,42,yes,Composition object (168),Tak,Brokuły
+47,52,5,yes,Composition object (169),Tak,Czosnek
+47,150,20,yes,Composition object (170),Tak,Chleb zwykły (pszenno-żytni)
+45,79,13,yes,Composition object (162),Tak,Kiwi
+46,93,27,yes,Composition object (163),Tak,Mięso wieprzowe
+46,94,40,yes,Composition object (164),Tak,Mięso wołowe
+46,160,40,yes,Composition object (165),Tak,Kasza gryczana
+46,43,105,yes,Composition object (166),Tak,Burak
+46,44,30,yes,Composition object (167),Tak,Cebula
+48,150,40,yes,Composition object (171),Tak,Chleb zwykły (pszenno-żytni)
+48,146,6,yes,Composition object (172),Tak,Masło
+48,114,15,yes,Composition object (173),Tak,Pomidor
+48,102,15,yes,Composition object (174),Tak,Ogórek
+48,120,10,yes,Composition object (175),Tak,Rzodkiewka
+48,125,47,yes,Composition object (176),Tak,Ser twarogowy
+48,131,1.2,yes,Composition object (177),Tak,Szczypiorek
+48,134,17,yes,Composition object (178),Tak,Szynka wieprzowa
+48,161,12,yes,Composition object (179),Tak,Płatki jęczmienne
+48,99,200,yes,Composition object (180),Tak,Mleko spożywcze
+49,162,13.2,yes,Composition object (181),Tak,Wafle kukurydziane
+49,163,200,yes,Composition object (182),Tak,Sok jabłkowy
+50,160,50,yes,Composition object (183),Tak,Kasza gryczana
+50,93,80,yes,Composition object (184),Tak,Mięso wieprzowe
+50,120,70,yes,Composition object (185),Tak,Rzodkiewka
+50,89,100,yes,Composition object (186),Tak,Marchew
+51,95,17,yes,Composition object (187),Tak,Mięso z indyka
+51,96,50,yes,Composition object (188),Tak,Mięso z kurczaka
+51,89,30,yes,Composition object (189),Tak,Marchew
+51,84,62,yes,Composition object (190),Tak,Makaron
+51,87,100,uncertain,Composition object (191),Nie wiem,Mandarynki
+52,45,35,yes,Composition object (192),Tak,Chleb wieloziarnisty
+52,146,5,yes,Composition object (193),Tak,Masło
+52,125,50,yes,Composition object (194),Tak,Ser twarogowy
+52,97,3.6,yes,Composition object (195),Tak,Miód pszczeli
+52,106,3.5,yes,Composition object (196),Tak,Papryka czerwona
+52,114,10,yes,Composition object (197),Tak,Pomidor
+52,102,10,yes,Composition object (198),Tak,Ogórek
+52,121,5,yes,Composition object (199),Tak,Sałata
+52,99,200,yes,Composition object (200),Tak,Mleko spożywcze
+53,97,3,yes,Composition object (205),Tak,Miód pszczeli
+53,99,100,yes,Composition object (201),Tak,Mleko spożywcze
+53,38,18,yes,Composition object (202),Tak,Banan
+53,153,76,yes,Composition object (203),Tak,Truskawki mrożone
+53,86,30,yes,Composition object (204),Tak,Maliny
+54,96,28,yes,Composition object (206),Tak,Mięso z kurczaka
+54,80,8,yes,Composition object (207),Tak,Koncentrat pomidorowy
+54,119,30,yes,Composition object (208),Tak,Ryż brązowy
+56,113,317,yes,Composition object (213),Tak,Pomarańcza
+55,NA,150,yes,Composition object (209),Tak,NA
+55,NA,60,yes,Composition object (210),Tak,NA
+55,NA,40,yes,Composition object (211),Tak,NA
+55,74,20,yes,Composition object (212),Tak,Kapusta biała
+57,99,200,yes,Composition object (214),Tak,Mleko spożywcze
+57,111,15,yes,Composition object (215),Tak,Płatki kukurydziane
+57,45,40,yes,Composition object (216),Tak,Chleb wieloziarnisty
+57,146,6,yes,Composition object (217),Tak,Masło
+57,95,44,yes,Composition object (218),Tak,Mięso z indyka
+57,114,15,yes,Composition object (219),Tak,Pomidor
+57,103,20,yes,Composition object (220),Tak,Ogórek kiszony
+58,62,120,yes,Composition object (221),Tak,Gruszka
+58,63,87,yes,Composition object (222),Tak,Jabłko
+59,93,18,yes,Composition object (223),Tak,Mięso wieprzowe
+59,147,24,yes,Composition object (224),Tak,Kiełbaski wieprzowe
+59,144,100,yes,Composition object (225),Tak,Ziemniaki
+59,89,17,yes,Composition object (226),Tak,Marchew
+59,64,20,yes,Composition object (227),Tak,Jaja kurze
+60,164,70,yes,Composition object (228),Tak,Sandacz
+60,144,120,yes,Composition object (229),Tak,Ziemniaki
+60,74,50,yes,Composition object (230),Tak,Kapusta biała
+60,89,10,yes,Composition object (231),Tak,Marchew
+60,44,10,yes,Composition object (232),Tak,Cebula
