@@ -18,9 +18,10 @@
 ci_dishratings_prep <- function(filename) {
 
 
-  df <- read_delim(filename, delim = ";") %>%
+  df <- read_csv(filename) %>%
     mutate(id = as.integer(id)) %>%
     filter(!is.na(id)) %>%
+    filter(!is.na(kindergarten_id)) %>%
     filter(!is.na(date)) %>%
     mutate(date = dmy(date)) %>%
     mutate_at(c("children_satisfaction","parent_satisfaction", "health"),
