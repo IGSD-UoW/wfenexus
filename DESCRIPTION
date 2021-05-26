@@ -29,6 +29,7 @@ Depends:
   flexdashboard,
   here,
   janitor,
+  jsonlite,
   plotly,
   readxl,
   renv,
