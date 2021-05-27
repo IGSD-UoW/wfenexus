@@ -10,12 +10,15 @@ output:
 
 ```{r setup, include=FALSE}
 library(flexdashboard)
+library(reactable)
+library(crosstalk)
 library(plotly)
 library(DT)
 library(formattable)
 library(lubridate)
 library(tidyverse)
 library(scales)
+library(htmltools)
 library(wfenexus)
 
 # Load data
@@ -39,6 +42,22 @@ color_background <- "#34767A"
 color_wfp_blue <- "#65C6F0"
 color_wfp_green <- "#A2D729"
 color_wfp_grey <- "#8f8f98"
+
+pal_wfp_green <- function(x) rgb(colorRamp(c("white", color_wfp_green))(x), 
+                                 maxColorValue = 255)
+pal_wfp_blue <- function(x) rgb(colorRamp(c(color_wfp_blue, "white"))(x), 
+                                 maxColorValue = 255)
+pal_wfp_grey <- function(x) rgb(colorRamp(c(color_wfp_grey, "white"))(x), 
+                                 maxColorValue = 255)
+pal_wfp_total <- function(x) rgb(colorRamp(c(color_water, "white"))(x), 
+                                 maxColorValue = 255)
+
+# Render a bar chart with a label on the left
+bar_chart <- function(label, width = "100%", height = "16px", fill = "#00bfc4", background = "#e1e1e1") {
+  bar <- div(style = list(background = fill, width = width, height = height))
+  chart <- div(style = list(flexGrow = 1, marginLeft = "8px", background = background), bar)
+  div(style = list(display = "flex", alignItems = "center"), label, chart)
+}
 
 
 ```
@@ -195,7 +214,7 @@ wfp_combined <- read.csv(file = "data/wfp_combined.csv") %>%
          grey_variation = (-world_grey + country_grey)/world_grey,
          total_variation = (-world_total + country_total)/world_total) %>%
   # mutate(across(ends_with("_variation"), scales::percent)) %>%
-  mutate(across(is.numeric, round, 2)) %>%
+  mutate(across(where(is.numeric), round, 2)) %>%
   relocate(green_variation, .after = country_green) %>%
   relocate(blue_variation, .after = country_blue) %>%
   relocate(grey_variation, .after = country_grey) %>%
@@ -206,13 +225,20 @@ wfp_combined <- read.csv(file = "data/wfp_combined.csv") %>%
 stats_wfp <- wfp_combined %>% 
   group_by(type) %>% 
   summarise(mean = mean(world_total), total = sum(world_total),
-            mean_local = mean(country_total, na.rm=T), total_local = sum(country_total))
+            mean_local = mean(country_total, na.rm = TRUE), 
+            total_local = sum(country_total, na.rm = TRUE))
 
 avg_wfp_animals <- round(stats_wfp$mean[1], 2)
 avg_wfp_crops <- round(stats_wfp$mean[2], 2)
 
 avg_wfp_animals_local <- round(stats_wfp$mean_local[1], 2)
 avg_wfp_crops_local <- round(stats_wfp$mean_local[2], 2)
+
+
+total_wfp_animals <- round(stats_wfp$total[1], 2)
+total_wfp_crops <- round(stats_wfp$total[2], 2)
+total_wfp_animals_local <- round(stats_wfp$total_local[1], 2)
+total_wfp_crops_local <- round(stats_wfp$total_local[2], 2)
   
 ```
 
@@ -224,7 +250,7 @@ Valueboxes
 ```{r}
 
 valueBox(value = paste0(format(avg_wfp_animals, big.mark = ","), " m3/Ton"), 
-         caption = "is the average water footprint of the ingredients from animal origin", 
+         caption = "is the average water needed to graze worldwide the used ingredients from animal origin", 
          icon = "fas fa-paw")
 ```
 
@@ -233,7 +259,7 @@ valueBox(value = paste0(format(avg_wfp_animals, big.mark = ","), " m3/Ton"),
 ```{r}
 
 valueBox(value = paste0(format(avg_wfp_crops, big.mark = ","), " m3/Ton"), 
-         caption = "is the average water footprint per crops worldwide", 
+         caption = "is the average water needed worldwide to grow the used ingredients from plant origin ", 
          icon = "fas fa-leaf")
 ```
 
@@ -242,7 +268,7 @@ valueBox(value = paste0(format(avg_wfp_crops, big.mark = ","), " m3/Ton"),
 ```{r}
 
 valueBox(value = paste0(format(avg_wfp_animals_local, big.mark = ","), " m3/Ton"), 
-         caption = "is the average water footprint if animals were grazed localy", 
+         caption = "is the average water footprint if the same animals were grazed localy", 
          icon = "fas fa-paw")
 ```
 
@@ -251,9 +277,50 @@ valueBox(value = paste0(format(avg_wfp_animals_local, big.mark = ","), " m3/Ton"
 ```{r}
 
 valueBox(value = paste0(format(avg_wfp_crops_local, big.mark = ","), " m3/Ton"), 
-         caption = "is the average water footprint if using local crops only (if possible). this represents XX less", 
+         caption = "is the average water footprint if the same crops were grown locally (if possible). this represents XX less", 
          icon = "fas fa-leaf")
 ```
+
+
+Valueboxes
+---------------------------------------
+
+### wfp_animals {.value-box .no-mobile}
+
+```{r}
+
+valueBox(value = paste0(format(total_wfp_animals, big.mark = ","), " m3/Ton"), 
+         caption = "is the total water footprint of the ingredients from animal origin", 
+         icon = "fas fa-paw")
+```
+
+### wfp_crops {.value-box .no-mobile}
+
+```{r}
+
+valueBox(value = paste0(format(total_wfp_crops, big.mark = ","), " m3/Ton"), 
+         caption = "is the total water footprint per crops worldwide", 
+         icon = "fas fa-leaf")
+```
+
+### wfp_animals_local {.value-box .no-mobile}
+
+```{r}
+
+valueBox(value = paste0(format(total_wfp_animals_local, big.mark = ","), " m3/Ton"), 
+         caption = "is the total water footprint if animals were grazed localy", 
+         icon = "fas fa-paw")
+```
+
+### wfp_crops_local {.value-box .no-mobile}
+
+```{r}
+
+valueBox(value = paste0(format(total_wfp_crops_local, big.mark = ","), " m3/Ton"), 
+         caption = "is the total water footprint if using local crops only (if possible). this represents XX less", 
+         icon = "fas fa-leaf")
+```
+
 
 Water {.tabset}
 -----------------------------------------------------------------------
@@ -334,6 +401,115 @@ wfp_combined %>%
 
 ### Ingredients 3
 
+```{r ingredients_wf_reactable}
+
+df <- wfp_combined
+
+df %>% 
+  # filter(!is.na(world_green)) %>% 
+  select(-green_variation, -blue_variation, -grey_variation) %>% 
+  reactable(
+    pagination = FALSE, highlight = TRUE, 
+    # height = 250,
+    searchable = TRUE,
+    # groupBy = "type",
+    defaultSorted = list(world_total = "desc"),
+    defaultColDef = colDef(
+      # header = function(value) gsub("_", " ", value, fixed = TRUE),
+      # cell = function(value) format(value, nsmall = 1),
+      # align = "center",
+      minWidth = 70,
+      # headerStyle = list(background = "#f7f7f8"),
+      format = colFormat(separators = TRUE),
+      footerStyle = list(fontWeight = "bold")
+    ),
+    columns = list(
+      type = colDef(maxWidth = 80),
+      name_en = colDef(name = "Ingredient", minWidth = 140),
+      world_green = colDef(
+        name = "Green",
+        style = function(value) {
+          if (is.na(value)) {
+            return()
+          } else {
+            normalized <- (value - min(df$world_green, na.rm = TRUE)) / (max(df$world_green, na.rm = TRUE) - min(df$world_green, na.rm = TRUE))
+          color <- pal_wfp_green(normalized)
+          list(background = color)}
+          }
+          
+        ),
+      world_blue = colDef(
+        name = "Blue", align = "right",
+        cell = function(value) {
+          if (!is.na(value)) {
+           width <- paste0(value / max(df$world_blue, na.rm = TRUE)  * 100, "%")
+           bar_chart(value, width = width, fill = color_wfp_blue)} 
+          }
+        ),
+      world_grey = colDef(name = "Grey", align = "right",
+        cell = function(value) {
+          if (!is.na(value)) {
+           width <- paste0(value / max(df$world_grey, na.rm = TRUE)  * 100, "%")
+           bar_chart(value, width = width, fill = color_wfp_grey)} 
+          }),
+      world_total = colDef(name = "Total", align = "right",
+        cell = function(value) {
+          if (!is.na(value)) {
+           width <- paste0(value / max(df$world_total, na.rm = TRUE)  * 100, "%")
+           bar_chart(value, width = width, fill = color_water)} 
+          }),
+      country_green = colDef(name = "Green", align = "right",
+        cell = function(value) {
+          if (!is.na(value)) {
+           width <- paste0(value / max(df$country_green, na.rm = TRUE)  * 100, "%")
+           bar_chart(value, width = width, fill = color_wfp_green)} 
+          }),
+      country_blue = colDef(name = "Blue", align = "right",
+        cell = function(value) {
+          if (!is.na(value)) {
+           width <- paste0(value / max(df$country_blue, na.rm = TRUE)  * 100, "%")
+           bar_chart(value, width = width, fill = color_wfp_blue)} 
+          }
+        ),
+      country_grey = colDef(name = "Grey", align = "right",
+        cell = function(value) {
+          if (!is.na(value)) {
+           width <- paste0(value / max(df$country_grey, na.rm = TRUE)  * 100, "%")
+           bar_chart(value, width = width, fill = color_wfp_grey)} 
+          }),
+      country_total = colDef(name = "Total", align = "right",
+        cell = function(value) {
+          if (!is.na(value)) {
+           width <- paste0(value / max(df$country_total, na.rm = TRUE)  * 100, "%")
+           bar_chart(value, width = width, fill = color_water)} 
+          }),
+      total_variation = colDef(
+        name = "Variation",
+        format = colFormat(percent = TRUE, digits = 2),
+        style = function(value) {
+          if (is.na(value)) {
+            return()
+          } else if ( value > 0) {
+            color <- "red"
+          } else {
+            color <- "green"
+          }
+          list(color = color, fontWeight = "bold")
+        }
+        )
+    ),
+    columnGroups = list(
+      colGroup(name = "World", 
+               columns = c("world_green", "world_blue", "world_grey",
+                           "world_total")),
+      colGroup(name = "Poland", 
+               columns = c("country_green", "country_blue", "country_grey",
+                           "country_total"))
+      )
+  )
+```
+
+
 Try this other library: https://glin.github.io/reactable/articles/examples.html#footers-1
 
 Heatmaps could be implemented this way: https://glin.github.io/reactable/articles/conditional-styling.html and this: https://glin.github.io/reactable/articles/cookbook/cookbook.html
@@ -346,7 +522,6 @@ Links:
 
 ### Meals 
 
--------
 ### Things to consider
 
 * Water footprint units are m3/Tonne
