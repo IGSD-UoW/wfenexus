@@ -25,6 +25,7 @@ Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.1.1
 Depends:
+  crosstalk,
   DT,
   flexdashboard,
   here,
@@ -32,6 +33,7 @@ Depends:
   jsonlite,
   plotly,
   readxl,
+  reactable,
   renv,
   tidyverse,
   zoo
