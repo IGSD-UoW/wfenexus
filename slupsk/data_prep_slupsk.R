@@ -12,6 +12,11 @@ sel_country <- "Poland"
 # previously generated dataset, saving time.
 calc_wf <- FALSE
 
+# Set TRUE if you want to download latest data from the tool. Otherwise, local
+# files will be used.
+retrieve_data <- FALSE
+
+
 url_kindergartens <- "https://creatinginterfaces.demo.52north.org/slupsk-tool/kindergartens.json"
 url_ingredients <- "https://creatinginterfaces.demo.52north.org/slupsk-tool/ingredients.json"
 url_dishes <- "https://creatinginterfaces.demo.52north.org/slupsk-tool/kindergartendishs.json"
@@ -23,29 +28,32 @@ urls_all <- c(url_dishes, url_ingredients, url_kindergartens, url_producers,
 
 # Download datasets -------------------------------------------------------
 
-kindergartens <- ci_get_data(url_kindergartens, "kindergartens.csv")
+if (isTRUE(retrieve_data) ) {
+  kindergartens <- ci_get_data(url_kindergartens, "kindergartens.csv")
 
-ingredients <- ci_get_data(url_ingredients, "ingredients.csv")
+  ingredients <- ci_get_data(url_ingredients, "ingredients.csv")
 
-dishrating <- ci_get_data(url_ratings, "dishrating.csv")
+  dishrating_raw <- ci_get_data(url_ratings, "dishrating.csv")
 
-# dishes_nested <- as.data.frame(fromJSON(url_dishes)[["list"]])
-dishes_nested <- ci_get_data(url_dishes)
+  # dishes_nested <- as.data.frame(fromJSON(url_dishes)[["list"]])
+  dishes_nested <- ci_get_data(url_dishes)
 
-dish_composition <- dishes_nested %>%
-  # unnest(compositions, names_repair = "universal")
-  unnest(compositions, names_sep = ".") %>%
-  select(id, starts_with("compositions."), -`compositions.@index`,
-         -compositions.id) %>%
-  rename(dish_id = id) %>%
-  rename_with(~str_remove(., 'compositions.'))
+  dish_composition <- dishes_nested %>%
+    # unnest(compositions, names_repair = "universal")
+    unnest(compositions, names_sep = ".") %>%
+    select(id, starts_with("compositions."), -`compositions.@index`,
+           -compositions.id) %>%
+    rename(dish_id = id) %>%
+    rename_with(~str_remove(., 'compositions.'))
 
-write_csv(dish_composition, here::here("slupsk/data-raw/", "dishes_composition.csv"))
+  write_csv(dish_composition, here::here("slupsk/data-raw/", "dishes_composition.csv"))
 
-dishes <- dishes_nested %>%
-  select(-compositions)
+  dishes_raw <- dishes_nested %>%
+    select(-compositions)
 
-write_csv(dishes, here::here("slupsk/data-raw/", "dishes.csv"))
+  write_csv(dishes_raw, here::here("slupsk/data-raw/", "dishes.csv"))
+
+}
 
 # Generate waterfootprint files. ------------------------------------------
 
@@ -175,6 +183,18 @@ write.csv(pot_local_ingredients, file = "slupsk/data/pot_local_ingredients.csv",
           row.names = FALSE)
 
 
-# Food rating -------------------------------------------------------------
+# Meals rating -------------------------------------------------------------
 
+dishrating <- read_csv("slupsk/data-raw/dishrating.csv") %>%
+  ci_dishratings_prep()
 
+dishes_raw <- read_csv("slupsk/data-raw/dishes.csv")
+
+dishes <- ci_dishratings(dishes_raw, dishrating)
+
+dishrating2 <- dishrating %>%
+  group_by(dish_id) %>%
+  summarize(rating_children = mean(children_satisfaction),
+            rating_parents = mean(parent_satisfaction),
+            health = mean(health)) %>%
+  mutate(across(where(is.numeric), round, 2))
