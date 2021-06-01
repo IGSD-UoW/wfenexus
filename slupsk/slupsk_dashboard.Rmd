@@ -14,7 +14,6 @@ library(flexdashboard)
 library(reactable)
 library(crosstalk)
 library(plotly)
-library(DT)
 library(formattable)
 library(lubridate)
 library(tidyverse)
@@ -364,81 +363,7 @@ valueBox(value = paste0(format(total_wfp_crops_local, big.mark = ","), " m3/Ton"
 Water {.tabset}
 -----------------------------------------------------------------------
 
-### Ingredients 
-
-```{r}
-
-
-formattable(
-  wfp_combined,  
-  list(
-    world_green = color_tile("transparent", color_wfp_green),
-    world_blue = color_tile("transparent", color_wfp_blue),
-    world_grey = color_tile("transparent", color_wfp_grey),
-    world_total = color_tile("transparent", color_water),
-    country_green = color_tile("transparent", color_wfp_green),
-    country_blue = color_tile("transparent", color_wfp_blue),
-    country_grey = color_tile("transparent", color_wfp_grey),
-    country_total = color_tile("transparent", color_water),
-    green_variation =  formatter("span", 
-      style = ~ style(color = ifelse(green_variation < 0, "green", "red"))),
-    blue_variation =  formatter("span", 
-      style = ~ style(color = ifelse(blue_variation < 0, "green", "red"))),
-    grey_variation =  formatter("span", 
-      style = ~ style(color = ifelse(grey_variation < 0, "green", "red"))),
-    total_variation =  formatter("span", 
-      style = ~ style(color = ifelse(total_variation < 0, "green", "red")))
-  )
-) %>%
-  as.datatable(escape = FALSE,
-               class= "hover",
-               # options = list(scrollX = TRUE),
-               rownames = FALSE,
-               extensions = 'Scroller', options = list(
-                 deferRender = TRUE,
-                 scrollY = 200,
-                 scroller = TRUE)
-  )
-  
-```
-
-### Ingredients 2
-
-```{r}
-wfp_combined %>% 
-  select(-green_variation, -blue_variation, -grey_variation) %>% 
-  formattable(list(
-    world_green = color_tile("transparent", color_wfp_green),
-    world_blue = color_tile("transparent", color_wfp_blue),
-    world_grey = color_tile("transparent", color_wfp_grey),
-    world_total = color_tile("transparent", color_water),
-    country_green = color_tile("transparent", color_wfp_green),
-    country_blue = color_tile("transparent", color_wfp_blue),
-    country_grey = color_tile("transparent", color_wfp_grey),
-    country_total = color_tile("transparent", color_water),
-    green_variation =  formatter("span", 
-      style = ~ style(color = ifelse(green_variation < 0, "green", "red"))),
-    blue_variation =  formatter("span", 
-      style = ~ style(color = ifelse(blue_variation < 0, "green", "red"))),
-    grey_variation =  formatter("span", 
-      style = ~ style(color = ifelse(grey_variation < 0, "green", "red"))),
-    total_variation =  formatter("span", 
-      style = ~ style(color = ifelse(total_variation < 0, "green", "red")))
-  )
-) %>%
-  as.datatable(escape = FALSE,
-               class= "hover",
-               # options = list(scrollX = TRUE),
-               rownames = FALSE,
-               extensions = 'Scroller', options = list(
-                 deferRender = TRUE,
-                 scrollY = 200,
-                 scroller = TRUE)
-  )
-  
-```
-
-### Ingredients 3
+### Ingredients
 
 ```{r ingredients_wf_reactable}
 
@@ -547,7 +472,7 @@ Links:
 
 * https://clarewest.github.io/blog/post/making-tables-shiny/
 
-### Ingredients 4
+### Ingredients 2
 
 ```{r}
 df_shared <- SharedData$new(df)

@@ -26,7 +26,6 @@ LazyData: true
 RoxygenNote: 7.1.1
 Depends:
   crosstalk,
-  DT,
   flexdashboard,
   here,
   janitor,
