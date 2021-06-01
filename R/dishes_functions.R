@@ -13,17 +13,16 @@
 #' Prepares dishrating dataset.
 #' @description Reads file containing dishrating dataset, cleans data and
 #'   calculates average ratings per dish.
-#' @param filename String pointing to file containing dish ratings' dataset.
+#' @param df Dataframe with raw dishratings, directly retrieved from the tool.
 #' @return Clean and tidy dataset with dish ratings information.
-ci_dishratings_prep <- function(filename) {
+ci_dishratings_prep <- function(df) {
 
-
-  df <- read_csv(filename) %>%
+  df <- df %>%
     mutate(id = as.integer(id)) %>%
     filter(!is.na(id)) %>%
     filter(!is.na(kindergarten_id)) %>%
     filter(!is.na(date)) %>%
-    mutate(date = dmy(date)) %>%
+    # mutate(date = lubridate::dmy(date)) %>%
     mutate_at(c("children_satisfaction","parent_satisfaction", "health"),
               funs(recode(., one = 1, two = 2, three = 3, four = 4, five = 5)))
 

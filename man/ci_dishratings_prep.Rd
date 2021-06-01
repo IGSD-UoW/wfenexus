@@ -4,10 +4,10 @@
 \alias{ci_dishratings_prep}
 \title{Prepares dishrating dataset.}
 \usage{
-ci_dishratings_prep(filename)
+ci_dishratings_prep(df)
 }
 \arguments{
-\item{filename}{String pointing to file containing dish ratings' dataset.}
+\item{df}{Dataframe with raw dishratings, directly retrieved from the tool.}
 }
 \value{
 Clean and tidy dataset with dish ratings information.
