@@ -23,24 +23,16 @@ urls_all <- c(url_dishes, url_ingredients, url_kindergartens, url_producers,
 
 # Download datasets -------------------------------------------------------
 
+kindergartens <- ci_get_data(url_kindergartens, "kindergartens.csv")
 
-get_tool_data <- function(json, filename) {
-  df <- as.data.frame(fromJSON(json)[["list"]])
+ingredients <- ci_get_data(url_ingredients, "ingredients.csv")
 
-  write_csv(df, file = here::here("slupsk/data-raw/", filename))
+dishrating <- ci_get_data(url_ratings, "dishrating.csv")
 
-  return(df)
-}
+# dishes_nested <- as.data.frame(fromJSON(url_dishes)[["list"]])
+dishes_nested <- ci_get_data(url_dishes)
 
-kindergartens <- get_tool_data(url_kindergartens, "kindergartens.csv")
-
-ingredients <- get_tool_data(url_ingredients, "ingredients.csv")
-
-dishrating <- get_tool_data(url_ratings, "dishrating.csv")
-
-dishes_nested <- as.data.frame(fromJSON(url_dishes)[["list"]])
-
-dish_composition <- dishes %>%
+dish_composition <- dishes_nested %>%
   # unnest(compositions, names_repair = "universal")
   unnest(compositions, names_sep = ".") %>%
   select(id, starts_with("compositions."), -`compositions.@index`,
@@ -48,11 +40,12 @@ dish_composition <- dishes %>%
   rename(dish_id = id) %>%
   rename_with(~str_remove(., 'compositions.'))
 
+write_csv(dish_composition, here::here("slupsk/data-raw/", "dishes_composition.csv"))
+
 dishes <- dishes_nested %>%
   select(-compositions)
 
 write_csv(dishes, here::here("slupsk/data-raw/", "dishes.csv"))
-write_csv(dish_composition, here::here("slupsk/data-raw/", "dishes_composition.csv"))
 
 # Generate waterfootprint files. ------------------------------------------
 
@@ -80,7 +73,7 @@ base::remove(calc_wf)
 
 # Adds wf to ingredients --------------------------------------------------
 
-ingredients_df <- read_csv(here::here("slupsk/data-raw/ingredient_ingredient.csv"))
+ingredients_df <- read_csv(here::here("slupsk/data-raw/ingredients.csv"))
 
 
 wfp_crops <- read_csv(here::here("slupsk/data/wf_crops.csv")) %>%
@@ -155,6 +148,9 @@ tmp_wf_combined <- tmp_wfp_crops %>%
   select(-id, -name)
 
 wfp_combined <- ingredients_df %>%
+  select(-name, -label) %>%
+  left_join(ingredients_dic, by = "id") %>%
+  select(-name_wf) %>%
   left_join(tmp_wf_combined, by = "name_en")
 
 write.csv(wfp_combined, file = "slupsk/data/wfp_combined.csv",
@@ -172,7 +168,13 @@ base::remove(tmp_wf_combined)
 
 # Not all ingredients can be grown in Poland.
 pot_local_ingredients <- wfp_animals %>%
-  filter(!is.na(country_total))
+  filter(!is.na(country_total)) %>%
+  filter(country_total != 0)
 
 write.csv(pot_local_ingredients, file = "slupsk/data/pot_local_ingredients.csv",
           row.names = FALSE)
+
+
+# Food rating -------------------------------------------------------------
+
+
