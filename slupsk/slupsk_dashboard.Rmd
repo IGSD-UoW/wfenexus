@@ -28,9 +28,8 @@ dish_composition <- read_csv("data-raw/dishes_composition.csv")
 dishrating <- read_csv("data-raw/dishrating.csv") %>%
   ci_dishratings_prep()
 
-dishes_raw <- read_csv("data-raw/dishes.csv")
+dishes_df <- read_csv("data/dishes.csv")
 
-dishes_df <- ci_dishratings(dishes_raw, dishrating)
 
 
 # dishes_df <- ci_dishratings(dishes_df, dishrating)
@@ -112,7 +111,15 @@ Dishes
 
 ```{r}
 dishes_df %>% 
-  reactable()
+  relocate(picture) %>% 
+  select(-id, -kindergarten_id, -date, -ends_with("label")) %>% 
+  reactable(
+    columns = list(
+      picture =  colDef(cell = function(value) {
+        image <- img(src =  value, width = "100px", alt = value)
+      })
+    )
+  )
 ```
 
 
@@ -148,6 +155,7 @@ bscols(
   ),
   reactable(
     df_shared,
+    pagination = FALSE, 
     highlight = TRUE, 
     # height = 250,
     searchable = TRUE,
@@ -218,9 +226,9 @@ Possible ideas:
 # Load dataset.
 
 dishes_df %>% 
-  select(kindergarten_id, type, name, health, waste, allergens, calories, 
-         rating_children, rating_parents) %>% 
-  arrange(kindergarten_id, type) %>% 
+  # select(kindergarten_id, type, name, health, waste, allergens, calories, 
+  #        rating_children, rating_parents) %>% 
+  # arrange(kindergarten_id, type) %>% 
   reactable()
 
 

@@ -192,9 +192,15 @@ dishes_raw <- read_csv("slupsk/data-raw/dishes.csv")
 
 dishes <- ci_dishratings(dishes_raw, dishrating)
 
-dishrating2 <- dishrating %>%
+dishrating_summary <- dishrating %>%
   group_by(dish_id) %>%
   summarize(rating_children = mean(children_satisfaction),
             rating_parents = mean(parent_satisfaction),
             health = mean(health)) %>%
-  mutate(across(where(is.numeric), round, 2))
+  mutate(across(where(is.numeric), round, 2)) %>%
+  filter(!is.na(rating_parents) | !is.na(health))
+
+dishes <- dishes_raw %>%
+  left_join(dishrating_summary, by = c("id" = "dish_id"))
+
+write_csv(dishes, file = "slupsk/data/dishes.csv")
