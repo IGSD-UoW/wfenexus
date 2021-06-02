@@ -288,13 +288,11 @@ Column
 ### Chart B
 
 ```{r}
-library(formattable)
-
 dishes_df %>% 
   select(kindergarten_id, type, name, waste, allergens, calories, 
          rating_children, rating_parents) %>% 
   arrange(kindergarten_id, type) %>% 
-  formattable()
+  reactable()
 
 
 ```
