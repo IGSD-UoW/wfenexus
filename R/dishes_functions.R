@@ -24,7 +24,11 @@ ci_dishratings_prep <- function(df) {
     filter(!is.na(date)) %>%
     # mutate(date = lubridate::dmy(date)) %>%
     mutate(across(c("children_satisfaction","parent_satisfaction", "health"),
-                  ~recode(., one = 1, two = 2, three = 3, four = 4, five = 5)))
+                  ~recode(., one = 1, two = 2, three = 3, four = 4, five = 5))) %>%
+    mutate(avg_satisfaction =
+             mean(c_across(c(children_satisfaction, parent_satisfaction)),
+                  na.rm = TRUE),
+           .after = "parent_satisfaction")
 
   return(df)
 
@@ -38,11 +42,11 @@ ci_dishratings_prep <- function(df) {
 #' @return Dishes dataframe with new columns, containing average ratings.
 ci_dishratings <- function(dishes, dishratings) {
 
-
   dishratings <- dishratings %>%
     group_by(dish_id) %>%
     summarize(rating_children = mean(children_satisfaction),
               rating_parents = mean(parent_satisfaction),
+              rating_average = mean(avg_satisfaction),
               health = mean(health)) %>%
     mutate(across(where(is.numeric), round, 2))
 
