@@ -23,8 +23,8 @@ ci_dishratings_prep <- function(df) {
     filter(!is.na(kindergarten_id)) %>%
     filter(!is.na(date)) %>%
     # mutate(date = lubridate::dmy(date)) %>%
-    mutate_at(c("children_satisfaction","parent_satisfaction", "health"),
-              funs(recode(., one = 1, two = 2, three = 3, four = 4, five = 5)))
+    mutate(across(c("children_satisfaction","parent_satisfaction", "health"),
+                  ~recode(., one = 1, two = 2, three = 3, four = 4, five = 5)))
 
   return(df)
 
