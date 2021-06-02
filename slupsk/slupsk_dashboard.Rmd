@@ -60,49 +60,6 @@ pal_wfp_total <- function(x) rgb(colorRamp(c(color_water, "white"))(x),
 ```
 
 
-```{r reactable_config, include=FALSE}
-
-# Render a bar chart with a label on the left
-bar_cell = function(value, variable, color, background = "#e1e1e1") {
-  if (!is.na(value)) {
-    width <- paste0(value * 100 / max(variable, na.rm = TRUE), "%")
-    value <- format(value, big.mark = ",")
-    value <- format(value, width = 9, justify = "right")
-    bar <- div(
-      class = "bar-chart",
-      style = list(marginRight = "6px", backgroundColor = background),
-      div(class = "bar", style = list(width = width, backgroundColor = color))
-      )
-    div(class = "bar-cell", span(class = "number", value), bar)
-    }
-  }
-
-with_tooltip <- function(value, tooltip) {
-  tags$abbr(style = "text-decoration: underline; text-decoration-style: dotted; cursor: help",
-            title = tooltip, value)
-}
-
-
-# Adds five stars rating.
-rating_stars <- function(rating, icon = "star", color = "orange", max_rating = 5) {
-  if (!is.na(rating)) {
-    star_icon <- function(empty = FALSE) {
-    tagAppendAttributes(shiny::icon(icon),
-      style = paste("color:", if (empty) "#edf0f2" else color), 
-      "aria-hidden" = "true"
-      )}
-    rounded_rating <- floor(rating + 0.5)  # always round up
-    stars <- lapply(seq_len(max_rating), function(i) {
-      if (i <= rounded_rating) star_icon() else star_icon(empty = TRUE)
-      })
-    label <- sprintf("%s out of %s stars", rating, max_rating)
-    div(title = label, role = "img", stars)
-  }
-}
-
-```
-
-
 <!-- Inputs {.sidebar} -->
 <!-- ------------------------------------- -->
 
@@ -147,36 +104,26 @@ valueBox(value = nrow(dishes_df),
          icon = "fas fa-lemon")
 ```
 
-Notes
---------
 
-* What are the consequences of our choices?
-* Which small changes can we make in our food to make them more sustainable?
+Dishes
+----------------------------------------
 
+### Dishes
 
+```{r}
+dishes_df %>% 
+  reactable()
+```
 
-Notes
---------
-
-![](https://www.r-graph-gallery.com/143-spider-chart-with-saveral-individuals_files/figure-html/thecode2-1.png)
-
-Links: https://www.datanovia.com/en/blog/beautiful-radar-chart-in-r-using-fmsb-and-ggplot-packages/
-
-Notes
---------
-
-The possible radar's axis could be:
-
-* Health (Food)
-* Rating parents (Food)
-* Rating children (Food)
-* Water Footprint
-* Energy Footprint
-* calories? (Energy?)
 
 
 Food
 =====================================
+
+
+
+
+### Ratings
 
 ```{r}
 df <- dishrating %>% 
@@ -215,19 +162,19 @@ bscols(
         # aggregate = function(value) rating_starts(mean(value))
         aggregate = "mean", 
         format = colFormat(digits = 1),
-        cell = function(value) rating_stars(value)
+        cell = function(value) rt_rating_icons(value)
         ),
       parent_satisfaction = colDef(
         name = "Rating Parents",
         aggregate = "mean",
         format = colFormat(digits = 1),
-        cell = function(value) rating_stars(value, color = color_energy)
+        cell = function(value) rt_rating_icons(value, color = color_energy)
       ),
       health = colDef(
         name = "Perceived Health",
         aggregate = "mean",
         format = colFormat(digits = 1),
-        cell = function(value) rating_stars(value, icon = "heart", color = color_food)
+        cell = function(value) rt_rating_icons(value, icon = "heart", color = color_food)
       )
     )
   )
@@ -274,7 +221,7 @@ dishes_df %>%
   select(kindergarten_id, type, name, health, waste, allergens, calories, 
          rating_children, rating_parents) %>% 
   arrange(kindergarten_id, type) %>% 
-  datatable()
+  reactable()
 
 
 ```
@@ -459,49 +406,49 @@ df %>%
       name_en = colDef(name = "Ingredient", minWidth = 140),
       world_green = colDef(
         # name = "Green",
-        header = with_tooltip("Green", "Green water footprint is water from precipitation that is stored in the root zone of the soil and evaporated, transpired or incorporated by plants. It is particularly relevant for agricultural, horticultural and forestry products. Units in m3/Ton"),
+        header = rt_with_tooltip("Green", "Green water footprint is water from precipitation that is stored in the root zone of the soil and evaporated, transpired or incorporated by plants. It is particularly relevant for agricultural, horticultural and forestry products. Units in m3/Ton"),
         cell = function(value) {
-          bar_cell(value, df$world_green, color_wfp_green)
+          rt_bar_cell(value, df$world_green, color_wfp_green)
         }),
       world_blue = colDef(
         # name = "Blue", 
         align = "right",
-        header = with_tooltip("Blue", "Blue water footprint is water that has been sourced from surface or groundwater resources and is either evaporated, incorporated into a product or taken from one body of water and returned to another, or returned at a different time. Irrigated agriculture, industry and domestic water use can each have a blue water footprint. Units in m3/Ton"),
+        header = rt_with_tooltip("Blue", "Blue water footprint is water that has been sourced from surface or groundwater resources and is either evaporated, incorporated into a product or taken from one body of water and returned to another, or returned at a different time. Irrigated agriculture, industry and domestic water use can each have a blue water footprint. Units in m3/Ton"),
         cell = function(value) {
-          bar_cell(value, df$world_blue, color_wfp_blue)
+          rt_bar_cell(value, df$world_blue, color_wfp_blue)
         }),
       world_grey = colDef(
         # name = "Grey", 
-        header = with_tooltip("Grey", "Grey water footprint is the amount of fresh water required to assimilate pollutants to meet specific water quality standards. The grey water footprint considers point-source pollution discharged to a freshwater resource directly through a pipe or indirectly through runoff or leaching from the soil, impervious surfaces, or other diffuse sources. Units in m3/Ton"),
+        header = rt_with_tooltip("Grey", "Grey water footprint is the amount of fresh water required to assimilate pollutants to meet specific water quality standards. The grey water footprint considers point-source pollution discharged to a freshwater resource directly through a pipe or indirectly through runoff or leaching from the soil, impervious surfaces, or other diffuse sources. Units in m3/Ton"),
         align = "right",
         cell = function(value) {
-          bar_cell(value, df$world_grey, color_wfp_grey)
+          rt_bar_cell(value, df$world_grey, color_wfp_grey)
         }),
       world_total = colDef(
         # name = "Total", 
-        header = with_tooltip("Total", "The sum of Green, Blue and Grey water footprint. Units in m3/Ton"),
+        header = rt_with_tooltip("Total", "The sum of Green, Blue and Grey water footprint. Units in m3/Ton"),
         align = "right",
         cell = function(value){
-          bar_cell(value, df$world_total, color_water, "#e1e1e1")
+          rt_bar_cell(value, df$world_total, color_water, "#e1e1e1")
         }),
       country_green = colDef(name = "Green", align = "right",
          cell = function(value){
-          bar_cell(value, df$country_green, color_wfp_green)
+          rt_bar_cell(value, df$country_green, color_wfp_green)
         }),
       country_blue = colDef(name = "Blue", align = "right",
         cell = function(value) {
-          bar_cell(value, df$country_blue, color_wfp_blue)
+          rt_bar_cell(value, df$country_blue, color_wfp_blue)
         }),
       country_grey = colDef(name = "Grey", align = "right",
         cell = function(value) {
-          bar_cell(value, df$country_grey, color_wfp_grey)
+          rt_bar_cell(value, df$country_grey, color_wfp_grey)
         }),
       country_total = colDef(name = "Total", align = "right",
         cell = function(value) {
-          bar_cell(value, df$country_total, color_water)
+          rt_bar_cell(value, df$country_total, color_water)
         }),
       total_variation = colDef(
-        header = with_tooltip("Variation", "Difference between World's average Total Waterfootprint and Total footprint if the same ingredients were produced locally. Negative values imply waterfootprint reduction. Ingredients without local data have not been included."),
+        header = rt_with_tooltip("Variation", "Difference between World's average Total Waterfootprint and Total footprint if the same ingredients were produced locally. Negative values imply waterfootprint reduction. Ingredients without local data have not been included."),
         format = colFormat(percent = TRUE, digits = 2),
         style = function(value) {
           if (is.na(value)) {
@@ -595,6 +542,13 @@ An open source prototype for a visual interface to support research and Nexus en
 
 ![](img/IGSD_logo.jpg)
 
+
+#### Aim
+
+* What are the consequences of our choices?
+* Which small changes can we make in our food to make them more sustainable?
+
+#### Source Code
 
 * Source Code: https://github.com/IGSD-UoW/wfenexus
 * Licence: [GPL](https://github.com/IGSD-UoW/wfenexus/blob/main/LICENSE)

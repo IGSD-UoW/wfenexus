@@ -33,6 +33,10 @@ authors:
     html: "<img src='https://esrc.ukri.org/esrc/includes/themes/MasterSite/images/logo-1.png' height='30'>"
 
 reference:
+- title: "Retrieve data"
+  desc: "Functions to retrieve data from online Tool"
+- contents:
+  - starts_with("ci_get_data")
 - title: "Water Footprint"
   desc: >
     Functions for preparing and visualising water footprint data.
@@ -42,3 +46,8 @@ reference:
   desc: "Functions for preparing and visualising food data."
 - contents:
   - starts_with("ci_dishratings")
+- title: "Reactable"
+  desc: >
+    Functions to customise reactable outputs.
+- contents:
+  - starts_with("rt_")
