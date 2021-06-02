@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • wfenexus</title>
+<title>Displays ratings using icons. — rt_rating_icons • wfenexus</title>
 
 
 <!-- jquery -->
@@ -39,7 +39,9 @@
 
 
 
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="Displays ratings using icons. — rt_rating_icons" />
+<meta property="og:description" content="Converts numeric values into an array of icons, ideal for
+  ratings." />
 
 
 
@@ -58,7 +60,7 @@
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -105,123 +107,47 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>Displays ratings using icons.</h1>
+    <small class="dont-index">Source: <a href='https://github.com/IGSD-UoW/wfenexus/blob/master/R/reactable_customisations.R'><code>R/reactable_customisations.R</code></a></small>
+    <div class="hidden name"><code>rt_rating_icons.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    <div class="ref-description">
+    <p>Converts numeric values into an array of icons, ideal for
+  ratings.</p>
+    </div>
 
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
+    <pre class="usage"><span class='fu'>rt_rating_icons</span><span class='op'>(</span><span class='va'>rating</span>, icon <span class='op'>=</span> <span class='st'>"star"</span>, color <span class='op'>=</span> <span class='st'>"orange"</span>, max_rating <span class='op'>=</span> <span class='fl'>5</span><span class='op'>)</span></pre>
 
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-retrieve-data" class="hasAnchor"><a href="#section-retrieve-data" class="anchor"></a>Retrieve data</h2>
-          <p class="section-desc"><p>Functions to retrieve data from online Tool</p></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="ci_get_data.html">ci_get_data()</a></code> </p>
-        </td>
-        <td><p>Retrieves data from the tool and stores it a dataframe.</p></td>
-      </tr>
-    </tbody><tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-water-footprint" class="hasAnchor"><a href="#section-water-footprint" class="anchor"></a>Water Footprint</h2>
-          <p class="section-desc"><p>Functions for preparing and visualising water footprint data.</p></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="ci_wf_prep_animals.html">ci_wf_prep_animals()</a></code> </p>
-        </td>
-        <td><p>Reads and cleans animals' water footprint dataset.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="ci_wf_prep_crops.html">ci_wf_prep_crops()</a></code> </p>
-        </td>
-        <td><p>Reads and cleans crops' water footprint dataset.</p></td>
-      </tr>
-    </tbody><tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-food" class="hasAnchor"><a href="#section-food" class="anchor"></a>Food</h2>
-          <p class="section-desc"><p>Functions for preparing and visualising food data.</p></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="ci_dishratings.html">ci_dishratings()</a></code> </p>
-        </td>
-        <td><p>Returns average ratings per dish.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="ci_dishratings_prep.html">ci_dishratings_prep()</a></code> </p>
-        </td>
-        <td><p>Prepares dishrating dataset.</p></td>
-      </tr>
-    </tbody><tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-reactable" class="hasAnchor"><a href="#section-reactable" class="anchor"></a>Reactable</h2>
-          <p class="section-desc"><p>Functions to customise reactable outputs.</p></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="rt_bar_cell.html">rt_bar_cell()</a></code> </p>
-        </td>
-        <td><p>Renders a bar chart with a label on the left.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="rt_rating_icons.html">rt_rating_icons()</a></code> </p>
-        </td>
-        <td><p>Displays ratings using icons.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="rt_with_tooltip.html">rt_with_tooltip()</a></code> </p>
-        </td>
-        <td><p>Changes header style when tooltips are enabled.</p></td>
-      </tr>
-    </tbody>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>rating</th>
+      <td><p>Number, from cell's value.</p></td>
+    </tr>
+    <tr>
+      <th>icon</th>
+      <td><p>String containing the name of the icon to be used. Icons defined
+with shiny::icon()</p></td>
+    </tr>
+    <tr>
+      <th>color</th>
+      <td><p>String containing color definition in hex format.</p></td>
+    </tr>
+    <tr>
+      <th>max_rating</th>
+      <td><p>Number of maximum rating.</p></td>
+    </tr>
     </table>
-  </div>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>An array of n icons and a tooltip showing the original value.</p>
+
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>
