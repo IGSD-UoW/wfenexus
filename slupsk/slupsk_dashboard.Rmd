@@ -14,7 +14,6 @@ library(flexdashboard)
 library(reactable)
 library(crosstalk)
 library(plotly)
-library(formattable)
 library(lubridate)
 library(tidyverse)
 library(scales)
@@ -64,20 +63,6 @@ pal_wfp_total <- function(x) rgb(colorRamp(c(color_water, "white"))(x),
 ```{r reactable_config, include=FALSE}
 
 # Render a bar chart with a label on the left
-bar_chart <- function(label, width = "100%", height = "16px", fill = "#00bfc4", background = "#e1e1e1") {
-  label <- format(label, big.mark = ",")
-  label <- format(label, width = 6, justify = "right") 
-  bar <- div(
-    class = "bar-chart",
-    style = list(background = fill, width = width, height = height))
-  chart <- div(
-    style = list(flexGrow = 1, marginLeft = "8px", background = background), bar)
-  div(
-    class = "bar-cell", 
-    style = list(display = "flex", alignItems = "center"), 
-    span(class = "number",label), chart)
-}
-
 bar_cell = function(value, variable, color, background = "#e1e1e1") {
   if (!is.na(value)) {
     width <- paste0(value * 100 / max(variable, na.rm = TRUE), "%")
@@ -95,6 +80,24 @@ bar_cell = function(value, variable, color, background = "#e1e1e1") {
 with_tooltip <- function(value, tooltip) {
   tags$abbr(style = "text-decoration: underline; text-decoration-style: dotted; cursor: help",
             title = tooltip, value)
+}
+
+
+# Adds five stars rating.
+rating_stars <- function(rating, max_rating = 5) {
+  if (!is.na(rating)) {
+    star_icon <- function(empty = FALSE) {
+    tagAppendAttributes(shiny::icon("star"),
+      style = paste("color:", if (empty) "#edf0f2" else "orange"),
+      "aria-hidden" = "true"
+      )}
+    rounded_rating <- floor(rating + 0.5)  # always round up
+    stars <- lapply(seq_len(max_rating), function(i) {
+      if (i <= rounded_rating) star_icon() else star_icon(empty = TRUE)
+      })
+    label <- sprintf("%s out of %s stars", rating, max_rating)
+    div(title = label, role = "img", stars)
+  }
 }
 
 ```
@@ -173,6 +176,68 @@ The possible radar's axis could be:
 
 
 Food
+=====================================
+
+```{r}
+df <- dishrating %>% 
+  rename(kindergarten = kindergarten_label) %>% 
+  select(-id, -kindergarten_id, -dish_id, -ends_with("_label")) %>% 
+  relocate(label, .before = date) %>% 
+  relocate(kindergarten, .before = label) %>% 
+  relocate(date, .before = comment)
+
+df_shared <- SharedData$new(df)
+
+bscols(
+  widths = c(2, 10),
+  list(
+    filter_select("kindergarten", "Kindergarten", df_shared, ~kindergarten),
+    # filter_checkbox("type", "Type", df_shared, ~type),
+    filter_slider("children_satisfaction", "Children Satisfaction", df_shared,
+                  ~children_satisfaction, width = "100%"),
+    filter_slider("parent_satisfaction", "Parents' satisfaction", df_shared, 
+                  ~parent_satisfaction, width = "100%")
+    
+  ),
+  reactable(
+    df_shared,
+    highlight = TRUE, 
+    # height = 250,
+    searchable = TRUE,
+    groupBy = c("kindergarten", "label"),
+    columns = list(
+      label = colDef(
+        name = "Dish"
+        # aggregate = "unique"
+      ),
+      children_satisfaction = colDef(
+        name = "Rating Children", 
+        # aggregate = function(value) rating_starts(mean(value))
+        aggregate = "mean", 
+        format = colFormat(digits=1)
+        # cell = function(value) rating_stars(value)
+        ),
+      parent_satisfaction = colDef(
+        name = "Rating Parents",
+        aggregate = "mean",
+        format = colFormat(digits = 1)
+      ),
+      health = colDef(
+        name = "Perceived Health",
+        aggregate = "mean",
+        format = colFormat(digits = 1)
+      )
+    )
+  )
+)
+
+
+
+
+```
+
+
+Food2
 ===================================== 
 
 
