@@ -84,11 +84,11 @@ with_tooltip <- function(value, tooltip) {
 
 
 # Adds five stars rating.
-rating_stars <- function(rating, max_rating = 5) {
+rating_stars <- function(rating, icon = "star", color = "orange", max_rating = 5) {
   if (!is.na(rating)) {
     star_icon <- function(empty = FALSE) {
-    tagAppendAttributes(shiny::icon("star"),
-      style = paste("color:", if (empty) "#edf0f2" else "orange"),
+    tagAppendAttributes(shiny::icon(icon),
+      style = paste("color:", if (empty) "#edf0f2" else color), 
       "aria-hidden" = "true"
       )}
     rounded_rating <- floor(rating + 0.5)  # always round up
@@ -214,18 +214,20 @@ bscols(
         name = "Rating Children", 
         # aggregate = function(value) rating_starts(mean(value))
         aggregate = "mean", 
-        format = colFormat(digits=1)
-        # cell = function(value) rating_stars(value)
+        format = colFormat(digits = 1),
+        cell = function(value) rating_stars(value)
         ),
       parent_satisfaction = colDef(
         name = "Rating Parents",
         aggregate = "mean",
-        format = colFormat(digits = 1)
+        format = colFormat(digits = 1),
+        cell = function(value) rating_stars(value, color = color_energy)
       ),
       health = colDef(
         name = "Perceived Health",
         aggregate = "mean",
-        format = colFormat(digits = 1)
+        format = colFormat(digits = 1),
+        cell = function(value) rating_stars(value, icon = "heart", color = color_food)
       )
     )
   )
