@@ -109,17 +109,70 @@ Dishes
 
 ### Dishes
 
+TODO: 
+* add dish composition (it can be downloaded [from the tool](https://creatinginterfaces.demo.52north.org/slupsk-tool/kindergartendishs.json)!), ideally as nested component.
+* Fix the average calculations
+* Recode waste: order levels + change label
+* Hide type column or move it under the name + rename factor + reorder
+
 ```{r}
-dishes_df %>% 
+df <- dishes_df %>% 
   relocate(picture) %>% 
-  select(-id, -kindergarten_id, -date, -ends_with("label")) %>% 
+  select(-id, -kindergarten_id, -date, -ends_with("label"))
+
+df_shared <- SharedData$new(df)
+
+bscols(
+  widths = c(2, 10),
+  list(
+    # filter_select("kindergarten", "Kindergarten", df_shared, ~kindergarten),
+    filter_checkbox("type", "Type", df_shared, ~type),
+    filter_slider("calories", "Calories", df_shared, ~calories),
+    filter_slider("rating_children", "Rating (Children)", df_shared,
+                  ~rating_children, width = "100%"),
+    filter_slider("rating_parents", "Rating (Parents)", df_shared, 
+                  ~rating_parents, width = "100%"),
+    filter_slider("rating_average", "Rating (Average)", df_shared, 
+                  ~rating_average, width = "100%"),
+    filter_slider("health", "Perceived health", df_shared, 
+                  ~health, width = "100%")
+    
+  ),
   reactable(
+    df_shared,
+    pagination = FALSE, 
+    highlight = TRUE, 
+    height = 900,
+    searchable = TRUE,
     columns = list(
-      picture =  colDef(cell = function(value) {
-        image <- img(src =  value, width = "100px", alt = value)
-      })
+      picture =  colDef(
+        maxWidth = 110,
+        cell = function(value) {
+          image <- img(src =  value, width = "100px", alt = value)
+        }),
+      rating_children = colDef(
+        name = "Rating Children", 
+        # aggregate = "mean", 
+        format = colFormat(digits = 1),
+        cell = function(value) rt_rating_icons(value)
+        ),
+      rating_parents = colDef(
+        name = "Rating Parents", 
+        # aggregate = "mean", 
+        format = colFormat(digits = 1),
+        cell = function(value) rt_rating_icons(value, color = color_energy)
+        ),
+      health = colDef(
+        header = rt_with_tooltip("Perceived Health", "Average of parents' ratings on perceived health. High values do not necessarily mean that the meal is healthy."),
+        # name = "Perceived Health",
+        aggregate = "mean",
+        format = colFormat(digits = 1),
+        cell = function(value) rt_rating_icons(value, icon = "heart", color = color_food)
+      )
     )
   )
+)
+
 ```
 
 
