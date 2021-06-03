@@ -57,12 +57,12 @@
 91,"Maka zytnia","Rye flour","Rye flour","Rye",1774.28416185813,31.5901828686619,124.013482371863,1929.88782709865,1580.8164308891,0.0115719454786622,NA,1580.82800283458,"crops"
 92,"Melon","Melon","Other melons (inc.cantaloupes)","Other melons (inc.cantaloupes)",125.147743706971,29.1673590729725,66.9112243646064,221.22632714455,NA,NA,NA,NA,"crops"
 93,"Mieso wieprzowe","Pork","Swine meat&meat offal nes/exc livers/ incl mixtures,prepard o preservd","Pork,prepred,presrvd,nes",1124.67813800492,102.068656612019,142.531893786669,1369.27868840361,1045.17913392791,57.9336337423885,177.103492077192,1280.21625974749,"animals"
-94,"Mieso wolowe","Beef",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+94,"Mieso wolowe","Beef","Bovine cuts bone in, fresh or chilled","Bovine meat,fh,ch,w.bone",10233.5979075141,388.597338507088,320.120835737414,10942.3160817586,5595.89766964919,281.553270856908,345.235491298503,6222.6864318046,"animals"
 95,"Mieso z indyka","Turkey meat","Turkey meat and meat offal prepared or preserved, excluding livers","Poultry,prprd,prsrvd,nes",3545.39494981384,313.340547896255,466.549596791946,4325.28509450204,3362.33084485878,72.0239897059774,460.053534534244,3894.408369099,"animals"
-96,"Mieso z kurczaka","Chicken meat",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+96,"Mieso z kurczaka","Chicken meat","Poultry, live except domestic fowls, weighing not more than 185 g","Poultry, live, to 185g",2765.40806085479,234.405627359079,363.908685497718,3363.72237371159,2622.61805898985,46.1787119706624,358.84175693671,3027.63852789722,"animals"
 97,"Miód pszczeli","Bee honey",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 98,"Mleko roslinne","Vegetable milk","soybean ingredient into the soymilk","Soybeans",3573.75805403704,123.32282789409,65.4443305509856,3762.52521248212,NA,NA,NA,NA,"crops"
-99,"Mleko spozywcze","Drinking milk",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+99,"Mleko spozywcze","Drinking milk","Milk not concentrated and unsweetened not exceeding 1% fat","Milk,fat cont.1% or less",862.638324738887,85.5246618963615,72.2724417123937,1020.43542834764,752.85610765429,32.3281795681043,97.2414111830728,882.425698405467,"animals"
 100,"Morele","Apricots","Apricots, fresh","Apricots",693.803358231989,501.566307148958,91.6326859604803,1287.00235134143,1836.31584506728,1.23867358208534,NA,1837.55451864937,"crops"
 101,"Nektarynka","Nectarine","Peaches, including nectarines, fresh","Peaches and nectarines",582.554731601574,187.860230788899,139.223277048827,909.6382394393,1233.68322942274,0.854690606923732,NA,1234.53792002966,"crops"
 102,"Ogórek","Cucumber","Cucumbers and gherkins, fresh or chilled","Cucumbers and gherkins",206.485370627298,42.3179274366318,104.520778202843,353.324076266773,186.050177236192,0.763656466730772,NA,186.813833702923,"crops"
@@ -71,7 +71,7 @@
 105,"Olej slonecznikowy","Sunflower oil","Palm oil, crude","Oil palm",4691.44501339519,1.03628514075659,178.837165881212,4871.31846441716,NA,NA,NA,NA,"crops"
 106,"Papryka czerwona","Red Pepper","Peppers of the genus Capsicum or of the genus Pimenta,fresh or chilled","Chillies and peppers, green",239.749501795431,42.2406417511502,97.2228565834034,379.213000129985,NA,NA,NA,NA,"crops"
 107,"Papryka zielona","Green peppers","Peppers of the genus Capsicum or of the genus Pimenta,fresh or chilled","Chillies and peppers, green",239.749501795431,42.2406417511502,97.2228565834034,379.213000129985,NA,NA,NA,NA,"crops"
-108,"Parówki","Sausages",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+108,"Parówki","Sausages","Pig fat lean meat free&poultry fat unrenderd,frsh,chilld,frozn or curd","Pig,poultry fat unrendrd",3545.39494981384,313.340547896255,466.549596791946,4325.28509450204,3362.33084485878,72.0239897059774,460.053534534244,3894.408369099,"animals"
 109,"Pietruszka, korzen","Parsley root",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 110,"Pietruszka, liscie","Parsley leaves",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 111,"Platki kukurydziane","Flaked corn","Maize (corn), hulled, pearled, sliced or kibbled","Maize",1018.49069681579,87.3402103211192,208.527870620809,1314.35877775772,668.305178826489,13.2599694782653,417.326514479335,1098.89166278409,"crops"
@@ -99,7 +99,7 @@
 133,"Szpinak","Spinach","Spinach,N-Z spinach & orache spinach (garden spinach),fresh or chilled","Spinach",118.285643501406,13.6583677247352,159.96661692666,291.910628152801,NA,NA,NA,NA,"crops"
 134,"Szynka wieprzowa","Pork ham","Hams and cuts thereof of swine prepared or preserved","Pork,prepred,presrvd,nes",5286.65515769591,500.222695738885,669.984545765359,6456.86239920015,4892.19547376176,291.752296118953,828.972636557823,6012.92040643854,"animals"
 135,"Szynka z indyka","Turkey ham","Turkey meat and meat offal prepared or preserved, excluding livers","Poultry,prprd,prsrvd,nes",3545.39494981384,313.340547896255,466.549596791946,4325.28509450204,3362.33084485878,72.0239897059774,460.053534534244,3894.408369099,"animals"
-136,"Szynka z kurczaka","Chicken ham",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+136,"Szynka z kurczaka","Chicken ham","Poultry, live except domestic fowls, weighing not more than 185 g","Poultry, live, to 185g",2765.40806085479,234.405627359079,363.908685497718,3363.72237371159,2622.61805898985,46.1787119706624,358.84175693671,3027.63852789722,"animals"
 137,"Sliwki","Prunes",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 138,"Smietana, 12% tluszczu","Cream, 12% fat","Buttermilk,curdled milk & cream,kephir & ferm or acid milk & cream nes","Buttermilk",1351.89292369011,134.030893252601,113.262533934329,1599.18635087704,1179.8465420636,50.6634541273508,152.392922848435,1382.90291903939,"animals"
 139,"Smietana, 18% tluszczu","Cream, 18% fat","Buttermilk,curdled milk & cream,kephir & ferm or acid milk & cream nes","Buttermilk",1351.89292369011,134.030893252601,113.262533934329,1599.18635087704,1179.8465420636,50.6634541273508,152.392922848435,1382.90291903939,"animals"

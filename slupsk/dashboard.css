@@ -18,3 +18,12 @@
 .bar {
   height: 100%;
 }
+
+.nested_table {
+  margin: 12px 45px;
+}
+
+/*.nested_table .ReactTable{
+  width: 100%;
+}
+*/

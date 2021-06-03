@@ -14,7 +14,7 @@ calc_wf <- FALSE
 
 # Set TRUE if you want to download latest data from the tool. Otherwise, local
 # files will be used.
-retrieve_data <- FALSE
+retrieve_data <- TRUE
 
 
 url_kindergartens <- "https://creatinginterfaces.demo.52north.org/slupsk-tool/kindergartens.json"
@@ -38,7 +38,7 @@ if (isTRUE(retrieve_data) ) {
   # dishes_nested <- as.data.frame(fromJSON(url_dishes)[["list"]])
   dishes_nested <- ci_get_data(url_dishes)
 
-  dish_composition <- dishes_nested %>%
+  dish_composition_raw <- dishes_nested %>%
     # unnest(compositions, names_repair = "universal")
     unnest(compositions, names_sep = ".") %>%
     select(id, starts_with("compositions."), -`compositions.@index`,
@@ -46,7 +46,7 @@ if (isTRUE(retrieve_data) ) {
     rename(dish_id = id) %>%
     rename_with(~str_remove(., 'compositions.'))
 
-  write_csv(dish_composition, here::here("slupsk/data-raw/", "dishes_composition.csv"))
+  write_csv(dish_composition_raw, here::here("slupsk/data-raw/", "dishes_composition_raw.csv"))
 
   dishes_raw <- dishes_nested %>%
     select(-compositions)
@@ -187,6 +187,16 @@ write.csv(pot_local_ingredients, file = "slupsk/data/pot_local_ingredients.csv",
 
 dishrating <- read_csv("slupsk/data-raw/dishrating.csv") %>%
   ci_dishratings_prep()
+
+dish_composition <- read_csv(here::here("slupsk/data-raw/dishes_composition_raw.csv")) %>%
+  filter(!is.na(ingredient_id)) %>%
+  left_join(wfp_combined, by = c("ingredient_id" = "id")) %>%
+  select(-label) %>%
+  mutate(wfp_total = if_else(from_producer == "yes" & !is.na(country_total), country_total, world_total),
+         # wfp_total = if_else(wfp_total == NA, world_total, NA),
+         wfp_total_used = wfp_total * weight_grams / 1000000)
+
+write_csv(dish_composition, "slupsk/data/dish_composition.csv")
 
 dishes_raw <- read_csv("slupsk/data-raw/dishes.csv")
 

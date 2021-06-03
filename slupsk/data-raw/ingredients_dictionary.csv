@@ -57,12 +57,12 @@ id,name,name_en,name_wf
 91,Mąka żytnia,Rye flour,Rye flour
 92,Melon,Melon,Other melons (inc.cantaloupes)
 93,Mięso wieprzowe,Pork,"Swine meat&meat offal nes/exc livers/ incl mixtures,prepard o preservd"
-94,Mięso wołowe,Beef,
+94,Mięso wołowe,Beef,"Bovine cuts bone in, fresh or chilled"
 95,Mięso z indyka,Turkey meat,"Turkey meat and meat offal prepared or preserved, excluding livers"
-96,Mięso z kurczaka,Chicken meat,
+96,Mięso z kurczaka,Chicken meat,"Poultry, live except domestic fowls, weighing not more than 185 g"
 97,Miód pszczeli,Bee honey,
 98,Mleko roślinne,Vegetable milk,soybean ingredient into the soymilk
-99,Mleko spożywcze,Drinking milk,
+99,Mleko spożywcze,Drinking milk,Milk not concentrated and unsweetened not exceeding 1% fat
 100,Morele,Apricots,"Apricots, fresh"
 101,Nektarynka,Nectarine,"Peaches, including nectarines, fresh"
 102,Ogórek,Cucumber,"Cucumbers and gherkins, fresh or chilled"
@@ -71,7 +71,7 @@ id,name,name_en,name_wf
 105,Olej słonecznikowy,Sunflower oil,"Palm oil, crude"
 106,Papryka czerwona,Red Pepper,"Peppers of the genus Capsicum or of the genus Pimenta,fresh or chilled"
 107,Papryka zielona,Green peppers,"Peppers of the genus Capsicum or of the genus Pimenta,fresh or chilled"
-108,Parówki,Sausages,
+108,Parówki,Sausages,"Pig fat lean meat free&poultry fat unrenderd,frsh,chilld,frozn or curd"
 109,"Pietruszka, korzeń",Parsley root,
 110,"Pietruszka, liście",Parsley leaves,
 111,Płatki kukurydziane,Flaked corn,"Maize (corn), hulled, pearled, sliced or kibbled"
@@ -99,7 +99,7 @@ id,name,name_en,name_wf
 133,Szpinak,Spinach,"Spinach,N-Z spinach & orache spinach (garden spinach),fresh or chilled"
 134,Szynka wieprzowa,Pork ham,Hams and cuts thereof of swine prepared or preserved
 135,Szynka z indyka,Turkey ham,"Turkey meat and meat offal prepared or preserved, excluding livers"
-136,Szynka z kurczaka,Chicken ham,
+136,Szynka z kurczaka,Chicken ham,"Poultry, live except domestic fowls, weighing not more than 185 g"
 137,Śliwki,Prunes,
 138,"Śmietana, 12% tłuszczu","Cream, 12% fat","Buttermilk,curdled milk & cream,kephir & ferm or acid milk & cream nes"
 139,"Śmietana, 18% tłuszczu","Cream, 18% fat","Buttermilk,curdled milk & cream,kephir & ferm or acid milk & cream nes"

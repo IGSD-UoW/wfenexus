@@ -4,7 +4,7 @@ output:
   flexdashboard::flex_dashboard:
     theme: bootstrap
     logo: "img/logo_creating-interfaces_100x48.png"
-    # favicon: favicon.png
+    favicon: img/favicon.ico
     css: dashboard.css
     orientation: rows
 ---
@@ -23,7 +23,7 @@ library(wfenexus)
 # Load data
 kindergarten_df <- read_csv("data-raw/kindergartens.csv")
 ingredients_df <- read_csv("data-raw/ingredients.csv")
-dish_composition <- read_csv("data-raw/dishes_composition.csv")
+dish_composition <- read_csv("data/dish_composition.csv")
 
 dishrating <- read_csv("data-raw/dishrating.csv") %>%
   ci_dishratings_prep()
@@ -80,7 +80,7 @@ Valueboxes
 
 ```{r}
 
-valueBox(value = format(nrow(kindergarten_df), big.mark = "."), 
+valueBox(value = format(nrow(kindergarten_df), big.mark = ","), 
          caption = "Kindergartens involved in the project.", 
          icon = "fas fa-school")
 ```
@@ -115,10 +115,10 @@ TODO:
 * Recode waste: order levels + change label
 * Hide type column or move it under the name + rename factor + reorder
 
-```{r}
+```{r dish_summary}
 df <- dishes_df %>% 
   relocate(picture) %>% 
-  select(-id, -kindergarten_id, -date, -ends_with("label"))
+  select(-kindergarten_id, -date, -ends_with("label"))
 
 df_shared <- SharedData$new(df)
 
@@ -144,12 +144,14 @@ bscols(
     highlight = TRUE, 
     height = 900,
     searchable = TRUE,
+    defaultColDef = colDef(sortNALast = TRUE),
     columns = list(
       picture =  colDef(
         maxWidth = 110,
         cell = function(value) {
           image <- img(src =  value, width = "100px", alt = value)
         }),
+      id = colDef(show = FALSE),
       rating_children = colDef(
         name = "Rating Children", 
         # aggregate = "mean", 
@@ -169,7 +171,48 @@ bscols(
         format = colFormat(digits = 1),
         cell = function(value) rt_rating_icons(value, icon = "heart", color = color_food)
       )
-    )
+    ),
+    details = function(index) {
+    nested_data <- dish_composition %>% 
+      filter(dish_id == df$id[index]) %>% 
+      select(ingredient_label, from_producer, weight_grams, world_total, 
+             country_total, wfp_total_used) %>% 
+      mutate(across(where(is.numeric), round, 3))
+    tbl <- reactable(nested_data, outlined = TRUE, highlight = TRUE, 
+                     fullWidth = TRUE,
+                     columns = list(
+                       ingredient_label = colDef(
+                         name = "Ingredient",
+                         minWidth = 300),
+                       from_producer = colDef(
+                         name = "Produced locally?",
+                         cell = function(value) {
+                           if (!is.na(value)) {
+                             # Render as ✓ or ✘ or ?
+                             if(value == "yes") {
+                               "\u2713"
+                             } else if (value == "no") {
+                               "\u2718"
+                             } else {
+                               "?"
+                             }
+                           }
+                        }),
+                       weight_grams = colDef(name = "Weight (g)"),
+                       world_total = colDef(
+                         header = rt_with_tooltip("Water Footprint (Avg)", "Total Water Footprint, using world averages. Units: m3/Ton")
+                       ),
+                       country_total = colDef(
+                         header = rt_with_tooltip("Water Footprint (PL)", "Total Water Footprint, assuming it was produced in Poland. Units: m3/Ton")
+                       ),
+                       wfp_total_used = colDef(
+                         header = rt_with_tooltip("Water used", "Total Water Used. Units: m3")
+                       )
+                     ))
+    htmltools::div(class = "nested_table", tbl)
+  },
+  onClick = "expand",
+  rowStyle = list(cursor = "pointer")
   )
 )
 
@@ -460,6 +503,7 @@ df %>%
       minWidth = 70,
       # headerStyle = list(background = "#f7f7f8"),
       format = colFormat(separators = TRUE),
+      sortNALast = TRUE,
       footerStyle = list(fontWeight = "bold")
     ),
     columns = list(
