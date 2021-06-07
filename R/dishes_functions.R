@@ -25,6 +25,7 @@ ci_dishratings_prep <- function(df) {
     # mutate(date = lubridate::dmy(date)) %>%
     mutate(across(c("children_satisfaction","parent_satisfaction", "health"),
                   ~recode(., one = 1, two = 2, three = 3, four = 4, five = 5))) %>%
+    rowwise() %>%
     mutate(avg_satisfaction =
              mean(c_across(c(children_satisfaction, parent_satisfaction)),
                   na.rm = TRUE),
