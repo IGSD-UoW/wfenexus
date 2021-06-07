@@ -152,6 +152,18 @@ bscols(
           image <- img(src =  value, width = "100px", alt = value)
         }),
       id = colDef(show = FALSE),
+      name = colDef(
+        # Show species under character names
+        cell = function(value, index) {
+          type <- df$type[index]
+          # species <- if (!is.na(species)) species else "Unknown"
+          tagList(
+            div(style = list(fontWeight = 600), value),
+            div(style = list(fontSize = 12), type)
+          )
+        }
+      ),
+      type = colDef(show = FALSE),
       rating_children = colDef(
         name = "Rating Children", 
         # aggregate = "mean", 
