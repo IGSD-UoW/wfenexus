@@ -109,16 +109,11 @@ Dishes
 
 ### Dishes
 
-TODO: 
-* add dish composition (it can be downloaded [from the tool](https://creatinginterfaces.demo.52north.org/slupsk-tool/kindergartendishs.json)!), ideally as nested component.
-* Fix the average calculations
-* Recode waste: order levels + change label
-* Hide type column or move it under the name + rename factor + reorder
-
 ```{r dish_summary}
 df <- dishes_df %>% 
   relocate(picture) %>% 
-  select(-kindergarten_id, -date, -ends_with("label"))
+  select(-kindergarten_id, -date, -ends_with("label")) %>% 
+  mutate(water_used = round(water_used, 3))
 
 df_shared <- SharedData$new(df)
 
@@ -135,19 +130,23 @@ bscols(
     filter_slider("rating_average", "Rating (Average)", df_shared, 
                   ~rating_average, width = "100%"),
     filter_slider("health", "Perceived health", df_shared, 
-                  ~health, width = "100%")
+                  ~health, width = "100%"),
+    filter_slider("water_used", "Used Water", df_shared, 
+                  ~water_used, width = "100%")
     
   ),
   reactable(
     df_shared,
     pagination = FALSE, 
     highlight = TRUE, 
-    height = 900,
+    height = 700,
     searchable = TRUE,
+    defaultSorted = list(water_used = "desc"),
     defaultColDef = colDef(sortNALast = TRUE),
     columns = list(
       picture =  colDef(
         maxWidth = 110,
+        name = "",
         cell = function(value) {
           image <- img(src =  value, width = "100px", alt = value)
         }),
@@ -176,13 +175,25 @@ bscols(
         format = colFormat(digits = 1),
         cell = function(value) rt_rating_icons(value, color = color_energy)
         ),
+      rating_average = colDef(
+        name = "Rating (Average)", 
+        # aggregate = "mean", 
+        format = colFormat(digits = 1),
+        cell = function(value) rt_rating_icons(value, color = color_wfp_blue)
+        ),
       health = colDef(
         header = rt_with_tooltip("Perceived Health", "Average of parents' ratings on perceived health. High values do not necessarily mean that the meal is healthy."),
         # name = "Perceived Health",
         aggregate = "mean",
         format = colFormat(digits = 1),
         cell = function(value) rt_rating_icons(value, icon = "heart", color = color_food)
-      )
+      ),
+      water_used = colDef(
+        header = rt_with_tooltip("Water used", "Total Water Used. Units: m3"),
+        align = "right",
+        cell = function(value) {
+          rt_bar_cell(value, df$water_used, color_water)
+        })
     ),
     details = function(index) {
     nested_data <- dish_composition %>% 

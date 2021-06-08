@@ -188,19 +188,32 @@ write.csv(pot_local_ingredients, file = "slupsk/data/pot_local_ingredients.csv",
 dishrating <- read_csv("slupsk/data-raw/dishrating.csv") %>%
   ci_dishratings_prep()
 
-dish_composition <- read_csv(here::here("slupsk/data-raw/dishes_composition_raw.csv")) %>%
+dish_composition <- read_csv(
+  here::here("slupsk/data-raw/dishes_composition_raw.csv")) %>%
   filter(!is.na(ingredient_id)) %>%
   left_join(wfp_combined, by = c("ingredient_id" = "id")) %>%
   select(-label) %>%
-  mutate(wfp_total = if_else(from_producer == "yes" & !is.na(country_total), country_total, world_total),
+  mutate(wfp_total = if_else(from_producer == "yes" & !is.na(country_total),
+                             country_total, world_total),
          # wfp_total = if_else(wfp_total == NA, world_total, NA),
          wfp_total_used = wfp_total * weight_grams / 1000000)
 
 write_csv(dish_composition, "slupsk/data/dish_composition.csv")
 
-dishes_raw <- read_csv("slupsk/data-raw/dishes.csv")
+wfp_dish <- dish_composition %>%
+  # select(dish_id, wfp_total_used) %>%
+  # group_by(dish_id) %>%
+  count(dish_id, wt = wfp_total_used, sort = TRUE, name = "water_used")
 
-dishes <- ci_dishratings(dishes_raw, dishrating)
+
+dishes_raw <- read_csv("slupsk/data-raw/dishes.csv") %>%
+  mutate(waste = as.factor(waste)) %>%
+  mutate(waste = fct_recode(waste, "<5" = "less5_pl", "5<10" = "5to10_pl",
+                            "11<25" = "11to25_pl", ">25" = "more25_pl")) %>%
+  mutate(waste = fct_relevel(waste, "<5", "5<10", "11<25", ">25"))
+
+dishes <- ci_dishratings(dishes_raw, dishrating) %>%
+  left_join(wfp_dish, by = c("id" = "dish_id"))
 
 # dishrating_summary <- dishrating %>%
 #   group_by(dish_id) %>%
