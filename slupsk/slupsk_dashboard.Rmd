@@ -275,7 +275,8 @@ Food
 =====================================
 
 
-
+Food {.tabset}
+-----------------------------------------------------------------------
 
 ### Ratings
 
@@ -340,6 +341,129 @@ bscols(
 
 ```
 
+### Meals
+
+```{r dish_food}
+df <- dishes_df %>% 
+  relocate(picture) %>% 
+  select(id, type, picture, name, calories, allergens, waste, 
+         starts_with("rating"), health)
+
+df_shared <- SharedData$new(df)
+
+bscols(
+  widths = c(2, 10),
+  list(
+    # filter_select("kindergarten", "Kindergarten", df_shared, ~kindergarten),
+    filter_select("type", "Type", df_shared, ~type),
+    filter_slider("calories", "Calories", df_shared, ~calories),
+    filter_slider("rating_children", "Rating (Children)", df_shared,
+                  ~rating_children, width = "100%"),
+    filter_slider("rating_parents", "Rating (Parents)", df_shared, 
+                  ~rating_parents, width = "100%"),
+    filter_slider("rating_average", "Rating (Average)", df_shared, 
+                  ~rating_average, width = "100%"),
+    filter_slider("health", "Perceived health", df_shared, 
+                  ~health, width = "100%")
+    
+  ),
+  reactable(
+    df_shared,
+    pagination = FALSE, 
+    highlight = TRUE, 
+    height = 700,
+    searchable = TRUE,
+    defaultColDef = colDef(sortNALast = TRUE),
+    columns = list(
+      picture =  colDef(
+        maxWidth = 110,
+        name = "",
+        cell = function(value) {
+          image <- img(src =  value, width = "100px", alt = value)
+        }),
+      id = colDef(show = FALSE),
+      name = colDef(
+        # Show dish type under character names
+        cell = function(value, index) {
+          type <- df$type[index]
+          tagList(
+            div(style = list(fontWeight = 600), value),
+            div(style = list(fontSize = 12), type)
+          )
+        }
+      ),
+      type = colDef(show = FALSE),
+      rating_children = colDef(
+        name = "Rating Children", 
+        # aggregate = "mean", 
+        format = colFormat(digits = 1),
+        cell = function(value) rt_rating_icons(value)
+        ),
+      rating_parents = colDef(
+        name = "Rating Parents", 
+        # aggregate = "mean", 
+        format = colFormat(digits = 1),
+        cell = function(value) rt_rating_icons(value, color = color_energy)
+        ),
+      rating_average = colDef(
+        name = "Rating (Average)", 
+        # aggregate = "mean", 
+        format = colFormat(digits = 1),
+        cell = function(value) rt_rating_icons(value, color = color_wfp_blue)
+        ),
+      health = colDef(
+        header = rt_with_tooltip("Perceived Health", "Average of parents' ratings on perceived health. High values do not necessarily mean that the meal is healthy."),
+        # name = "Perceived Health",
+        aggregate = "mean",
+        format = colFormat(digits = 1),
+        cell = function(value) rt_rating_icons(value, icon = "heart", color = color_food)
+      )
+    ),
+    details = function(index) {
+    nested_data <- dish_composition %>% 
+      filter(dish_id == df$id[index]) %>% 
+      select(ingredient_label, from_producer, weight_grams, world_total, 
+             country_total, water_used) %>% 
+      mutate(across(where(is.numeric), round, 3))
+    tbl <- reactable(nested_data, outlined = TRUE, highlight = TRUE, 
+                     fullWidth = TRUE,
+                     columns = list(
+                       ingredient_label = colDef(
+                         name = "Ingredient",
+                         minWidth = 300),
+                       from_producer = colDef(
+                         name = "Produced locally?",
+                         cell = function(value) {
+                           if (!is.na(value)) {
+                             # Render as ✓ or ✘ or ?
+                             if(value == "yes") {
+                               "\u2713"
+                             } else if (value == "no") {
+                               "\u2718"
+                             } else {
+                               "?"
+                             }
+                           }
+                        }),
+                       weight_grams = colDef(name = "Weight (g)"),
+                       world_total = colDef(
+                         header = rt_with_tooltip("Water Footprint (Avg)", "Total Water Footprint, using world averages. Units: m3/Ton")
+                       ),
+                       country_total = colDef(
+                         header = rt_with_tooltip("Water Footprint (PL)", "Total Water Footprint, assuming it was produced in Poland. Units: m3/Ton")
+                       ),
+                       water_used = colDef(
+                         header = rt_with_tooltip("Water used", "Total Water Used. Units: m3")
+                       )
+                     ))
+    htmltools::div(class = "nested_table", tbl)
+  },
+  onClick = "expand",
+  rowStyle = list(cursor = "pointer")
+  )
+)
+
+```
 
 Food2
 ===================================== 
@@ -671,6 +795,104 @@ bscols(
 
 
 ### Meals 
+
+```{r dish_water_table}
+df <- dishes_df %>% 
+  relocate(picture) %>% 
+  select(-kindergarten_id, -date, -ends_with("label"), -starts_with("rating"),
+         -health, -waste, -allergens, -calories) %>% 
+  mutate(water_used = round(water_used, 3))
+
+df_shared <- SharedData$new(df)
+
+bscols(
+  widths = c(2, 10),
+  list(
+    # filter_select("kindergarten", "Kindergarten", df_shared, ~kindergarten),
+    filter_select("type", "Type", df_shared, ~type),
+    filter_slider("water_used", "Used Water", df_shared, 
+                  ~water_used, width = "100%")
+    
+  ),
+  reactable(
+    df_shared,
+    pagination = FALSE, 
+    highlight = TRUE, 
+    height = 700,
+    searchable = TRUE,
+    defaultSorted = list(water_used = "desc"),
+    defaultColDef = colDef(sortNALast = TRUE),
+    columns = list(
+      picture =  colDef(
+        maxWidth = 110,
+        name = "",
+        cell = function(value) {
+          image <- img(src =  value, width = "100px", alt = value)
+        }),
+      id = colDef(show = FALSE),
+      name = colDef(
+        # Show dish type under character names
+        cell = function(value, index) {
+          type <- df$type[index]
+          tagList(
+            div(style = list(fontWeight = 600), value),
+            div(style = list(fontSize = 12), type)
+          )
+        }
+      ),
+      type = colDef(show = FALSE),
+      water_used = colDef(
+        header = rt_with_tooltip("Water used", "Total Water Used. Units: m3"),
+        align = "right",
+        cell = function(value) {
+          rt_bar_cell(value, df$water_used, color_water)
+        })
+    ),
+    details = function(index) {
+    nested_data <- dish_composition %>% 
+      filter(dish_id == df$id[index]) %>% 
+      select(ingredient_label, from_producer, weight_grams, world_total, 
+             country_total, water_used) %>% 
+      mutate(across(where(is.numeric), round, 3))
+    tbl <- reactable(nested_data, outlined = TRUE, highlight = TRUE, 
+                     fullWidth = TRUE,
+                     columns = list(
+                       ingredient_label = colDef(
+                         name = "Ingredient",
+                         minWidth = 300),
+                       from_producer = colDef(
+                         name = "Produced locally?",
+                         cell = function(value) {
+                           if (!is.na(value)) {
+                             # Render as ✓ or ✘ or ?
+                             if(value == "yes") {
+                               "\u2713"
+                             } else if (value == "no") {
+                               "\u2718"
+                             } else {
+                               "?"
+                             }
+                           }
+                        }),
+                       weight_grams = colDef(name = "Weight (g)"),
+                       world_total = colDef(
+                         header = rt_with_tooltip("Water Footprint (Avg)", "Total Water Footprint, using world averages. Units: m3/Ton")
+                       ),
+                       country_total = colDef(
+                         header = rt_with_tooltip("Water Footprint (PL)", "Total Water Footprint, assuming it was produced in Poland. Units: m3/Ton")
+                       ),
+                       water_used = colDef(
+                         header = rt_with_tooltip("Water used", "Total Water Used. Units: m3")
+                       )
+                     ))
+    htmltools::div(class = "nested_table", tbl)
+  },
+  onClick = "expand",
+  rowStyle = list(cursor = "pointer")
+  )
+)
+
+```
 
 ### Things to consider
 
