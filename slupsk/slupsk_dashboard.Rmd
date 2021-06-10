@@ -121,7 +121,7 @@ bscols(
   widths = c(2, 10),
   list(
     # filter_select("kindergarten", "Kindergarten", df_shared, ~kindergarten),
-    filter_checkbox("type", "Type", df_shared, ~type),
+    filter_select("type", "Type", df_shared, ~type),
     filter_slider("calories", "Calories", df_shared, ~calories),
     filter_slider("rating_children", "Rating (Children)", df_shared,
                   ~rating_children, width = "100%"),
@@ -152,10 +152,9 @@ bscols(
         }),
       id = colDef(show = FALSE),
       name = colDef(
-        # Show species under character names
+        # Show dish type under character names
         cell = function(value, index) {
           type <- df$type[index]
-          # species <- if (!is.na(species)) species else "Unknown"
           tagList(
             div(style = list(fontWeight = 600), value),
             div(style = list(fontSize = 12), type)
