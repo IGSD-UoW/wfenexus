@@ -112,7 +112,8 @@ Dishes
 ```{r dish_summary}
 df <- dishes_df %>% 
   relocate(picture) %>% 
-  select(-kindergarten_id, -date, -ends_with("label")) %>% 
+  select(-kindergarten_id, -date, -allergens, -ends_with("label"), -water_world,
+         -water_local, -water_saving_local) %>% 
   mutate(water_used = round(water_used, 3))
 
 df_shared <- SharedData$new(df)
@@ -192,13 +193,41 @@ bscols(
         align = "right",
         cell = function(value) {
           rt_bar_cell(value, df$water_used, color_water)
-        })
+        }),
+      water_saving_current = colDef(
+        header = rt_with_tooltip("Water Saving", "Difference between the current choice of ingredients compared to the same ingredients being produced elsewhere. Negative values mean reduction of water, and therefore, desirable."),
+        format = colFormat(percent = TRUE, digits = 2),
+        style = function(value) {
+          if (is.na(value)) {
+            return()
+          } else if ( value > 0) {
+            color <- "red"
+          } else {
+            color <- "green"
+          }
+          list(color = color, fontWeight = "bold")
+        }
+      ),
+      water_saving_potential = colDef(
+        header = rt_with_tooltip("Potential water Saving", "Difference between the current choice of ingredients compared to the same ingredients being produced locally. Higher values represent greater room for improvement."),
+        format = colFormat(percent = TRUE, digits = 2),
+        style = function(value) {
+          if (is.na(value)) {
+            return()
+          } else if ( value > 0) {
+            color <- "red"
+          } else {
+            color <- "green"
+          }
+          list(color = color, fontWeight = "bold")
+        }
+      )
     ),
     details = function(index) {
     nested_data <- dish_composition %>% 
       filter(dish_id == df$id[index]) %>% 
       select(ingredient_label, from_producer, weight_grams, world_total, 
-             country_total, wfp_total_used) %>% 
+             country_total, water_used) %>% 
       mutate(across(where(is.numeric), round, 3))
     tbl <- reactable(nested_data, outlined = TRUE, highlight = TRUE, 
                      fullWidth = TRUE,
@@ -227,7 +256,7 @@ bscols(
                        country_total = colDef(
                          header = rt_with_tooltip("Water Footprint (PL)", "Total Water Footprint, assuming it was produced in Poland. Units: m3/Ton")
                        ),
-                       wfp_total_used = colDef(
+                       water_used = colDef(
                          header = rt_with_tooltip("Water used", "Total Water Used. Units: m3")
                        )
                      ))

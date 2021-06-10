@@ -196,14 +196,24 @@ dish_composition <- read_csv(
   mutate(wfp_total = if_else(from_producer == "yes" & !is.na(country_total),
                              country_total, world_total),
          # wfp_total = if_else(wfp_total == NA, world_total, NA),
-         wfp_total_used = wfp_total * weight_grams / 1000000)
+         water_world = world_total * weight_grams / 1000000,
+         water_local = country_total * weight_grams / 1000000,
+         water_used = wfp_total * weight_grams / 1000000,
+         water_saving_current = (water_used - water_world) / water_world,
+         water_saving_local = (water_local - water_world) / water_world,
+         water_saving_potential =
+           (water_saving_current - water_saving_local)/water_saving_local)
 
 write_csv(dish_composition, "slupsk/data/dish_composition.csv")
 
 wfp_dish <- dish_composition %>%
-  # select(dish_id, wfp_total_used) %>%
-  # group_by(dish_id) %>%
-  count(dish_id, wt = wfp_total_used, sort = TRUE, name = "water_used")
+  group_by(dish_id) %>%
+  summarise(water_world = sum(water_world),
+            water_local = sum(water_local),
+            water_used = sum(water_used)) %>%
+  mutate(water_saving_current = (water_used - water_world) / water_world,
+         water_saving_local = (water_local - water_world) / water_world,
+         water_saving_potential =water_saving_local - water_saving_current)
 
 
 dishes_raw <- read_csv("slupsk/data-raw/dishes.csv") %>%
@@ -214,16 +224,5 @@ dishes_raw <- read_csv("slupsk/data-raw/dishes.csv") %>%
 
 dishes <- ci_dishratings(dishes_raw, dishrating) %>%
   left_join(wfp_dish, by = c("id" = "dish_id"))
-
-# dishrating_summary <- dishrating %>%
-#   group_by(dish_id) %>%
-#   summarize(rating_children = mean(children_satisfaction),
-#             rating_parents = mean(parent_satisfaction),
-#             health = mean(health)) %>%
-#   mutate(across(where(is.numeric), round, 2)) %>%
-#   filter(!is.na(rating_parents) | !is.na(health))
-#
-# dishes <- dishes_raw %>%
-#   left_join(dishrating_summary, by = c("id" = "dish_id"))
 
 write_csv(dishes, file = "slupsk/data/dishes.csv")
