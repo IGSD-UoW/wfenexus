@@ -1,0 +1,23 @@
+on:
+  push:
+    branches:
+      - main
+
+name: pkgdown
+
+jobs:
+  pkgdown:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - name: Push directory to another repository
+        uses: cpina/github-action-push-to-another-repository@v1.3
+        with:
+          source-directory: 'slupsk'
+          destination-github-username: 'igsd-uow'
+          destination-repository-name: 'wfenexus_demo'
+          user-email: ccamara@pm.me
+          commit-message: See ORIGIN_COMMIT from $GITHUB_REF
+          target-branch: main
+
