@@ -347,7 +347,7 @@ p <- dishrating %>%
   summarise(avg_rating_children = mean(children_satisfaction, na.rm = TRUE), 
             avg_rating_parents = mean(parent_satisfaction, na.rm = TRUE),
             avg_health = mean(health, na.rm = TRUE)) %>% 
-  mutate(dish = str_wrap(dish, width = 10),
+  mutate(dish = str_wrap(dish, width = 15),
          avg_rating = rowMeans(select(., avg_rating_children, avg_rating_parents))) %>% 
   arrange(desc(avg_rating)) %>% 
   head(5) %>% 
@@ -386,8 +386,15 @@ p <- dishrating %>%
   geom_point(color = "#95C448") +
   ggtitle("Comparison of rating made by parents and children") +
   labs(subtitle = "Based on the average ratings made by parents and children", x = "", y = "", fill = "") +
-  theme(legend.position = "bottom") +
-  theme_minimal()
+  theme_minimal(base_size = 12) +
+  theme(legend.position = "bottom",
+        plot.caption = element_text(size = 8, face = "italic", 
+                                    colour = "grey60"),
+        plot.subtitle = element_text(size = 9, face = "plain", 
+                                     colour = "grey50"),
+        axis.ticks = element_line(colour = "grey80"),
+        axis.ticks.length = unit(2, "pt"),
+        strip.text = element_text(size = 12))
 
 p
 
