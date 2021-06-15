@@ -11,6 +11,7 @@ output:
 
 ```{r setup, include=FALSE}
 library(flexdashboard)
+library(ggplot2)
 library(reactable)
 library(crosstalk)
 library(plotly)
@@ -27,6 +28,7 @@ dish_composition <- read_csv("data/dish_composition.csv")
 
 dishrating <- read_csv("data-raw/dishrating.csv") %>%
   ci_dishratings_prep()
+  
 
 dishes_df <- read_csv("data/dishes.csv")
 
@@ -54,6 +56,33 @@ pal_wfp_grey <- function(x) rgb(colorRamp(c(color_wfp_grey, "white"))(x),
                                  maxColorValue = 255)
 pal_wfp_total <- function(x) rgb(colorRamp(c(color_water, "white"))(x), 
                                  maxColorValue = 255)
+
+
+```
+
+```{r ggplot_defaults}
+# Custom ggplot theme.
+mytheme_minimal <- theme_minimal(base_size = 12) +
+  theme(panel.grid.minor = element_blank(),
+        panel.grid.major.x = element_blank(),
+        plot.caption = element_text(size = 8, face = "italic", 
+                                    colour = "grey60"),
+        plot.subtitle = element_text(size = 9, face = "plain", 
+                                     colour = "grey50"),
+        axis.ticks = element_line(colour = "grey80"),
+        axis.ticks.length = unit(2, "pt"),
+        strip.text = element_text(size = 12))
+
+mytheme <- theme_minimal(base_size = 12) +
+  theme(plot.caption = element_text(size = 8, face = "italic", 
+                                    colour = "grey60"),
+        plot.subtitle = element_text(size = 9, face = "plain", 
+                                     colour = "grey50"),
+        axis.ticks = element_line(colour = "grey80"),
+        axis.ticks.length = unit(2, "pt"),
+        strip.text = element_text(size = 12))
+
+theme_set(mytheme_minimal)
 
 
 ```
@@ -274,6 +303,97 @@ bscols(
 Food
 =====================================
 
+Rankings
+-------------------------------------------
+
+### Kindergartens
+
+```{r}
+
+p <- dishrating %>% 
+  group_by(kindergarten) %>% 
+  summarise(avg_rating_children = mean(children_satisfaction, na.rm = TRUE), 
+            avg_rating_parents = mean(parent_satisfaction, na.rm = TRUE),
+            avg_health = mean(health, na.rm = TRUE)) %>% 
+  mutate(kindergarten = str_wrap(kindergarten, width = 10),
+         avg_rating = rowMeans(select(., avg_rating_children, avg_rating_parents))) %>% 
+  arrange(desc(avg_rating)) %>% 
+  head(5) %>% 
+  pivot_longer(!c(kindergarten, avg_health), values_to = "value", 
+               names_to = "variable") %>% 
+  mutate(value = round(value, 2)) %>% 
+  ggplot(aes(x = value, y = kindergarten, fill = variable)) +
+  geom_bar(stat="identity", position="dodge") +
+  geom_text(aes(label = value, x = value -0.2), color = "white",
+            position = position_dodge(0.9), vjust = 0.15) +
+  ggtitle("Top 5 kindergartens by food rating") +
+  labs(subtitle = "Based on the average ratings made by parents and children", x = "", y = "", fill = "") +
+  theme(legend.position = "bottom") +
+  scale_fill_manual(labels = c("Average rating", "Children's rating", "Parents' rating"),
+                     values = c(color_water, color_energy, "orange"))
+
+# ggplotly(p)
+p
+
+
+```
+
+### Dishes
+
+```{r}
+
+p <- dishrating %>% 
+  group_by(dish) %>% 
+  summarise(avg_rating_children = mean(children_satisfaction, na.rm = TRUE), 
+            avg_rating_parents = mean(parent_satisfaction, na.rm = TRUE),
+            avg_health = mean(health, na.rm = TRUE)) %>% 
+  mutate(dish = str_wrap(dish, width = 10),
+         avg_rating = rowMeans(select(., avg_rating_children, avg_rating_parents))) %>% 
+  arrange(desc(avg_rating)) %>% 
+  head(5) %>% 
+  pivot_longer(!c(dish, avg_health), values_to = "value", 
+               names_to = "variable") %>% 
+  mutate(value = round(value, 2)) %>% 
+  ggplot(aes(x = value, y = dish, fill = variable)) +
+  geom_bar(stat="identity", position="dodge") +
+  geom_text(aes(label = value, x = value -0.2), color = "white",
+            position = position_dodge(0.9), vjust = 0) +
+  ggtitle("Top 5 dishes by food rating") +
+  labs(subtitle = "Based on the average ratings made by parents and children", x = "", y = "", fill = "") +
+  theme(legend.position = "bottom") +
+  scale_fill_manual(labels = c("Average rating", "Children's rating", "Parents' rating"),
+                     values = c(color_water, color_energy, "orange"))
+
+# ggplotly(p)
+p
+```
+
+
+### Parents & children
+
+```{r}
+
+p <- dishrating %>% 
+  group_by(dish) %>% 
+  summarise(avg_rating_children = mean(children_satisfaction, na.rm = TRUE), 
+            avg_rating_parents = mean(parent_satisfaction, na.rm = TRUE),
+            avg_health = mean(health, na.rm = TRUE)) %>% 
+  ungroup() %>% 
+  select(-dish) %>% 
+  count(avg_rating_children, avg_rating_parents, avg_health, wt = NULL, sort = TRUE, name = "total") %>% 
+  ggplot(aes(x = avg_rating_parents, y = avg_rating_children, alpha = avg_health, 
+             size = total)) +
+  geom_point(color = "#95C448") +
+  ggtitle("Comparison of rating made by parents and children") +
+  labs(subtitle = "Based on the average ratings made by parents and children", x = "", y = "", fill = "") +
+  theme(legend.position = "bottom") +
+  theme_minimal()
+
+p
+
+```
+
+
 
 Food {.tabset}
 -----------------------------------------------------------------------
@@ -282,7 +402,6 @@ Food {.tabset}
 
 ```{r}
 df <- dishrating %>% 
-  rename(kindergarten = kindergarten_label) %>% 
   select(-id, -kindergarten_id, -dish_id, -ends_with("_label")) %>% 
   relocate(label, .before = date) %>% 
   relocate(kindergarten, .before = label) %>% 
@@ -464,73 +583,6 @@ bscols(
 )
 
 ```
-
-Food2
-===================================== 
-
-
-Meals {.tabset}
------------------------------------------------------------------------
-
-### Ingredients 
-
-Some information about ingredients here:
-
-* Ingredients table with the following info:
-  * Name
-  * Kcals -> Not available
-  * Water footprint -> we'd need to calculate that by ourselves
-
-
-
-### Meals
-
-Possible ideas:
-
-* Top meals by parents/children
-* Most difference of rating between parents and children
-
-### Meals' summary table
-
-```{r}
-
-# Load dataset.
-
-dishes_df %>% 
-  # select(kindergarten_id, type, name, health, waste, allergens, calories, 
-  #        rating_children, rating_parents) %>% 
-  # arrange(kindergarten_id, type) %>% 
-  reactable()
-
-
-```
-
-### Producers 
-
-Map + figures stating the amount of savings that we could get if all ingredients were produced from them.
-We'd need to know what they produce.
-
-Column 
------------------------------------------------------------------------
-
-### Chart B
-
-```{r}
-dishes_df %>% 
-  select(kindergarten_id, type, name, waste, allergens, calories, 
-         rating_children, rating_parents) %>% 
-  arrange(kindergarten_id, type) %>% 
-  reactable()
-
-
-```
-
-### Chart C
-
-```{r}
-
-```
-
 
 Water
 ===================================== 

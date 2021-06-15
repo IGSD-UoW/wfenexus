@@ -31,6 +31,14 @@ ci_dishratings_prep <- function(df) {
                   na.rm = TRUE),
            .after = "parent_satisfaction")
 
+  df <- df %>%
+    rename(kindergarten = kindergarten_label,
+           dish = dish_label) %>%
+    mutate(kindergarten_id = as.factor(kindergarten_id),
+           kindergarten = as.factor(kindergarten),
+           dish = as.factor(dish)) %>%
+
+
   return(df)
 
 }
