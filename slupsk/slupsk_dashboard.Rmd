@@ -14,6 +14,7 @@ library(flexdashboard)
 library(ggplot2)
 library(reactable)
 library(crosstalk)
+library(patchwork)
 library(plotly)
 library(lubridate)
 library(tidyverse)
@@ -303,12 +304,13 @@ bscols(
 Food
 =====================================
 
-Rankings
--------------------------------------------
+
+Ranking dishes {.tabset}
+-----------------------------------------------------------------------
 
 ### Kindergartens
 
-```{r}
+```{r }
 
 p <- dishrating %>% 
   group_by(kindergarten) %>% 
@@ -338,38 +340,80 @@ p
 
 ```
 
-### Dishes
+### Top rated meals
 
-```{r}
+```{r ranking_dishes, fig.width=20}
 
-p <- dishrating %>% 
-  group_by(dish) %>% 
-  summarise(avg_rating_children = mean(children_satisfaction, na.rm = TRUE), 
-            avg_rating_parents = mean(parent_satisfaction, na.rm = TRUE),
-            avg_health = mean(health, na.rm = TRUE)) %>% 
-  mutate(dish = str_wrap(dish, width = 15),
-         avg_rating = rowMeans(select(., avg_rating_children, avg_rating_parents))) %>% 
-  arrange(desc(avg_rating)) %>% 
+p_lunch <- dishes_df %>% 
+  filter(type == "lunch_pl") %>% 
+  arrange(desc(rating_average)) %>% 
   head(5) %>% 
-  pivot_longer(!c(dish, avg_health), values_to = "value", 
+  mutate(name = fct_reorder(str_wrap(name, width = 20), rating_average)) %>% 
+  select(name, rating_parents, rating_children, rating_average) %>% 
+  pivot_longer(!name, values_to = "value", 
                names_to = "variable") %>% 
-  mutate(value = round(value, 2)) %>% 
-  ggplot(aes(x = value, y = dish, fill = variable)) +
+  mutate(value = round(value, 2),
+         variable = fct_relevel(as.factor(variable),  "rating_children", 
+                                "rating_parents", "rating_average")) %>% 
+  ggplot(aes(x = value, y = name, fill = variable)) +
   geom_bar(stat="identity", position="dodge") +
   geom_text(aes(label = value, x = value -0.2), color = "white",
             position = position_dodge(0.9), vjust = 0) +
-  ggtitle("Top 5 dishes by food rating") +
+  ggtitle("Top 5 lunch dishes by food rating") +
   labs(subtitle = "Based on the average ratings made by parents and children", x = "", y = "", fill = "") +
   theme(legend.position = "bottom") +
-  scale_fill_manual(labels = c("Average rating", "Children's rating", "Parents' rating"),
-                     values = c(color_water, color_energy, "orange"))
+  scale_fill_manual(labels = c("Children's rating", "Parents' rating", "Average rating"),
+                     values = c(color_energy, "orange", color_water))
 
-# ggplotly(p)
-p
+p_breakfast <- dishes_df %>% 
+  filter(type == "breakfast_pl") %>% 
+  arrange(desc(rating_average)) %>% 
+  head(5) %>% 
+  mutate(name = fct_reorder(str_wrap(name, width = 20), rating_average)) %>% 
+  select(name, rating_parents, rating_children, rating_average) %>% 
+  pivot_longer(!name, values_to = "value", 
+               names_to = "variable") %>% 
+  mutate(value = round(value, 2),
+         variable = fct_relevel(as.factor(variable),  "rating_children", 
+                                "rating_parents", "rating_average")) %>% 
+  ggplot(aes(x = value, y = name, fill = variable)) +
+  geom_bar(stat="identity", position="dodge") +
+  geom_text(aes(label = value, x = value -0.2), color = "white",
+            position = position_dodge(0.9), vjust = 0) +
+  ggtitle("Top 5 breakfast dishes by food rating") +
+  labs(subtitle = "Based on the average ratings made by parents and children", x = "", y = "", fill = "") +
+  theme(legend.position = "bottom") +
+  scale_fill_manual(labels = c("Children's rating", "Parents' rating", "Average rating"),
+                     values = c(color_energy, "orange", color_water))
+
+p_afternoon <- dishes_df %>% 
+  filter(type == "afternoon_tea_pl") %>% 
+  arrange(desc(rating_average)) %>% 
+  head(5) %>% 
+  mutate(name = fct_reorder(str_wrap(name, width = 20), rating_average)) %>% 
+  select(name, rating_parents, rating_children, rating_average) %>% 
+  pivot_longer(!name, values_to = "value", 
+               names_to = "variable") %>% 
+  mutate(value = round(value, 2),
+         variable = fct_relevel(as.factor(variable), "rating_children", 
+                                "rating_parents", "rating_average")) %>% 
+  ggplot(aes(x = value, y = name, fill = variable)) +
+  geom_bar(stat="identity", position="dodge") +
+  geom_text(aes(label = value, x = value -0.2), color = "white",
+            position = position_dodge(0.9), vjust = 0) +
+  ggtitle("Top 5 afternoon tea dshes") +
+  labs(subtitle = "Based on the average ratings made by parents and children", x = "", y = "", fill = "") +
+  theme(legend.position = "bottom") +
+  scale_fill_manual(labels = c("Children's rating", "Parents' rating", "Average rating"),
+                     values = c(color_energy, "orange", color_water))
+
+p_lunch + p_breakfast + p_afternoon +
+   plot_layout(guides = 'collect') &
+  theme(legend.position='bottom')
+
 ```
 
-
-### Parents & children
+### Rating Correlations
 
 ```{r}
 
@@ -402,7 +446,7 @@ p
 
 
 
-Food {.tabset}
+Tables {.tabset}
 -----------------------------------------------------------------------
 
 ### Ratings
