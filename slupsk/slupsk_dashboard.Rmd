@@ -416,6 +416,31 @@ p_lunch + p_breakfast + p_afternoon +
 ### Rating Correlations
 
 ```{r}
+p <- dishes_df %>% 
+  # filter(type == "afternoon_tea_pl") %>% 
+  mutate(kindergarten_label = str_wrap(kindergarten_label, 20)) %>% 
+  ggplot(aes(x = rating_parents, y = rating_children, 
+             color = kindergarten_label, label = name)) +
+  geom_point() +
+  ggtitle("Comparison of rating made by parents and children") +
+  labs(subtitle = "Based on the average ratings made by parents and children", 
+       x = "Parents", y = "Children", color = "Kindergarten") +
+  theme_minimal(base_size = 12) +
+  theme(legend.position = "bottom",
+        plot.caption = element_text(size = 8, face = "italic", 
+                                    colour = "grey60"),
+        plot.subtitle = element_text(size = 9, face = "plain", 
+                                     colour = "grey50"),
+        axis.ticks = element_line(colour = "grey80"),
+        axis.ticks.length = unit(2, "pt"),
+        strip.text = element_text(size = 12))
+
+ggplotly(p, tooltip="name")
+  
+```
+### Rating Correlations2
+
+```{r}
 
 p <- dishrating %>% 
   group_by(dish) %>% 
@@ -449,67 +474,6 @@ p
 Tables {.tabset}
 -----------------------------------------------------------------------
 
-### Ratings
-
-```{r}
-df <- dishrating %>% 
-  select(-id, -kindergarten_id, -dish_id, -ends_with("_label")) %>% 
-  relocate(label, .before = date) %>% 
-  relocate(kindergarten, .before = label) %>% 
-  relocate(date, .before = comment)
-
-df_shared <- SharedData$new(df)
-
-bscols(
-  widths = c(2, 10),
-  list(
-    filter_select("kindergarten", "Kindergarten", df_shared, ~kindergarten),
-    # filter_checkbox("type", "Type", df_shared, ~type),
-    filter_slider("children_satisfaction", "Children Satisfaction", df_shared,
-                  ~children_satisfaction, width = "100%"),
-    filter_slider("parent_satisfaction", "Parents' satisfaction", df_shared, 
-                  ~parent_satisfaction, width = "100%")
-    
-  ),
-  reactable(
-    df_shared,
-    pagination = FALSE, 
-    highlight = TRUE, 
-    # height = 250,
-    searchable = TRUE,
-    groupBy = c("kindergarten", "label"),
-    columns = list(
-      label = colDef(
-        name = "Dish"
-        # aggregate = "unique"
-      ),
-      children_satisfaction = colDef(
-        name = "Rating Children", 
-        # aggregate = function(value) rating_starts(mean(value))
-        aggregate = "mean", 
-        format = colFormat(digits = 1),
-        cell = function(value) rt_rating_icons(value)
-        ),
-      parent_satisfaction = colDef(
-        name = "Rating Parents",
-        aggregate = "mean",
-        format = colFormat(digits = 1),
-        cell = function(value) rt_rating_icons(value, color = color_energy)
-      ),
-      health = colDef(
-        name = "Perceived Health",
-        aggregate = "mean",
-        format = colFormat(digits = 1),
-        cell = function(value) rt_rating_icons(value, icon = "heart", color = color_food)
-      )
-    )
-  )
-)
-
-
-
-
-```
 
 ### Meals
 
@@ -632,6 +596,68 @@ bscols(
   rowStyle = list(cursor = "pointer")
   )
 )
+
+```
+
+### Ratings' details
+
+```{r}
+df <- dishrating %>% 
+  select(-id, -kindergarten_id, -dish_id, -ends_with("_label")) %>% 
+  relocate(label, .before = date) %>% 
+  relocate(kindergarten, .before = label) %>% 
+  relocate(date, .before = comment)
+
+df_shared <- SharedData$new(df)
+
+bscols(
+  widths = c(2, 10),
+  list(
+    filter_select("kindergarten", "Kindergarten", df_shared, ~kindergarten),
+    # filter_checkbox("type", "Type", df_shared, ~type),
+    filter_slider("children_satisfaction", "Children Satisfaction", df_shared,
+                  ~children_satisfaction, width = "100%"),
+    filter_slider("parent_satisfaction", "Parents' satisfaction", df_shared, 
+                  ~parent_satisfaction, width = "100%")
+    
+  ),
+  reactable(
+    df_shared,
+    pagination = FALSE, 
+    highlight = TRUE, 
+    # height = 250,
+    searchable = TRUE,
+    groupBy = c("kindergarten", "label"),
+    columns = list(
+      label = colDef(
+        name = "Dish"
+        # aggregate = "unique"
+      ),
+      children_satisfaction = colDef(
+        name = "Rating Children", 
+        # aggregate = function(value) rating_starts(mean(value))
+        aggregate = "mean", 
+        format = colFormat(digits = 1),
+        cell = function(value) rt_rating_icons(value)
+        ),
+      parent_satisfaction = colDef(
+        name = "Rating Parents",
+        aggregate = "mean",
+        format = colFormat(digits = 1),
+        cell = function(value) rt_rating_icons(value, color = color_energy)
+      ),
+      health = colDef(
+        name = "Perceived Health",
+        aggregate = "mean",
+        format = colFormat(digits = 1),
+        cell = function(value) rt_rating_icons(value, icon = "heart", color = color_food)
+      )
+    )
+  )
+)
+
+
+
 
 ```
 
