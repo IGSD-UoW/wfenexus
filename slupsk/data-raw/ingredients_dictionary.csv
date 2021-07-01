@@ -1,130 +1,130 @@
-id,name,name_en,name_wf
-36,Arbuz,Watermelon,Watermelons
-37,Awokado,Avocado,"Avocados, fresh or dried"
-38,Banan,Banana,Bananas
-39,Brokuły,Broccoli,"Cauliflowers and headed broccoli, fresh or chilled"
-40,Brukselka,Brussels sprouts,"Brussels sprouts, fresh or chilled"
-41,Brzoskwinia,Peach,Peaches and nectarines
-42,Bułka grahamka,Graham roll,
-43,Burak,Beet,"Raw sugar, beet"
-44,Cebula,Onion,"Onions and shallots, fresh or chilled"
-45,Chleb wieloziarnisty,Multigrain bread,Wheat bread
-46,Chrzan,Horseradish,"Salad beetroot,salsif,celeriac,radish&sim edibl roots,fresh/chilld nes"
-47,Cukier,Sugar,"Sugar cane, fresh or dried, whether or not ground"
-48,Cukinia,Zucchini,"Pumpkins, squash and gourds"
-49,Cytryna,Lemon,"Lemons and limes, fresh or dried"
-50,Czarne jagody,Blueberries,Blueberries
-51,Czereśnie,Cherries,Sour cherries
-52,Czosnek,Garlic,"Garlic, fresh or chilled"
-53,Dorsz,Cod,
-54,Dynia,Pumpkin,"Pumpkins, squash and gourds"
-55,Dżem z owoców,Fruit jam,
-56,Fasola biała,White bean,"Beans, shelled or unshelled, fresh or chilled"
-57,Fasola czerwona,Red Beans,"Beans, shelled or unshelled, fresh or chilled"
-58,Fasola szparagowa,Green bean,"Beans, shelled or unshelled, fresh or chilled"
-59,Flądra,Flounder,
-60,Grejpfrut,Grapefruit,"Grapefruit, fresh or dried"
-61,Groszek zielony,Green peas,"Peas dried, shelled, whether or not skinned or split"
-62,Gruszka,Pears,"Pears and quinces, fresh"
-63,Jabłko,Apple,"Apples, fresh"
-64,Jaja kurze,Chicken eggs,"Eggs, bird, in shell, fresh, preserved or cooked"
-65,Jarmuż,Kale,"Cabbages,kohlrabi,kale and sim edible brassicas nes,fresh or chilled"
-66,Jogurt bananowy,Banana yogurt,"Yogurt concentratd o not,sweetend o not,flavourd o contg fruit o cocoa"
-67,Jogurt jagodowy,Blueberry yogurt,"Yogurt concentratd o not,sweetend o not,flavourd o contg fruit o cocoa"
-68,Jogurt morelowy,Apricot yogurt,"Yogurt concentratd o not,sweetend o not,flavourd o contg fruit o cocoa"
-69,Jogurt naturalny,Natural yogurt,"Yogurt concentratd o not,sweetend o not,flavourd o contg fruit o cocoa"
-70,Jogurt truskawkowy,Strawberry yogurt,"Yogurt concentratd o not,sweetend o not,flavourd o contg fruit o cocoa"
-71,Jogurt wiśniowy,Cherry yogurt,"Yogurt concentratd o not,sweetend o not,flavourd o contg fruit o cocoa"
-72,Kalafior,Cauliflower,"Cauliflowers and headed broccoli, fresh or chilled"
-73,Kalarepa,Kohlrabi,"Cabbages,kohlrabi,kale and sim edible brassicas nes,fresh or chilled"
-74,Kapusta biała,White cabbage,"Cabbages,kohlrabi,kale and sim edible brassicas nes,fresh or chilled"
-75,Kapusta czerwona,Red cabbage,"Cabbages,kohlrabi,kale and sim edible brassicas nes,fresh or chilled"
-76,Kasza jaglana,Barley groats,"Barley, rolled or flaked grains"
-77,Kasza jęczmienna,Barley groats,"Barley, rolled or flaked grains"
-78,Kefir,Kefir,
-79,Kiwi,Kiwi,Kiwi fruit
-80,Koncentrat pomidorowy,Tomato concentrate,"Tomato juice, concentrated"
-81,Koper ogrodowy,Dill pickle,"Cucumbers and gherkins, fresh or chilled"
-82,Kukurydza,Corn,Maize (corn)
-83,Łosoś,Salmon,
-84,Makaron,Pasta,Dry pasta
-85,Makrela,Mackerel,
-86,Maliny,Raspberries,"Raspberries, blackberries, mulberries and loganberries, fresh"
-87,Mandarynki,Mandarins,"Mandarins(tang&sats)clementines&wilkgs &sim citrus hybrids,fresh/drid"
-88,Mango,Mangoes,"Guavas, mangoes and mangosteens, fresh or dried"
-89,Marchew,Carrots,"Carrots and turnips, fresh or chilled"
-90,Mąka pszenna,Wheat flour,Wheat or meslin flour
-91,Mąka żytnia,Rye flour,Rye flour
-92,Melon,Melon,Other melons (inc.cantaloupes)
-93,Mięso wieprzowe,Pork,"Swine meat&meat offal nes/exc livers/ incl mixtures,prepard o preservd"
-94,Mięso wołowe,Beef,"Bovine cuts bone in, fresh or chilled"
-95,Mięso z indyka,Turkey meat,"Turkey meat and meat offal prepared or preserved, excluding livers"
-96,Mięso z kurczaka,Chicken meat,"Poultry, live except domestic fowls, weighing not more than 185 g"
-97,Miód pszczeli,Bee honey,
-98,Mleko roślinne,Vegetable milk,soybean ingredient into the soymilk
-99,Mleko spożywcze,Drinking milk,Milk not concentrated and unsweetened not exceeding 1% fat
-100,Morele,Apricots,"Apricots, fresh"
-101,Nektarynka,Nectarine,"Peaches, including nectarines, fresh"
-102,Ogórek,Cucumber,"Cucumbers and gherkins, fresh or chilled"
-103,Ogórek kiszony,Pickled cucumber,"Cucumbers and gherkins, fresh or chilled"
-104,Olej rzepakowy,Canola oil,
-105,Olej słonecznikowy,Sunflower oil,"Palm oil, crude"
-106,Papryka czerwona,Red Pepper,"Peppers of the genus Capsicum or of the genus Pimenta,fresh or chilled"
-107,Papryka zielona,Green peppers,"Peppers of the genus Capsicum or of the genus Pimenta,fresh or chilled"
-108,Parówki,Sausages,"Pig fat lean meat free&poultry fat unrenderd,frsh,chilld,frozn or curd"
-109,"Pietruszka, korzeń",Parsley root,
-110,"Pietruszka, liście",Parsley leaves,
-111,Płatki kukurydziane,Flaked corn,"Maize (corn), hulled, pearled, sliced or kibbled"
-112,Płatki owsiane,Oat flakes,"Oats, rolled or flaked grains"
-113,Pomarańcza,Orange,"Oranges, fresh or dried"
-114,Pomidor,Tomato,"Tomatoes, fresh or chilled"
-115,Por,Leek,"Onions and shallots, fresh or chilled"
-116,Porzeczki,Currants,Currants
-117,Pstrąg,Trout,
-118,Ryż biały,White rice,Rice in the husk (paddy or rough)
-119,Ryż brązowy,Brown rice,"Rice, husked (brown)"
-120,Rzodkiewka,Radish,"Salad beetroot,salsif,celeriac,radish&sim edibl roots,fresh/chilld nes"
-121,Sałata,Lettuce,"Lettuce, fresh or chilled nes"
-122,Seler korzeniowy,Celery root,"Celery, other than celeriac, fresh or chilled"
-123,Seler naciowy,Celery leaves,"Celery, other than celeriac, fresh or chilled"
-124,Ser pleśniowy,Blue cheese,"Cheese, blue-veined"
-125,Ser twarogowy,Cottage cheese,"Cheese, fresh (including whey cheese) unfermented, and curd"
-126,Ser żółty,Yellow cheese,Cheese nes
-127,Serek twarogowy homogenizowany,Homogenized cream cheese,Cheese nes
-128,Soczewica czerwona,Red Lentils,"Lentils dried, shelled, whether or not skinned or split"
-129,Sos keczup,Ketchup sauce,Tomato ketchup
-130,Sól,Salt,
-131,Szczypiorek,Chives,
-132,"Szparagi, konserwowe","Asparagus, canned","Asparagus, fresh or chilled"
-133,Szpinak,Spinach,"Spinach,N-Z spinach & orache spinach (garden spinach),fresh or chilled"
-134,Szynka wieprzowa,Pork ham,Hams and cuts thereof of swine prepared or preserved
-135,Szynka z indyka,Turkey ham,"Turkey meat and meat offal prepared or preserved, excluding livers"
-136,Szynka z kurczaka,Chicken ham,"Poultry, live except domestic fowls, weighing not more than 185 g"
-137,Śliwki,Prunes,
-138,"Śmietana, 12% tłuszczu","Cream, 12% fat","Buttermilk,curdled milk & cream,kephir & ferm or acid milk & cream nes"
-139,"Śmietana, 18% tłuszczu","Cream, 18% fat","Buttermilk,curdled milk & cream,kephir & ferm or acid milk & cream nes"
-140,Śmietanka kremowa 30% tłuszczu,Cream 30% fat,"Buttermilk,curdled milk & cream,kephir & ferm or acid milk & cream nes"
-141,Tuńczyk,Tuna,
-142,Winogrona,Grapes,"Grapes, fresh"
-143,Wiśnie,Cherries,"Cherries, fresh"
-144,Ziemniaki,Potatoes,"Potatoes, fresh or chilled nes"
-145,Kapusta pekińska,Chinese cabbage,"Cabbages,kohlrabi,kale and sim edible brassicas nes,fresh or chilled"
-146,Masło,Butter,Butter
-147,Kiełbaski wieprzowe,Pork sausages,Hams and cuts thereof of swine prepared or preserved
-148,Groch łuskany,Shelled peas,"Peas, shelled or unshelled, fresh or chilled"
-149,Płatki orkiszowe,Spelt flakes,
-150,Chleb zwykły (pszenno-żytni),Bread (wheat-rye),Wheat bread
-151,Kiełki,Sprouts,"Brussels sprouts, fresh or chilled"
-152,Cukier puder,Powdered sugar,"Raw sugar, cane"
-153,Truskawki mrożone,Frozen Strawberries,"Strawberries,uncookd o steamd o boild in water,sweetend o not,frozen"
-154,Por,Leek,"Onions and shallots, fresh or chilled"
-155,Papryka żółta,Yellow Peppers,
-156,Mandarynka,Mandarin oranges,"Mandarins(tang&sats)clementines&wilkgs &sim citrus hybrids,fresh/drid"
-157,Wafle ryżowe,Rice waffles,
-158,Chałka,Challah,
-159,Pieczarki,Mushrooms,
-160,Kasza gryczana,Buckwheat groats,Wheat groats and meal
-161,Płatki jęczmienne,Barley Flakes,"Barley, rolled or flaked grains"
-162,Wafle kukurydziane,Cornmeal wafers,Maize (corn)
-163,Sok jabłkowy,Apple juice,Apple juice unfermented&not spiritd whether or not sugard or sweetend
-164,Sandacz,Zander,
+id,name,name_en,name_wf,category
+36,Arbuz,Watermelon,Watermelons,fruits
+37,Awokado,Avocado,"Avocados, fresh or dried",fruits
+38,Banan,Banana,Bananas,fruits
+39,Brokuły,Broccoli,"Cauliflowers and headed broccoli, fresh or chilled",vegetables
+40,Brukselka,Brussels sprouts,"Brussels sprouts, fresh or chilled",vegetables
+41,Brzoskwinia,Peach,Peaches and nectarines,fruits
+42,Bułka grahamka,Graham roll,,
+43,Burak,Beet,"Raw sugar, beet",
+44,Cebula,Onion,"Onions and shallots, fresh or chilled",vegetables
+45,Chleb wieloziarnisty,Multigrain bread,Wheat bread,
+46,Chrzan,Horseradish,"Salad beetroot,salsif,celeriac,radish&sim edibl roots,fresh/chilld nes",
+47,Cukier,Sugar,"Sugar cane, fresh or dried, whether or not ground",
+48,Cukinia,Zucchini,"Pumpkins, squash and gourds",vegetables
+49,Cytryna,Lemon,"Lemons and limes, fresh or dried",fruits
+50,Czarne jagody,Blueberries,Blueberries,fruits
+51,Czereśnie,Cherries,Sour cherries,fruits
+52,Czosnek,Garlic,"Garlic, fresh or chilled",
+53,Dorsz,Cod,,
+54,Dynia,Pumpkin,"Pumpkins, squash and gourds",
+55,Dżem z owoców,Fruit jam,,
+56,Fasola biała,White bean,"Beans, shelled or unshelled, fresh or chilled",
+57,Fasola czerwona,Red Beans,"Beans, shelled or unshelled, fresh or chilled",
+58,Fasola szparagowa,Green bean,"Beans, shelled or unshelled, fresh or chilled",
+59,Flądra,Flounder,,
+60,Grejpfrut,Grapefruit,"Grapefruit, fresh or dried",
+61,Groszek zielony,Green peas,"Peas dried, shelled, whether or not skinned or split",
+62,Gruszka,Pears,"Pears and quinces, fresh",
+63,Jabłko,Apple,"Apples, fresh",
+64,Jaja kurze,Chicken eggs,"Eggs, bird, in shell, fresh, preserved or cooked",
+65,Jarmuż,Kale,"Cabbages,kohlrabi,kale and sim edible brassicas nes,fresh or chilled",
+66,Jogurt bananowy,Banana yogurt,"Yogurt concentratd o not,sweetend o not,flavourd o contg fruit o cocoa",
+67,Jogurt jagodowy,Blueberry yogurt,"Yogurt concentratd o not,sweetend o not,flavourd o contg fruit o cocoa",
+68,Jogurt morelowy,Apricot yogurt,"Yogurt concentratd o not,sweetend o not,flavourd o contg fruit o cocoa",
+69,Jogurt naturalny,Natural yogurt,"Yogurt concentratd o not,sweetend o not,flavourd o contg fruit o cocoa",
+70,Jogurt truskawkowy,Strawberry yogurt,"Yogurt concentratd o not,sweetend o not,flavourd o contg fruit o cocoa",
+71,Jogurt wiśniowy,Cherry yogurt,"Yogurt concentratd o not,sweetend o not,flavourd o contg fruit o cocoa",
+72,Kalafior,Cauliflower,"Cauliflowers and headed broccoli, fresh or chilled",
+73,Kalarepa,Kohlrabi,"Cabbages,kohlrabi,kale and sim edible brassicas nes,fresh or chilled",
+74,Kapusta biała,White cabbage,"Cabbages,kohlrabi,kale and sim edible brassicas nes,fresh or chilled",
+75,Kapusta czerwona,Red cabbage,"Cabbages,kohlrabi,kale and sim edible brassicas nes,fresh or chilled",
+76,Kasza jaglana,Barley groats,"Barley, rolled or flaked grains",
+77,Kasza jęczmienna,Barley groats,"Barley, rolled or flaked grains",
+78,Kefir,Kefir,,
+79,Kiwi,Kiwi,Kiwi fruit,
+80,Koncentrat pomidorowy,Tomato concentrate,"Tomato juice, concentrated",
+81,Koper ogrodowy,Dill pickle,"Cucumbers and gherkins, fresh or chilled",
+82,Kukurydza,Corn,Maize (corn),
+83,Łosoś,Salmon,,
+84,Makaron,Pasta,Dry pasta,
+85,Makrela,Mackerel,,
+86,Maliny,Raspberries,"Raspberries, blackberries, mulberries and loganberries, fresh",
+87,Mandarynki,Mandarins,"Mandarins(tang&sats)clementines&wilkgs &sim citrus hybrids,fresh/drid",
+88,Mango,Mangoes,"Guavas, mangoes and mangosteens, fresh or dried",
+89,Marchew,Carrots,"Carrots and turnips, fresh or chilled",
+90,Mąka pszenna,Wheat flour,Wheat or meslin flour,
+91,Mąka żytnia,Rye flour,Rye flour,
+92,Melon,Melon,Other melons (inc.cantaloupes),
+93,Mięso wieprzowe,Pork,"Swine meat&meat offal nes/exc livers/ incl mixtures,prepard o preservd",
+94,Mięso wołowe,Beef,"Bovine cuts bone in, fresh or chilled",
+95,Mięso z indyka,Turkey meat,"Turkey meat and meat offal prepared or preserved, excluding livers",
+96,Mięso z kurczaka,Chicken meat,"Poultry, live except domestic fowls, weighing not more than 185 g",
+97,Miód pszczeli,Bee honey,,
+98,Mleko roślinne,Vegetable milk,soybean ingredient into the soymilk,
+99,Mleko spożywcze,Drinking milk,Milk not concentrated and unsweetened not exceeding 1% fat,
+100,Morele,Apricots,"Apricots, fresh",
+101,Nektarynka,Nectarine,"Peaches, including nectarines, fresh",
+102,Ogórek,Cucumber,"Cucumbers and gherkins, fresh or chilled",
+103,Ogórek kiszony,Pickled cucumber,"Cucumbers and gherkins, fresh or chilled",
+104,Olej rzepakowy,Canola oil,,
+105,Olej słonecznikowy,Sunflower oil,"Palm oil, crude",
+106,Papryka czerwona,Red Pepper,"Peppers of the genus Capsicum or of the genus Pimenta,fresh or chilled",
+107,Papryka zielona,Green peppers,"Peppers of the genus Capsicum or of the genus Pimenta,fresh or chilled",
+108,Parówki,Sausages,"Pig fat lean meat free&poultry fat unrenderd,frsh,chilld,frozn or curd",
+109,"Pietruszka, korzeń",Parsley root,,
+110,"Pietruszka, liście",Parsley leaves,,
+111,Płatki kukurydziane,Flaked corn,"Maize (corn), hulled, pearled, sliced or kibbled",
+112,Płatki owsiane,Oat flakes,"Oats, rolled or flaked grains",
+113,Pomarańcza,Orange,"Oranges, fresh or dried",
+114,Pomidor,Tomato,"Tomatoes, fresh or chilled",
+115,Por,Leek,"Onions and shallots, fresh or chilled",
+116,Porzeczki,Currants,Currants,
+117,Pstrąg,Trout,,
+118,Ryż biały,White rice,Rice in the husk (paddy or rough),
+119,Ryż brązowy,Brown rice,"Rice, husked (brown)",
+120,Rzodkiewka,Radish,"Salad beetroot,salsif,celeriac,radish&sim edibl roots,fresh/chilld nes",
+121,Sałata,Lettuce,"Lettuce, fresh or chilled nes",
+122,Seler korzeniowy,Celery root,"Celery, other than celeriac, fresh or chilled",
+123,Seler naciowy,Celery leaves,"Celery, other than celeriac, fresh or chilled",
+124,Ser pleśniowy,Blue cheese,"Cheese, blue-veined",
+125,Ser twarogowy,Cottage cheese,"Cheese, fresh (including whey cheese) unfermented, and curd",
+126,Ser żółty,Yellow cheese,Cheese nes,
+127,Serek twarogowy homogenizowany,Homogenized cream cheese,Cheese nes,
+128,Soczewica czerwona,Red Lentils,"Lentils dried, shelled, whether or not skinned or split",
+129,Sos keczup,Ketchup sauce,Tomato ketchup,
+130,Sól,Salt,,
+131,Szczypiorek,Chives,,
+132,"Szparagi, konserwowe","Asparagus, canned","Asparagus, fresh or chilled",
+133,Szpinak,Spinach,"Spinach,N-Z spinach & orache spinach (garden spinach),fresh or chilled",
+134,Szynka wieprzowa,Pork ham,Hams and cuts thereof of swine prepared or preserved,
+135,Szynka z indyka,Turkey ham,"Turkey meat and meat offal prepared or preserved, excluding livers",
+136,Szynka z kurczaka,Chicken ham,"Poultry, live except domestic fowls, weighing not more than 185 g",
+137,Śliwki,Prunes,,
+138,"Śmietana, 12% tłuszczu","Cream, 12% fat","Buttermilk,curdled milk & cream,kephir & ferm or acid milk & cream nes",
+139,"Śmietana, 18% tłuszczu","Cream, 18% fat","Buttermilk,curdled milk & cream,kephir & ferm or acid milk & cream nes",
+140,Śmietanka kremowa 30% tłuszczu,Cream 30% fat,"Buttermilk,curdled milk & cream,kephir & ferm or acid milk & cream nes",
+141,Tuńczyk,Tuna,,
+142,Winogrona,Grapes,"Grapes, fresh",
+143,Wiśnie,Cherries,"Cherries, fresh",
+144,Ziemniaki,Potatoes,"Potatoes, fresh or chilled nes",
+145,Kapusta pekińska,Chinese cabbage,"Cabbages,kohlrabi,kale and sim edible brassicas nes,fresh or chilled",
+146,Masło,Butter,Butter,
+147,Kiełbaski wieprzowe,Pork sausages,Hams and cuts thereof of swine prepared or preserved,
+148,Groch łuskany,Shelled peas,"Peas, shelled or unshelled, fresh or chilled",
+149,Płatki orkiszowe,Spelt flakes,,
+150,Chleb zwykły (pszenno-żytni),Bread (wheat-rye),Wheat bread,
+151,Kiełki,Sprouts,"Brussels sprouts, fresh or chilled",
+152,Cukier puder,Powdered sugar,"Raw sugar, cane",
+153,Truskawki mrożone,Frozen Strawberries,"Strawberries,uncookd o steamd o boild in water,sweetend o not,frozen",
+154,Por,Leek,"Onions and shallots, fresh or chilled",
+155,Papryka żółta,Yellow Peppers,,
+156,Mandarynka,Mandarin oranges,"Mandarins(tang&sats)clementines&wilkgs &sim citrus hybrids,fresh/drid",
+157,Wafle ryżowe,Rice waffles,,
+158,Chałka,Challah,,
+159,Pieczarki,Mushrooms,,
+160,Kasza gryczana,Buckwheat groats,Wheat groats and meal,
+161,Płatki jęczmienne,Barley Flakes,"Barley, rolled or flaked grains",
+162,Wafle kukurydziane,Cornmeal wafers,Maize (corn),
+163,Sok jabłkowy,Apple juice,Apple juice unfermented&not spiritd whether or not sugard or sweetend,
+164,Sandacz,Zander,,

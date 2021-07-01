@@ -883,16 +883,6 @@ df %>%
 ```
 
 
-Try this other library: https://glin.github.io/reactable/articles/examples.html#footers-1
-
-Heatmaps could be implemented this way: https://glin.github.io/reactable/articles/conditional-styling.html and this: https://glin.github.io/reactable/articles/cookbook/cookbook.html
-
-Also try with custom filters: https://glin.github.io/reactable/articles/examples.html#cross-widget-interactions-1
-
-Links:
-
-* https://clarewest.github.io/blog/post/making-tables-shiny/
-
 ### Ingredients 2
 
 ```{r}
@@ -1038,6 +1028,54 @@ Energy
 
 We do not have any data regarding energy.
 
+
+Menu builder
+===================================== 
+
+```{r}
+ingredients_dic <- read_csv("data-raw/ingredients_dictionary.csv") %>% 
+  select(name_en, category)
+
+ingredients_dic_shared <- SharedData$new(ingredients_dic, key = ~name_en, 
+                                         group = "menu_builider")
+wfp_shared <- SharedData$new(wfp_combined, key = ~name_en, 
+                             group = "menu_builider")
+
+bscols(
+  widths = c(1, 2, 9),
+  list(
+    filter_checkbox("type", "Type", ingredients_dic_shared, ~category)
+  ),
+  reactable(ingredients_dic_shared, 
+            # filterable = TRUE,
+            selection = "multiple", 
+            defaultSelected = NULL,
+            onClick = "select",
+            pagination = FALSE, 
+            height = 600,
+            columns = list(
+              category = colDef(show = FALSE),
+              name_en = colDef(name = "Ingredient") 
+              ),
+            ),
+  reactable(wfp_shared,
+            pagination = FALSE, 
+            height = 600,
+            columns = list(
+              type = colDef(show = FALSE),
+              name_en = colDef(
+                footer = "Total"
+              ),
+              world_total = colDef(
+                footer = function(values) sum(values, na.rm = TRUE)
+              )
+            ),
+            defaultColDef = colDef(footerStyle = list(fontWeight = "bold"))
+            )
+)
+
+
+```
 
 About
 ===================================== 
