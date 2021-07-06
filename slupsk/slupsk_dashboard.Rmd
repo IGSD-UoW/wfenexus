@@ -58,6 +58,10 @@ pal_wfp_grey <- function(x) rgb(colorRamp(c(color_wfp_grey, "white"))(x),
 pal_wfp_total <- function(x) rgb(colorRamp(c(color_water, "white"))(x), 
                                  maxColorValue = 255)
 
+energy_df2 <- read.csv("data-raw/ERL_12_6_064016_figuredata.csv") %>% 
+  select(-Lead.Author, -Year.Published) %>% 
+  group_by(Group.Ordering, Food.Item) %>% 
+  summarise(across(where(is.numeric), ~ mean(.x, na.rm = TRUE)))
 
 ```
 
@@ -785,18 +789,25 @@ Water {.tabset}
 
 ### Ingredients
 
-```{r ingredients_wf_reactable}
-
+```{r ingredients_wfp}
 df <- wfp_combined %>% 
   select(-green_variation, -blue_variation, -grey_variation)
 
 
-df %>% 
-  # filter(!is.na(world_green)) %>% 
-  # select(-green_variation, -blue_variation, -grey_variation) %>% 
+df_shared <- SharedData$new(df)
+
+bscols(
+  widths = c(2, 10),
+  list(
+    filter_checkbox("type", "Type", df_shared, ~type),
+    filter_slider("world_total", "Total Footprint (World)", df_shared, ~world_total, width = "100%"),
+    filter_slider("country_total", "Total Footprint (Poland)", df_shared, ~country_total, width = "100%"),
+    filter_select("name_en", "Ingredient", df_shared, ~name_en)
+  ),
   reactable(
+    df_shared,
     pagination = FALSE, highlight = TRUE, 
-    # height = 250,
+    height = 700,
     searchable = TRUE,
     # groupBy = "type",
     defaultSorted = list(world_total = "desc"),
@@ -804,7 +815,7 @@ df %>%
       # header = function(value) gsub("_", " ", value, fixed = TRUE),
       # cell = function(value) format(value, nsmall = 1),
       # align = "center",
-      minWidth = 70,
+      minWidth = 50,
       # headerStyle = list(background = "#f7f7f8"),
       format = colFormat(separators = TRUE),
       sortNALast = TRUE,
@@ -812,7 +823,7 @@ df %>%
     ),
     columns = list(
       type = colDef(maxWidth = 80),
-      name_en = colDef(name = "Ingredient", minWidth = 140),
+      name_en = colDef(name = "Ingredient", minWidth = 100),
       world_green = colDef(
         # name = "Green",
         header = rt_with_tooltip("Green", "Green water footprint is water from precipitation that is stored in the root zone of the soil and evaporated, transpired or incorporated by plants. It is particularly relevant for agricultural, horticultural and forestry products. Units in m3/Ton"),
@@ -879,34 +890,6 @@ df %>%
                columns = c("country_green", "country_blue", "country_grey",
                            "country_total"))
       )
-  )
-```
-
-
-### Ingredients 2
-
-```{r}
-df_shared <- SharedData$new(df)
-
-bscols(
-  widths = c(2, 10),
-  list(
-    filter_checkbox("type", "Type", df_shared, ~type),
-    filter_slider("world_total", "Total Footprint (World)", df_shared, ~world_total, width = "100%"),
-    filter_slider("country_total", "Total Footprint (Poland)", df_shared, ~country_total, width = "100%"),
-    filter_select("name_en", "Ingredient", df_shared, ~name_en)
-  ),
-  reactable(
-    df_shared, 
-    pagination = TRUE, 
-    highlight = TRUE, 
-    searchable = TRUE,
-    defaultSorted = list(world_total = "desc"),
-    defaultColDef = colDef(
-      minWidth = 70,
-      format = colFormat(separators = TRUE),
-      footerStyle = list(fontWeight = "bold")
-    )
   )
 )
 
