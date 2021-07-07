@@ -356,6 +356,9 @@ ingredients_used_df <- dish_composition %>%
   mutate(type = as.factor(type)) %>% 
   arrange(desc(weight_grams)) 
 
+avg_weight <- mean(ingredients_used_df$weight_grams)
+avg_wfp <- mean(ingredients_used_df$world_total, na.rm = TRUE)
+
 annotations_df <- data.frame(
   x = c(50),
   y = c(11000),
@@ -365,12 +368,12 @@ annotations_df <- data.frame(
 g <- ggplot(ingredients_used_df, 
             aes(x = weight_grams, y = world_total, color= type, 
                 size = water_used, label = name_en)) +
+  geom_hline(yintercept=avg_wfp, size = 0.25, color = "grey", linetype = 'dotted') +
+  geom_vline(xintercept = avg_weight, size = 0.25, color = "grey", linetype = 'dotted') +
   geom_point(aes(alpha = 0.5)) +
   # geom_text(data=annotations_df, aes( x=x, y=y, label=label),
   #          color="grey", 
   #          size=2 , angle=45, fontface="bold" ) +
-  # geom_hline(yintercept=10000, size = 0.5) +
-  # geom_vline(xintercept = 45, size = 0.5) +
   labs(title = "Ingredients' usage vs. water footprint",
        subtitle = "This is a subtitle",
        x = "Total weight (g)",
@@ -381,6 +384,13 @@ g <- ggplot(ingredients_used_df,
 
 ggplotly(g)
 
+# 
+# gw <- ggplot(ingredients_used_df,
+#              aes(x = country_total, y = world_total, color = type,
+#                  size = water_used, label = name_en))+
+#   geom_point(aes(alpha = 0.5))
+# 
+# ggplotly(gw)
 ```
 
 
