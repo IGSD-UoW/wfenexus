@@ -33,7 +33,10 @@ dishrating <- read_csv("data-raw/dishrating.csv") %>%
 
 dishes_df <- read_csv("data/dishes.csv")
 
-
+energy_df <- read.csv("data-raw/ERL_12_6_064016_figuredata.csv") %>% 
+  select(-Lead.Author, -Year.Published) %>% 
+  group_by(Group.Ordering, Food.Item) %>% 
+  summarise(across(where(is.numeric), ~ mean(.x, na.rm = TRUE)))
 
 # dishes_df <- ci_dishratings(dishes_df, dishrating)
 
@@ -57,11 +60,6 @@ pal_wfp_grey <- function(x) rgb(colorRamp(c(color_wfp_grey, "white"))(x),
                                  maxColorValue = 255)
 pal_wfp_total <- function(x) rgb(colorRamp(c(color_water, "white"))(x), 
                                  maxColorValue = 255)
-
-energy_df2 <- read.csv("data-raw/ERL_12_6_064016_figuredata.csv") %>% 
-  select(-Lead.Author, -Year.Published) %>% 
-  group_by(Group.Ordering, Food.Item) %>% 
-  summarise(across(where(is.numeric), ~ mean(.x, na.rm = TRUE)))
 
 ```
 
@@ -343,6 +341,48 @@ p
 
 
 ```
+
+### Most used ingredients
+
+```{r}
+ingredients_used_df <- dish_composition %>% 
+  select(ingredient_id, name_en, type, weight_grams, world_total, country_total, water_used) %>% 
+  group_by(ingredient_id, name_en, type) %>% 
+  summarise(weight_grams = sum(weight_grams),
+            water_used = sum(water_used),
+            world_total = max(world_total),
+            country_total = max(country_total),
+            num_meals = n()) %>% 
+  mutate(type = as.factor(type)) %>% 
+  arrange(desc(weight_grams)) 
+
+annotations_df <- data.frame(
+  x = c(50),
+  y = c(11000),
+  label = c("This is a label")
+)
+  
+g <- ggplot(ingredients_used_df, 
+            aes(x = weight_grams, y = world_total, color= type, 
+                size = water_used, label = name_en)) +
+  geom_point(aes(alpha = 0.5)) +
+  # geom_text(data=annotations_df, aes( x=x, y=y, label=label),
+  #          color="grey", 
+  #          size=2 , angle=45, fontface="bold" ) +
+  # geom_hline(yintercept=10000, size = 0.5) +
+  # geom_vline(xintercept = 45, size = 0.5) +
+  labs(title = "Ingredients' usage vs. water footprint",
+       subtitle = "This is a subtitle",
+       x = "Total weight (g)",
+       y = "Avg. Water Footprint (m3/Ton)",
+       color = "Type of food",
+       size = NULL,
+       alpha = NULL)
+
+ggplotly(g)
+
+```
+
 
 ### Top rated meals
 
@@ -822,7 +862,7 @@ bscols(
       footerStyle = list(fontWeight = "bold")
     ),
     columns = list(
-      type = colDef(maxWidth = 80),
+      type = colDef(show = FALSE),
       name_en = colDef(name = "Ingredient", minWidth = 100),
       world_green = colDef(
         # name = "Green",
