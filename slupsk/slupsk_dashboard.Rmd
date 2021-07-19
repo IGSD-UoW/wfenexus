@@ -12,6 +12,7 @@ output:
 ```{r setup, include=FALSE}
 library(flexdashboard)
 library(ggplot2)
+library(ggiraph)
 library(reactable)
 library(crosstalk)
 library(patchwork)
@@ -101,6 +102,41 @@ theme_set(mytheme_minimal)
 <!-- ``` -->
 
 
+```{r datasets}
+wfp_combined <- read.csv(file = "data/wfp_combined.csv") %>% 
+  select(-id, -name, -name_wf, -description) %>% 
+  mutate(green_variation = (-world_green + country_green)/world_green,
+         blue_variation = (-world_blue + country_blue)/world_blue,
+         grey_variation = (-world_grey + country_grey)/world_grey,
+         total_variation = (-world_total + country_total)/world_total) %>%
+  # mutate(across(ends_with("_variation"), scales::percent)) %>%
+  mutate(across(where(is.numeric), round, 2)) %>%
+  relocate(green_variation, .after = country_green) %>%
+  relocate(blue_variation, .after = country_blue) %>%
+  relocate(grey_variation, .after = country_grey) %>%
+  relocate(total_variation, .after = country_total) %>%
+  arrange(desc(world_total)) %>% 
+  relocate(type, .before = "name_en")
+
+stats_wfp <- wfp_combined %>% 
+  group_by(type) %>% 
+  summarise(mean = mean(world_total), total = sum(world_total),
+            mean_local = mean(country_total, na.rm = TRUE), 
+            total_local = sum(country_total, na.rm = TRUE))
+
+avg_wfp_animals <- round(stats_wfp$mean[1], 2)
+avg_wfp_crops <- round(stats_wfp$mean[2], 2)
+
+avg_wfp_animals_local <- round(stats_wfp$mean_local[1], 2)
+avg_wfp_crops_local <- round(stats_wfp$mean_local[2], 2)
+
+
+total_wfp_animals <- round(stats_wfp$total[1], 2)
+total_wfp_crops <- round(stats_wfp$total[2], 2)
+total_wfp_animals_local <- round(stats_wfp$total_local[1], 2)
+total_wfp_crops_local <- round(stats_wfp$total_local[2], 2)
+  
+```
 
 Overview
 =====================================
@@ -370,6 +406,84 @@ g <- ggplot(ingredients_used_df,
                 size = water_used, label = name_en)) +
   geom_hline(yintercept=avg_wfp, size = 0.25, color = "grey", linetype = 'dotted') +
   geom_vline(xintercept = avg_weight, size = 0.25, color = "grey", linetype = 'dotted') +
+  geom_point_interactive(aes(alpha = 0.5)) +
+  # geom_text(data=annotations_df, aes( x=x, y=y, label=label),
+  #          color="grey", 
+  #          size=2 , angle=45, fontface="bold" ) +
+  labs(title = "Ingredients' usage vs. water footprint",
+       subtitle = "This is a subtitle",
+       x = "Total weight (g)",
+       y = "Avg. Water Footprint (m3/Ton)",
+       color = "Type of food",
+       size = NULL,
+       alpha = NULL)
+
+g <- girafe(
+  ggobj = g, width_svg = 6, height_svg = 6,
+  options = list(
+    opts_sizing(rescale = FALSE),
+    opts_tooltip(
+      opacity = .8,
+      css = "background-color:gray;color:white;padding:2px;border-radius:2px;"
+    ),
+    opts_hover(css = "fill:#1279BF;stroke:#1279BF;cursor:pointer;")
+  )
+)
+g
+
+# tmp_dishes_df <- dishes_df %>% 
+#   select(name, type_label, water_used, rating_average) %>% 
+#   group_by(name, type_label) %>% 
+#   summarise(water_used = mean(water_used, na.rm = TRUE),
+#             rating_average = mean(rating_average, na.rm = TRUE), 
+#             total = n()) %>% 
+#   filter(!is.na(water_used))
+# 
+# # Dishes scatterplot.
+# gd <- ggplot(tmp_dishes_df, 
+#              aes(x = rating_average, y = water_used, label = name,
+#                  color = type_label)) +
+#   geom_point() +
+#   labs(title = "Meals' usage vs. water footprint",
+#        subtitle = "This is a subtitle",
+#        x = "Rating average",
+#        y = "Total used water (m3)",
+#        # color = "Type of food",
+#        size = NULL,
+#        alpha = NULL)
+# 
+# g + gd
+
+```
+
+### Most used ingredients (plotly)
+
+```{r}
+ingredients_used_df <- dish_composition %>% 
+  select(ingredient_id, name_en, type, weight_grams, world_total, country_total, water_used) %>% 
+  group_by(ingredient_id, name_en, type) %>% 
+  summarise(weight_grams = sum(weight_grams),
+            water_used = sum(water_used),
+            world_total = max(world_total),
+            country_total = max(country_total),
+            num_meals = n()) %>% 
+  mutate(type = as.factor(type)) %>% 
+  arrange(desc(weight_grams)) 
+
+avg_weight <- mean(ingredients_used_df$weight_grams)
+avg_wfp <- mean(ingredients_used_df$world_total, na.rm = TRUE)
+
+annotations_df <- data.frame(
+  x = c(50),
+  y = c(11000),
+  label = c("This is a label")
+)
+  
+g <- ggplot(ingredients_used_df, 
+            aes(x = weight_grams, y = world_total, color= type, 
+                size = water_used, label = name_en)) +
+  geom_hline(yintercept=avg_wfp, size = 0.25, color = "grey", linetype = 'dotted') +
+  geom_vline(xintercept = avg_weight, size = 0.25, color = "grey", linetype = 'dotted') +
   geom_point(aes(alpha = 0.5)) +
   # geom_text(data=annotations_df, aes( x=x, y=y, label=label),
   #          color="grey", 
@@ -382,7 +496,32 @@ g <- ggplot(ingredients_used_df,
        size = NULL,
        alpha = NULL)
 
-ggplotly(g)
+g <- ggplotly(g, tooltip = c("weight_grams", "world_total", "name_en"))
+
+tmp_dishes_df <- dishes_df %>% 
+  select(name, type_label, water_used, rating_average) %>% 
+  group_by(name, type_label) %>% 
+  summarise(water_used = mean(water_used, na.rm = TRUE),
+            rating_average = mean(rating_average, na.rm = TRUE), 
+            total = n()) %>% 
+  filter(!is.na(water_used))
+
+# Dishes scatterplot.
+gd <- ggplot(tmp_dishes_df, 
+             aes(x = rating_average, y = water_used, label = name,
+                 color = type_label)) +
+  geom_point() +
+  labs(title = "Meals' usage vs. water footprint",
+       subtitle = "This is a subtitle",
+       x = "Rating average",
+       y = "Total used water (m3)",
+       # color = "Type of food",
+       size = NULL,
+       alpha = NULL)
+
+gd <- ggplotly(gd)
+
+subplot(g, gd, nrows=1, titleX = TRUE, titleY = TRUE)
 
 # 
 # gw <- ggplot(ingredients_used_df,
@@ -392,7 +531,6 @@ ggplotly(g)
 # 
 # ggplotly(gw)
 ```
-
 
 ### Top rated meals
 
@@ -718,41 +856,6 @@ bscols(
 Water
 ===================================== 
 
-```{r}
-wfp_combined <- read.csv(file = "data/wfp_combined.csv") %>% 
-  select(-id, -name, -name_wf, -description) %>% 
-  mutate(green_variation = (-world_green + country_green)/world_green,
-         blue_variation = (-world_blue + country_blue)/world_blue,
-         grey_variation = (-world_grey + country_grey)/world_grey,
-         total_variation = (-world_total + country_total)/world_total) %>%
-  # mutate(across(ends_with("_variation"), scales::percent)) %>%
-  mutate(across(where(is.numeric), round, 2)) %>%
-  relocate(green_variation, .after = country_green) %>%
-  relocate(blue_variation, .after = country_blue) %>%
-  relocate(grey_variation, .after = country_grey) %>%
-  relocate(total_variation, .after = country_total) %>%
-  arrange(desc(world_total)) %>% 
-  relocate(type, .before = "name_en")
-
-stats_wfp <- wfp_combined %>% 
-  group_by(type) %>% 
-  summarise(mean = mean(world_total), total = sum(world_total),
-            mean_local = mean(country_total, na.rm = TRUE), 
-            total_local = sum(country_total, na.rm = TRUE))
-
-avg_wfp_animals <- round(stats_wfp$mean[1], 2)
-avg_wfp_crops <- round(stats_wfp$mean[2], 2)
-
-avg_wfp_animals_local <- round(stats_wfp$mean_local[1], 2)
-avg_wfp_crops_local <- round(stats_wfp$mean_local[2], 2)
-
-
-total_wfp_animals <- round(stats_wfp$total[1], 2)
-total_wfp_crops <- round(stats_wfp$total[2], 2)
-total_wfp_animals_local <- round(stats_wfp$total_local[1], 2)
-total_wfp_crops_local <- round(stats_wfp$total_local[2], 2)
-  
-```
 
 Valueboxes
 ---------------------------------------
