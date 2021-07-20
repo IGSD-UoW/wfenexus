@@ -1,15 +1,15 @@
 # Generates the required datasets for the visualisations.
 
 library(wfenexus)
-# library(jsonlite)
 
 
 # Variables ---------------------------------------------------------------
 
 sel_country <- "Poland"
+
 # Set TRUE if you want to generate a tidy Waterfootprint dataset for selected
 # country to be generated. Otherwise, it will read a csv file containing a
-# previously generated dataset, saving time.
+# previously generated dataset, which saves a considerable time.
 calc_wf <- FALSE
 
 # Set TRUE if you want to download latest data from the tool. Otherwise, local
@@ -117,7 +117,11 @@ wfp_animals <- read_csv(here::here("slupsk/data/wf_animals.csv")) %>%
   mutate(country_total = country_green + country_blue + country_grey) %>%
   relocate(country_total, .after = country_grey)
 
+
+
 # TODO: we can do a treemap here before deleting parent categories.
+wfp_treemap <- wfp_animals
+
 wfp_animals <- wfp_animals %>%
   select(-hs_pc_tas_code, -starts_with("sitc_rev"),
         -starts_with("rootproduct_"),
@@ -188,12 +192,14 @@ write.csv(pot_local_ingredients, file = "slupsk/data/pot_local_ingredients.csv",
 dishrating <- read_csv("slupsk/data-raw/dishrating.csv") %>%
   ci_dishratings_prep()
 
+local_values <- c("yes", "local", "regional", "national")
+
 dish_composition <- read_csv(
   here::here("slupsk/data-raw/dishes_composition_raw.csv")) %>%
   filter(!is.na(ingredient_id)) %>%
   left_join(wfp_combined, by = c("ingredient_id" = "id")) %>%
   select(-label) %>%
-  mutate(wfp_total = if_else(from_producer == "yes" & !is.na(country_total),
+  mutate(wfp_total = if_else(from_producer %in% local_values & !is.na(country_total),
                              country_total, world_total),
          # wfp_total = if_else(wfp_total == NA, world_total, NA),
          water_world = world_total * weight_grams / 1000000,

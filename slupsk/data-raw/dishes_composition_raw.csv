@@ -1,227 +1,227 @@
 dish_id,ingredient_id,weight_grams,from_producer,label,from_producer_label,ingredient_label
-17,148,25,yes,Composition object (61),Tak,Groch łuskany
-17,150,20,yes,Composition object (62),Tak,Chleb zwykły (pszenno-żytni)
-17,147,9,yes,Composition object (63),Tak,Kiełbaski wieprzowe
-4,106,10,yes,Composition object (8),Tak,Papryka czerwona
-4,96,60,yes,Composition object (5),Tak,Mięso z kurczaka
-4,144,120,yes,Composition object (6),Tak,Ziemniaki
-4,43,70,yes,Composition object (7),Tak,Burak
-5,84,40,uncertain,Composition object (9),Nie wiem,Makaron
-5,93,15,yes,Composition object (10),Tak,Mięso wieprzowe
-5,126,10,yes,Composition object (11),Tak,Ser żółty
-5,44,3,yes,Composition object (12),Tak,Cebula
-5,114,500,yes,Composition object (13),Tak,Pomidor
-6,93,80,yes,Composition object (14),Tak,Mięso wieprzowe
-6,77,50,uncertain,Composition object (15),Nie wiem,Kasza jęczmienna
-6,63,80,yes,Composition object (16),Tak,Jabłko
-6,122,20,yes,Composition object (17),Tak,Seler korzeniowy
-6,69,9,yes,Composition object (18),Tak,Jogurt naturalny
-3,125,70,yes,Composition object (2),Tak,Ser twarogowy
-3,89,50,yes,Composition object (3),Tak,Marchew
-3,113,15,no,Composition object (4),Nie,Pomarańcza
-7,NA,60,yes,Composition object (19),Tak,NA
-7,NA,30,yes,Composition object (20),Tak,NA
-7,NA,40,no,Composition object (21),Nie,NA
-8,NA,50,yes,Composition object (23),Tak,NA
-8,NA,40,uncertain,Composition object (24),Nie wiem,NA
-8,74,40,yes,Composition object (25),Tak,Kapusta biała
-9,45,35,yes,Composition object (26),Tak,Chleb wieloziarnisty
-9,135,25,yes,Composition object (27),Tak,Szynka z indyka
-9,114,25,yes,Composition object (28),Tak,Pomidor
-9,102,15,yes,Composition object (29),Tak,Ogórek
-9,121,10,yes,Composition object (30),Tak,Sałata
-10,45,35,yes,Composition object (31),Tak,Chleb wieloziarnisty
-10,95,30,yes,Composition object (32),Tak,Mięso z indyka
-10,114,20,yes,Composition object (33),Tak,Pomidor
-10,102,10,yes,Composition object (34),Tak,Ogórek
-10,70,125,no,Composition object (35),Nie,Jogurt truskawkowy
-25,63,15,yes,Composition object (89),Tak,Jabłko
-12,NA,200,yes,Composition object (37),Tak,NA
-12,NA,100,no,Composition object (38),Nie,NA
-12,NA,45,yes,Composition object (39),Tak,NA
-12,NA,56,yes,Composition object (40),Tak,NA
-12,NA,7,yes,Composition object (41),Tak,NA
-12,NA,20,yes,Composition object (42),Tak,NA
-12,102,15,yes,Composition object (43),Tak,Ogórek
-14,NA,200,yes,Composition object (48),Tak,NA
-14,NA,15,no,Composition object (49),Nie,NA
-14,NA,50,yes,Composition object (50),Tak,NA
-14,NA,20,yes,Composition object (51),Tak,NA
-14,NA,20,yes,Composition object (52),Tak,NA
-14,NA,15,yes,Composition object (53),Tak,NA
-14,121,10,yes,Composition object (54),Tak,Sałata
-27,96,60,yes,Composition object (93),Tak,Mięso z kurczaka
-27,144,280,yes,Composition object (94),Tak,Ziemniaki
-26,93,5,yes,Composition object (90),Tak,Mięso wieprzowe
-26,103,30,yes,Composition object (91),Tak,Ogórek kiszony
-26,89,25,yes,Composition object (92),Tak,Marchew
-13,45,50,yes,Composition object (44),Tak,Chleb wieloziarnisty
-13,36,100,no,Composition object (45),Nie,Arbuz
-13,89,50,yes,Composition object (46),Tak,Marchew
-13,142,50,no,Composition object (47),Nie,Winogrona
-16,38,212,yes,Composition object (60),Tak,Banan
-36,157,15,yes,Composition object (124),Tak,Wafle ryżowe
-36,156,95,yes,Composition object (125),Tak,Mandarynka
-18,63,180,yes,Composition object (64),Tak,Jabłko
-24,106,5,yes,Composition object (88),Tak,Papryka czerwona
-24,45,35,yes,Composition object (82),Tak,Chleb wieloziarnisty
-24,146,5,yes,Composition object (83),Tak,Masło
-24,64,36,yes,Composition object (84),Tak,Jaja kurze
-24,114,10,yes,Composition object (85),Tak,Pomidor
-24,102,6,NA,Composition object (86),NA,Ogórek
-24,99,200,yes,Composition object (87),Tak,Mleko spożywcze
-28,99,250,yes,Composition object (95),Tak,Mleko spożywcze
-28,112,15,uncertain,Composition object (96),Nie wiem,Płatki owsiane
-28,45,40,yes,Composition object (97),Tak,Chleb wieloziarnisty
-28,146,6,yes,Composition object (98),Tak,Masło
-28,155,11,yes,Composition object (99),Tak,Papryka żółta
-28,106,10,yes,Composition object (100),Tak,Papryka czerwona
-28,117,18,yes,Composition object (101),Tak,Pstrąg
-29,69,100,yes,Composition object (102),Tak,Jogurt naturalny
-29,41,40,uncertain,Composition object (103),Nie wiem,Brzoskwinia
-20,113,200,yes,Composition object (73),Tak,Pomarańcza
-30,93,33,yes,Composition object (104),Tak,Mięso wieprzowe
-30,77,47,yes,Composition object (105),Tak,Kasza jęczmienna
-30,144,47,yes,Composition object (106),Tak,Ziemniaki
-30,89,28,yes,Composition object (107),Tak,Marchew
-22,63,37,yes,Composition object (76),Tak,Jabłko
-22,139,11,yes,Composition object (77),Tak,"Śmietana, 18% tłuszczu"
-22,152,2,no,Composition object (78),Nie,Cukier puder
-22,153,58,yes,Composition object (22),Tak,Truskawki mrożone
-23,89,75,yes,Composition object (81),Tak,Marchew
-23,84,100,yes,Composition object (79),Tak,Makaron
-23,125,46,yes,Composition object (80),Tak,Ser twarogowy
-21,154,18,yes,Composition object (74),Tak,Por
-21,93,20,yes,Composition object (75),Tak,Mięso wieprzowe
-19,99,250,yes,Composition object (65),Tak,Mleko spożywcze
+16,38,212,outside_europe,Composition object (60),Produkt spoza Europy,Banan
+7,95,60,local,Composition object (19),Produkt lokalny (ze Słupska lub okolic w granicach 100 km),Mięso z indyka
+7,118,30,outside_europe,Composition object (20),Produkt spoza Europy,Ryż biały
+7,106,40,regional,Composition object (21),Produkt regionalny (z województwa pomorskiego),Papryka czerwona
+8,93,50,local,Composition object (23),Produkt lokalny (ze Słupska lub okolic w granicach 100 km),Mięso wieprzowe
+8,77,40,national,Composition object (24),Produkt krajowy,Kasza jęczmienna
+8,74,40,regional,Composition object (25),Produkt regionalny (z województwa pomorskiego),Kapusta biała
+3,125,70,national,Composition object (2),Produkt krajowy,Ser twarogowy
+3,89,50,regional,Composition object (3),Produkt regionalny (z województwa pomorskiego),Marchew
+3,113,15,inside_europe,Composition object (4),Produkt z Europy,Pomarańcza
+14,111,15,national,Composition object (49),Produkt krajowy,Płatki kukurydziane
+14,45,50,local,Composition object (50),Produkt lokalny (ze Słupska lub okolic w granicach 100 km),Chleb wieloziarnisty
+14,83,20,local,Composition object (51),Produkt lokalny (ze Słupska lub okolic w granicach 100 km),Łosoś
+14,102,15,regional,Composition object (53),Produkt regionalny (z województwa pomorskiego),Ogórek
+14,121,10,regional,Composition object (54),Produkt regionalny (z województwa pomorskiego),Sałata
+14,99,200,national,Composition object (48),Produkt krajowy,Mleko spożywcze
+14,114,20,regional,Composition object (52),Produkt regionalny (z województwa pomorskiego),Pomidor
+9,135,25,regional,Composition object (27),Produkt regionalny (z województwa pomorskiego),Szynka z indyka
+9,114,25,regional,Composition object (28),Produkt regionalny (z województwa pomorskiego),Pomidor
+9,102,15,regional,Composition object (29),Produkt regionalny (z województwa pomorskiego),Ogórek
+9,121,10,regional,Composition object (30),Produkt regionalny (z województwa pomorskiego),Sałata
+9,45,35,local,Composition object (26),Produkt lokalny (ze Słupska lub okolic w granicach 100 km),Chleb wieloziarnisty
+10,45,35,local,Composition object (31),Produkt lokalny (ze Słupska lub okolic w granicach 100 km),Chleb wieloziarnisty
+10,95,30,local,Composition object (32),Produkt lokalny (ze Słupska lub okolic w granicach 100 km),Mięso z indyka
+10,102,10,regional,Composition object (34),Produkt regionalny (z województwa pomorskiego),Ogórek
+10,70,125,national,Composition object (35),Produkt krajowy,Jogurt truskawkowy
+10,114,20,regional,Composition object (33),Produkt regionalny (z województwa pomorskiego),Pomidor
+12,112,100,national,Composition object (38),Produkt krajowy,Płatki owsiane
+12,64,45,local,Composition object (39),Produkt lokalny (ze Słupska lub okolic w granicach 100 km),Jaja kurze
+12,45,56,local,Composition object (40),Produkt lokalny (ze Słupska lub okolic w granicach 100 km),Chleb wieloziarnisty
+12,114,20,regional,Composition object (42),Produkt regionalny (z województwa pomorskiego),Pomidor
+12,102,15,regional,Composition object (43),Produkt regionalny (z województwa pomorskiego),Ogórek
+12,99,200,national,Composition object (37),Produkt krajowy,Mleko spożywcze
+12,146,7,national,Composition object (41),Produkt krajowy,Masło
+13,45,50,local,Composition object (44),Produkt lokalny (ze Słupska lub okolic w granicach 100 km),Chleb wieloziarnisty
+13,36,100,inside_europe,Composition object (45),Produkt z Europy,Arbuz
+13,89,50,regional,Composition object (46),Produkt regionalny (z województwa pomorskiego),Marchew
+13,142,50,inside_europe,Composition object (47),Produkt z Europy,Winogrona
+25,63,15,yes,Composition object (89),yes,Jabłko
+5,84,40,national,Composition object (9),Produkt krajowy,Makaron
+5,93,15,local,Composition object (10),Produkt lokalny (ze Słupska lub okolic w granicach 100 km),Mięso wieprzowe
+5,126,10,national,Composition object (11),Produkt krajowy,Ser żółty
+5,114,500,regional,Composition object (13),Produkt regionalny (z województwa pomorskiego),Pomidor
+5,44,3,regional,Composition object (12),Produkt regionalny (z województwa pomorskiego),Cebula
+17,148,25,national,Composition object (61),Produkt krajowy,Groch łuskany
+17,150,20,local,Composition object (62),Produkt lokalny (ze Słupska lub okolic w granicach 100 km),Chleb zwykły (pszenno-żytni)
+17,147,9,regional,Composition object (63),Produkt regionalny (z województwa pomorskiego),Kiełbaski wieprzowe
+4,96,60,local,Composition object (5),Produkt lokalny (ze Słupska lub okolic w granicach 100 km),Mięso z kurczaka
+4,144,120,regional,Composition object (6),Produkt regionalny (z województwa pomorskiego),Ziemniaki
+4,43,70,regional,Composition object (7),Produkt regionalny (z województwa pomorskiego),Burak
+4,106,10,regional,Composition object (8),Produkt regionalny (z województwa pomorskiego),Papryka czerwona
+27,96,60,local,Composition object (93),Produkt lokalny (ze Słupska lub okolic w granicach 100 km),Mięso z kurczaka
+27,144,280,regional,Composition object (94),Produkt regionalny (z województwa pomorskiego),Ziemniaki
+6,93,80,local,Composition object (14),Produkt lokalny (ze Słupska lub okolic w granicach 100 km),Mięso wieprzowe
+6,63,80,regional,Composition object (16),Produkt regionalny (z województwa pomorskiego),Jabłko
+6,122,20,regional,Composition object (17),Produkt regionalny (z województwa pomorskiego),Seler korzeniowy
+6,69,9,national,Composition object (18),Produkt krajowy,Jogurt naturalny
+6,77,50,national,Composition object (15),Produkt krajowy,Kasza jęczmienna
+31,93,70,local,Composition object (108),Produkt lokalny (ze Słupska lub okolic w granicach 100 km),Mięso wieprzowe
+31,144,120,regional,Composition object (109),Produkt regionalny (z województwa pomorskiego),Ziemniaki
+31,75,80,regional,Composition object (110),Produkt regionalny (z województwa pomorskiego),Kapusta czerwona
+26,93,5,local,Composition object (90),Produkt lokalny (ze Słupska lub okolic w granicach 100 km),Mięso wieprzowe
+26,103,30,regional,Composition object (91),Produkt regionalny (z województwa pomorskiego),Ogórek kiszony
+26,89,25,regional,Composition object (92),Produkt regionalny (z województwa pomorskiego),Marchew
+24,45,35,local,Composition object (82),Produkt lokalny (ze Słupska lub okolic w granicach 100 km),Chleb wieloziarnisty
+24,106,5,regional,Composition object (88),Produkt regionalny (z województwa pomorskiego),Papryka czerwona
+24,146,5,national,Composition object (83),Produkt krajowy,Masło
+24,64,36,local,Composition object (84),Produkt lokalny (ze Słupska lub okolic w granicach 100 km),Jaja kurze
+24,102,6,regional,Composition object (86),Produkt regionalny (z województwa pomorskiego),Ogórek
+24,99,200,national,Composition object (87),Produkt krajowy,Mleko spożywcze
+24,114,10,regional,Composition object (85),Produkt regionalny (z województwa pomorskiego),Pomidor
+28,99,250,national,Composition object (95),Produkt krajowy,Mleko spożywcze
+28,112,15,national,Composition object (96),Produkt krajowy,Płatki owsiane
+28,45,40,local,Composition object (97),Produkt lokalny (ze Słupska lub okolic w granicach 100 km),Chleb wieloziarnisty
+28,146,6,regional,Composition object (98),Produkt regionalny (z województwa pomorskiego),Masło
+28,155,11,regional,Composition object (99),Produkt regionalny (z województwa pomorskiego),Papryka żółta
+28,106,10,regional,Composition object (100),Produkt regionalny (z województwa pomorskiego),Papryka czerwona
+28,117,18,national,Composition object (101),Produkt krajowy,Pstrąg
+15,99,250,national,Composition object (55),Produkt krajowy,Mleko spożywcze
+15,112,10,national,Composition object (56),Produkt krajowy,Płatki owsiane
+15,42,35,local,Composition object (57),Produkt lokalny (ze Słupska lub okolic w granicach 100 km),Bułka grahamka
+15,146,5,national,Composition object (58),Produkt krajowy,Masło
+15,55,8,national,Composition object (59),Produkt krajowy,Dżem z owoców
+48,102,15,regional,Composition object (174),Produkt regionalny (z województwa pomorskiego),Ogórek
+48,120,10,regional,Composition object (175),Produkt regionalny (z województwa pomorskiego),Rzodkiewka
+48,125,47,national,Composition object (176),Produkt krajowy,Ser twarogowy
+48,150,40,local,Composition object (171),Produkt lokalny (ze Słupska lub okolic w granicach 100 km),Chleb zwykły (pszenno-żytni)
+48,114,15,regional,Composition object (173),Produkt regionalny (z województwa pomorskiego),Pomidor
+48,146,6,national,Composition object (172),Produkt krajowy,Masło
+48,131,1.2,regional,Composition object (177),Produkt regionalny (z województwa pomorskiego),Szczypiorek
+48,134,17,regional,Composition object (178),Produkt regionalny (z województwa pomorskiego),Szynka wieprzowa
+48,161,12,national,Composition object (179),Produkt krajowy,Płatki jęczmienne
+48,99,200,national,Composition object (180),Produkt krajowy,Mleko spożywcze
+21,154,18,yes,Composition object (74),yes,Por
+21,93,20,yes,Composition object (75),yes,Mięso wieprzowe
+19,99,250,yes,Composition object (65),yes,Mleko spożywcze
 19,149,15,uncertain,Composition object (66),Nie wiem,Płatki orkiszowe
-19,45,40,yes,Composition object (67),Tak,Chleb wieloziarnisty
-19,114,18,yes,Composition object (68),Tak,Pomidor
+19,45,40,yes,Composition object (67),yes,Chleb wieloziarnisty
+19,114,18,yes,Composition object (68),yes,Pomidor
 19,103,14,uncertain,Composition object (69),Nie wiem,Ogórek kiszony
-19,121,14,yes,Composition object (70),Tak,Sałata
-19,146,6,yes,Composition object (71),Tak,Masło
-19,121,3,yes,Composition object (72),Tak,Sałata
-15,99,250,yes,Composition object (55),Tak,Mleko spożywcze
-15,112,10,uncertain,Composition object (56),Nie wiem,Płatki owsiane
-15,42,35,yes,Composition object (57),Tak,Bułka grahamka
-15,146,5,yes,Composition object (58),Tak,Masło
-15,55,8,yes,Composition object (59),Tak,Dżem z owoców
-31,93,70,yes,Composition object (108),Tak,Mięso wieprzowe
-31,144,120,yes,Composition object (109),Tak,Ziemniaki
-31,75,80,yes,Composition object (110),Tak,Kapusta czerwona
-32,137,200,NA,Composition object (111),NA,Śliwki
-33,45,35,yes,Composition object (112),Tak,Chleb wieloziarnisty
-33,146,5,yes,Composition object (113),Tak,Masło
-33,135,25,yes,Composition object (114),Tak,Szynka z indyka
-33,102,10,yes,Composition object (115),Tak,Ogórek
-33,106,10,yes,Composition object (116),Tak,Papryka czerwona
-33,114,10,yes,Composition object (117),Tak,Pomidor
-34,142,120,yes,Composition object (118),Tak,Winogrona
-35,93,60,yes,Composition object (119),Tak,Mięso wieprzowe
-35,39,20,yes,Composition object (120),Tak,Brokuły
-35,58,22,yes,Composition object (121),Tak,Fasola szparagowa
-35,72,15,yes,Composition object (122),Tak,Kalafior
-35,89,40,yes,Composition object (123),Tak,Marchew
-37,125,100,yes,Composition object (126),Tak,Ser twarogowy
-37,146,2.5,yes,Composition object (127),Tak,Masło
-37,122,50,yes,Composition object (128),Tak,Seler korzeniowy
-37,89,10,yes,Composition object (129),Tak,Marchew
-37,69,10,yes,Composition object (130),Tak,Jogurt naturalny
-39,142,100,yes,Composition object (137),Tak,Winogrona
-40,93,34,yes,Composition object (138),Tak,Mięso wieprzowe
-40,144,97,yes,Composition object (139),Tak,Ziemniaki
-40,89,30,yes,Composition object (140),Tak,Marchew
-40,150,15,yes,Composition object (141),Tak,Chleb zwykły (pszenno-żytni)
-40,159,37,yes,Composition object (142),Tak,Pieczarki
-42,45,35,yes,Composition object (147),Tak,Chleb wieloziarnisty
-42,146,5,yes,Composition object (148),Tak,Masło
-42,126,35,yes,Composition object (149),Tak,Ser żółty
-42,99,250,yes,Composition object (150),Tak,Mleko spożywcze
-42,114,10,yes,Composition object (151),Tak,Pomidor
-42,102,10,yes,Composition object (152),Tak,Ogórek
-42,121,5,yes,Composition object (153),Tak,Sałata
-38,84,50,yes,Composition object (132),Tak,Makaron
-38,55,60,yes,Composition object (133),Tak,Dżem z owoców
-38,127,22,yes,Composition object (135),Tak,Serek twarogowy homogenizowany
-38,99,250,yes,Composition object (131),Tak,Mleko spożywcze
-38,146,6,yes,Composition object (134),Tak,Masło
-38,158,50,yes,Composition object (136),Tak,Chałka
-41,96,60,yes,Composition object (143),Tak,Mięso z kurczaka
-41,118,40,yes,Composition object (144),Tak,Ryż biały
-41,58,65,yes,Composition object (145),Tak,Fasola szparagowa
-41,106,25,yes,Composition object (146),Tak,Papryka czerwona
-43,69,50,yes,Composition object (154),Tak,Jogurt naturalny
-43,86,26,yes,Composition object (155),Tak,Maliny
-43,153,15,yes,Composition object (156),Tak,Truskawki mrożone
-43,97,2,yes,Composition object (157),Tak,Miód pszczeli
-47,39,42,yes,Composition object (168),Tak,Brokuły
-47,52,5,yes,Composition object (169),Tak,Czosnek
-47,150,20,yes,Composition object (170),Tak,Chleb zwykły (pszenno-żytni)
-45,79,13,yes,Composition object (162),Tak,Kiwi
-46,93,27,yes,Composition object (163),Tak,Mięso wieprzowe
-46,94,40,yes,Composition object (164),Tak,Mięso wołowe
-46,160,40,yes,Composition object (165),Tak,Kasza gryczana
-46,43,105,yes,Composition object (166),Tak,Burak
-46,44,30,yes,Composition object (167),Tak,Cebula
-48,150,40,yes,Composition object (171),Tak,Chleb zwykły (pszenno-żytni)
-48,146,6,yes,Composition object (172),Tak,Masło
-48,114,15,yes,Composition object (173),Tak,Pomidor
-48,102,15,yes,Composition object (174),Tak,Ogórek
-48,120,10,yes,Composition object (175),Tak,Rzodkiewka
-48,125,47,yes,Composition object (176),Tak,Ser twarogowy
-48,131,1.2,yes,Composition object (177),Tak,Szczypiorek
-48,134,17,yes,Composition object (178),Tak,Szynka wieprzowa
-48,161,12,yes,Composition object (179),Tak,Płatki jęczmienne
-48,99,200,yes,Composition object (180),Tak,Mleko spożywcze
-49,162,13.2,yes,Composition object (181),Tak,Wafle kukurydziane
-49,163,200,yes,Composition object (182),Tak,Sok jabłkowy
-50,160,50,yes,Composition object (183),Tak,Kasza gryczana
-50,93,80,yes,Composition object (184),Tak,Mięso wieprzowe
-50,120,70,yes,Composition object (185),Tak,Rzodkiewka
-50,89,100,yes,Composition object (186),Tak,Marchew
-51,95,17,yes,Composition object (187),Tak,Mięso z indyka
-51,96,50,yes,Composition object (188),Tak,Mięso z kurczaka
-51,89,30,yes,Composition object (189),Tak,Marchew
-51,84,62,yes,Composition object (190),Tak,Makaron
-51,87,100,uncertain,Composition object (191),Nie wiem,Mandarynki
-52,45,35,yes,Composition object (192),Tak,Chleb wieloziarnisty
-52,146,5,yes,Composition object (193),Tak,Masło
-52,125,50,yes,Composition object (194),Tak,Ser twarogowy
-52,97,3.6,yes,Composition object (195),Tak,Miód pszczeli
-52,106,3.5,yes,Composition object (196),Tak,Papryka czerwona
-52,114,10,yes,Composition object (197),Tak,Pomidor
-52,102,10,yes,Composition object (198),Tak,Ogórek
-52,121,5,yes,Composition object (199),Tak,Sałata
-52,99,200,yes,Composition object (200),Tak,Mleko spożywcze
-53,97,3,yes,Composition object (205),Tak,Miód pszczeli
-53,99,100,yes,Composition object (201),Tak,Mleko spożywcze
-53,38,18,yes,Composition object (202),Tak,Banan
-53,153,76,yes,Composition object (203),Tak,Truskawki mrożone
-53,86,30,yes,Composition object (204),Tak,Maliny
-54,96,28,yes,Composition object (206),Tak,Mięso z kurczaka
-54,80,8,yes,Composition object (207),Tak,Koncentrat pomidorowy
-54,119,30,yes,Composition object (208),Tak,Ryż brązowy
-56,113,317,yes,Composition object (213),Tak,Pomarańcza
-55,NA,150,yes,Composition object (209),Tak,NA
-55,NA,60,yes,Composition object (210),Tak,NA
-55,NA,40,yes,Composition object (211),Tak,NA
-55,74,20,yes,Composition object (212),Tak,Kapusta biała
-57,99,200,yes,Composition object (214),Tak,Mleko spożywcze
-57,111,15,yes,Composition object (215),Tak,Płatki kukurydziane
-57,45,40,yes,Composition object (216),Tak,Chleb wieloziarnisty
-57,146,6,yes,Composition object (217),Tak,Masło
-57,95,44,yes,Composition object (218),Tak,Mięso z indyka
-57,114,15,yes,Composition object (219),Tak,Pomidor
-57,103,20,yes,Composition object (220),Tak,Ogórek kiszony
-58,62,120,yes,Composition object (221),Tak,Gruszka
-58,63,87,yes,Composition object (222),Tak,Jabłko
-59,93,18,yes,Composition object (223),Tak,Mięso wieprzowe
-59,147,24,yes,Composition object (224),Tak,Kiełbaski wieprzowe
-59,144,100,yes,Composition object (225),Tak,Ziemniaki
-59,89,17,yes,Composition object (226),Tak,Marchew
-59,64,20,yes,Composition object (227),Tak,Jaja kurze
-60,164,70,yes,Composition object (228),Tak,Sandacz
-60,144,120,yes,Composition object (229),Tak,Ziemniaki
-60,74,50,yes,Composition object (230),Tak,Kapusta biała
-60,89,10,yes,Composition object (231),Tak,Marchew
-60,44,10,yes,Composition object (232),Tak,Cebula
+19,121,14,yes,Composition object (70),yes,Sałata
+19,146,6,yes,Composition object (71),yes,Masło
+19,121,3,yes,Composition object (72),yes,Sałata
+23,125,46,national,Composition object (80),Produkt krajowy,Ser twarogowy
+23,89,75,regional,Composition object (81),Produkt regionalny (z województwa pomorskiego),Marchew
+23,84,100,national,Composition object (79),Produkt krajowy,Makaron
+30,93,33,local,Composition object (104),Produkt lokalny (ze Słupska lub okolic w granicach 100 km),Mięso wieprzowe
+30,77,47,national,Composition object (105),Produkt krajowy,Kasza jęczmienna
+30,144,47,regional,Composition object (106),Produkt regionalny (z województwa pomorskiego),Ziemniaki
+30,89,28,regional,Composition object (107),Produkt regionalny (z województwa pomorskiego),Marchew
+36,157,15,national,Composition object (124),Produkt krajowy,Wafle ryżowe
+36,156,95,inside_europe,Composition object (125),Produkt z Europy,Mandarynka
+34,142,120,inside_europe,Composition object (118),Produkt z Europy,Winogrona
+35,93,60,local,Composition object (119),Produkt lokalny (ze Słupska lub okolic w granicach 100 km),Mięso wieprzowe
+35,39,20,regional,Composition object (120),Produkt regionalny (z województwa pomorskiego),Brokuły
+35,58,22,regional,Composition object (121),Produkt regionalny (z województwa pomorskiego),Fasola szparagowa
+35,72,15,regional,Composition object (122),Produkt regionalny (z województwa pomorskiego),Kalafior
+35,89,40,regional,Composition object (123),Produkt regionalny (z województwa pomorskiego),Marchew
+33,45,35,local,Composition object (112),Produkt lokalny (ze Słupska lub okolic w granicach 100 km),Chleb wieloziarnisty
+33,146,5,regional,Composition object (113),Produkt regionalny (z województwa pomorskiego),Masło
+33,135,25,regional,Composition object (114),Produkt regionalny (z województwa pomorskiego),Szynka z indyka
+33,102,10,regional,Composition object (115),Produkt regionalny (z województwa pomorskiego),Ogórek
+33,106,10,regional,Composition object (116),Produkt regionalny (z województwa pomorskiego),Papryka czerwona
+33,114,10,regional,Composition object (117),Produkt regionalny (z województwa pomorskiego),Pomidor
+39,142,100,inside_europe,Composition object (137),Produkt z Europy,Winogrona
+41,96,60,local,Composition object (143),Produkt lokalny (ze Słupska lub okolic w granicach 100 km),Mięso z kurczaka
+41,118,40,outside_europe,Composition object (144),Produkt spoza Europy,Ryż biały
+41,58,65,regional,Composition object (145),Produkt regionalny (z województwa pomorskiego),Fasola szparagowa
+41,106,25,regional,Composition object (146),Produkt regionalny (z województwa pomorskiego),Papryka czerwona
+40,93,34,local,Composition object (138),Produkt lokalny (ze Słupska lub okolic w granicach 100 km),Mięso wieprzowe
+40,144,97,regional,Composition object (139),Produkt regionalny (z województwa pomorskiego),Ziemniaki
+40,89,30,regional,Composition object (140),Produkt regionalny (z województwa pomorskiego),Marchew
+40,150,15,local,Composition object (141),Produkt lokalny (ze Słupska lub okolic w granicach 100 km),Chleb zwykły (pszenno-żytni)
+40,159,37,regional,Composition object (142),Produkt regionalny (z województwa pomorskiego),Pieczarki
+38,84,50,national,Composition object (132),Produkt krajowy,Makaron
+38,55,60,national,Composition object (133),Produkt krajowy,Dżem z owoców
+38,127,22,regional,Composition object (135),Produkt regionalny (z województwa pomorskiego),Serek twarogowy homogenizowany
+38,99,250,national,Composition object (131),Produkt krajowy,Mleko spożywcze
+38,146,6,regional,Composition object (134),Produkt regionalny (z województwa pomorskiego),Masło
+38,158,50,local,Composition object (136),Produkt lokalny (ze Słupska lub okolic w granicach 100 km),Chałka
+29,41,40,inside_europe,Composition object (103),Produkt z Europy,Brzoskwinia
+29,69,100,national,Composition object (102),Produkt krajowy,Jogurt naturalny
+42,45,35,local,Composition object (147),Produkt lokalny (ze Słupska lub okolic w granicach 100 km),Chleb wieloziarnisty
+42,146,5,national,Composition object (148),Produkt krajowy,Masło
+42,126,35,national,Composition object (149),Produkt krajowy,Ser żółty
+42,99,250,national,Composition object (150),Produkt krajowy,Mleko spożywcze
+42,114,10,regional,Composition object (151),Produkt regionalny (z województwa pomorskiego),Pomidor
+42,102,10,regional,Composition object (152),Produkt regionalny (z województwa pomorskiego),Ogórek
+42,121,5,regional,Composition object (153),Produkt regionalny (z województwa pomorskiego),Sałata
+47,52,5,regional,Composition object (169),Produkt regionalny (z województwa pomorskiego),Czosnek
+47,150,20,local,Composition object (170),Produkt lokalny (ze Słupska lub okolic w granicach 100 km),Chleb zwykły (pszenno-żytni)
+47,39,42,regional,Composition object (168),Produkt regionalny (z województwa pomorskiego),Brokuły
+45,79,13,outside_europe,Composition object (162),Produkt spoza Europy,Kiwi
+46,93,27,local,Composition object (163),Produkt lokalny (ze Słupska lub okolic w granicach 100 km),Mięso wieprzowe
+46,94,40,national,Composition object (164),Produkt krajowy,Mięso wołowe
+46,160,40,national,Composition object (165),Produkt krajowy,Kasza gryczana
+46,43,105,regional,Composition object (166),Produkt regionalny (z województwa pomorskiego),Burak
+46,44,30,regional,Composition object (167),Produkt regionalny (z województwa pomorskiego),Cebula
+43,86,26,regional,Composition object (155),Produkt regionalny (z województwa pomorskiego),Maliny
+43,153,15,regional,Composition object (156),Produkt regionalny (z województwa pomorskiego),Truskawki mrożone
+43,97,2,local,Composition object (157),Produkt lokalny (ze Słupska lub okolic w granicach 100 km),Miód pszczeli
+43,69,50,national,Composition object (154),Produkt krajowy,Jogurt naturalny
+32,137,200,regional,Composition object (111),Produkt regionalny (z województwa pomorskiego),Śliwki
+18,63,180,regional,Composition object (64),Produkt regionalny (z województwa pomorskiego),Jabłko
+20,113,200,inside_europe,Composition object (73),Produkt z Europy,Pomarańcza
+22,153,58,regional,Composition object (22),Produkt regionalny (z województwa pomorskiego),Truskawki mrożone
+22,63,37,regional,Composition object (76),Produkt regionalny (z województwa pomorskiego),Jabłko
+22,139,11,national,Composition object (77),Produkt krajowy,"Śmietana, 18% tłuszczu"
+22,152,2,national,Composition object (78),Produkt krajowy,Cukier puder
+51,95,17,local,Composition object (187),Produkt lokalny (ze Słupska lub okolic w granicach 100 km),Mięso z indyka
+51,96,50,local,Composition object (188),Produkt lokalny (ze Słupska lub okolic w granicach 100 km),Mięso z kurczaka
+51,89,30,regional,Composition object (189),Produkt regionalny (z województwa pomorskiego),Marchew
+51,84,62,national,Composition object (190),Produkt krajowy,Makaron
+51,87,100,inside_europe,Composition object (191),Produkt z Europy,Mandarynki
+50,160,50,national,Composition object (183),Produkt krajowy,Kasza gryczana
+50,93,80,local,Composition object (184),Produkt lokalny (ze Słupska lub okolic w granicach 100 km),Mięso wieprzowe
+50,120,70,regional,Composition object (185),Produkt regionalny (z województwa pomorskiego),Rzodkiewka
+50,89,100,regional,Composition object (186),Produkt regionalny (z województwa pomorskiego),Marchew
+49,162,13.2,national,Composition object (181),Produkt krajowy,Wafle kukurydziane
+49,163,200,local,Composition object (182),Produkt lokalny (ze Słupska lub okolic w granicach 100 km),Sok jabłkowy
+37,146,2.5,regional,Composition object (127),Produkt regionalny (z województwa pomorskiego),Masło
+37,122,50,regional,Composition object (128),Produkt regionalny (z województwa pomorskiego),Seler korzeniowy
+37,89,10,regional,Composition object (129),Produkt regionalny (z województwa pomorskiego),Marchew
+37,69,10,regional,Composition object (130),Produkt regionalny (z województwa pomorskiego),Jogurt naturalny
+37,125,100,regional,Composition object (126),Produkt regionalny (z województwa pomorskiego),Ser twarogowy
+60,144,120,regional,Composition object (229),Produkt regionalny (z województwa pomorskiego),Ziemniaki
+60,74,50,regional,Composition object (230),Produkt regionalny (z województwa pomorskiego),Kapusta biała
+60,89,10,regional,Composition object (231),Produkt regionalny (z województwa pomorskiego),Marchew
+60,44,10,regional,Composition object (232),Produkt regionalny (z województwa pomorskiego),Cebula
+60,164,70,local,Composition object (228),Produkt lokalny (ze Słupska lub okolic w granicach 100 km),Sandacz
+59,93,18,local,Composition object (223),Produkt lokalny (ze Słupska lub okolic w granicach 100 km),Mięso wieprzowe
+59,147,24,regional,Composition object (224),Produkt regionalny (z województwa pomorskiego),Kiełbaski wieprzowe
+59,144,100,regional,Composition object (225),Produkt regionalny (z województwa pomorskiego),Ziemniaki
+59,89,17,regional,Composition object (226),Produkt regionalny (z województwa pomorskiego),Marchew
+59,64,20,local,Composition object (227),Produkt lokalny (ze Słupska lub okolic w granicach 100 km),Jaja kurze
+57,103,20,regional,Composition object (220),Produkt regionalny (z województwa pomorskiego),Ogórek kiszony
+57,99,200,national,Composition object (214),Produkt krajowy,Mleko spożywcze
+57,114,15,regional,Composition object (219),Produkt regionalny (z województwa pomorskiego),Pomidor
+57,111,15,national,Composition object (215),Produkt krajowy,Płatki kukurydziane
+57,45,40,local,Composition object (216),Produkt lokalny (ze Słupska lub okolic w granicach 100 km),Chleb wieloziarnisty
+57,146,6,national,Composition object (217),Produkt krajowy,Masło
+57,95,44,local,Composition object (218),Produkt lokalny (ze Słupska lub okolic w granicach 100 km),Mięso z indyka
+55,144,150,regional,Composition object (209),Produkt regionalny (z województwa pomorskiego),Ziemniaki
+55,83,60,local,Composition object (210),Produkt lokalny (ze Słupska lub okolic w granicach 100 km),Łosoś
+55,75,40,regional,Composition object (211),Produkt regionalny (z województwa pomorskiego),Kapusta czerwona
+55,74,20,regional,Composition object (212),Produkt regionalny (z województwa pomorskiego),Kapusta biała
+53,97,3,local,Composition object (205),Produkt lokalny (ze Słupska lub okolic w granicach 100 km),Miód pszczeli
+53,99,100,national,Composition object (201),Produkt krajowy,Mleko spożywcze
+53,38,18,outside_europe,Composition object (202),Produkt spoza Europy,Banan
+53,153,76,regional,Composition object (203),Produkt regionalny (z województwa pomorskiego),Truskawki mrożone
+53,86,30,regional,Composition object (204),Produkt regionalny (z województwa pomorskiego),Maliny
+52,102,10,regional,Composition object (198),Produkt regionalny (z województwa pomorskiego),Ogórek
+52,121,5,regional,Composition object (199),Produkt regionalny (z województwa pomorskiego),Sałata
+52,99,200,national,Composition object (200),Produkt krajowy,Mleko spożywcze
+52,45,35,local,Composition object (192),Produkt lokalny (ze Słupska lub okolic w granicach 100 km),Chleb wieloziarnisty
+52,114,10,regional,Composition object (197),Produkt regionalny (z województwa pomorskiego),Pomidor
+52,146,5,national,Composition object (193),Produkt krajowy,Masło
+52,125,50,national,Composition object (194),Produkt krajowy,Ser twarogowy
+52,97,3.6,local,Composition object (195),Produkt lokalny (ze Słupska lub okolic w granicach 100 km),Miód pszczeli
+52,106,3.5,regional,Composition object (196),Produkt regionalny (z województwa pomorskiego),Papryka czerwona
+58,62,120,local,Composition object (221),Produkt lokalny (ze Słupska lub okolic w granicach 100 km),Gruszka
+58,63,87,local,Composition object (222),Produkt lokalny (ze Słupska lub okolic w granicach 100 km),Jabłko
+56,113,317,inside_europe,Composition object (213),Produkt z Europy,Pomarańcza
+54,96,28,local,Composition object (206),Produkt lokalny (ze Słupska lub okolic w granicach 100 km),Mięso z kurczaka
+54,80,8,national,Composition object (207),Produkt krajowy,Koncentrat pomidorowy
+54,119,30,outside_europe,Composition object (208),Produkt spoza Europy,Ryż brązowy
