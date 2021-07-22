@@ -90,23 +90,21 @@ theme_set(mytheme_minimal)
 
 ```
 
-
 <!-- Inputs {.sidebar} -->
+
 <!-- ------------------------------------- -->
 
 <!-- This is not working. That would require configuring a shiny server. -->
 
 <!-- ```{r} -->
+
 <!-- # shiny inputs defined here -->
+
 <!-- ``` -->
 
+# Overview
 
-
-Overview
-=====================================
-
-Valueboxes
----------------------------------------
+## Valueboxes
 
 ### kindergartens {.value-box .no-mobile}
 
@@ -135,9 +133,7 @@ valueBox(value = nrow(dishes_df),
          icon = "fas fa-lemon")
 ```
 
-
-Dishes
-----------------------------------------
+## Dishes
 
 ### Dishes
 
@@ -165,7 +161,9 @@ bscols(
     filter_slider("health", "Perceived health", df_shared, 
                   ~health, width = "100%"),
     filter_slider("water_used", "Used Water", df_shared, 
-                  ~water_used, width = "100%")
+                  ~water_used, width = "100%"),
+    filter_slider("emissions_transport", "Transport emissions", df_shared,
+                  ~emissions_transport, width = "100%")
     
   ),
   reactable(
@@ -195,13 +193,22 @@ bscols(
         }
       ),
       type = colDef(show = FALSE),
+      emissions_transport = colDef(
+        header = rt_with_tooltip("CO2 Emissions", "Total CO2 emitted in transportation. Units: kgCO2e"),
+        align = "right",
+        cell = function(value) {
+          rt_bar_cell(value, df$emissions_transport, color_energy)
+        }
+      ),
       rating_children = colDef(
+        show = FALSE,
         name = "Rating Children", 
         # aggregate = "mean", 
         format = colFormat(digits = 1),
         cell = function(value) rt_rating_icons(value)
         ),
       rating_parents = colDef(
+        show = FALSE,
         name = "Rating Parents", 
         # aggregate = "mean", 
         format = colFormat(digits = 1),
@@ -259,7 +266,7 @@ bscols(
     nested_data <- dish_composition %>% 
       filter(dish_id == df$id[index]) %>% 
       select(ingredient_label, from_producer, weight_grams, world_total, 
-             country_total, water_used) %>% 
+             country_total, water_used, emissions_transport) %>% 
       mutate(across(where(is.numeric), round, 3))
     tbl <- reactable(nested_data, outlined = TRUE, highlight = TRUE, 
                      fullWidth = TRUE,
@@ -303,14 +310,9 @@ bscols(
 
 ```
 
+# Food
 
-
-Food
-=====================================
-
-
-Ranking dishes {.tabset}
------------------------------------------------------------------------
+## Ranking dishes {.tabset}
 
 ### Kindergartens
 
@@ -394,7 +396,6 @@ ggplotly(g)
 # 
 # ggplotly(gw)
 ```
-
 
 ### Top rated meals
 
@@ -494,6 +495,7 @@ p <- dishes_df %>%
 ggplotly(p, tooltip="name")
   
 ```
+
 ### Rating Correlations2
 
 ```{r}
@@ -525,11 +527,7 @@ p
 
 ```
 
-
-
-Tables {.tabset}
------------------------------------------------------------------------
-
+## Tables {.tabset}
 
 ### Meals
 
@@ -719,8 +717,7 @@ bscols(
 
 ```
 
-Water
-===================================== 
+# Water
 
 ```{r}
 wfp_combined <- read.csv(file = "data/wfp_combined.csv") %>% 
@@ -758,8 +755,7 @@ total_wfp_crops_local <- round(stats_wfp$total_local[2], 2)
   
 ```
 
-Valueboxes
----------------------------------------
+## Valueboxes
 
 ### wfp_animals {.value-box .no-mobile}
 
@@ -797,9 +793,7 @@ valueBox(value = paste0(format(avg_wfp_crops_local, big.mark = ","), " m3/Ton"),
          icon = "fas fa-leaf")
 ```
 
-
-Valueboxes
----------------------------------------
+## Valueboxes
 
 ### wfp_animals {.value-box .no-mobile}
 
@@ -837,9 +831,7 @@ valueBox(value = paste0(format(total_wfp_crops_local, big.mark = ","), " m3/Ton"
          icon = "fas fa-leaf")
 ```
 
-
-Water {.tabset}
------------------------------------------------------------------------
+## Water {.tabset}
 
 ### Ingredients
 
@@ -949,8 +941,7 @@ bscols(
 
 ```
 
-
-### Meals 
+### Meals
 
 ```{r dish_water_table}
 df <- dishes_df %>% 
@@ -1052,24 +1043,224 @@ bscols(
 
 ### Things to consider
 
-* Water footprint units are m3/Tonne
-* Water footprint figures were obtained from https://waterfootprint.org/
-* Not all the ingredients used in Slupsk's kindergartens were listed in Hoepstra's work.
-* Fishes' water footprint is NULL (check that. At least, they do not appear in Hoepstra's work)
-* Not all crops can't be cultivated in Poland
+-   Water footprint units are m3/Tonne
+-   Water footprint figures were obtained from <https://waterfootprint.org/>
+-   Not all the ingredients used in Slupsk's kindergartens were listed in Hoepstra's work.
+-   Fishes' water footprint is NULL (check that. At least, they do not appear in Hoepstra's work)
+-   Not all crops can't be cultivated in Poland
 
+# Energy
 
+## Valueboxes
 
-Energy
-===================================== 
-
-We do not have any data regarding energy.
-
-
-Menu builder
-===================================== 
+### emissions_truck {.value-box .no-mobile}
 
 ```{r}
+
+valueBox(value = paste0(format(1.470042, big.mark = ","), " kgCO2e/unit"), 
+         caption = "are emitted to the atmosphere per km by truck", 
+         icon = "fas fa-truck-moving")
+```
+
+### emissinos_train {.value-box .no-mobile}
+
+```{r}
+
+valueBox(value = paste0(format(0.0232094, big.mark = ","), " kgCO2e/unit"), 
+         caption = "are emitted to the atmosphere per km by train", 
+         icon = "fas fa-train")
+```
+
+### emissinos_ship {.value-box .no-mobile}
+
+```{r}
+
+valueBox(value = paste0(format(0.060074, big.mark = ","), " kgCO2e/unit"), 
+         caption = "are emitted to the atmosphere per km by ferry", 
+         icon = "fas fa-ship")
+```
+
+### emissions_air {.value-box .no-mobile}
+
+```{r}
+
+valueBox(value = paste0(format(1.318653, big.mark = ","), " kgCO2e/unit"), 
+         caption = "are emitted to the atmosphere per km by airplane", 
+         icon = "fas fa-plane")
+```
+
+## Table
+
+### Dishes' energy
+
+
+```{r dish_summary_energy}
+df <- dishes_df %>% 
+  relocate(picture) %>% 
+  select(-kindergarten_id, -date, -allergens, -ends_with("label"), -water_world,
+         -water_local, -water_saving_local) %>% 
+  mutate(water_used = round(water_used, 3))
+
+df_shared <- SharedData$new(df)
+
+bscols(
+  widths = c(2, 10),
+  list(
+    # filter_select("kindergarten", "Kindergarten", df_shared, ~kindergarten),
+    filter_select("type", "Type", df_shared, ~type),
+    filter_slider("calories", "Calories", df_shared, ~calories),
+    filter_slider("emissions_transport", "Transport emissions", df_shared,
+                  ~emissions_transport, width = "100%")
+    
+  ),
+  reactable(
+    df_shared,
+    pagination = FALSE, 
+    highlight = TRUE, 
+    height = 700,
+    searchable = TRUE,
+    defaultSorted = list(water_used = "desc"),
+    defaultColDef = colDef(sortNALast = TRUE),
+    columns = list(
+      picture =  colDef(
+        maxWidth = 110,
+        name = "",
+        cell = function(value) {
+          image <- img(src =  value, width = "100px", alt = value)
+        }),
+      id = colDef(show = FALSE),
+      name = colDef(
+        # Show dish type under character names
+        cell = function(value, index) {
+          type <- df$type[index]
+          tagList(
+            div(style = list(fontWeight = 600), value),
+            div(style = list(fontSize = 12), type)
+          )
+        }
+      ),
+      type = colDef(show = FALSE),
+      emissions_transport = colDef(
+        header = rt_with_tooltip("CO2 Emissions", "Total CO2 emitted in transportation. Units: kgCO2e"),
+        align = "right",
+        cell = function(value) {
+          rt_bar_cell(value, df$emissions_transport, color_energy)
+        }
+      ),
+      rating_children = colDef(
+        show = FALSE,
+        name = "Rating Children", 
+        # aggregate = "mean", 
+        format = colFormat(digits = 1),
+        cell = function(value) rt_rating_icons(value)
+        ),
+      rating_parents = colDef(
+        show = FALSE,
+        name = "Rating Parents", 
+        # aggregate = "mean", 
+        format = colFormat(digits = 1),
+        cell = function(value) rt_rating_icons(value, color = color_energy)
+        ),
+      rating_average = colDef(
+        name = "Rating (Average)", 
+        # aggregate = "mean", 
+        format = colFormat(digits = 1),
+        cell = function(value) rt_rating_icons(value, color = color_wfp_blue)
+        ),
+      health = colDef(
+        header = rt_with_tooltip("Perceived Health", "Average of parents' ratings on perceived health. High values do not necessarily mean that the meal is healthy."),
+        # name = "Perceived Health",
+        aggregate = "mean",
+        format = colFormat(digits = 1),
+        cell = function(value) rt_rating_icons(value, icon = "heart", color = color_food)
+      ),
+      water_used = colDef(
+        header = rt_with_tooltip("Water used", "Total Water Used. Units: m3"),
+        align = "right",
+        cell = function(value) {
+          rt_bar_cell(value, df$water_used, color_water)
+        }),
+      water_saving_current = colDef(
+        header = rt_with_tooltip("Water Saving", "Difference between the current choice of ingredients compared to the same ingredients being produced elsewhere. Negative values mean reduction of water, and therefore, desirable."),
+        format = colFormat(percent = TRUE, digits = 2),
+        style = function(value) {
+          if (is.na(value)) {
+            return()
+          } else if ( value > 0) {
+            color <- "red"
+          } else {
+            color <- "green"
+          }
+          list(color = color, fontWeight = "bold")
+        }
+      ),
+      water_saving_potential = colDef(
+        header = rt_with_tooltip("Potential water Saving", "Difference between the current choice of ingredients compared to the same ingredients being produced locally. Higher values represent greater room for improvement."),
+        format = colFormat(percent = TRUE, digits = 2),
+        style = function(value) {
+          if (is.na(value)) {
+            return()
+          } else if ( value > 0) {
+            color <- "red"
+          } else {
+            color <- "green"
+          }
+          list(color = color, fontWeight = "bold")
+        }
+      )
+    ),
+    details = function(index) {
+    nested_data <- dish_composition %>% 
+      filter(dish_id == df$id[index]) %>% 
+      select(ingredient_label, from_producer, weight_grams, world_total, 
+             country_total, water_used, emissions_transport) %>% 
+      mutate(across(where(is.numeric), round, 3))
+    tbl <- reactable(nested_data, outlined = TRUE, highlight = TRUE, 
+                     fullWidth = TRUE,
+                     columns = list(
+                       ingredient_label = colDef(
+                         name = "Ingredient",
+                         minWidth = 300),
+                       from_producer = colDef(
+                         name = "Produced in Poland?",
+                         cell = function(value) {
+                           if (!is.na(value)) {
+                             # Render as ✓ or ✘ or ?
+                             if(value == "local" | value == "national" | 
+                                value == "regional"| value == "yes") {
+                               "\u2713"
+                             } else if (value == "inside_europe" | 
+                                        value == "outside_europe") {
+                               "\u2718"
+                             } else {
+                               "?"
+                             }
+                           }
+                        }),
+                       weight_grams = colDef(name = "Weight (g)"),
+                       world_total = colDef(
+                         header = rt_with_tooltip("Water Footprint (Avg)", "Total Water Footprint, using world averages. Units: m3/Ton")
+                       ),
+                       country_total = colDef(
+                         header = rt_with_tooltip("Water Footprint (PL)", "Total Water Footprint, assuming it was produced in Poland. Units: m3/Ton")
+                       ),
+                       water_used = colDef(
+                         header = rt_with_tooltip("Water used", "Total Water Used. Units: m3")
+                       )
+                     ))
+    htmltools::div(class = "nested_table", tbl)
+  },
+  onClick = "expand",
+  rowStyle = list(cursor = "pointer")
+  )
+)
+
+```
+
+
+<!-- # Menu builder -->
+
+```{r eval=FALSE, include=FALSE}
 ingredients_dic <- read_csv("data-raw/ingredients_dictionary.csv") %>% 
   select(name_en, category)
 
@@ -1114,23 +1305,20 @@ bscols(
 
 ```
 
-About
-===================================== 
+# About
 
 #### About this dashboard
-
 
 An open source prototype for a visual interface to support research and Nexus engagements, designed collaborativelly as part of [Creating interfaces](https://creatinginterfaces.eifer.kit.edu/)' WP4, developed by the [Institute for Global Sustainable Development](https://warwick.ac.uk/fac/arts/schoolforcross-facultystudies/igsd) at the [University of Warwick](https://warwick.ac.uk/).
 
 ![](img/IGSD_logo.jpg)
 
-
 #### Aim
 
-* What are the consequences of our choices?
-* Which small changes can we make in our food to make them more sustainable?
+-   What are the consequences of our choices?
+-   Which small changes can we make in our food to make them more sustainable?
 
 #### Source Code
 
-* Source Code: https://github.com/IGSD-UoW/wfenexus
-* Licence: [GPL](https://github.com/IGSD-UoW/wfenexus/blob/main/LICENSE)
+-   Source Code: <https://github.com/IGSD-UoW/wfenexus>
+-   Licence: [GPL](https://github.com/IGSD-UoW/wfenexus/blob/main/LICENSE)

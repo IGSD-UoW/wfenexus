@@ -31,7 +31,7 @@ urls_all <- c(url_dishes, url_ingredients, url_kindergartens, url_producers,
 if (isTRUE(retrieve_data) ) {
   kindergartens <- ci_get_data(url_kindergartens, "kindergartens.csv")
 
-  ingredients <- ci_get_data(url_ingredients, "ingredients.csv")
+  ingredients_df <- ci_get_data(url_ingredients, "ingredients.csv")
 
   dishrating_raw <- ci_get_data(url_ratings, "dishrating.csv")
 
@@ -131,7 +131,8 @@ wfp_animals <- wfp_animals %>%
   # duplicates, so then summarise average values for same values.
 
 
-ingredients_dic <- read_csv("slupsk/data-raw/ingredients_dictionary.csv")
+ingredients_dic <- read_csv("slupsk/data-raw/ingredients_dictionary.csv") %>%
+  select(-category)
 
 # TODO: create a function to merge water footprint only from crops and animals
 # with ingredients.
@@ -187,6 +188,8 @@ write.csv(pot_local_ingredients, file = "slupsk/data/pot_local_ingredients.csv",
           row.names = FALSE)
 
 
+
+
 # Meals rating -------------------------------------------------------------
 
 dishrating <- read_csv("slupsk/data-raw/dishrating.csv") %>%
@@ -210,7 +213,51 @@ dish_composition <- read_csv(
          water_saving_potential =
            (water_saving_current - water_saving_local)/water_saving_local)
 
+# write_csv(dish_composition, "slupsk/data/dish_composition.csv")
+
+
+
+# Energy footprint --------------------------------------------------------
+
+# Creates a dataframe with distances based on the ingredients' origin values
+# from the tool.
+energy_assumptions_df <- tibble(
+  # All the possible values from the tool.
+  origin = c("yes", "local", "regional", "national", "inside_europe",
+             "outside_europe"),
+  # Estimated values.
+  km = c(50, 50, 100, 1000, 3000, 10000),
+  # Values from https://ghgprotocol.org/ghg-emissions-calculation-tool
+  # DISCLAIMER: it was originally intended for people's transportation
+  # TODO: find better values.
+  transport = c("truck", "truck", "truck", "truck", "truck", "air")
+)
+
+
+# Source: https://ghgprotocol.org/ghg-emissions-calculation-tool
+emission_factor <- tibble(
+  transport = c("truck", "rail", "ferry", "air"),
+  emission_factor = c(1.470042, 0.0232094, 0.060074, 1.318653)
+)
+
+emissions_df <- energy_assumptions_df %>%
+  left_join(emission_factor, by = c("transport")) %>%
+  mutate(emissions_transport = km * emission_factor)
+
+dish_composition <- dish_composition %>%
+  # select(dish_id, ingredient_id, name, name_en, from_producer) %>%
+  left_join(emissions_df, by = c("from_producer" = "origin"))
+
+
+
+# Store dish composition with all the calculated values -------------------
+
 write_csv(dish_composition, "slupsk/data/dish_composition.csv")
+
+
+# Dishes footprint --------------------------------------------------------
+
+# Aggregates values per dish, based on their ingredients' properties
 
 wfp_dish <- dish_composition %>%
   group_by(dish_id) %>%
@@ -221,6 +268,10 @@ wfp_dish <- dish_composition %>%
          water_saving_local = (water_local - water_world) / water_world,
          water_saving_potential =water_saving_local - water_saving_current)
 
+energy_dish <- dish_composition %>%
+  group_by(dish_id) %>%
+  summarise(emissions_transport = sum(emissions_transport))
+
 
 dishes_raw <- read_csv("slupsk/data-raw/dishes.csv") %>%
   mutate(waste = as.factor(waste)) %>%
@@ -229,6 +280,7 @@ dishes_raw <- read_csv("slupsk/data-raw/dishes.csv") %>%
   mutate(waste = fct_relevel(waste, "<5", "5<10", "11<25", ">25"))
 
 dishes <- ci_dishratings(dishes_raw, dishrating) %>%
-  left_join(wfp_dish, by = c("id" = "dish_id"))
+  left_join(wfp_dish, by = c("id" = "dish_id")) %>%
+  left_join(energy_dish, by = c("id" = "dish_id"))
 
 write_csv(dishes, file = "slupsk/data/dishes.csv")
