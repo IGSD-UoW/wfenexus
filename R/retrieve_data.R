@@ -4,11 +4,11 @@
 #' @param json String pointing to a JSON's URL from the tool.
 #' @param filename String containing the filename to store a csv.
 #' @return Dataframe.
-ci_get_data <- function(json, filename = NULL) {
+ci_get_data <- function(json, filename = NULL, city = "slupsk") {
   df <- as.data.frame(fromJSON(json)[["list"]])
 
   if (!is.null(filename)) {
-    write_csv(df, file = here::here("slupsk/data-raw/", filename))
+    write_csv(df, file = here::here(city, "/data-raw/", filename))
   }
 
   return(df)

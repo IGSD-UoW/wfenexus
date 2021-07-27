@@ -1,0 +1,4 @@
+id,name,type,product,address,phone,email,website,toggle,latitude,longitude,accuracy,label,toggle_label
+3,JOHN,AGROFOOD,"CORN, TOMATOES, POTATOES",,,,,interactive,45.177616,28.819174,6.728,JOHN,Punct pe hartă / Point on Map
+4,GG,,,,,,,interactive,45.185887,28.818701,3.363,GG,Punct pe hartă / Point on Map
+5,food,AGROFOOD,miere. alune,,,,,interactive,45.183354,28.799966,3.364,food,Punct pe hartă / Point on Map

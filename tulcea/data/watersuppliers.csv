@@ -1,0 +1,2 @@
+id,name,type,address,phone,email,website,toggle,latitude,longitude,accuracy,bogza,mila,irrigation_supply,label,toggle_label,irrigation_supply_label
+2,Aquaserv,local,,,,,interactive,45.16719,28.792886,3.364,NA,NA,source_ro,Aquaserv,Punct pe hartă / Point on Map,Din sursă
