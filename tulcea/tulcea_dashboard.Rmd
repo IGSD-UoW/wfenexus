@@ -32,7 +32,8 @@ producers_df <- read.csv("data/producers.csv") %>%
   mutate(data_type = "Producers")
 
 combined_df <- salepoints_df %>% 
-  full_join(producers_df)
+  full_join(producers_df) %>% 
+  mutate(data_type = as.factor(data_type))
 
 
 # Colours
@@ -80,6 +81,7 @@ Interactive Map {data-icon="ion-map"}
 
 ```{r}
 sd <- SharedData$new(combined_df)
+#shared_producers <- SharedData$new(producers_df)
 ```
 
 
@@ -98,6 +100,12 @@ filter_select(
 )
 
 bscols(
+  filter_checkbox(
+    id = "chkb_category",
+    label = "Category (Producers)",
+    sharedData = sd,
+    group = ~category_label
+  ),
   filter_checkbox(
     id = "ckb_type",
     label = "Type",
@@ -188,7 +196,45 @@ Column {.tabset .tabset-fade data-width=600}
 ### Interactive map
     
 ```{r}
-groups <- c("Sale Points")
+groups <- c("Sale Points", "Producers")
+
+getMkColor <- function(df) {
+  sapply(df$data_type, function(data_type) {
+  if(data_type == "Sale Points") {
+    "orange"
+  } else if(data_type == "Producers") {
+    "green"
+  } else {
+    "red"
+  } })
+}
+
+getMkIcon <- function(df) {
+  sapply(df$category, function(category) {
+  if(category == "dairy_products_ro") {
+    "orange"
+  } else if(data_type == "fruits_ro") {
+    "fa-apple-alt"
+  } else {
+    "red"
+  } })
+}
+
+popup_content <- paste0(
+      "<h5>", combined_df$name, "</h5>",
+      
+      "<table style='width:100%'>",
+      
+      "<tr>",
+      "<th>Type</th>",
+      "<td>", combined_df$type, "</td>",
+      "</tr>",
+      
+      "<tr>",
+      "<tr>",
+      "<th>Address</th>",
+      "<td>", combined_df$address, "</td>",
+      "</tr>")
 
 map <- leaflet(sd) %>% 
   addProviderTiles("CartoDB.Positron", group = "Positron (default)", 
@@ -196,20 +242,36 @@ map <- leaflet(sd) %>%
   addTiles(group = "OSM") %>% 
   addProviderTiles(providers$Stamen.Toner, group = "Toner") %>%
   addProviderTiles(providers$Stamen.TonerLite, group = "Toner Lite") %>%
-  # addMiniMap(
-  #   tiles = providers$CartoDB.Positron,
-  #   toggleDisplay = TRUE ) %>% 
   # Add data
-  addMarkers(data = sd, ~longitude, ~latitude, 
-             popup = ~as.character(name), 
-             label = ~as.character(name), 
-             group = "Sale Points") %>% 
+  addAwesomeMarkers(
+    data = sd, ~longitude, ~latitude, 
+    popup = ~popup_content,
+    label = ~name,
+    icon = awesomeIcons(
+      library = "ion",
+      # icon = ifelse(
+      #   test = combined_df$data_type == "1 Outstanding",
+      #   yes = "ion-android-star-outline",
+      #   no = "ion-android-radio-button-off"
+      # ),
+      iconColor = "white",
+      markerColor = getMkColor(combined_df)
+    ) # end of icon
+  ) %>%
   # Adds controls
   addLayersControl(
     baseGroups = c("Positron (default)", "OSM", "Toner", "Toner Lite"),
     overlayGroups = groups,
     options = layersControlOptions(collapsed = TRUE)
   ) %>% 
+  addLegend("bottomright", 
+    colors =c("orange", "green", "red"),
+    labels= c("Sale points", "Producers", "Other"),
+    title= "Type of data",
+    opacity = 1) %>% 
+  # addMiniMap(
+  #   tiles = providers$CartoDB.Positron,
+  #   toggleDisplay = TRUE ) %>% 
   leaflet::addMeasure()
 
 map
@@ -220,38 +282,6 @@ map
 
 Plot here
 
-# Overview
-
-
-```{r}
-groups <- c("Sale points")
-
-map <- leaflet() %>% 
-  addProviderTiles("CartoDB.Positron", group = "Positron (default)", 
-                   layerId = "basetile") %>% 
-  addTiles(group = "OSM") %>% 
-  addProviderTiles(providers$Stamen.Toner, group = "Toner") %>%
-  addProviderTiles(providers$Stamen.TonerLite, group = "Toner Lite") %>%
-  # addMiniMap(
-  #   tiles = providers$CartoDB.Positron,
-  #   toggleDisplay = TRUE ) %>% 
-  # Add data
-  addMarkers(data = salepoints_df, ~longitude, ~latitude, 
-             popup = ~as.character(name), 
-             label = ~as.character(name), 
-             group = "Sale Points") %>% 
-  # Adds controls
-  addLayersControl(
-    baseGroups = c("Positron (default)", "OSM", "Toner", "Toner Lite"),
-    overlayGroups = c("Sale Points", "Outline"),
-    options = layersControlOptions(collapsed = TRUE)
-  )
-
-map
-
-
-
-```
 
 
 About {data-icon="ion-information-circled"}
