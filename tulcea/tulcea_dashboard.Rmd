@@ -25,7 +25,14 @@ library(tidyverse)
 library(wfenexus)
 
 # Load data
-salepoints_df <- read_csv("data/salepoints.csv")
+salepoints_df <- read_csv("data/salepoints.csv") %>% 
+  mutate(data_type = "Sale Points")
+
+producers_df <- read.csv("data/producers.csv") %>% 
+  mutate(data_type = "Producers")
+
+combined_df <- salepoints_df %>% 
+  full_join(producers_df)
 
 
 # Colours
@@ -72,7 +79,7 @@ Interactive Map {data-icon="ion-map"}
 =====================================  
 
 ```{r}
-sd <- SharedData$new(salepoints_df)
+sd <- SharedData$new(combined_df)
 ```
 
 
@@ -84,10 +91,10 @@ Column {data-width=400}
 
 ```{r filters}
 filter_select(
-  id = "type",
-  label = "Type",
+  id = "sel_data_type",
+  label = "Type of Point",
   sharedData = sd,
-  group = ~type
+  group = ~data_type
 )
 
 bscols(
@@ -181,7 +188,7 @@ Column {.tabset .tabset-fade data-width=600}
 ### Interactive map
     
 ```{r}
-groups <- c("Sale points")
+groups <- c("Sale Points")
 
 map <- leaflet(sd) %>% 
   addProviderTiles("CartoDB.Positron", group = "Positron (default)", 
@@ -200,7 +207,7 @@ map <- leaflet(sd) %>%
   # Adds controls
   addLayersControl(
     baseGroups = c("Positron (default)", "OSM", "Toner", "Toner Lite"),
-    overlayGroups = c("Sale Points", "Outline"),
+    overlayGroups = groups,
     options = layersControlOptions(collapsed = TRUE)
   ) %>% 
   leaflet::addMeasure()
