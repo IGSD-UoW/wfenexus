@@ -26,13 +26,36 @@ library(wfenexus)
 
 # Load data
 salepoints_df <- read_csv("data/salepoints.csv") %>% 
-  mutate(data_type = "Sale Points")
+  mutate(data_type = "Sale Points") %>% 
+  mutate(few_type = "Food")
 
-producers_df <- read.csv("data/producers.csv") %>% 
-  mutate(data_type = "Producers")
+producers_df <- read_csv("data/producers.csv") %>% 
+  mutate(data_type = "Producers") %>% 
+  mutate(few_type = "Food")
+
+storage_df <- read_csv("data/storagepoints.csv") %>% 
+  mutate(data_type = "Storage") %>% 
+  mutate(few_type = "Food")
+
+consumers_df <- read_csv("data/consumers.csv") %>% 
+  mutate(data_type = "Producers") %>% 
+  mutate(few_type = "Food")
+
+wsupplier_df <- read_csv("data/watersuppliers.csv") %>% 
+  mutate(data_type = "Water Suppliers") %>% 
+  mutate(few_type = "Water")
+
+energyuses_df <- read_csv("data/energyusages.csv") %>% 
+  mutate(data_type = "Energy Usages") %>% 
+  mutate(few_type = "Energy")
+
 
 combined_df <- salepoints_df %>% 
   full_join(producers_df) %>% 
+  full_join(storage_df) %>% 
+  full_join(consumers_df) %>% 
+  full_join(wsupplier_df) %>% 
+  full_join(energyuses_df) %>% 
   mutate(data_type = as.factor(data_type))
 
 
