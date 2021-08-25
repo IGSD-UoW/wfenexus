@@ -4,7 +4,7 @@
 \alias{ci_get_data}
 \title{Retrieves data from the tool and stores it a dataframe.}
 \usage{
-ci_get_data(json, filename = NULL)
+ci_get_data(json, filename = NULL, city = "slupsk")
 }
 \arguments{
 \item{json}{String pointing to a JSON's URL from the tool.}
