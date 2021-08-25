@@ -1,63 +1,48 @@
 # Wilmington infographics.
 
+library(wfenexus)
 library(emojifont)
-library(waffle)
-library(fontawesome)
+library(ggwaffle)
 library(extrafont)
 
-# load.fontawesome(font = "Font Awesome 5 Free-Solid-900.otf")
-# use this if things look odd in RStudio under Windows
-loadfonts(device = "win")
-font_import(pattern = 'Font Awesome')
 
-data_waste <- c("Wasted Food" = 35, "Not wasted" = 65)
+# Variables ---------------------------------------------------------------
 
 
-waffle(
-  data_waste, rows = 4, title = "Your basic waffle chart",
-  colors =  c("#636363", "#fee8c8"),
-  xlab = "1 square == 1%",
-  use_glyph = "shopping-basket"
-)
+# Colours
+color_food <- "#95C448"
+color_water <- "#00A9AE"
+color_energy <- "#EBC11F"
 
+color_background <- "#34767A"
 
+color_wfp_blue <- "#65C6F0"
+color_wfp_green <- "#A2D729"
+color_wfp_grey <- "#8f8f98"
 
-# Waffle chart
-waffle(
-  data_waste,
-  rows = 10 ,
-  colors =  c("#636363", "#fee8c8"),
-  xlab = "1 square == 1%",
-  flip = TRUE
-) +
-  ggtitle("Some tilte") +
-  theme(
-    plot.title = element_text(hjust = 0.5, size = 27, face = "bold"),
-    legend.text = element_text(size = 15),
-    legend.position = "bottom"
-  ) +
-  annotate("text", x = 4, y = 5, label = paste(data_waste[1], "%"))
+# Food waste consumer level -----------------------------------------------
 
-ggplot(data_waste, )
+waffle_data <- tibble(
+  variable = rep(c("wasted Food", "Not wasted"), times = c(35, 65))
+) %>%
+  # Converts to waffle data. waffle_iron() can control number of rows and cols.
+  waffle_iron(aes_d(group = variable)) %>%
+  mutate(label = fontawesome("fa-shopping-basket"))
 
+subtitle_string <- "On the consumer level, individuals in the U.S. throw out nearly 25% of the food they bring into their homes. This amounts to a whopping 20 pounds of edible food wasted every single month"
 
-xdf %>%
-  count(parts, wt = vals) %>%
-  ggplot(aes(label = parts, values = n)) +
-  geom_pictogram(n_rows = 10, aes(colour = parts), flip = TRUE, make_proportional = TRUE) +
-  scale_color_manual(
-    name = NULL,
-    values = c("#a40000", "#c68958", "#ae6056"),
-    labels = c("Fruit", "Sammich", "Pizza")
-  ) +
-  scale_label_pictogram(
-    name = NULL,
-    values = c("apple-alt", "bread-slice", "pizza-slice"),
-    labels = c("Fruit", "Sammich", "Pizza")
-  ) +
+gg_waste_consumer <- ggplot(waffle_data, aes(x, y, colour = group)) +
+  geom_text(aes(label=label), family='fontawesome-webfont', size=8) +
+  labs(title= "Food waste in the USA",
+       subtitle= str_wrap(subtitle_string, 100),
+       x = "", y = "",
+       caption = "Source: Dailycal.org (Data)") +
   coord_equal() +
-  theme_ipsum_rc(grid="") +
-  theme_enhance_waffle() +
-  theme(legend.key.height = unit(2.25, "line")) +
-  theme(legend.text = element_text(size = 10, hjust = 0, vjust = 0.75))
+  scale_colour_manual(
+    values = c(color_food, "red")
+  ) +
+  # scale_colour_waffle() +
+  # theme_void()
+  theme_waffle()
 
+gg_waste_consumer
