@@ -99,7 +99,101 @@ theme_set(mytheme_minimal)
 
 ```
 
-Interactive Map {data-icon="ion-map"}
+Go local! {data-icon="ion-checkmark"}
+===================================== 
+
+FActs and figures explaining/supporting/exemplifying reasons for going local.
+
+Stacked barplot with data about footprint
+
+**Tulcea team: if you have figures/facts supporting that idea, please share them with us!**
+
+### Water 
+
+```{r}
+footprint <- read_csv("data/footprint.csv") %>% 
+  rowwise() %>% 
+  # mutate(water_average = across(starts_with("water"), ~ mean(.x, na.rm = TRUE)))
+  mutate(water_average = mean(
+    c(water_local, water_national, water_europe, water_world), na.rm=T)) %>% 
+  relocate(water_average, .after = water_world) %>% 
+  arrange(desc(water_average)) %>% 
+  mutate(ingredient = as.factor(ingredient)) %>% 
+  pivot_longer(!ingredient, values_to = "value", 
+             names_to = "variable")
+
+water_footprint <- footprint %>% 
+  filter(str_detect(variable, "^water"))
+
+energy_footprint <- footprint %>% 
+  filter(str_detect(variable, "^energy"))
+  
+
+
+plot <- ggplot(water_footprint, aes(x = value, y = fct_rev(ingredient), fill = variable)) +
+  geom_bar(stat="identity", position="dodge") +
+  geom_text(aes(label = value, x = value -10), color = "white",
+            position = position_dodge(0.9), vjust = 0) +
+  ggtitle("Ingredients' waterfootprint distribution") +
+  labs(subtitle = "Based on the average ratings made by parents and children", x = "", y = "", fill = "") +
+  theme_minimal()+
+  theme(legend.position = "bottom")
+  # scale_fill_manual(labels = c("Children's rating", "Parents' rating", "Average rating"),
+  #                    values = c(color_energy, "orange", color_water)) + 
+ 
+  
+ggplotly(plot)
+
+
+```
+
+### Energy footprint distribution {data-height=200}
+
+```{r eval=FALSE, include=FALSE}
+plot <- ggplot(energy_footprint, aes(x = value, y = fct_rev(ingredient), fill = variable)) +
+  geom_bar(stat="identity", position="dodge") +
+  geom_text(aes(label = value, x = value -10), color = "white",
+            position = position_dodge(0.9), vjust = 0) +
+  ggtitle("Ingredients' energy footprint distribution") +
+  labs(subtitle = "Based on the average ratings made by parents and children", x = "", y = "", fill = "") +
+  theme_minimal()+
+  theme(legend.position = "bottom")
+  # scale_fill_manual(labels = c("Children's rating", "Parents' rating", "Average rating"),
+  #                    values = c(color_energy, "orange", color_water)) + 
+ 
+  
+ggplotly(plot)
+```
+
+```{r}
+energy_footprint <- energy_footprint %>% 
+  filter(ingredient == "Ingredient 1")
+
+plot <- ggplot(energy_footprint, aes(x = value, y = fct_rev(ingredient), fill = variable)) +
+  geom_bar(stat="identity", position="fill") +
+  # geom_text(aes(label = value, x = value -10), color = "white",
+  #           position = position_dodge(0.9), vjust = 0) +
+  ggtitle("Ingredients' energy footprint distribution (transport only)") +
+  labs(y = "",
+       x = "")+
+  guides(x = "none", y = "none") +
+  theme_minimal()+
+  theme(axis.text.y=element_blank(),
+        axis.ticks.y=element_blank(), 
+        legend.position = "bottom")
+  # scale_fill_manual(labels = c("Children's rating", "Parents' rating", "Average rating"),
+  #                    values = c(color_energy, "orange", color_water)) + 
+ 
+  
+ggplotly(plot)
+
+```
+### {data-height=40}
+
+Some text here explaining that distance affects all ingredients equally (regardless their type) and that it is exponential (probably a line plot would make it easier to see?)
+
+
+Map {data-icon="ion-map"}
 =====================================  
 
 ```{r}

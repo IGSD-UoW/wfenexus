@@ -1,0 +1,5 @@
+ingredient,water_local,water_national,water_europe,water_world,energy_local,energy_national,energy_europe,energy_world
+Ingredient 1,30,40,100,90,5,50,500,5000
+Ingredient 2,10,20,90,200,5,50,500,5000
+Ingredient 3,60,60,50,40,5,50,500,5000
+Ingredient 4,100,120,200,300,5,50,500,5000
