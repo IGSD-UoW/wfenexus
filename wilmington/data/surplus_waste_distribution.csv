@@ -1,0 +1,5 @@
+management,parent,amount_relative,amount_million_tons,definition
+Donated to foodbanks,,3.50%,2.828,
+Wasted,,66.67%,53.8666666666667,"Wasted food is “Uneaten food and inedible parts that end up being landfilled, incinerated, disposed of down the sewer, dumped, spread onto land, or simply not harvested.”  (ReFED, Insights Engine Glossary, p.2)"
+Landfills,Wasted,,,
+Recycled,,29.83%,24.1053333333333,
