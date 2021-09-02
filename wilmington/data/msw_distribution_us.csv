@@ -1,0 +1,6 @@
+label,parent,weight,percentage
+composted,,2.6,0.041204437400951
+landfill and incineration,,0,
+incineration,landfill and incineration,27.5929,0.437288431061807
+landfill,landfill and incineration,15.2071,0.241
+other,,17.7,0.280507131537242

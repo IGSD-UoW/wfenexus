@@ -76,7 +76,9 @@ color_wfp_grey <- "#8f8f98"
 Some explanation here about the context about food waste, and parts
 involved...
 
-![](http://www.biocycle.net/wp-content/uploads/2013/01/47.jpg)
+<!-- ![](http://www.biocycle.net/wp-content/uploads/2013/01/47.jpg) -->
+
+![](img/home.png)
 
 # Food waste consumer level
 
@@ -135,6 +137,26 @@ For the U.S. - in 2018 -
     * Composted: 2.6 million tons
     * Incineration, landfill: 42.8 million tons
     * Other management methods: 17.7 million tons
+    
+```{r echo=FALSE}
+msw_distribution_us <- read_csv("data/msw_distribution_us.csv")
+
+treemap <- plot_ly(
+  type = "treemap",
+  labels = msw_distribution_us$label,
+  parents = msw_distribution_us$parent,
+  values = msw_distribution_us$weight
+)
+
+treemap <- treemap %>% 
+  layout(
+    title = "MSW Distribution (US)"
+  )
+
+treemap
+
+```
+
 
 
 # Landfills
