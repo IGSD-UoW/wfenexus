@@ -117,11 +117,25 @@ gg_waste_consumer
 
 # Food waste equivalences
 
-While at first sight, this might seem neglibile at an individual,
+While at first sight, this might seem neglibile at an individual level,
 figures per household and nationwide tell us otherwise: **The costs of
 food waste are very high in terms of money and weight**
 
 <embed src="img/food_waste_equivalences.svg" type="image/svg+xml" style="max-width:100%"/>
+
+# Where does the food waste go?
+
+For the U.S. - in 2018 - 
+
+* Municipal solid waste (MSW): 292.4 million tons
+  * 1,788 pounds per person or 4.9 pounds per day
+* Food waste in MSW: 63.1 million tons (21.6%)
+  * 386 pounds per person
+  * Management pathway:
+    * Composted: 2.6 million tons
+    * Incineration, landfill: 42.8 million tons
+    * Other management methods: 17.7 million tons
+
 
 # Landfills
 
@@ -134,12 +148,14 @@ EPA](https://www.epa.gov/facts-and-figures-about-materials-waste-and-recycling/f
 
 # Emissions
 
-As food rots in a landfill, it emits **_methane_, a greenhouse gas 28 to 36 times more potent than the carbon** that comes out of passenger vehicles.
+As food rots in a landfill, it emits **_methane_, a greenhouse gas 28 to 36 times more potent than the carbon** that comes out of passenger vehicles and accelerates climate change. The greenhouse gases that result from food waste produce the equivalent amount of 37 million cars
 
 **Landfills are the third-largest industrial emitter of methane**, with food
 waste alone representing 8 percent of total global greenhouse gas (GHG)
 emissions. (Source:
 [Rubincon](https://www.rubicon.com/blog/food-waste-facts/)).
+
+In 2007, the global carbon footprint, excluding land-use change, of food waste has been estimated at 3.3 Gtonnes of CO2 eq. This amount is more than twice the total GHG emissions of all USA road transportation in 2010 (Source: [FAO](http://www.fao.org/3/i3347e/i3347e.pdf)).
 
 ![](img/landfill_emissions_infographic.png)
 
@@ -153,7 +169,7 @@ All landfills leak -- some over time and some from day one of operation
 
 # Landfills: wrap-up
 
-While it is possible to offset the harm of these emissions and leaks through organics recycling, composting, and anaerobic digestion, **the best way to reduce these emissions and leaks is to waste less food in the first place**.
+While it is possible to offset the harm derived from foodwaste in landfills through organics recycling, composting, and anaerobic digestion, **the best way to reduce these emissions and leaks is to waste less food in the first place**.
 
 <embed src="img/landfill.svg" type="image/svg+xml" style="max-width:100%"/>
 
