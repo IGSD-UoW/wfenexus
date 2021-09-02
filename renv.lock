@@ -107,6 +107,13 @@
       "Repository": "CRAN",
       "Hash": "9addc7e2c5954eca5719928131fed98c"
     },
+    "bookdown": {
+      "Package": "bookdown",
+      "Version": "0.23",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "bc07f4b5b93bbf21075429e0c7e090f8"
+    },
     "brio": {
       "Package": "brio",
       "Version": "1.1.1",
@@ -763,6 +770,18 @@
       "Repository": "CRAN",
       "Hash": "bc4bac38960b446c183957bfd563e763"
     },
+    "rolldown": {
+      "Package": "rolldown",
+      "Version": "0.1.1",
+      "Source": "GitHub",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteRepo": "rolldown",
+      "RemoteUsername": "yihui",
+      "RemoteRef": "HEAD",
+      "RemoteSha": "a16955b5459de4d9591cf4ee3d5d424bf7bcf2ed",
+      "Hash": "c62a3e04e8f6f7f6be386b69fc066ac5"
+    },
     "rprojroot": {
       "Package": "rprojroot",
       "Version": "2.0.2",
@@ -849,10 +868,10 @@
     },
     "stringi": {
       "Package": "stringi",
-      "Version": "1.7.3",
+      "Version": "1.7.4",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "7943cfae120c77a255025e5f63856532"
+      "Hash": "ebaccb577da50829a3bb1b8296f318a5"
     },
     "stringr": {
       "Package": "stringr",
@@ -968,10 +987,10 @@
     },
     "xfun": {
       "Package": "xfun",
-      "Version": "0.21",
+      "Version": "0.25",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "f3ddcca198959a42e8cb6b06c30d4f1e"
+      "Hash": "853d45ffff0a9af1e0af017cd359f75e"
     },
     "xml2": {
       "Package": "xml2",
