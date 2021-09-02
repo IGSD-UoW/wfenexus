@@ -53,6 +53,7 @@ library(wfenexus)
 library(emojifont)
 library(ggwaffle)
 library(extrafont)
+library(treemapify)
 
 
 # Variables ---------------------------------------------------------------
@@ -135,7 +136,7 @@ For the U.S. - in 2018 -
   * 386 pounds per person
   * Management pathway:
     * Composted: 2.6 million tons
-    * Incineration, landfill: 42.8 million tons
+    * Incineration, landfill: 42.8 million tons -> I calculated landfill based on the fact that it was stated previously that it accounts to 24% and incinerator is the difference.
     * Other management methods: 17.7 million tons
     
 ```{r echo=FALSE}
@@ -155,6 +156,20 @@ treemap <- treemap %>%
 
 treemap
 
+```
+
+```{r}
+
+msw_distribution_us <- read_csv("data/msw_distribution_us.csv") %>% 
+  mutate(label_long = paste0(label, "\n(", weight, " million tonnes)"))
+
+ggplot(msw_distribution_us, aes(area = weight, fill = label, label = label_long)) +
+  geom_treemap(show.legend  = FALSE) +
+  geom_treemap_text(colour = "white", place = "left",
+                grow = TRUE) +
+  labs(
+    title = "MSW Distribution (US)"
+  )
 ```
 
 
