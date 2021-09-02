@@ -1,9 +1,50 @@
 ---
 title: "Food Waste in the US"
-author: "Carlos Cámara"
-date: "8/25/2021"
-output: html_document
+author: ""
+date: "`r Sys.Date()`"
+output: 
+  rolldown::scrollama_sidebar:
+    number_sections: false
+  html_document:
+    number_sections: true
+editor_options: 
+  markdown: 
+    wrap: 72
 ---
+
+```{css, echo=FALSE}
+.level1 {
+  min-height: 400px;
+  # border: 1px solid;
+  margin-bottom: 4em;
+  padding: 1em 2em 2em;
+  opacity: .5;
+}
+.exhibit {
+  border: none;
+}
+
+.sidebar {
+  # max-width: 45rem;
+  max-width: 30%
+}
+
+.sidebar img,
+.sidebar embed {
+  display: none;
+}
+
+.is-active {
+  opacity: 1;
+  background-color: lightgreen;
+}
+p {
+  font-size: 1.4em;
+}
+body {
+  margin-bottom: 80vh;
+}
+```
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
@@ -30,9 +71,18 @@ color_wfp_grey <- "#8f8f98"
 
 ```
 
-Some explanation here about the context, and parts involved...
+# Introduction
 
-## Food waste consumer level
+Some explanation here about the context about food waste, and parts
+involved...
+
+![](http://www.biocycle.net/wp-content/uploads/2013/01/47.jpg)
+
+# Food waste consumer level
+
+On the consumer level, **individuals in the U.S. throw out nearly 25% of
+the food they bring into their homes**. This amounts to a whopping 20
+pounds of edible food wasted every single month
 
 ```{r food_waste_consumer}
 
@@ -50,6 +100,7 @@ gg_waste_consumer <- ggplot(waffle_data, aes(x, y, colour = group)) +
   labs(title= "Food waste per household",
        subtitle= str_wrap(subtitle_string, 100),
        x = "", y = "",
+       color = "",
        caption = "Data Source: Dailycal.org") +
   coord_equal() +
   scale_colour_manual(
@@ -57,68 +108,116 @@ gg_waste_consumer <- ggplot(waffle_data, aes(x, y, colour = group)) +
   ) +
   # scale_colour_waffle() +
   # theme_void()
-  theme_waffle()
+  # guides(shape = "none") +
+  theme_waffle() +
+  theme(legend.position = "bottom")
 
 gg_waste_consumer
 ```
+
+# Food waste equivalences
+
+While at first sight, this might seem neglibile at an individual,
+figures per household and nationwide tell us otherwise: **The costs of
+food waste are very high in terms of money and weight**
+
 <embed src="img/food_waste_equivalences.svg" type="image/svg+xml" style="max-width:100%"/>
 
+# Landfills
 
-## Surplus waste distribution
+Food waste is the number one material in American landfills, accounting
+for 24.1 percent of all municipal solid waste (MSW), [according to the
+EPA](https://www.epa.gov/facts-and-figures-about-materials-waste-and-recycling/food-material-specific-data).
+
+
+![](img/landfill_distribution_infographic.png)
+
+# Emissions
+
+As food rots in a landfill, it emits **_methane_, a greenhouse gas 28 to 36 times more potent than the carbon** that comes out of passenger vehicles.
+
+**Landfills are the third-largest industrial emitter of methane**, with food
+waste alone representing 8 percent of total global greenhouse gas (GHG)
+emissions. (Source:
+[Rubincon](https://www.rubicon.com/blog/food-waste-facts/)).
+
+![](img/landfill_emissions_infographic.png)
+
+# Leaks
+
+All landfills leak -- some over time and some from day one of operation
+-- leaching toxic chemicals into the ground and the water supply
+([source](https://www.clf.org/blog/all-landfills-leak-and-our-health-and-environment-pay-the-toxic-price/))
+
+![](img/landfill_leaks_infographic.png)
+
+# Landfills: wrap-up
+
+While it is possible to offset the harm of these emissions and leaks through organics recycling, composting, and anaerobic digestion, **the best way to reduce these emissions and leaks is to waste less food in the first place**.
+
+<embed src="img/landfill.svg" type="image/svg+xml" style="max-width:100%"/>
+
+
+
+# Surplus waste distribution
 
 U.S. generates 80.8 million tons of surplus food each year
 
-* Surplus food is “All food that goes unsold or unused by a business or that goes uneaten at home – including food and inedible parts (e.g., peels, pits, bones) that are donated, fed to animals, repurposed to produce other products, composted, anaerobically digested, or wasted.” (ReFED, Insights Engine Glossary, p.1)
-* Includes agricultural waste for produce (fruit, vegetables) but not for meat, dairy, fish, etc.
+-   Surplus food is "All food that goes unsold or unused by a business
+    or that goes uneaten at home -- including food and inedible parts
+    (e.g., peels, pits, bones) that are donated, fed to animals,
+    repurposed to produce other products, composted, anaerobically
+    digested, or wasted." (ReFED, Insights Engine Glossary, p.1)
+-   Includes agricultural waste for produce (fruit, vegetables) but not
+    for meat, dairy, fish, etc.
 
+## For Delaware - in 2018 -
 
+-   Municipal solid waste (MSW): 732,614 tons
 
-### Landfill
+    -   1,518 pounds per person
 
-Print the landfill image and, below (or overlayed, better), a barplot. Similar example here: https://statisticsglobe.com/insert-png-image-between-ggplot2-axis-positions-in-r
+-   Food waste estimated in MSW: 154,255 tons (21%)
 
-```{r landfill}
+    -   320 pounds per person
 
+    -   Sources:
 
+        -   Residential sources: 70,455 tons (45.7%)
+        -   Industrial, commercial, institutional (ICI): 83,800 tons
+            (54.3%)
 
-```
+    -   Combined res + ICI:
 
-#### For Delaware - in 2018 - 
+        -   Vegetative food wastes, unpackaged: 67,433 tons (43.72%)
+        -   Protein food wastes, unpackaged: 24,687 tons (16%)
+        -   Food waste in plastic packaging: 51,126 tons (33.14%)
+        -   Food waste in other packaging: 11,010 tons (7.14%)
 
-* Municipal solid waste (MSW): 732,614 tons
-  * 1,518 pounds per person
-* Food waste estimated in MSW: 154,255 tons (21%)
-  * 320 pounds per person
-  * Sources:
-    * Residential sources: 70,455 tons (45.7%)
-    * Industrial, commercial, institutional (ICI): 83,800 tons (54.3%)
-  * Combined res + ICI:
-    * Vegetative food wastes, unpackaged: 67,433 tons (43.72%)
-    * Protein food wastes, unpackaged: 24,687 tons (16%)
-    * Food waste in plastic packaging: 51,126 tons (33.14%)
-    * Food waste in other packaging: 11,010 tons (7.14%)
+Source: 2020 Statewide Solid Waste Management Plan -
+<https://dswa.com/wp-content/uploads/2021/04/2020-DSWA-Statewide-Solid-Waste-PlanPDF-Final.pdf>
 
-Source: 2020 Statewide Solid Waste Management Plan - https://dswa.com/wp-content/uploads/2021/04/2020-DSWA-Statewide-Solid-Waste-PlanPDF-Final.pdf
+## For the U.S. - in 2018 -
 
+Municipal solid waste (MSW): 292.4 million tons 1,788 pounds per person
+or 4.9 pounds per day Food waste in MSW: 63.1 million tons (21.6%) 386
+pounds per person Management pathway: Composted: 2.6 million tons
+Incineration, landfill: 42.8 million tons Other management methods: 17.7
+million tons
 
-#### For the U.S. - in 2018 - 
-
-Municipal solid waste (MSW): 292.4 million tons
-1,788 pounds per person or 4.9 pounds per day
-Food waste in MSW: 63.1 million tons (21.6%)
-386 pounds per person
-Management pathway:
-Composted: 2.6 million tons
-Incineration, landfill: 42.8 million tons
-Other management methods: 17.7 million tons
-
-Source: https://www.epa.gov/facts-and-figures-about-materials-waste-and-recycling/studies-summary-tables-and-data-related
-
-
+Source:
+<https://www.epa.gov/facts-and-figures-about-materials-waste-and-recycling/studies-summary-tables-and-data-related>
 
 ## The cost of food waste
 
-The cost of surplus food is estimated at $398 billion per year, with 70% of that cost paying for waste management.
+The cost of surplus food is estimated at \$398 billion per year, with
+70% of that cost paying for waste management.
 
-If we exclude the surplus food generated on the farm and during manufacturing, the total surplus food produced by consumers, foodservice, and retail sectors is 53 million tons per year, or 324.6 pounds per person, and costing $350 billion.
-The U.S. EPA set a goal of reducing food waste disposed by 50% by 2030. Using a 2010 baseline estimate of 219 pounds per person (post-processing), that means a goal of disposing 109 pounds per person. The U.S. is far from reaching its 2030 food waste goal.
+If we exclude the surplus food generated on the farm and during
+manufacturing, the total surplus food produced by consumers,
+foodservice, and retail sectors is 53 million tons per year, or 324.6
+pounds per person, and costing \$350 billion. The U.S. EPA set a goal of
+reducing food waste disposed by 50% by 2030. Using a 2010 baseline
+estimate of 219 pounds per person (post-processing), that means a goal
+of disposing 109 pounds per person. The U.S. is far from reaching its
+2030 food waste goal.
