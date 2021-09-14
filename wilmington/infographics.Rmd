@@ -139,7 +139,7 @@ For the U.S. - in 2018 -
     * Incineration, landfill: 42.8 million tons -> I calculated landfill based on the fact that it was stated previously that it accounts to 24% and incinerator is the difference.
     * Other management methods: 17.7 million tons
     
-```{r echo=FALSE}
+```{r eval=FALSE, include=FALSE}
 msw_distribution_us <- read_csv("data/msw_distribution_us.csv")
 
 treemap <- plot_ly(
@@ -158,7 +158,7 @@ treemap
 
 ```
 
-```{r}
+```{r message=FALSE, warning=FALSE}
 
 msw_distribution_us <- read_csv("data/msw_distribution_us.csv") %>% 
   mutate(label_long = paste0(label, "\n(", weight, " million tonnes)"))
