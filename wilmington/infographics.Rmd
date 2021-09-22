@@ -18,7 +18,7 @@ editor_options:
   # border: 1px solid;
   margin-bottom: 4em;
   padding: 1em 2em 2em;
-  opacity: .5;
+  opacity: .2;
 }
 .exhibit {
   border: none;
@@ -36,7 +36,7 @@ editor_options:
 
 .is-active {
   opacity: 1;
-  background-color: lightgreen;
+  # background-color: lightgreen;
 }
 p {
   font-size: 1.4em;
@@ -54,7 +54,9 @@ library(emojifont)
 library(ggwaffle)
 library(extrafont)
 library(treemapify)
-
+library(echarts4r)
+library(echarts4r.assets)
+library(hrbrthemes)
 
 # Variables ---------------------------------------------------------------
 
@@ -70,6 +72,10 @@ color_wfp_blue <- "#65C6F0"
 color_wfp_green <- "#A2D729"
 color_wfp_grey <- "#8f8f98"
 
+# Import fonts
+# font_import(path = here::here("inst/fonts/Roboto_Condensed/"))
+extrafont::loadfonts(device="win")
+
 ```
 
 # Introduction
@@ -81,7 +87,9 @@ involved...
 
 ![](img/home.png)
 
-# Food waste consumer level
+# Surplus food
+
+Surplus food is _“All **food that goes unsold or unused by a business or that goes uneaten at home** – including food and inedible parts (e.g., peels, pits, bones) that are donated, fed to animals, repurposed to produce other products, composted, anaerobically digested, or wasted.”_ ([ReFED, Insights Engine Glossary, p.1](https://insights.refed.com/uploads/documents/refed-insights-engine-glossary-vfinal-2021.2.2.pdf?_cchid=7d0e044d61127907795816d134af4e67)).
 
 On the consumer level, **individuals in the U.S. throw out nearly 25% of
 the food they bring into their homes**. This amounts to a whopping 20
@@ -113,10 +121,110 @@ gg_waste_consumer <- ggplot(waffle_data, aes(x, y, colour = group)) +
   # theme_void()
   # guides(shape = "none") +
   theme_waffle() +
-  theme(legend.position = "bottom")
+  theme(legend.position = "bottom") 
 
 gg_waste_consumer
 ```
+
+
+# Surplus food: magnitude
+
+While at first sight, this might seem neglibile at an individual level, aggregated figures for Delaware and nationwide tell us otherwise: **The costs of food waste are very high in terms of money and weight**
+
+
+```{r food_waste_tonnes}
+surplus_magnitude <- tibble(
+  location = c("U.S.", "Delaware"),
+  weight_year = c(80.8*10^6, 215000)
+)
+
+surplus_magnitude %>% 
+  e_charts(location) %>% 
+  e_pictorial(weight_year, symbol = ea_icons("user"), 
+              symbolRepeat = TRUE, z = -1,
+              symbolSize = c(20, 20)) %>% 
+  e_theme("westeros") %>%
+  e_title("Food waste in Tonnes/year") %>% 
+  e_flip_coords() %>%
+  # Hide Legend
+  e_legend(show = FALSE) %>%
+  # Remove Gridlines
+  e_x_axis(splitLine=list(show = FALSE)) %>%
+  e_y_axis(splitLine=list(show = FALSE)) %>%
+  # Format Label
+  e_labels(fontSize = 16, fontWeight ='bold', position = "right", offset=c(10, 0))
+ 
+
+```
+
+# Surplus food: management
+
+There are three different primary management  pathways for surplus food:
+
+1. **Donated** to food banks or otherwise “rescued”
+2. **Recycled** such as through composting, feed for animals, anaerobic digestion, or industrial use
+2. **Wasted** food is “Uneaten food and inedible parts that end up being landfilled, incinerated, disposed of down the sewer, dumped, spread onto land, or simply not harvested.” (ReFED, Insights Engine Glossary, p.2)
+
+
+```{r spf_management}
+spf_managemen <- tibble(
+  location = c("U.S", "U.S", "U.S", "Delaware", "Delaware"),
+  value = c(2.8, 54.1, 17.07, 0.15, 0.0525),
+  variable = c("Donated", "Wasted", "Recycled", "Wasted", "Other")
+) %>% 
+  mutate(label = paste0(variable, "\n(", value, " million tones)"))
+
+
+ggplot(spf_managemen, aes(area = value, fill = variable, label = label)) +
+  geom_treemap(show.legend  = FALSE) +
+  geom_treemap_text(colour = "white", place = "left",
+                grow = TRUE) +
+  facet_grid(. ~ location) +
+  labs(
+    title = "Surplus Food management",
+    subtitle = "Some subtitle here",
+    note = "Source: ReFED, Insights Engine Glossary, p.2"
+  ) +
+  scale_fill_brewer(palette = "Paired") +
+  theme_minimal()
+
+```
+
+# Where is wasted food going to?
+
+More than half of the food waste goes to Landfills.
+A notable difference from Delaware is that food is the lack of incineration.
+
+```{r}
+wasted_food <- tibble(
+  location = c("U.S.", "U.S.", "U.S.", "U.S.", "U.S.", "U.S.", "Delaware", 
+               "Delaware", "Delaware", "Delaware", "Delaware"),
+  value = c(50.9, 25.6, 9, 6.7, 6.7, 1.1, 65.6, 22.5, 10.7, 0.29, 0.88),
+  variable = c("Landfills", "Not harvested", "Sewer", "Land application", 
+               "Incineration", "Dumpings",
+               "Landfills", "Not harvested", "Sewer", "Land application", 
+               "Dumpings")
+) %>% 
+  mutate(label = paste0(variable, "\n(", value, "%)"))
+
+
+ggplot(wasted_food, aes(area = value, fill = variable, label = label)) +
+  geom_treemap(show.legend  = TRUE) +
+  geom_treemap_text(colour = "white", place = "left",
+                grow = TRUE) +
+  facet_grid(. ~ location) +
+  labs(
+    title = "Destination of Food Waste",
+    subtitle = "More than half of food waste goes to food waste, in the U.S. and Delaware.",
+    note = "Source: ReFED, Insights Engine Glossary, p.2"
+  ) +
+  scale_fill_brewer(palette = "Paired") +
+  theme_minimal() +
+  theme(legend.position = "bottom") 
+
+```
+
+
 
 # Food waste equivalences
 
@@ -209,6 +317,24 @@ All landfills leak -- some over time and some from day one of operation
 While it is possible to offset the harm derived from foodwaste in landfills through organics recycling, composting, and anaerobic digestion, **the best way to reduce these emissions and leaks is to waste less food in the first place**.
 
 <embed src="img/landfill.svg" type="image/svg+xml" style="max-width:100%"/>
+
+# Environmental impacts of food waste
+
+Food waste has considerable impacts on the environment in terms of carbon and water footprint.
+
+**Carbon footprint:** definition
+
+**Water footprint:** definition
+
+Carbon footprint: 270 million metric tons CO2eq (3.34 metric tons per ton wasted food)
+
+Water footprint: 14.1 trillion gallons (174 gallons per ton wasted food)
+
+```{r}
+
+```
+
+
 
 
 
