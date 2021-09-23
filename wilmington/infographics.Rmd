@@ -220,38 +220,7 @@ gg_waste_consumer <- ggplot(waffle_data, aes(x, y, colour = group)) +
 gg_waste_consumer
 ```
 
-# Surplus food: magnitude
-
-While at first sight, this might seem neglibile at an individual level,
-aggregated figures for Delaware and nationwide tell us otherwise: **The
-costs of food waste are very high in terms of money and weight**
-
-```{r food_waste_tonnes}
-surplus_magnitude <- tibble(
-  location = c("U.S.", "Delaware"),
-  weight_year = c(80.8*10^6, 215000)
-)
-
-surplus_magnitude %>% 
-  e_charts(location) %>% 
-  e_pictorial(weight_year, symbol = ea_icons("user"), 
-              symbolRepeat = TRUE, z = -1,
-              symbolSize = c(20, 20)) %>% 
-  e_theme("westeros") %>%
-  e_title("Food waste in Tonnes/year") %>% 
-  e_flip_coords() %>%
-  # Hide Legend
-  e_legend(show = FALSE) %>%
-  # Remove Gridlines
-  e_x_axis(splitLine=list(show = FALSE)) %>%
-  e_y_axis(splitLine=list(show = FALSE)) %>%
-  # Format Label
-  e_labels(fontSize = 16, fontWeight ='bold', position = "right", offset=c(10, 0))
- 
-
-```
-
-# Surplus food: management
+# How is surplus food managed?
 
 There are three different primary management pathways for surplus food:
 
@@ -264,15 +233,16 @@ There are three different primary management pathways for surplus food:
     Glossary, p.2)
 
 ```{r spf_management}
-spf_managemen <- tibble(
+spf_management <- tibble(
   location = c("U.S", "U.S", "U.S", "Delaware", "Delaware"),
   value = c(2.8, 54.1, 17.07, 0.15, 0.0525),
   variable = c("Donated", "Wasted", "Recycled", "Wasted", "Other")
 ) %>% 
-  mutate(label = paste0(variable, "\n(", value, " million tones)"))
+  mutate(label = paste0(variable, "\n(", value, " million tones)"),
+         group = variable)
 
 
-ggplot(spf_managemen, aes(area = value, fill = variable, label = label)) +
+ggplot(spf_management, aes(area = value, fill = variable, label = label)) +
   geom_treemap(show.legend  = FALSE) +
   geom_treemap_text(colour = "white", place = "left",
                 grow = TRUE) +
@@ -300,7 +270,8 @@ wasted_food <- tibble(
   variable = c("Landfills", "Not harvested", "Sewer", "Land application", 
                "Incineration", "Dumpings",
                "Landfills", "Not harvested", "Sewer", "Land application", 
-               "Dumpings")
+               "Dumpings"),
+  group = "Wasted"
 ) %>% 
   mutate(label = paste0(variable, "\n(", value, "%)"))
 
@@ -309,6 +280,43 @@ ggplot(wasted_food, aes(area = value, fill = variable, label = label)) +
   geom_treemap(show.legend  = TRUE) +
   geom_treemap_text(colour = "white", place = "left",
                 grow = TRUE) +
+  facet_grid(. ~ location) +
+  labs(
+    title = "Destination of Food Waste",
+    subtitle = "More than half of food waste goes to food waste, in the U.S. and Delaware.",
+    fill = "",
+    caption = "Source: ReFED, Insights Engine Glossary, p.2"
+  ) +
+  guides(fill = guide_legend(nrow = 1)) +
+  scale_fill_brewer(palette = "Paired") +
+  theme_minimal() +
+  theme(legend.position = "bottom",
+        legend.direction="horizontal") 
+
+```
+
+# Another option
+
+This is a combination of the two previous slides:
+
+
+THE TWO DATAFRAMES USE DIFFERENT UNITS SO THEY CANNOT BE COMBINED LIKE THAT!
+uSE SAME UNITS, EITHER PERCENT OR TONNES.
+
+
+```{r}
+spf_management_combined <- spf_management %>% 
+  bind_rows(wasted_food)
+
+
+ggplot(wasted_food, aes(area = value, fill = variable, label = label,
+                        subgroup = group)) +
+  geom_treemap(show.legend  = TRUE) +
+  geom_treemap_text(colour = "white", place = "left",
+                grow = TRUE) +
+  geom_treemap_subgroup_border() +
+  geom_treemap_subgroup_text(place = "bottomleft", grow = T, alpha = 0.5, colour =
+                             "black", fontface = "italic", min.size = 0) +
   facet_grid(. ~ location) +
   labs(
     title = "Destination of Food Waste",
@@ -387,7 +395,7 @@ ggplot(msw_distribution_us, aes(area = weight, fill = label, label = label_long)
 
 # Landfills
 
-# Landfills
+# Food in landfills
 
 Food waste is the number one material in American landfills, accounting
 for 24.1 percent of all municipal solid waste (MSW), [according to the
@@ -398,7 +406,7 @@ in the US and 21.06% (154,255 tons) for Delaware.
 
 ![](img/landfill_distribution_infographic.png)
 
-# Emissions
+# Landfill and Emissions
 
 As food rots in a landfill, it emits ***methane*****, a greenhouse gas
 28 to 36 times more potent than the carbon** that comes out of passenger
@@ -417,7 +425,7 @@ than twice the total GHG emissions of all USA road transportation in
 
 ![](img/landfill_emissions_infographic.png)
 
-# Leaks
+# Landfills and leaks
 
 All landfills leak -- some over time and some from day one of operation
 -- leaching toxic chemicals into the ground and the water supply
