@@ -220,6 +220,8 @@ gg_waste_consumer <- ggplot(waffle_data, aes(x, y, colour = group)) +
 gg_waste_consumer
 ```
 
+
+
 # How is surplus food managed?
 
 There are three different primary management pathways for surplus food:
@@ -340,58 +342,6 @@ food waste are very high in terms of money and weight**
 
 <embed src="img/food_waste_equivalences.svg" type="image/svg+xml" style="max-width:100%"/>
 
-# Where does the food waste go?
-
-For the U.S. - in 2018 -
-
--   Municipal solid waste (MSW): 292.4 million tons
-
-    -   1,788 pounds per person or 4.9 pounds per day
-
--   Food waste in MSW: 63.1 million tons (21.6%)
-
-    -   386 pounds per person
-
-    -   Management pathway:
-
-        -   Composted: 2.6 million tons
-        -   Incineration, landfill: 42.8 million tons -\> I calculated
-            landfill based on the fact that it was stated previously
-            that it accounts to 24% and incinerator is the difference.
-        -   Other management methods: 17.7 million tons
-
-```{r eval=FALSE, include=FALSE}
-msw_distribution_us <- read_csv("data/msw_distribution_us.csv")
-
-treemap <- plot_ly(
-  type = "treemap",
-  labels = msw_distribution_us$label,
-  parents = msw_distribution_us$parent,
-  values = msw_distribution_us$weight
-)
-
-treemap <- treemap %>% 
-  layout(
-    title = "MSW Distribution (US)"
-  )
-
-treemap
-
-```
-
-```{r message=FALSE, warning=FALSE}
-
-msw_distribution_us <- read_csv("data/msw_distribution_us.csv") %>% 
-  mutate(label_long = paste0(label, "\n(", weight, " million tonnes)"))
-
-ggplot(msw_distribution_us, aes(area = weight, fill = label, label = label_long)) +
-  geom_treemap(show.legend  = FALSE) +
-  geom_treemap_text(colour = "white", place = "left",
-                grow = TRUE) +
-  labs(
-    title = "MSW Distribution (US)"
-  )
-```
 
 # Landfills
 
@@ -452,6 +402,7 @@ carbon and water footprint.
 **Water footprint:** definition and units
 
 <embed src="img/food_waste_footprint.svg" type="image/svg+xml" style="max-width:100%"/>
+
 
 # The cost of food waste
 
