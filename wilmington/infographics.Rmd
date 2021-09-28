@@ -465,3 +465,38 @@ digestion, **the best way to reduce these emissions and leaks is to
 waste less food in the first place**.
 
 <embed src="img/landfill.svg" type="image/svg+xml" style="max-width:100%"/>
+
+
+# Alternative scenarios
+
+What can we do as consumers to reduce food waste and its impacts?
+
+# Increased use of in-sink grinders - i.e., garbage disposals:
+
+![](https://2.bp.blogspot.com/-VJbLw-N-5Jk/VdsjG6DMy_I/AAAAAAAAEYk/ZS6cfuVTqfA/s1600/in-sink%2Bfood%2Bgrinder.png)
+
+These products grind up food waste on-site, and when combined with running water, is disposed down the sewer drain for treatment at the wastewater treatment plant. This option can be useful where areas have excess wastewater treatment capacity, as is the case in Wilmington, DE.
+
+* [A pilot study in Philadelphia](https://www.waste360.com/food-waste/philadelphia-aims-food-waste-sink-disposal-law) found that household food waste sent to the landfill dropped 35% after targeted use of grinders.
+* Limitation: grinders should not be used with all food wastes- i.e., high fat animal products - meat, dairy; some vegetable products like onion skins and potato peels.
+* If the grinder waste is used with co-digestion at the wastewater treatment plant: ReFed estimates that **this pathway could divert 8,130 tons of food waste in Delaware** with a net financial benefit of $189,000 and a savings of 2,750 metric tons CO2e each year. **No water savings are expected from this option**. 
+
+# Switching to meal kits:
+
+In this instance, the consumer purchases pre-packaged meal kits that have precise quantities of products needed to prepare meals, avoiding excess food that may spoil. Grocery retailers and other businesses are increasingly marketing meal kits, expanding consumer choice. 
+
+⇒ Expansion of this pathway could **divert 5,600 tons of food waste in Delaware** with a net financial benefit of **$21 million and a savings of 25,400 metric tons CO2e and 1.25 billion gallons of water each year**. 
+
+![](https://bloximages.newyork1.vip.townnews.com/nny360.com/content/tncms/assets/v3/editorial/0/8d/08d6c58e-b7ac-56c7-9c32-7b6a1bb8f610/5e907a9888952.image.jpg?resize=1200%2C1200)
+
+# Home composting:
+
+This option is commonly promoted as a way for households to reduce the food waste headed to the landfill and to produce a usable by-product (compost). As with in-site grinders, not all materials are appropriate for composting (i.e., meats and seafood can generate odors and attract wildlife). Additionally, food waste should be mixed with other organic materials such as paper, cardboard, or yard trimmings, to ensure the proper mix for complete biological breakdown of the waste.
+
+⇒ Expansion of this option throughout the state could divert 297 tons of food waste from the landfill, with a net financial benefit of $15,500 and a savings of 147 metric tons of CO2e each year. No water savings are expected.
+
+![](https://www.stuff4tots.com/wp-content/uploads/KidsCompost_Info_Pin_Trial6.png)
+
+
+[the best option statewide to reduce food waste in tonnage and savings ($, energy, water) is to reduce portion sizes in restaurants, institutions, grocery stores, etc. -- but consumers are passive in those decisions]
+
