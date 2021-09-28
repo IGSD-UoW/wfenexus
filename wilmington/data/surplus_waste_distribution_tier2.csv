@@ -1,0 +1,17 @@
+location,treatment,parent,million_tonnes,percentage,level
+U.S.,Donated,,2.8,0.037853183723131,1
+U.S.,Wasted,,54.1,0.731377585507638,1
+U.S.,Recycled,,17.07,0.230769230769231,1
+Delaware,Wasted,,0.15,0.966183574879227,1
+Delaware,Other,,0.00525,0.033816425120773,1
+U.S.,Landfills,Wasted,27.5369,0.509,2
+U.S.,Not harvested,Wasted,13.8496,0.256,2
+U.S.,Sewer,Wasted,4.869,0.09,2
+U.S.,Land application,Wasted,3.6247,0.067,2
+U.S.,Incineration,Wasted,3.6247,0.067,2
+U.S.,Dumpings,Wasted,0.5951,0.011,2
+Delaware,Landfills,Wasted,0.0984,0.656,2
+Delaware,Not harvested,Wasted,0.03375,0.225,2
+Delaware,Sewer,Wasted,0.01605,0.107,2
+Delaware,Land application,Wasted,0.000435,0.0029,2
+Delaware,Dumpings,Wasted,0.00132,0.0088,2

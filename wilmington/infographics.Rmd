@@ -121,6 +121,40 @@ Every year, **the US produces a total of 292.4 million tons of Municipal Solid W
 
 This equates to `r scales::number(292.4*10^6/eq_truck, big.mark = ",")` heavy tonnage trucks per year in the case of the US, and to `r scales::number(732614/eq_truck, big.mark = ",")` for Delaware.
 
+
+```{r eval=FALSE, include=FALSE}
+
+msw <- tibble(
+  variable = rep(c("U.S", "Delaware"), times = c(292.4, 0.732))
+) %>%
+  # Converts to waffle data. waffle_iron() can control number of rows and cols.
+  waffle_iron(aes_d(group = variable)) %>%
+  mutate(label = fontawesome("fa-truck"))
+
+subtitle_string <- "Every year, <b>the US produces a total of 292.4 million tons of Municipal Solid Waste<b>, 732,614 tons of which are produced in Delaware alone."
+
+gg_waste <- ggplot(msw, aes(x, y, colour = group)) +
+  geom_text(aes(label=label), family='fontawesome-webfont', size=8) +
+  labs(title= "Municipal Solid Waste",
+       subtitle= str_wrap(subtitle_string, 100),
+       x = "", y = "",
+       color = "",
+       caption = "") +
+  coord_equal() +
+  scale_colour_manual(
+    values = c(color_food, "red")
+  ) +
+  # scale_colour_waffle() +
+  # theme_void()
+  # guides(shape = "none") +
+  theme_waffle() +
+  theme(legend.position = "bottom") 
+
+gg_waste
+
+```
+
+
 # Break {#break class="notitle"}
 
 ## Food waste in MSW
@@ -222,6 +256,42 @@ gg_waste_consumer
 
 
 
+# Food waste equivalences
+
+While at first sight, this might seem neglibile at an individual level,
+figures per household and nationwide tell us otherwise: **The costs of
+food waste are very high in terms of money and weight**
+
+<embed src="img/food_waste_equivalences.svg" type="image/svg+xml" style="max-width:100%"/>
+
+
+# Environmental impacts of food waste
+
+Food waste has considerable impacts on the environment in terms of
+carbon and water footprint.
+
+**Carbon footprint:** definition and units
+
+**Water footprint:** definition and units
+
+<embed src="img/food_waste_footprint.svg" type="image/svg+xml" style="max-width:100%"/>
+
+
+# The cost of food waste
+
+The cost of surplus food is estimated at \$398 billion per year, with
+70% of that cost paying for waste management.
+
+If we exclude the surplus food generated on the farm and during
+manufacturing, the total surplus food produced by consumers,
+foodservice, and retail sectors is 53 million tons per year, or 324.6
+pounds per person, and costing \$350 billion. The U.S. EPA set a goal of
+reducing food waste disposed by 50% by 2030. Using a 2010 baseline
+estimate of 219 pounds per person (post-processing), that means a goal
+of disposing 109 pounds per person. The U.S. is far from reaching its
+2030 food waste goal.
+
+
 # How is surplus food managed?
 
 There are three different primary management pathways for surplus food:
@@ -297,28 +367,43 @@ ggplot(wasted_food, aes(area = value, fill = variable, label = label)) +
 
 ```
 
-# Another option
+# How is surplus food managed? (Another option)
 
-This is a combination of the two previous slides:
+NOTE: This is a combination of the two previous slides. I particularly think this one is better.
 
+There are three different primary management pathways for surplus food:
 
-THE TWO DATAFRAMES USE DIFFERENT UNITS SO THEY CANNOT BE COMBINED LIKE THAT!
-uSE SAME UNITS, EITHER PERCENT OR TONNES.
+1.  **Donated** to food banks or otherwise "rescued"
+2.  **Recycled** such as through composting, feed for animals, anaerobic
+    digestion, or industrial use
+3.  **Wasted** food is "Uneaten food and inedible parts that end up
+    being landfilled, incinerated, disposed of down the sewer, dumped,
+    spread onto land, or simply not harvested." (Source: [ReFED, Insights Engine
+    Glossary, p.2](https://insights.refed.com/uploads/documents/refed-insights-engine-glossary-vfinal-2021.2.2.pdf?_cchid=7d0e044d61127907795816d134af4e67))
 
 
 ```{r}
-spf_management_combined <- spf_management %>% 
-  bind_rows(wasted_food)
+spf_management_combined <- read_csv("data/surplus_waste_distribution_tier2.csv",
+                                    col_types = list(
+                                      location = col_factor(),
+                                      treatment = col_factor(),
+                                      parent = col_factor()
+                                    )) %>% 
+  mutate(label = paste0(round(million_tonnes, 2), 
+                        " million tonnes \n(", percentage *100, 
+                        "%)")) %>% 
+  mutate(parent2 = ifelse(is.na(parent), "Not wasted", "Wasted")) %>% 
+  filter(treatment != "Wasted")
 
 
-ggplot(wasted_food, aes(area = value, fill = variable, label = label,
-                        subgroup = group)) +
+ggplot(spf_management_combined, aes(area = million_tonnes, fill = treatment, label = label,
+                        subgroup = parent2)) +
   geom_treemap(show.legend  = TRUE) +
-  geom_treemap_text(colour = "white", place = "left",
-                grow = TRUE) +
+  geom_treemap_text(colour = "white", place = "left", grow = TRUE) +
   geom_treemap_subgroup_border() +
-  geom_treemap_subgroup_text(place = "bottomleft", grow = T, alpha = 0.5, colour =
-                             "black", fontface = "italic", min.size = 0) +
+  geom_treemap_subgroup_text(place = "bottomleft", grow = TRUE , alpha = 0.5, 
+                             colour = "black", fontface = "italic", 
+                             min.size = 0) +
   facet_grid(. ~ location) +
   labs(
     title = "Destination of Food Waste",
@@ -326,24 +411,13 @@ ggplot(wasted_food, aes(area = value, fill = variable, label = label,
     fill = "",
     caption = "Source: ReFED, Insights Engine Glossary, p.2"
   ) +
-  guides(fill = guide_legend(nrow = 1)) +
+  guides(fill = guide_legend(nrow = 2)) +
   scale_fill_brewer(palette = "Paired") +
   theme_minimal() +
   theme(legend.position = "bottom",
         legend.direction="horizontal") 
 
 ```
-
-# Food waste equivalences
-
-While at first sight, this might seem neglibile at an individual level,
-figures per household and nationwide tell us otherwise: **The costs of
-food waste are very high in terms of money and weight**
-
-<embed src="img/food_waste_equivalences.svg" type="image/svg+xml" style="max-width:100%"/>
-
-
-# Landfills
 
 # Food in landfills
 
@@ -391,29 +465,3 @@ digestion, **the best way to reduce these emissions and leaks is to
 waste less food in the first place**.
 
 <embed src="img/landfill.svg" type="image/svg+xml" style="max-width:100%"/>
-
-# Environmental impacts of food waste
-
-Food waste has considerable impacts on the environment in terms of
-carbon and water footprint.
-
-**Carbon footprint:** definition and units
-
-**Water footprint:** definition and units
-
-<embed src="img/food_waste_footprint.svg" type="image/svg+xml" style="max-width:100%"/>
-
-
-# The cost of food waste
-
-The cost of surplus food is estimated at \$398 billion per year, with
-70% of that cost paying for waste management.
-
-If we exclude the surplus food generated on the farm and during
-manufacturing, the total surplus food produced by consumers,
-foodservice, and retail sectors is 53 million tons per year, or 324.6
-pounds per person, and costing \$350 billion. The U.S. EPA set a goal of
-reducing food waste disposed by 50% by 2030. Using a 2010 baseline
-estimate of 219 pounds per person (post-processing), that means a goal
-of disposing 109 pounds per person. The U.S. is far from reaching its
-2030 food waste goal.
