@@ -71,9 +71,7 @@ library(emojifont)
 library(ggwaffle)
 library(extrafont)
 library(treemapify)
-library(echarts4r)
-library(echarts4r.assets)
-library(hrbrthemes)
+# library(hrbrthemes)
 
 # Variables ---------------------------------------------------------------
 
