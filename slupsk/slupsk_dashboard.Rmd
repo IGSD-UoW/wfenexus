@@ -22,7 +22,14 @@ library(scales)
 library(htmltools)
 library(wfenexus)
 
-# Load data
+# Multilingual configuration -------------------------------------------------
+
+# Choose either "en" or "pl".
+report_language = "en" 
+
+source(here::here("slupsk/locale", paste0(report_language, ".R")))
+
+# Load data ------------------------------------------------------------------
 kindergarten_df <- read_csv("data-raw/kindergartens.csv")
 ingredients_df <- read_csv("data-raw/ingredients.csv")
 dish_composition <- read_csv("data/dish_composition.csv")
@@ -111,7 +118,7 @@ theme_set(mytheme_minimal)
 ```{r}
 
 valueBox(value = format(nrow(kindergarten_df), big.mark = ","), 
-         caption = "Kindergartens involved in the project.", 
+         caption = num_kindergartens, 
          icon = "fas fa-school")
 ```
 
@@ -120,7 +127,7 @@ valueBox(value = format(nrow(kindergarten_df), big.mark = ","),
 ```{r}
 
 valueBox(value = nrow(ingredients_df), 
-         caption = "Number of dishes.", 
+         caption = num_dishes, 
          icon = "fas fa-utensils")
 ```
 
@@ -129,7 +136,7 @@ valueBox(value = nrow(ingredients_df),
 ```{r}
 
 valueBox(value = nrow(dishes_df), 
-         caption = "Number of ingredients.", 
+         caption = num_ingredients, 
          icon = "fas fa-lemon")
 ```
 
@@ -150,19 +157,19 @@ bscols(
   widths = c(2, 10),
   list(
     # filter_select("kindergarten", "Kindergarten", df_shared, ~kindergarten),
-    filter_select("type", "Type", df_shared, ~type),
-    filter_slider("calories", "Calories", df_shared, ~calories),
-    filter_slider("rating_children", "Rating (Children)", df_shared,
+    filter_select("type", meal_type_string, df_shared, ~type),
+    filter_slider("calories", calories_string, df_shared, ~calories),
+    filter_slider("rating_children", rating_children_string, df_shared,
                   ~rating_children, width = "100%"),
-    filter_slider("rating_parents", "Rating (Parents)", df_shared, 
+    filter_slider("rating_parents", rating_parents_string, df_shared, 
                   ~rating_parents, width = "100%"),
-    filter_slider("rating_average", "Rating (Average)", df_shared, 
+    filter_slider("rating_average", rating_average_string, df_shared, 
                   ~rating_average, width = "100%"),
-    filter_slider("health", "Perceived health", df_shared, 
+    filter_slider("health", health_string, df_shared, 
                   ~health, width = "100%"),
-    filter_slider("water_used", "Used Water", df_shared, 
+    filter_slider("water_used", water_used_string, df_shared, 
                   ~water_used, width = "100%"),
-    filter_slider("emissions_transport", "Transport emissions", df_shared,
+    filter_slider("emissions_transport", emissions_transport_string, df_shared,
                   ~emissions_transport, width = "100%")
     
   ),
@@ -183,6 +190,7 @@ bscols(
         }),
       id = colDef(show = FALSE),
       name = colDef(
+        name = name_string,
         # Show dish type under character names
         cell = function(value, index) {
           type <- df$type[index]
@@ -192,9 +200,15 @@ bscols(
           )
         }
       ),
+      calories = colDef(
+        name = calories_string
+      ),
+      waste = colDef(
+        name = waste_string
+      ),
       type = colDef(show = FALSE),
       emissions_transport = colDef(
-        header = rt_with_tooltip("CO2 Emissions", "Total CO2 emitted in transportation. Units: kgCO2e"),
+        header = rt_with_tooltip(co2_emissions_string, co2_emissions_string_long),
         align = "right",
         cell = function(value) {
           rt_bar_cell(value, df$emissions_transport, color_energy)
@@ -202,39 +216,39 @@ bscols(
       ),
       rating_children = colDef(
         show = FALSE,
-        name = "Rating Children", 
+        name = rating_children_string, 
         # aggregate = "mean", 
         format = colFormat(digits = 1),
         cell = function(value) rt_rating_icons(value)
         ),
       rating_parents = colDef(
         show = FALSE,
-        name = "Rating Parents", 
+        name = rating_parents_string, 
         # aggregate = "mean", 
         format = colFormat(digits = 1),
         cell = function(value) rt_rating_icons(value, color = color_energy)
         ),
       rating_average = colDef(
-        name = "Rating (Average)", 
+        name = rating_average_string, 
         # aggregate = "mean", 
         format = colFormat(digits = 1),
         cell = function(value) rt_rating_icons(value, color = color_wfp_blue)
         ),
       health = colDef(
-        header = rt_with_tooltip("Perceived Health", "Average of parents' ratings on perceived health. High values do not necessarily mean that the meal is healthy."),
+        header = rt_with_tooltip(health_string, health_string_long),
         # name = "Perceived Health",
         aggregate = "mean",
         format = colFormat(digits = 1),
         cell = function(value) rt_rating_icons(value, icon = "heart", color = color_food)
       ),
       water_used = colDef(
-        header = rt_with_tooltip("Water used", "Total Water Used. Units: m3"),
+        header = rt_with_tooltip(water_used_string, water_used_tooltip),
         align = "right",
         cell = function(value) {
           rt_bar_cell(value, df$water_used, color_water)
         }),
       water_saving_current = colDef(
-        header = rt_with_tooltip("Water Saving", "Difference between the current choice of ingredients compared to the same ingredients being produced elsewhere. Negative values mean reduction of water, and therefore, desirable."),
+        header = rt_with_tooltip(water_saving_string, water_saving_tooltip),
         format = colFormat(percent = TRUE, digits = 2),
         style = function(value) {
           if (is.na(value)) {
@@ -248,7 +262,8 @@ bscols(
         }
       ),
       water_saving_potential = colDef(
-        header = rt_with_tooltip("Potential water Saving", "Difference between the current choice of ingredients compared to the same ingredients being produced locally. Higher values represent greater room for improvement."),
+        header = rt_with_tooltip(water_saving_potential_string, 
+                                 water_saving_potential_tooltip),
         format = colFormat(percent = TRUE, digits = 2),
         style = function(value) {
           if (is.na(value)) {
@@ -272,10 +287,10 @@ bscols(
                      fullWidth = TRUE,
                      columns = list(
                        ingredient_label = colDef(
-                         name = "Ingredient",
+                         name = ingredient_string,
                          minWidth = 300),
                        from_producer = colDef(
-                         name = "Produced in Poland?",
+                         name = from_producer_string,
                          cell = function(value) {
                            if (!is.na(value)) {
                              # Render as ✓ or ✘ or ?
@@ -290,15 +305,21 @@ bscols(
                              }
                            }
                         }),
-                       weight_grams = colDef(name = "Weight (g)"),
+                       weight_grams = colDef(name = weight_string),
                        world_total = colDef(
-                         header = rt_with_tooltip("Water Footprint (Avg)", "Total Water Footprint, using world averages. Units: m3/Ton")
+                         header = rt_with_tooltip(wfp_avg_string, 
+                                                  wfp_avg_tooltip)
                        ),
                        country_total = colDef(
-                         header = rt_with_tooltip("Water Footprint (PL)", "Total Water Footprint, assuming it was produced in Poland. Units: m3/Ton")
+                         header = rt_with_tooltip(wfp_poland_string,
+                                                  wfp_poland_tooltip)
                        ),
                        water_used = colDef(
-                         header = rt_with_tooltip("Water used", "Total Water Used. Units: m3")
+                         header = rt_with_tooltip(water_used_string, 
+                                                  water_used_tooltip)
+                       ),
+                       emissions_transport = colDef(
+                         name = emissions_transport_string
                        )
                      ))
     htmltools::div(class = "nested_table", tbl)
@@ -334,10 +355,11 @@ p <- dishrating %>%
   geom_bar(stat="identity", position="dodge") +
   geom_text(aes(label = value, x = value -0.2), color = "white",
             position = position_dodge(0.9), vjust = 0.15) +
-  ggtitle("Top 5 kindergartens by food rating") +
-  labs(subtitle = "Based on the average ratings made by parents and children", x = "", y = "", fill = "") +
+  ggtitle(top5_kindergartens_title) +
+  labs(subtitle = top5_kindergartens_subtitle, x = "", y = "", fill = "") +
   theme(legend.position = "bottom") +
-  scale_fill_manual(labels = c("Average rating", "Children's rating", "Parents' rating"),
+  scale_fill_manual(labels = c(rating_average_string, rating_children_string, 
+                               rating_parents_string),
                      values = c(color_water, color_energy, "orange"))
 
 # ggplotly(p)
@@ -378,11 +400,11 @@ g <- ggplot(ingredients_used_df,
   # geom_text(data=annotations_df, aes( x=x, y=y, label=label),
   #          color="grey", 
   #          size=2 , angle=45, fontface="bold" ) +
-  labs(title = "Ingredients' usage vs. water footprint",
-       subtitle = "This is a subtitle",
-       x = "Total weight (g)",
-       y = "Avg. Water Footprint (m3/Ton)",
-       color = "Type of food",
+  labs(title = ing_usg_wft_title,
+       subtitle = ing_usg_wft_subtitle,
+       x = ing_usg_wft_x,
+       y = ing_usg_wft_y,
+       color = ing_usg_wft_color,
        size = NULL,
        alpha = NULL)
 
@@ -417,9 +439,10 @@ p_lunch <- dishes_df %>%
   geom_text(aes(label = value, x = value -0.2), color = "white",
             position = position_dodge(0.9), vjust = 0) +
   ggtitle("Top 5 lunch dishes by food rating") +
-  labs(subtitle = "Based on the average ratings made by parents and children", x = "", y = "", fill = "") +
+  labs(subtitle = top5_kindergartens_subtitle, x = "", y = "", fill = "") +
   theme(legend.position = "bottom") +
-  scale_fill_manual(labels = c("Children's rating", "Parents' rating", "Average rating"),
+  scale_fill_manual(labels = c(rating_children_string, rating_parents_string, 
+                               rating_average_string),
                      values = c(color_energy, "orange", color_water))
 
 p_breakfast <- dishes_df %>% 
@@ -437,10 +460,11 @@ p_breakfast <- dishes_df %>%
   geom_bar(stat="identity", position="dodge") +
   geom_text(aes(label = value, x = value -0.2), color = "white",
             position = position_dodge(0.9), vjust = 0) +
-  ggtitle("Top 5 breakfast dishes by food rating") +
-  labs(subtitle = "Based on the average ratings made by parents and children", x = "", y = "", fill = "") +
+  ggtitle(top5_breakfast_title) +
+  labs(subtitle = top5_kindergartens_subtitle, x = "", y = "", fill = "") +
   theme(legend.position = "bottom") +
-  scale_fill_manual(labels = c("Children's rating", "Parents' rating", "Average rating"),
+  scale_fill_manual(labels = c(rating_children_string, rating_parents_string, 
+                               rating_average_string),
                      values = c(color_energy, "orange", color_water))
 
 p_afternoon <- dishes_df %>% 
@@ -458,10 +482,11 @@ p_afternoon <- dishes_df %>%
   geom_bar(stat="identity", position="dodge") +
   geom_text(aes(label = value, x = value -0.2), color = "white",
             position = position_dodge(0.9), vjust = 0) +
-  ggtitle("Top 5 afternoon tea dshes") +
-  labs(subtitle = "Based on the average ratings made by parents and children", x = "", y = "", fill = "") +
+  ggtitle(top5_afternoon_title) +
+  labs(subtitle = top5_kindergartens_subtitle, x = "", y = "", fill = "") +
   theme(legend.position = "bottom") +
-  scale_fill_manual(labels = c("Children's rating", "Parents' rating", "Average rating"),
+  scale_fill_manual(labels = c(rating_children_string, rating_parents_string, 
+                               rating_average_string),
                      values = c(color_energy, "orange", color_water))
 
 p_lunch + p_breakfast + p_afternoon +
@@ -479,9 +504,9 @@ p <- dishes_df %>%
   ggplot(aes(x = rating_parents, y = rating_children, 
              color = kindergarten_label, label = name)) +
   geom_point() +
-  ggtitle("Comparison of rating made by parents and children") +
-  labs(subtitle = "Based on the average ratings made by parents and children", 
-       x = "Parents", y = "Children", color = "Kindergarten") +
+  labs(title = comparison_ratings_title,
+       subtitle = comparison_ratings_subtitle, 
+       x = parents_string, y = children_string, color = kindergarten_string) +
   theme_minimal(base_size = 12) +
   theme(legend.position = "bottom",
         plot.caption = element_text(size = 8, face = "italic", 
