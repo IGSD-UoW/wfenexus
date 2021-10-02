@@ -497,13 +497,23 @@ p_lunch + p_breakfast + p_afternoon +
 
 ### Rating Correlations
 
+<div style='display:flex; flex-direction:row; justify-content:space-evenly; align-items:center;'>
+
+<div>
+
 ```{r}
-p <- dishes_df %>% 
+tmp_df <- dishes_df %>% 
   # filter(type == "afternoon_tea_pl") %>% 
-  mutate(kindergarten_label = str_wrap(kindergarten_label, 20)) %>% 
-  ggplot(aes(x = rating_parents, y = rating_children, 
+  mutate(kindergarten_label = str_wrap(kindergarten_label, 20))
+
+avg_x <- mean(tmp_df$rating_parents, na.rm = TRUE)
+avg_y <- mean(tmp_df$rating_children, na.rm = TRUE)
+
+p <- ggplot(tmp_df, aes(x = rating_parents, y = rating_children, 
              color = kindergarten_label, label = name)) +
   geom_point() +
+  geom_hline(yintercept=avg_y, size = 0.25, color = "grey", linetype = 'dotted') +
+  geom_vline(xintercept = avg_x, size = 0.25, color = "grey", linetype = 'dotted') +
   labs(title = comparison_ratings_title,
        subtitle = comparison_ratings_subtitle, 
        x = parents_string, y = children_string, color = kindergarten_string) +
@@ -520,6 +530,43 @@ p <- dishes_df %>%
 ggplotly(p, tooltip="name")
   
 ```
+</div>
+
+<div>
+```{r}
+tmp_df <- dishes_df %>% 
+  # filter(type == "afternoon_tea_pl") %>% 
+  mutate(kindergarten_label = str_wrap(kindergarten_label, 20))
+
+avg_x <- mean(tmp_df$rating_average, na.rm = TRUE)
+avg_y <- mean(tmp_df$health, na.rm = TRUE)
+
+p <- ggplot(tmp_df, aes(x = rating_average, y = health, 
+             color = kindergarten_label, label = name)) +
+  geom_point() +
+  geom_hline(yintercept=avg_y, size = 0.25, color = "grey", linetype = 'dotted') +
+  geom_vline(xintercept = avg_x, size = 0.25, color = "grey", linetype = 'dotted') +
+  labs(title = rating_health_title,
+       subtitle = rating_health_title, 
+       x = rating_health_x, y = rating_health_y, color = kindergarten_string) +
+  theme_minimal(base_size = 12) +
+  theme(legend.position = "bottom",
+        plot.caption = element_text(size = 8, face = "italic", 
+                                    colour = "grey60"),
+        plot.subtitle = element_text(size = 9, face = "plain", 
+                                     colour = "grey50"),
+        axis.ticks = element_line(colour = "grey80"),
+        axis.ticks.length = unit(2, "pt"),
+        strip.text = element_text(size = 12))
+
+ggplotly(p, tooltip="name")
+  
+```
+</div>
+
+</div>
+
+
 
 ### Rating Correlations2
 
@@ -536,8 +583,8 @@ p <- dishrating %>%
   ggplot(aes(x = avg_rating_parents, y = avg_rating_children, alpha = avg_health, 
              size = total)) +
   geom_point(color = "#95C448") +
-  ggtitle("Comparison of rating made by parents and children") +
-  labs(subtitle = "Based on the average ratings made by parents and children", x = "", y = "", fill = "") +
+  labs(title = comparison_ratings_title,
+       subtitle = comparison_ratings_subtitle, x = "", y = "", fill = "") +
   theme_minimal(base_size = 12) +
   theme(legend.position = "bottom",
         plot.caption = element_text(size = 8, face = "italic", 
@@ -596,6 +643,7 @@ bscols(
         }),
       id = colDef(show = FALSE),
       name = colDef(
+        name = name_string,
         # Show dish type under character names
         cell = function(value, index) {
           type <- df$type[index]
@@ -605,28 +653,32 @@ bscols(
           )
         }
       ),
+      calories = colDef(
+        name = calories_string),
+      allergens = colDef(
+        name = allergen_string),
+      waste = colDef(
+        name = waste_string),
       type = colDef(show = FALSE),
       rating_children = colDef(
-        name = "Rating Children", 
+        name = rating_children_string, 
         # aggregate = "mean", 
         format = colFormat(digits = 1),
         cell = function(value) rt_rating_icons(value)
         ),
       rating_parents = colDef(
-        name = "Rating Parents", 
+        name = rating_parents_string, 
         # aggregate = "mean", 
         format = colFormat(digits = 1),
         cell = function(value) rt_rating_icons(value, color = color_energy)
         ),
       rating_average = colDef(
-        name = "Rating (Average)", 
-        # aggregate = "mean", 
+        name = rating_average_string, 
         format = colFormat(digits = 1),
         cell = function(value) rt_rating_icons(value, color = color_wfp_blue)
         ),
       health = colDef(
-        header = rt_with_tooltip("Perceived Health", "Average of parents' ratings on perceived health. High values do not necessarily mean that the meal is healthy."),
-        # name = "Perceived Health",
+        header = rt_with_tooltip(health_string, health_string_long),
         aggregate = "mean",
         format = colFormat(digits = 1),
         cell = function(value) rt_rating_icons(value, icon = "heart", color = color_food)
@@ -642,10 +694,10 @@ bscols(
                      fullWidth = TRUE,
                      columns = list(
                        ingredient_label = colDef(
-                         name = "Ingredient",
+                         name = ingredient_string,
                          minWidth = 300),
                        from_producer = colDef(
-                         name = "Produced locally?",
+                         name = from_producer_string,
                          cell = function(value) {
                            if (!is.na(value)) {
                              # Render as ✓ or ✘ or ?
@@ -660,15 +712,18 @@ bscols(
                              }
                            }
                         }),
-                       weight_grams = colDef(name = "Weight (g)"),
+                       weight_grams = colDef(name = weight_string),
                        world_total = colDef(
-                         header = rt_with_tooltip("Water Footprint (Avg)", "Total Water Footprint, using world averages. Units: m3/Ton")
+                         header = rt_with_tooltip(wfp_avg_string, 
+                                                  wfp_avg_tooltip)
                        ),
                        country_total = colDef(
-                         header = rt_with_tooltip("Water Footprint (PL)", "Total Water Footprint, assuming it was produced in Poland. Units: m3/Ton")
+                         header = rt_with_tooltip(wfp_poland_string, 
+                                                  wfp_poland_tooltip)
                        ),
                        water_used = colDef(
-                         header = rt_with_tooltip("Water used", "Total Water Used. Units: m3")
+                         header = rt_with_tooltip(water_used_string, 
+                                                  water_used_tooltip)
                        )
                      ))
     htmltools::div(class = "nested_table", tbl)
@@ -715,23 +770,24 @@ bscols(
         # aggregate = "unique"
       ),
       children_satisfaction = colDef(
-        name = "Rating Children", 
+        name = rating_children_string, 
         # aggregate = function(value) rating_starts(mean(value))
         aggregate = "mean", 
         format = colFormat(digits = 1),
         cell = function(value) rt_rating_icons(value)
         ),
       parent_satisfaction = colDef(
-        name = "Rating Parents",
+        name = rating_parents_string,
         aggregate = "mean",
         format = colFormat(digits = 1),
         cell = function(value) rt_rating_icons(value, color = color_energy)
       ),
       health = colDef(
-        name = "Perceived Health",
+        name = health_string,
         aggregate = "mean",
         format = colFormat(digits = 1),
-        cell = function(value) rt_rating_icons(value, icon = "heart", color = color_food)
+        cell = function(value) rt_rating_icons(value, icon = "heart", 
+                                               color = color_food)
       )
     )
   )
@@ -787,7 +843,7 @@ total_wfp_crops_local <- round(stats_wfp$total_local[2], 2)
 ```{r}
 
 valueBox(value = paste0(format(avg_wfp_animals, big.mark = ","), " m3/Ton"), 
-         caption = "is the average water needed to graze worldwide the used ingredients from animal origin", 
+         caption = vb_avg_water_animals_string, 
          icon = "fas fa-paw")
 ```
 
@@ -796,7 +852,7 @@ valueBox(value = paste0(format(avg_wfp_animals, big.mark = ","), " m3/Ton"),
 ```{r}
 
 valueBox(value = paste0(format(avg_wfp_crops, big.mark = ","), " m3/Ton"), 
-         caption = "is the average water needed worldwide to grow the used ingredients from plant origin ", 
+         caption = vb_avg_water_crops_string, 
          icon = "fas fa-leaf")
 ```
 
@@ -805,7 +861,7 @@ valueBox(value = paste0(format(avg_wfp_crops, big.mark = ","), " m3/Ton"),
 ```{r}
 
 valueBox(value = paste0(format(avg_wfp_animals_local, big.mark = ","), " m3/Ton"), 
-         caption = "is the average water footprint if the same animals were grazed localy", 
+         caption = vb_avg_water_animals_local_string, 
          icon = "fas fa-paw")
 ```
 
@@ -814,7 +870,7 @@ valueBox(value = paste0(format(avg_wfp_animals_local, big.mark = ","), " m3/Ton"
 ```{r}
 
 valueBox(value = paste0(format(avg_wfp_crops_local, big.mark = ","), " m3/Ton"), 
-         caption = "is the average water footprint if the same crops were grown locally (if possible). this represents XX less", 
+         caption = vb_avg_water_crops_local_string, 
          icon = "fas fa-leaf")
 ```
 
@@ -825,7 +881,7 @@ valueBox(value = paste0(format(avg_wfp_crops_local, big.mark = ","), " m3/Ton"),
 ```{r}
 
 valueBox(value = paste0(format(total_wfp_animals, big.mark = ","), " m3/Ton"), 
-         caption = "is the total water footprint of the ingredients from animal origin", 
+         caption = , 
          icon = "fas fa-paw")
 ```
 
@@ -1064,6 +1120,38 @@ bscols(
   )
 )
 
+```
+
+### Ratings vs water footprint
+
+```{r}
+tmp_df <- dishes_df %>% 
+  # filter(type == "afternoon_tea_pl") %>% 
+  mutate(kindergarten_label = str_wrap(kindergarten_label, 20))
+
+avg_x <- mean(tmp_df$rating_average, na.rm = TRUE)
+avg_y <- mean(tmp_df$water_used, na.rm = TRUE)
+
+p <- ggplot(tmp_df, aes(x = rating_average, y = water_used, 
+             color = kindergarten_label, label = name)) +
+  geom_point() +
+  geom_hline(yintercept=avg_y, size = 0.25, color = "grey", linetype = 'dotted') +
+  geom_vline(xintercept = avg_x, size = 0.25, color = "grey", linetype = 'dotted') +
+  labs(title = comparison_ratings_title,
+       subtitle = comparison_ratings_subtitle, 
+       x = rating_avg_string, y = water_footprint_string, color = kindergarten_string) +
+  theme_minimal(base_size = 12) +
+  theme(legend.position = "bottom",
+        plot.caption = element_text(size = 8, face = "italic", 
+                                    colour = "grey60"),
+        plot.subtitle = element_text(size = 9, face = "plain", 
+                                     colour = "grey50"),
+        axis.ticks = element_line(colour = "grey80"),
+        axis.ticks.length = unit(2, "pt"),
+        strip.text = element_text(size = 12))
+
+ggplotly(p, tooltip="name")
+  
 ```
 
 ### Things to consider
@@ -1328,6 +1416,40 @@ bscols(
 )
 
 
+```
+
+### Ratings vs energy footprint
+
+```{r}
+tmp_df <- dishes_df %>% 
+  # filter(type == "afternoon_tea_pl") %>% 
+  mutate(kindergarten_label = str_wrap(kindergarten_label, 20))
+
+avg_x <- mean(tmp_df$rating_average, na.rm = TRUE)
+avg_y <- mean(tmp_df$emissions_transport, na.rm = TRUE)
+
+p <- ggplot(tmp_df, aes(x = rating_average, y = emissions_transport, 
+             color = kindergarten_label, label = name)) +
+  geom_point() +
+  geom_hline(yintercept=avg_y, size = 0.25, color = "grey", linetype = 'dotted') +
+  geom_vline(xintercept = avg_x, size = 0.25, color = "grey", linetype = 'dotted') +
+  labs(title = comparison_rating_energy_title,
+       subtitle = "", 
+       x = rating_avg_string, 
+       y = emissions_transport_string, 
+       color = kindergarten_string) +
+  theme_minimal(base_size = 12) +
+  theme(legend.position = "bottom",
+        plot.caption = element_text(size = 8, face = "italic", 
+                                    colour = "grey60"),
+        plot.subtitle = element_text(size = 9, face = "plain", 
+                                     colour = "grey50"),
+        axis.ticks = element_line(colour = "grey80"),
+        axis.ticks.length = unit(2, "pt"),
+        strip.text = element_text(size = 12))
+
+ggplotly(p, tooltip="name")
+  
 ```
 
 # About

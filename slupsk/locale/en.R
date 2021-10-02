@@ -3,9 +3,14 @@
 # Edit the strings between "", making sure to preserve the double ".
 
 
+# General -----------------------------------------------------------------
+
 parents_string <- "Parents"
 children_string <- "Children"
 kindergarten_string <- "Kindergarten"
+
+rating_avg_string <- "Average rating"
+water_footprint_string <- "Water Footprint"
 
 # Overview ----------------------------------------------------------------
 
@@ -20,6 +25,7 @@ num_ingredients <- "Number of ingredients."
 name_string <- "Name"
 calories_string <- "Calories"
 waste_string <- "Waste"
+allergen_string <- "Allergens"
 
 ingredient_string <- "Ingredient"
 
@@ -75,4 +81,25 @@ ing_usg_wft_color <- "Type of food"
 
 comparison_ratings_title <- "Comparison of rating made by parents and children"
 comparison_ratings_subtitle <- top5_kindergartens_subtitle
+
+rating_health_title <- "Average rating vs perceived health"
+rating_health_x <- "Average rating"
+rating_health_y <- "Perceived health"
+
+
+
+# Water -------------------------------------------------------------------
+
+vb_avg_water_animals_string <- "is the average water needed to graze worldwide the used ingredients from animal origin"
+vb_avg_water_crops_string <- "is the average water needed worldwide to grow the used ingredients from plant origin "
+vb_avg_water_animals_local_string <- "is the average water footprint if the same animals were grazed localy"
+vb_avg_water_crops_local_string <- "is the average water footprint if the same crops were grown locally (if possible). this represents XX less"
+
+vb_total_water_string <- "is the total water footprint of the ingredients from animal origin"
+
+
+
+# Energy ------------------------------------------------------------------
+
+comparison_rating_energy_title <- "Comparison of rating vs energy footprint"
 
