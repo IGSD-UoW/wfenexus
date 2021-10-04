@@ -1213,7 +1213,9 @@ valueBox(value = paste0(format(1.318653, big.mark = ","), " kgCO2e/unit"),
 ```{r dish_summary_energy}
 df <- dishes_df %>% 
   relocate(picture) %>% 
-  select(-kindergarten_id, -date, -allergens, -health, -ends_with("label"), -starts_with("water"))
+  select(-kindergarten_id, -date, -allergens, -health, -ends_with("label"), -starts_with("water")) %>% 
+  relocate(emissions_transport, .after = name)
+  
 df_shared <- SharedData$new(df)
 
 bscols(
@@ -1253,6 +1255,13 @@ bscols(
         }
       ),
       type = colDef(show = FALSE),
+      calories = colDef(
+        name = calories_string,
+        align = "right",
+        cell = function(value) {
+          rt_bar_cell(value, df$calories, color_food)
+        }
+      ),
       emissions_transport = colDef(
         header = rt_with_tooltip("CO2 Emissions", "Total CO2 emitted in transportation. Units: kgCO2e"),
         align = "right",
@@ -1261,14 +1270,14 @@ bscols(
         }
       ),
       rating_children = colDef(
-        show = FALSE,
+        show = TRUE,
         name = "Rating Children",
         # aggregate = "mean",
         format = colFormat(digits = 1),
         cell = function(value) rt_rating_icons(value)
         ),
       rating_parents = colDef(
-        show = FALSE,
+        show = TRUE,
         name = "Rating Parents",
         # aggregate = "mean",
         format = colFormat(digits = 1),
