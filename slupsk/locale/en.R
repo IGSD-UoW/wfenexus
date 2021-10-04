@@ -97,6 +97,8 @@ vb_avg_water_crops_local_string <- "is the average water footprint if the same c
 
 vb_total_water_string <- "is the total water footprint of the ingredients from animal origin"
 
+water_world_string <- "Water footprint (World)"
+water_world_tooltip <- "Total water needed (world average). Units: m3"
 
 
 # Energy ------------------------------------------------------------------

@@ -1028,7 +1028,7 @@ bscols(
 df <- dishes_df %>% 
   relocate(picture) %>% 
   select(-kindergarten_id, -date, -ends_with("label"), -starts_with("rating"),
-         -health, -waste, -allergens, -calories) %>% 
+         -health, -waste, -allergens, -calories, -emissions_transport) %>% 
   mutate(water_used = round(water_used, 3))
 
 df_shared <- SharedData$new(df)
@@ -1069,6 +1069,9 @@ bscols(
         }
       ),
       type = colDef(show = FALSE),
+      water_world = colDef(
+        header = rt_with_tooltip(water_world_string, water_world_tooltip)
+      ),
       water_used = colDef(
         header = rt_with_tooltip("Water used", "Total Water Used. Units: m3"),
         align = "right",
@@ -1202,7 +1205,7 @@ valueBox(value = paste0(format(1.318653, big.mark = ","), " kgCO2e/unit"),
          icon = "fas fa-plane")
 ```
 
-## Table
+## Table {.tabset}
 
 ### Dishes' energy
 
@@ -1210,10 +1213,7 @@ valueBox(value = paste0(format(1.318653, big.mark = ","), " kgCO2e/unit"),
 ```{r dish_summary_energy}
 df <- dishes_df %>% 
   relocate(picture) %>% 
-  select(-kindergarten_id, -date, -allergens, -ends_with("label"), -water_world,
-         -water_local, -water_saving_local) %>% 
-  mutate(water_used = round(water_used, 3))
-
+  select(-kindergarten_id, -date, -allergens, -health, -ends_with("label"), -starts_with("water"))
 df_shared <- SharedData$new(df)
 
 bscols(
@@ -1232,7 +1232,7 @@ bscols(
     highlight = TRUE, 
     height = 700,
     searchable = TRUE,
-    defaultSorted = list(water_used = "desc"),
+    defaultSorted = list(emissions_transport = "desc"),
     defaultColDef = colDef(sortNALast = TRUE),
     columns = list(
       picture =  colDef(
@@ -1262,15 +1262,15 @@ bscols(
       ),
       rating_children = colDef(
         show = FALSE,
-        name = "Rating Children", 
-        # aggregate = "mean", 
+        name = "Rating Children",
+        # aggregate = "mean",
         format = colFormat(digits = 1),
         cell = function(value) rt_rating_icons(value)
         ),
       rating_parents = colDef(
         show = FALSE,
-        name = "Rating Parents", 
-        # aggregate = "mean", 
+        name = "Rating Parents",
+        # aggregate = "mean",
         format = colFormat(digits = 1),
         cell = function(value) rt_rating_icons(value, color = color_energy)
         ),
@@ -1280,47 +1280,12 @@ bscols(
         format = colFormat(digits = 1),
         cell = function(value) rt_rating_icons(value, color = color_wfp_blue)
         ),
-      health = colDef(
-        header = rt_with_tooltip("Perceived Health", "Average of parents' ratings on perceived health. High values do not necessarily mean that the meal is healthy."),
-        # name = "Perceived Health",
-        aggregate = "mean",
-        format = colFormat(digits = 1),
-        cell = function(value) rt_rating_icons(value, icon = "heart", color = color_food)
-      ),
       water_used = colDef(
         header = rt_with_tooltip("Water used", "Total Water Used. Units: m3"),
         align = "right",
         cell = function(value) {
           rt_bar_cell(value, df$water_used, color_water)
-        }),
-      water_saving_current = colDef(
-        header = rt_with_tooltip("Water Saving", "Difference between the current choice of ingredients compared to the same ingredients being produced elsewhere. Negative values mean reduction of water, and therefore, desirable."),
-        format = colFormat(percent = TRUE, digits = 2),
-        style = function(value) {
-          if (is.na(value)) {
-            return()
-          } else if ( value > 0) {
-            color <- "red"
-          } else {
-            color <- "green"
-          }
-          list(color = color, fontWeight = "bold")
-        }
-      ),
-      water_saving_potential = colDef(
-        header = rt_with_tooltip("Potential water Saving", "Difference between the current choice of ingredients compared to the same ingredients being produced locally. Higher values represent greater room for improvement."),
-        format = colFormat(percent = TRUE, digits = 2),
-        style = function(value) {
-          if (is.na(value)) {
-            return()
-          } else if ( value > 0) {
-            color <- "red"
-          } else {
-            color <- "green"
-          }
-          list(color = color, fontWeight = "bold")
-        }
-      )
+        })
     ),
     details = function(index) {
     nested_data <- dish_composition %>% 
