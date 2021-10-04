@@ -148,7 +148,7 @@ valueBox(value = nrow(dishes_df),
 df <- dishes_df %>% 
   relocate(picture) %>% 
   select(-kindergarten_id, -date, -allergens, -ends_with("label"), -water_world,
-         -water_local, -water_saving_local) %>% 
+         -water_local, -water_saving_local, -water_saving_potential) %>% 
   mutate(water_used = round(water_used, 3))
 
 df_shared <- SharedData$new(df)
