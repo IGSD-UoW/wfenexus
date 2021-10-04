@@ -1025,11 +1025,14 @@ bscols(
 ### Meals
 
 ```{r dish_water_table}
+# TODO: assign a different color to water_used: if water used = water_local, use
+# the same colour as water local, if not, use the color of water_world.
+
 df <- dishes_df %>% 
   relocate(picture) %>% 
   select(-kindergarten_id, -date, -ends_with("label"), -starts_with("rating"),
-         -health, -waste, -allergens, -calories, -emissions_transport) %>% 
-  mutate(water_used = round(water_used, 3))
+         -health, -waste, -allergens, -calories, -emissions_transport, -water_saving_local) %>% 
+  mutate(across(is.numeric, round, 3))
 
 df_shared <- SharedData$new(df)
 
@@ -1070,14 +1073,52 @@ bscols(
       ),
       type = colDef(show = FALSE),
       water_world = colDef(
-        header = rt_with_tooltip(water_world_string, water_world_tooltip)
-      ),
+        header = rt_with_tooltip(water_world_string, water_world_tooltip),
+        align = "right",
+        cell = function(value) {
+          rt_bar_cell(value, df$water_world, color_wfp_blue)
+        }),
+      water_local = colDef(
+        header = rt_with_tooltip(water_local_string, water_local_tooltip),
+        align = "right",
+        cell = function(value) {
+          rt_bar_cell(value, df$water_local, color_water)
+        }),
       water_used = colDef(
         header = rt_with_tooltip("Water used", "Total Water Used. Units: m3"),
         align = "right",
         cell = function(value) {
           rt_bar_cell(value, df$water_used, color_water)
-        })
+        }),
+      water_saving_current = colDef(
+        header = rt_with_tooltip(water_saving_string, water_saving_tooltip),
+        # format = colFormat(percent = TRUE, digits = 2),
+        style = function(value) {
+          if (is.na(value)) {
+            return()
+          } else if ( value > 0) {
+            color <- "red"
+          } else {
+            color <- "green"
+          }
+          list(color = color, fontWeight = "bold")
+        }
+      ),
+      water_saving_potential = colDef(
+        header = rt_with_tooltip(water_saving_potential_string, 
+                                 water_saving_potential_tooltip),
+        # format = colFormat(percent = TRUE, digits = 2),
+        style = function(value) {
+          if (is.na(value)) {
+            return()
+          } else if ( value > 0) {
+            color <- "red"
+          } else {
+            color <- "green"
+          }
+          list(color = color, fontWeight = "bold")
+        }
+      )
     ),
     details = function(index) {
     nested_data <- dish_composition %>% 

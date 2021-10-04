@@ -100,6 +100,9 @@ vb_total_water_string <- "is the total water footprint of the ingredients from a
 water_world_string <- "Water footprint (World)"
 water_world_tooltip <- "Total water needed (world average). Units: m3"
 
+water_local_string <- "Water footprint (Poland)"
+water_local_tooltip <- "Total water needed (Poland). Units: m3"
+
 
 # Energy ------------------------------------------------------------------
 
