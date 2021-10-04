@@ -280,7 +280,7 @@ bscols(
     details = function(index) {
     nested_data <- dish_composition %>% 
       filter(dish_id == df$id[index]) %>% 
-      select(ingredient_label, from_producer, weight_grams, world_total, 
+      select(ingredient_label, name_en, from_producer, weight_grams, world_total, 
              country_total, water_used, emissions_transport) %>% 
       mutate(across(where(is.numeric), round, 3))
     tbl <- reactable(nested_data, outlined = TRUE, highlight = TRUE, 
@@ -687,7 +687,7 @@ bscols(
     details = function(index) {
     nested_data <- dish_composition %>% 
       filter(dish_id == df$id[index]) %>% 
-      select(ingredient_label, from_producer, weight_grams, world_total, 
+      select(ingredient_label, name_en, from_producer, weight_grams, world_total, 
              country_total, water_used) %>% 
       mutate(across(where(is.numeric), round, 3))
     tbl <- reactable(nested_data, outlined = TRUE, highlight = TRUE, 
@@ -1082,7 +1082,7 @@ bscols(
     details = function(index) {
     nested_data <- dish_composition %>% 
       filter(dish_id == df$id[index]) %>% 
-      select(ingredient_label, from_producer, weight_grams, world_total, 
+      select(ingredient_label, name_en, from_producer, weight_grams, world_total, 
              country_total, water_used) %>% 
       mutate(across(where(is.numeric), round, 3))
     tbl <- reactable(nested_data, outlined = TRUE, highlight = TRUE, 
@@ -1299,7 +1299,7 @@ bscols(
     details = function(index) {
     nested_data <- dish_composition %>% 
       filter(dish_id == df$id[index]) %>% 
-      select(ingredient_label, from_producer, weight_grams, world_total, 
+      select(ingredient_label, name_en, from_producer, weight_grams, world_total, 
              country_total, water_used, emissions_transport) %>% 
       mutate(across(where(is.numeric), round, 3))
     tbl <- reactable(nested_data, outlined = TRUE, highlight = TRUE, 
