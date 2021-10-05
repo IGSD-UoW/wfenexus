@@ -38,7 +38,8 @@ dishrating <- read_csv("data-raw/dishrating.csv") %>%
   ci_dishratings_prep()
   
 
-dishes_df <- read_csv("data/dishes.csv")
+dishes_df <- read_csv("data/dishes.csv") %>% 
+  mutate(waste = fct_relevel(as.factor(waste), "<5", "5<10", "11<25", ">25" ))
 
 energy_df <- read.csv("data-raw/ERL_12_6_064016_figuredata.csv") %>% 
   select(-Lead.Author, -Year.Published) %>% 
@@ -140,9 +141,20 @@ valueBox(value = nrow(dishes_df),
          icon = "fas fa-lemon")
 ```
 
-## Dishes
+### votes {.value-box .no-mobile}
 
-### Dishes
+```{r}
+
+valueBox(value = nrow(dishrating), 
+         caption = num_votes, 
+         icon = "fas fa-vote-yea")
+```
+
+## Dishes {.tabset}
+
+### Dishes' overview
+
+For more details regarding ratings, calories and health, click on [Food menu](#food) menu. For more details on the water used by ingredients and meals, click on [Water menu](#water). For details about CO2 emissions in transport and energy footprint, click on [Energy menu](#energy). For a description of every variable and methods used to calculate them, visit [About menu](#about) 
 
 ```{r dish_summary}
 df <- dishes_df %>% 
@@ -161,10 +173,10 @@ bscols(
     filter_slider("calories", calories_string, df_shared, ~calories),
     filter_slider("rating_children", rating_children_string, df_shared,
                   ~rating_children, width = "100%"),
-    filter_slider("rating_parents", rating_parents_string, df_shared, 
-                  ~rating_parents, width = "100%"),
-    filter_slider("rating_average", rating_average_string, df_shared, 
-                  ~rating_average, width = "100%"),
+    # filter_slider("rating_parents", rating_parents_string, df_shared, 
+    #               ~rating_parents, width = "100%"),
+    # filter_slider("rating_average", rating_average_string, df_shared, 
+    #               ~rating_average, width = "100%"),
     filter_slider("health", health_string, df_shared, 
                   ~health, width = "100%"),
     filter_slider("water_used", water_used_string, df_shared, 
@@ -177,7 +189,7 @@ bscols(
     df_shared,
     pagination = FALSE, 
     highlight = TRUE, 
-    height = 700,
+    height = 670,
     searchable = TRUE,
     defaultSorted = list(water_used = "desc"),
     defaultColDef = colDef(sortNALast = TRUE),
@@ -201,10 +213,14 @@ bscols(
         }
       ),
       calories = colDef(
-        name = calories_string
-      ),
+        name = calories_string,
+        align = "right",
+        cell = function(value) {
+          rt_bar_cell(value, df$calories, color_food)
+        }),
       waste = colDef(
-        name = waste_string
+        name = waste_string,
+        width = 70,
       ),
       type = colDef(show = FALSE),
       emissions_transport = colDef(
@@ -248,6 +264,7 @@ bscols(
           rt_bar_cell(value, df$water_used, color_water)
         }),
       water_saving_current = colDef(
+        show = FALSE,
         header = rt_with_tooltip(water_saving_string, water_saving_tooltip),
         format = colFormat(percent = TRUE, digits = 2),
         style = function(value) {
@@ -331,11 +348,215 @@ bscols(
 
 ```
 
-# Food
+### Ratings' details
+
+```{r}
+df <- dishrating %>% 
+  select(-id, -kindergarten_id, -dish_id, -ends_with("_label")) %>% 
+  relocate(label, .before = date) %>% 
+  relocate(kindergarten, .before = label) %>% 
+  relocate(date, .before = comment)
+
+df_shared <- SharedData$new(df)
+
+bscols(
+  widths = c(2, 10),
+  list(
+    filter_select("kindergarten", "Kindergarten", df_shared, ~kindergarten),
+    # filter_checkbox("type", "Type", df_shared, ~type),
+    filter_slider("children_satisfaction", "Children Satisfaction", df_shared,
+                  ~children_satisfaction, width = "100%"),
+    filter_slider("parent_satisfaction", "Parents' satisfaction", df_shared, 
+                  ~parent_satisfaction, width = "100%")
+    
+  ),
+  reactable(
+    df_shared,
+    pagination = FALSE, 
+    highlight = TRUE, 
+    # height = 250,
+    searchable = TRUE,
+    groupBy = c("label"),
+    columns = list(
+      label = colDef(
+        name = "Dish"
+        # aggregate = "unique"
+      ),
+      children_satisfaction = colDef(
+        name = rating_children_string, 
+        # aggregate = function(value) rating_starts(mean(value))
+        aggregate = "mean", 
+        format = colFormat(digits = 1),
+        cell = function(value) rt_rating_icons(value)
+        ),
+      parent_satisfaction = colDef(
+        name = rating_parents_string,
+        aggregate = "mean",
+        format = colFormat(digits = 1),
+        cell = function(value) rt_rating_icons(value, color = color_energy)
+      ),
+      health = colDef(
+        name = health_string,
+        aggregate = "mean",
+        format = colFormat(digits = 1),
+        cell = function(value) rt_rating_icons(value, icon = "heart", 
+                                               color = color_food)
+      )
+    )
+  )
+)
+
+
+
+
+```
+
+### Definitions {data-icon="ion-information-circled"}
+
+* Some text here
+
+
+# Food  {data-icon="fa-utensils"}
 
 ## Ranking dishes {.tabset}
 
-### Kindergartens
+
+### Meals
+
+```{r dish_food}
+df <- dishes_df %>% 
+  relocate(picture) %>% 
+  select(id, type, picture, name, calories, allergens, waste, 
+         starts_with("rating"), health)
+
+df_shared <- SharedData$new(df)
+
+bscols(
+  widths = c(2, 10),
+  list(
+    # filter_select("kindergarten", "Kindergarten", df_shared, ~kindergarten),
+    filter_select("type", "Type", df_shared, ~type),
+    filter_slider("calories", "Calories", df_shared, ~calories),
+    filter_slider("rating_children", "Rating (Children)", df_shared,
+                  ~rating_children, width = "100%"),
+    filter_slider("rating_parents", "Rating (Parents)", df_shared, 
+                  ~rating_parents, width = "100%"),
+    filter_slider("rating_average", "Rating (Average)", df_shared, 
+                  ~rating_average, width = "100%"),
+    filter_slider("health", "Perceived health", df_shared, 
+                  ~health, width = "100%")
+    
+  ),
+  reactable(
+    df_shared,
+    pagination = FALSE, 
+    highlight = TRUE, 
+    height = 700,
+    searchable = TRUE,
+    defaultColDef = colDef(sortNALast = TRUE),
+    columns = list(
+      picture =  colDef(
+        maxWidth = 110,
+        name = "",
+        cell = function(value) {
+          image <- img(src =  value, width = "100px", alt = value)
+        }),
+      id = colDef(show = FALSE),
+      name = colDef(
+        name = name_string,
+        # Show dish type under character names
+        cell = function(value, index) {
+          type <- df$type[index]
+          tagList(
+            div(style = list(fontWeight = 600), value),
+            div(style = list(fontSize = 12), type)
+          )
+        }
+      ),
+      calories = colDef(
+        name = calories_string),
+      allergens = colDef(
+        name = allergen_string),
+      waste = colDef(
+        name = waste_string),
+      type = colDef(show = FALSE),
+      rating_children = colDef(
+        name = rating_children_string, 
+        # aggregate = "mean", 
+        format = colFormat(digits = 1),
+        cell = function(value) rt_rating_icons(value)
+        ),
+      rating_parents = colDef(
+        name = rating_parents_string, 
+        # aggregate = "mean", 
+        format = colFormat(digits = 1),
+        cell = function(value) rt_rating_icons(value, color = color_energy)
+        ),
+      rating_average = colDef(
+        name = rating_average_string, 
+        format = colFormat(digits = 1),
+        cell = function(value) rt_rating_icons(value, color = color_wfp_blue)
+        ),
+      health = colDef(
+        header = rt_with_tooltip(health_string, health_string_long),
+        aggregate = "mean",
+        format = colFormat(digits = 1),
+        cell = function(value) rt_rating_icons(value, icon = "heart", color = color_food)
+      )
+    ),
+    details = function(index) {
+    nested_data <- dish_composition %>% 
+      filter(dish_id == df$id[index]) %>% 
+      select(ingredient_label, name_en, from_producer, weight_grams, world_total, 
+             country_total, water_used) %>% 
+      mutate(across(where(is.numeric), round, 3))
+    tbl <- reactable(nested_data, outlined = TRUE, highlight = TRUE, 
+                     fullWidth = TRUE,
+                     columns = list(
+                       ingredient_label = colDef(
+                         name = ingredient_string,
+                         minWidth = 300),
+                       from_producer = colDef(
+                         name = from_producer_string,
+                         cell = function(value) {
+                           if (!is.na(value)) {
+                             # Render as ✓ or ✘ or ?
+                             if(value == "local" | value == "national" | 
+                                value == "regional"| value == "yes") {
+                               "\u2713"
+                             } else if (value == "inside_europe" | 
+                                        value == "outside_europe") {
+                               "\u2718"
+                             } else {
+                               "?"
+                             }
+                           }
+                        }),
+                       weight_grams = colDef(name = weight_string),
+                       world_total = colDef(
+                         header = rt_with_tooltip(wfp_avg_string, 
+                                                  wfp_avg_tooltip)
+                       ),
+                       country_total = colDef(
+                         header = rt_with_tooltip(wfp_poland_string, 
+                                                  wfp_poland_tooltip)
+                       ),
+                       water_used = colDef(
+                         header = rt_with_tooltip(water_used_string, 
+                                                  water_used_tooltip)
+                       )
+                     ))
+    htmltools::div(class = "nested_table", tbl)
+  },
+  onClick = "expand",
+  rowStyle = list(cursor = "pointer")
+  )
+)
+
+```
+
+
+### Top rated Kindergartens
 
 ```{r }
 
@@ -568,9 +789,9 @@ ggplotly(p, tooltip="name")
 
 
 
-### Rating Correlations2
+<!-- ### Rating Correlations2 -->
 
-```{r}
+```{r eval=FALSE, include=FALSE}
 
 p <- dishrating %>% 
   group_by(dish) %>% 
@@ -599,206 +820,8 @@ p
 
 ```
 
-## Tables {.tabset}
 
-### Meals
-
-```{r dish_food}
-df <- dishes_df %>% 
-  relocate(picture) %>% 
-  select(id, type, picture, name, calories, allergens, waste, 
-         starts_with("rating"), health)
-
-df_shared <- SharedData$new(df)
-
-bscols(
-  widths = c(2, 10),
-  list(
-    # filter_select("kindergarten", "Kindergarten", df_shared, ~kindergarten),
-    filter_select("type", "Type", df_shared, ~type),
-    filter_slider("calories", "Calories", df_shared, ~calories),
-    filter_slider("rating_children", "Rating (Children)", df_shared,
-                  ~rating_children, width = "100%"),
-    filter_slider("rating_parents", "Rating (Parents)", df_shared, 
-                  ~rating_parents, width = "100%"),
-    filter_slider("rating_average", "Rating (Average)", df_shared, 
-                  ~rating_average, width = "100%"),
-    filter_slider("health", "Perceived health", df_shared, 
-                  ~health, width = "100%")
-    
-  ),
-  reactable(
-    df_shared,
-    pagination = FALSE, 
-    highlight = TRUE, 
-    height = 700,
-    searchable = TRUE,
-    defaultColDef = colDef(sortNALast = TRUE),
-    columns = list(
-      picture =  colDef(
-        maxWidth = 110,
-        name = "",
-        cell = function(value) {
-          image <- img(src =  value, width = "100px", alt = value)
-        }),
-      id = colDef(show = FALSE),
-      name = colDef(
-        name = name_string,
-        # Show dish type under character names
-        cell = function(value, index) {
-          type <- df$type[index]
-          tagList(
-            div(style = list(fontWeight = 600), value),
-            div(style = list(fontSize = 12), type)
-          )
-        }
-      ),
-      calories = colDef(
-        name = calories_string),
-      allergens = colDef(
-        name = allergen_string),
-      waste = colDef(
-        name = waste_string),
-      type = colDef(show = FALSE),
-      rating_children = colDef(
-        name = rating_children_string, 
-        # aggregate = "mean", 
-        format = colFormat(digits = 1),
-        cell = function(value) rt_rating_icons(value)
-        ),
-      rating_parents = colDef(
-        name = rating_parents_string, 
-        # aggregate = "mean", 
-        format = colFormat(digits = 1),
-        cell = function(value) rt_rating_icons(value, color = color_energy)
-        ),
-      rating_average = colDef(
-        name = rating_average_string, 
-        format = colFormat(digits = 1),
-        cell = function(value) rt_rating_icons(value, color = color_wfp_blue)
-        ),
-      health = colDef(
-        header = rt_with_tooltip(health_string, health_string_long),
-        aggregate = "mean",
-        format = colFormat(digits = 1),
-        cell = function(value) rt_rating_icons(value, icon = "heart", color = color_food)
-      )
-    ),
-    details = function(index) {
-    nested_data <- dish_composition %>% 
-      filter(dish_id == df$id[index]) %>% 
-      select(ingredient_label, name_en, from_producer, weight_grams, world_total, 
-             country_total, water_used) %>% 
-      mutate(across(where(is.numeric), round, 3))
-    tbl <- reactable(nested_data, outlined = TRUE, highlight = TRUE, 
-                     fullWidth = TRUE,
-                     columns = list(
-                       ingredient_label = colDef(
-                         name = ingredient_string,
-                         minWidth = 300),
-                       from_producer = colDef(
-                         name = from_producer_string,
-                         cell = function(value) {
-                           if (!is.na(value)) {
-                             # Render as ✓ or ✘ or ?
-                             if(value == "local" | value == "national" | 
-                                value == "regional"| value == "yes") {
-                               "\u2713"
-                             } else if (value == "inside_europe" | 
-                                        value == "outside_europe") {
-                               "\u2718"
-                             } else {
-                               "?"
-                             }
-                           }
-                        }),
-                       weight_grams = colDef(name = weight_string),
-                       world_total = colDef(
-                         header = rt_with_tooltip(wfp_avg_string, 
-                                                  wfp_avg_tooltip)
-                       ),
-                       country_total = colDef(
-                         header = rt_with_tooltip(wfp_poland_string, 
-                                                  wfp_poland_tooltip)
-                       ),
-                       water_used = colDef(
-                         header = rt_with_tooltip(water_used_string, 
-                                                  water_used_tooltip)
-                       )
-                     ))
-    htmltools::div(class = "nested_table", tbl)
-  },
-  onClick = "expand",
-  rowStyle = list(cursor = "pointer")
-  )
-)
-
-```
-
-### Ratings' details
-
-```{r}
-df <- dishrating %>% 
-  select(-id, -kindergarten_id, -dish_id, -ends_with("_label")) %>% 
-  relocate(label, .before = date) %>% 
-  relocate(kindergarten, .before = label) %>% 
-  relocate(date, .before = comment)
-
-df_shared <- SharedData$new(df)
-
-bscols(
-  widths = c(2, 10),
-  list(
-    filter_select("kindergarten", "Kindergarten", df_shared, ~kindergarten),
-    # filter_checkbox("type", "Type", df_shared, ~type),
-    filter_slider("children_satisfaction", "Children Satisfaction", df_shared,
-                  ~children_satisfaction, width = "100%"),
-    filter_slider("parent_satisfaction", "Parents' satisfaction", df_shared, 
-                  ~parent_satisfaction, width = "100%")
-    
-  ),
-  reactable(
-    df_shared,
-    pagination = FALSE, 
-    highlight = TRUE, 
-    # height = 250,
-    searchable = TRUE,
-    groupBy = c("kindergarten", "label"),
-    columns = list(
-      label = colDef(
-        name = "Dish"
-        # aggregate = "unique"
-      ),
-      children_satisfaction = colDef(
-        name = rating_children_string, 
-        # aggregate = function(value) rating_starts(mean(value))
-        aggregate = "mean", 
-        format = colFormat(digits = 1),
-        cell = function(value) rt_rating_icons(value)
-        ),
-      parent_satisfaction = colDef(
-        name = rating_parents_string,
-        aggregate = "mean",
-        format = colFormat(digits = 1),
-        cell = function(value) rt_rating_icons(value, color = color_energy)
-      ),
-      health = colDef(
-        name = health_string,
-        aggregate = "mean",
-        format = colFormat(digits = 1),
-        cell = function(value) rt_rating_icons(value, icon = "heart", 
-                                               color = color_food)
-      )
-    )
-  )
-)
-
-
-
-
-```
-
-# Water
+# Water  {data-icon="fa-water"}
 
 ```{r}
 wfp_combined <- read.csv(file = "data/wfp_combined.csv") %>% 
@@ -1206,7 +1229,7 @@ ggplotly(p, tooltip="name")
 -   Fishes' water footprint is NULL (check that. At least, they do not appear in Hoepstra's work)
 -   Not all crops can't be cultivated in Poland
 
-# Energy
+# Energy  {data-icon="fa-burn"}
 
 ## Valueboxes
 
@@ -1467,7 +1490,7 @@ ggplotly(p, tooltip="name")
   
 ```
 
-# About
+# About {data-icon="ion-information-circled"}
 
 #### About this dashboard
 
@@ -1484,3 +1507,5 @@ An open source prototype for a visual interface to support research and Nexus en
 
 -   Source Code: <https://github.com/IGSD-UoW/wfenexus>
 -   Licence: [GPL](https://github.com/IGSD-UoW/wfenexus/blob/main/LICENSE)
+
+#### Definitions
