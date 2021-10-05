@@ -420,8 +420,44 @@ bscols(
 
 ## Ranking dishes {.tabset}
 
+### Ingredients' usage
 
-### Meals
+```{r}
+
+tmp_row <- tibble(
+  name_en = c("animals", "crops"),
+  type = c("", ""),
+  weight = c(0,0)
+)
+
+tmp.df <- dish_composition %>% 
+  select(name_en, type, weight_grams) %>% 
+  count(name_en, type, wt = weight_grams, sort = TRUE, name = "weight") %>% 
+  # head() %>% 
+  bind_rows(tmp_row) 
+
+ing_treemap <- plot_ly(
+  type = "treemap",
+  # branchvalues = "total",
+  labels = tmp.df$name_en,
+  parents = tmp.df$type,
+  values = tmp.df$weight,
+  textinfo="label+value+percent parent+percent entry parent+percent root"
+  # hoverinfo="label"
+  
+)
+
+ing_treemap <- ing_treemap %>% 
+  layout(
+    title = "Amount of ingredients used in the meals")
+
+ing_treemap
+
+
+```
+
+
+### Meals' details
 
 ```{r dish_food}
 df <- dishes_df %>% 
