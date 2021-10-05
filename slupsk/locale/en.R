@@ -18,7 +18,7 @@ water_footprint_string <- "Water Footprint"
 num_kindergartens <- "Kindergartens involved in the project."
 num_dishes <- "Number of dishes."
 num_ingredients <- "Number of ingredients."
-
+num_votes <- "Number of dish ratings."
 
 # Table and filters -------------------------------------------------------
 
@@ -40,7 +40,7 @@ health_string <- "Perceived health"
 health_string_long <-  "Average of parents' ratings on perceived health. High values do not necessarily mean that the meal is healthy."
 
 water_used_string <- "Used Water"
-water_used_tooltip <- "Total Water Used. Units: m3"
+water_used_tooltip <- "Total Water Used, resulting from multiplying the water footprint based on the origin of the ingredients by the number of grans. **Units: m3**"
 
 water_saving_string <- "Water Saving"
 water_saving_tooltip <- "Difference between the current choice of ingredients compared to the same ingredients being produced elsewhere. Negative values mean reduction of water, and therefore, desirable."
