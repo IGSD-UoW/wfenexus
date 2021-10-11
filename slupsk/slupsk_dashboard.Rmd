@@ -110,7 +110,7 @@ theme_set(mytheme_minimal)
 
 <!-- ``` -->
 
-# Overview
+# `r overview_menu`
 
 ## Valueboxes
 
@@ -413,10 +413,17 @@ bscols(
 
 ### Definitions {data-icon="ion-information-circled"}
 
-* Some text here
+* **Calories**: total calories in a dish, based on its ingredients and weights
+* **Waste**: ?
+* **Rating (average)**: Average rating from parents and children for a particular dish. No specific criteria were provided to respondents, so ratings reflect individual's perception regarding a particular dishes. Dishes can be rated by parents and childres using [this tool](https://creatinginterfaces.demo.52north.org/slupsk-tool/).
+* **Perceived health**: `r health_string_long`
+* **Used Water**: `r water_used_tooltip`
+* **`r co2_emissions_string`: `r co2_emissions_string_long`
 
 
-# Food  {data-icon="fa-utensils"}
+
+
+# `r food_menu`  {data-icon="fa-utensils"}
 
 ## Ranking dishes {.tabset}
 
@@ -430,7 +437,7 @@ tmp_row <- tibble(
   weight = c(0,0)
 )
 
-tmp.df <- dish_composition %>% 
+tmp_df <- dish_composition %>% 
   select(name_en, type, weight_grams) %>% 
   count(name_en, type, wt = weight_grams, sort = TRUE, name = "weight") %>% 
   # head() %>% 
@@ -439,9 +446,9 @@ tmp.df <- dish_composition %>%
 ing_treemap <- plot_ly(
   type = "treemap",
   # branchvalues = "total",
-  labels = tmp.df$name_en,
-  parents = tmp.df$type,
-  values = tmp.df$weight,
+  labels = tmp_df$name_en,
+  parents = tmp_df$type,
+  values = tmp_df$weight,
   textinfo="label+value+percent parent+percent entry parent+percent root"
   # hoverinfo="label"
   
@@ -856,8 +863,17 @@ p
 
 ```
 
+### Definitions {data-icon="ion-information-circled"}
 
-# Water  {data-icon="fa-water"}
+* **Calories**: total calories in a dish, based on its ingredients and weights
+* **Waste**: ?
+* **Rating (average)**: Average rating from parents and children for a particular dish. No specific criteria were provided to respondents, so ratings reflect individual's perception regarding a particular dishes. Dishes can be rated by parents and childres using [this tool](https://creatinginterfaces.demo.52north.org/slupsk-tool/).
+* **Perceived health**: `r health_string_long`
+
+
+
+
+# `r water_menu`  {data-icon="fa-water"}
 
 ```{r}
 wfp_combined <- read.csv(file = "data/wfp_combined.csv") %>% 
@@ -1265,7 +1281,7 @@ ggplotly(p, tooltip="name")
 -   Fishes' water footprint is NULL (check that. At least, they do not appear in Hoepstra's work)
 -   Not all crops can't be cultivated in Poland
 
-# Energy  {data-icon="fa-burn"}
+# `r energy_menu`  {data-icon="fa-burn"}
 
 ## Valueboxes
 
@@ -1273,7 +1289,7 @@ ggplotly(p, tooltip="name")
 
 ```{r}
 
-valueBox(value = paste0(format(1.470042, big.mark = ","), " kgCO2e/unit"), 
+valueBox(value = paste0(format(round(1.470042, 2), big.mark = ","), " kgCO2e/unit"), 
          caption = "are emitted to the atmosphere per km by truck", 
          icon = "fas fa-truck-moving")
 ```
@@ -1282,7 +1298,7 @@ valueBox(value = paste0(format(1.470042, big.mark = ","), " kgCO2e/unit"),
 
 ```{r}
 
-valueBox(value = paste0(format(0.0232094, big.mark = ","), " kgCO2e/unit"), 
+valueBox(value = paste0(format(round(0.0232094, 2), big.mark = ","), " kgCO2e/unit"), 
          caption = "are emitted to the atmosphere per km by train", 
          icon = "fas fa-train")
 ```
@@ -1291,7 +1307,7 @@ valueBox(value = paste0(format(0.0232094, big.mark = ","), " kgCO2e/unit"),
 
 ```{r}
 
-valueBox(value = paste0(format(0.060074, big.mark = ","), " kgCO2e/unit"), 
+valueBox(value = paste0(format(round(0.060074, 2), big.mark = ","), " kgCO2e/unit"), 
          caption = "are emitted to the atmosphere per km by ferry", 
          icon = "fas fa-ship")
 ```
@@ -1300,7 +1316,7 @@ valueBox(value = paste0(format(0.060074, big.mark = ","), " kgCO2e/unit"),
 
 ```{r}
 
-valueBox(value = paste0(format(1.318653, big.mark = ","), " kgCO2e/unit"), 
+valueBox(value = paste0(format(round(1.318653, 2), big.mark = ","), " kgCO2e/unit"), 
          caption = "are emitted to the atmosphere per km by airplane", 
          icon = "fas fa-plane")
 ```
