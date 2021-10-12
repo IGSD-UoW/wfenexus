@@ -418,7 +418,7 @@ bscols(
 * **Rating (average)**: Average rating from parents and children for a particular dish. No specific criteria were provided to respondents, so ratings reflect individual's perception regarding a particular dishes. Dishes can be rated by parents and childres using [this tool](https://creatinginterfaces.demo.52north.org/slupsk-tool/).
 * **Perceived health**: `r health_string_long`
 * **Used Water**: `r water_used_tooltip`
-* **`r co2_emissions_string`: `r co2_emissions_string_long`
+* **`r co2_emissions_string`**: `r co2_emissions_string_long`
 
 
 
@@ -1028,27 +1028,27 @@ bscols(
       name_en = colDef(name = "Ingredient", minWidth = 100),
       world_green = colDef(
         # name = "Green",
-        header = rt_with_tooltip("Green", "Green water footprint is water from precipitation that is stored in the root zone of the soil and evaporated, transpired or incorporated by plants. It is particularly relevant for agricultural, horticultural and forestry products. Units in m3/Ton"),
+        header = rt_with_tooltip(water_green_string, water_green_tooltip),
         cell = function(value) {
           rt_bar_cell(value, df$world_green, color_wfp_green)
         }),
       world_blue = colDef(
         # name = "Blue", 
         align = "right",
-        header = rt_with_tooltip("Blue", "Blue water footprint is water that has been sourced from surface or groundwater resources and is either evaporated, incorporated into a product or taken from one body of water and returned to another, or returned at a different time. Irrigated agriculture, industry and domestic water use can each have a blue water footprint. Units in m3/Ton"),
+        header = rt_with_tooltip(water_blue_string, water_blue_tooltip),
         cell = function(value) {
           rt_bar_cell(value, df$world_blue, color_wfp_blue)
         }),
       world_grey = colDef(
         # name = "Grey", 
-        header = rt_with_tooltip("Grey", "Grey water footprint is the amount of fresh water required to assimilate pollutants to meet specific water quality standards. The grey water footprint considers point-source pollution discharged to a freshwater resource directly through a pipe or indirectly through runoff or leaching from the soil, impervious surfaces, or other diffuse sources. Units in m3/Ton"),
+        header = rt_with_tooltip(water_grey_string, water_grey_tooltip),
         align = "right",
         cell = function(value) {
           rt_bar_cell(value, df$world_grey, color_wfp_grey)
         }),
       world_total = colDef(
         # name = "Total", 
-        header = rt_with_tooltip("Total", "The sum of Green, Blue and Grey water footprint. Units in m3/Ton"),
+        header = rt_with_tooltip(water_total_string, water_total_tooltip),
         align = "right",
         cell = function(value){
           rt_bar_cell(value, df$world_total, color_water, "#e1e1e1")
@@ -1205,10 +1205,10 @@ bscols(
                      fullWidth = TRUE,
                      columns = list(
                        ingredient_label = colDef(
-                         name = "Ingredient",
+                         name = ingredient_string,
                          minWidth = 300),
                        from_producer = colDef(
-                         name = "Produced locally?",
+                         name = produced_locally_string,
                          cell = function(value) {
                            if (!is.na(value)) {
                              # Render as ✓ or ✘ or ?
@@ -1221,15 +1221,15 @@ bscols(
                              }
                            }
                         }),
-                       weight_grams = colDef(name = "Weight (g)"),
+                       weight_grams = colDef(name = weight_string),
                        world_total = colDef(
-                         header = rt_with_tooltip("Water Footprint (Avg)", "Total Water Footprint, using world averages. Units: m3/Ton")
+                         header = rt_with_tooltip(wfp_avg_string, wfp_avg_tooltip)
                        ),
                        country_total = colDef(
-                         header = rt_with_tooltip("Water Footprint (PL)", "Total Water Footprint, assuming it was produced in Poland. Units: m3/Ton")
+                         header = rt_with_tooltip(wfp_poland_string, wfp_poland_tooltip)
                        ),
                        water_used = colDef(
-                         header = rt_with_tooltip("Water used", "Total Water Used. Units: m3")
+                         header = rt_with_tooltip(water_used_string, water_used_tooltip)
                        )
                      ))
     htmltools::div(class = "nested_table", tbl)
@@ -1273,9 +1273,28 @@ ggplotly(p, tooltip="name")
   
 ```
 
-### Things to consider
+### Definitions and things to consider
 
--   Water footprint units are m3/Tonne
+#### Variables' defintions and units.
+
+Ingredients:
+
+* **Used Water**: `r water_used_tooltip`
+* Water footprint:
+  * **`r water_green_string`**: `r water_green_tooltip`
+  * **`r water_blue_string`**: `r water_blue_tooltip`
+  * **`r water_grey_string`**: `r water_grey_tooltip`
+  * **Total water**: `r water_total_tooltip`
+
+Meals table:
+
+* **`r water_world_string`**: `r water_world_tooltip`
+* **`r water_local_string`**: `r water_local_tooltip`
+* **`r water_used_string`**: `r water_used_tooltip`
+
+
+#### About the data
+
 -   Water footprint figures were obtained from <https://waterfootprint.org/>
 -   Not all the ingredients used in Slupsk's kindergartens were listed in Hoepstra's work.
 -   Fishes' water footprint is NULL (check that. At least, they do not appear in Hoepstra's work)
@@ -1422,10 +1441,10 @@ bscols(
                      fullWidth = TRUE,
                      columns = list(
                        ingredient_label = colDef(
-                         name = "Ingredient",
+                         name = ingredient_string,
                          minWidth = 300),
                        from_producer = colDef(
-                         name = "Produced in Poland?",
+                         name = produced_locally_string,
                          cell = function(value) {
                            if (!is.na(value)) {
                              # Render as ✓ or ✘ or ?

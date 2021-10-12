@@ -39,6 +39,8 @@ ingredient_string <- "Ingredient"
 
 meal_type_string <- "Type"
 
+produced_locally_string <- "Produced locally?"
+
 
 rating_children_string <- "Rating (Children)"
 rating_parents_string <- "Rating (Parents)"
@@ -59,17 +61,13 @@ water_saving_potential_tooltip <- "Difference between the current choice of ingr
 emissions_transport_string <- "Transport emissions"
 
 co2_emissions_string <- "CO2 Emissions"
-co2_emissions_string_long <- "Total CO2 emitted in transportation. Units: kgCO2e"
+co2_emissions_string_long <- "Total CO2 emitted in transportation. **Units: kgCO2e**"
 
 from_producer_string <- "Produced in Poland?"
 
 weight_string <- "Weight (g)"
 
-wfp_avg_string <- "Water Footprint (Avg)"
-wfp_avg_tooltip <- "Total Water Footprint, using world averages. Units: m3/Ton"
 
-wfp_poland_string <- "Water Footprint (PL)"
-wfp_poland_tooltip <- "Total Water Footprint, assuming it was produced in Poland. Units: m3/Ton"
 
 
 # Food --------------------------------------------------------------------
@@ -106,11 +104,33 @@ vb_avg_water_crops_local_string <- "is the average water footprint if the same c
 vb_total_water_string <- "is the total water footprint of the ingredients from animal origin"
 
 water_world_string <- "Water footprint (World)"
-water_world_tooltip <- "Total water needed (world average). Units: m3"
+water_world_tooltip <- "Total water needed using world averages, resulting from summing all ingredient's total water footprint. **Units: m3**. This measure is just for comparison purposes only, and does not reflect actual ingredients' origin."
 
 water_local_string <- "Water footprint (Poland)"
-water_local_tooltip <- "Total water needed (Poland). Units: m3"
+water_local_tooltip <- "Total water needed if all ingredients were produced locally, resulting from summing all ingredient's total water footprint. **Units: m3**. This measure is just for comparison purposes only, and does not reflect actual ingredients' origin."
 
+water_used_string <- "Water Used"
+water_used_tooltip <- "Total water used, based on the actual origin of the ingredients. **Units: m3**"
+
+water_green_string <- "Green"
+water_green_tooltip <- "Green water footprint is water from precipitation that is stored in the root zone of the soil and evaporated, transpired or incorporated by plants. It is particularly relevant for agricultural, horticultural and forestry products. **Units in m3/Ton**"
+
+water_blue_string <- "Blue"
+water_blue_tooltip <- "Blue water footprint is water that has been sourced from surface or groundwater resources and is either evaporated, incorporated into a product or taken from one body of water and returned to another, or returned at a different time. Irrigated agriculture, industry and domestic water use can each have a blue water footprint. **Units in m3/Ton**"
+
+water_grey_string <- "Grey"
+water_grey_tooltip <- "Grey water footprint is the amount of fresh water required to assimilate pollutants to meet specific water quality standards. The grey water footprint considers point-source pollution discharged to a freshwater resource directly through a pipe or indirectly through runoff or leaching from the soil, impervious surfaces, or other diffuse sources. **Units in m3/Ton**"
+
+water_total_string <- "Total"
+water_total_tooltip <- "Total water footprint, resulting from the sum of Green, Blue and Grey water footprint. **Units in m3/Ton**"
+
+
+
+wfp_avg_string <- "Water Footprint (Avg)"
+wfp_avg_tooltip <- "Total Water Footprint, using world averages. **Units: m3/Ton**"
+
+wfp_poland_string <- "Water Footprint (PL)"
+wfp_poland_tooltip <- "Total Water Footprint, assuming it was produced in Poland. **Units: m3/Ton**"
 
 # Energy ------------------------------------------------------------------
 
