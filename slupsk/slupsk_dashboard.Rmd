@@ -1335,8 +1335,6 @@ Meals table:
 
 
 
-
-
 #### About the data
 
 -   Water footprint figures were obtained from <https://waterfootprint.org/>

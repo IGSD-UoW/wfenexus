@@ -111,6 +111,22 @@ water_used_tooltip <- "Total water used, based on the actual origin of the ingre
 water_saving_string <- "Water Saving"
 water_saving_tooltip <- "Difference between the current choice of ingredients compared to the same ingredients using world averages. Negative values mean reduction of water and, therefore, are desirable."
 
+water_blue_string <- "Blue"
+water_blue_tooltip <- "Blue water footprint is water that has been sourced from surface or groundwater resources and is either evaporated, incorporated into a product or taken from one body of water and returned to another, or returned at a different time. Irrigated agriculture, industry and domestic water use can each have a blue water footprint. **Units in m3/Ton**"
+
+water_grey_string <- "Grey"
+water_grey_tooltip <- "Grey water footprint is the amount of fresh water required to assimilate pollutants to meet specific water quality standards. The grey water footprint considers point-source pollution discharged to a freshwater resource directly through a pipe or indirectly through runoff or leaching from the soil, impervious surfaces, or other diffuse sources. **Units in m3/Ton**"
+
+water_total_string <- "Total"
+water_total_tooltip <- "Total water footprint, resulting from the sum of Green, Blue and Grey water footprint. **Units in m3/Ton**"
+
+
+
+wfp_avg_string <- "Water Footprint (Avg)"
+wfp_avg_tooltip <- "Total Water Footprint, using world averages. **Units: m3/Ton**"
+
+wfp_poland_string <- "Water Footprint (PL)"
+wfp_poland_tooltip <- "Total Water Footprint, assuming it was produced in Poland. **Units: m3/Ton**"
 
 water_saving_potential_string <- "Potential water Saving"
 water_saving_potential_tooltip <- "Difference between the current choice of ingredients compared to the same ingredients being produced locally. Higher values represent greater room for improvement."
