@@ -259,11 +259,19 @@ write_csv(dish_composition, "slupsk/data/dish_composition.csv")
 
 # Aggregates values per dish, based on their ingredients' properties
 
+# Testing another approach
+wfp_dish2 <- dish_composition %>%
+  select(dish_id, water_world, water_local, water_used) %>%
+  pivot_longer(-dish_id) %>%
+  count(dish_id, name, wt=value) %>%
+  pivot_wider(id_cols = dish_id, names_from = name, values_from = n)
+
+
 wfp_dish <- dish_composition %>%
   group_by(dish_id) %>%
-  summarise(water_world = sum(water_world),
-            water_local = sum(water_local),
-            water_used = sum(water_used)) %>%
+  summarise(water_world = sum(water_world, na.rm = TRUE),
+            water_local = sum(water_local, na.rm = TRUE),
+            water_used = sum(water_used, na.rm = TRUE)) %>%
   mutate(water_saving_current = (water_used - water_world) / water_world,
          water_saving_local = (water_local - water_world) / water_world,
          water_saving_potential =water_saving_local - water_saving_current)
@@ -279,8 +287,14 @@ dishes_raw <- read_csv("slupsk/data-raw/dishes.csv") %>%
                             "11<25" = "11to25_pl", ">25" = "more25_pl")) %>%
   mutate(waste = fct_relevel(waste, "<5", "5<10", "11<25", ">25"))
 
+
+# Add dishratings ---------------------------------------------------------
+
 dishes <- ci_dishratings(dishes_raw, dishrating) %>%
   left_join(wfp_dish, by = c("id" = "dish_id")) %>%
   left_join(energy_dish, by = c("id" = "dish_id"))
+
+
+# Save dishes info into a file ---------------------------------------------
 
 write_csv(dishes, file = "slupsk/data/dishes.csv")

@@ -1212,9 +1212,11 @@ bscols(
                          cell = function(value) {
                            if (!is.na(value)) {
                              # Render as ✓ or ✘ or ?
-                             if(value == "yes") {
+                             if(value == "local" | value == "national" | 
+                                value == "regional"| value == "yes") {
                                "\u2713"
-                             } else if (value == "no") {
+                             } else if (value == "inside_europe" | 
+                                        value == "outside_europe") {
                                "\u2718"
                              } else {
                                "?"
