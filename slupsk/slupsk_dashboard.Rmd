@@ -1151,16 +1151,16 @@ bscols(
         header = rt_with_tooltip(water_world_string, water_world_tooltip),
         align = "right",
         cell = function(value) {
-          rt_bar_cell(value, df$water_world, color_wfp_blue)
+          rt_bar_cell(value, df$water_world, "#2e5266")
         }),
       water_local = colDef(
         header = rt_with_tooltip(water_local_string, water_local_tooltip),
         align = "right",
         cell = function(value) {
-          rt_bar_cell(value, df$water_local, color_water)
+          rt_bar_cell(value, df$water_local, color_wfp_blue)
         }),
       water_used = colDef(
-        header = rt_with_tooltip("Water used", "Total Water Used. Units: m3"),
+        header = rt_with_tooltip(water_used_string, water_used_tooltip),
         align = "right",
         cell = function(value) {
           rt_bar_cell(value, df$water_used, color_water)
@@ -1293,6 +1293,11 @@ Meals table:
 * **`r water_world_string`**: `r water_world_tooltip`
 * **`r water_local_string`**: `r water_local_tooltip`
 * **`r water_used_string`**: `r water_used_tooltip`
+* **`r water_saving_string`**: `r water_saving_tooltip`
+* **`r water_saving_potential_string`**: `r water_saving_potential_tooltip`
+
+
+
 
 
 #### About the data

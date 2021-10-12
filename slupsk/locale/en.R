@@ -52,11 +52,6 @@ health_string_long <-  "Average of parents' ratings on perceived health. High va
 water_used_string <- "Used Water"
 water_used_tooltip <- "Total Water Used, resulting from summing every ingredient's waterfootprint based on their place of production multiplyied by their amount of grams. **Units: m3**"
 
-water_saving_string <- "Water Saving"
-water_saving_tooltip <- "Difference between the current choice of ingredients compared to the same ingredients being produced elsewhere. Negative values mean reduction of water, and therefore, desirable."
-
-water_saving_potential_string <- "Potential water Saving"
-water_saving_potential_tooltip <- "Difference between the current choice of ingredients compared to the same ingredients being produced locally. Higher values represent greater room for improvement."
 
 emissions_transport_string <- "Transport emissions"
 
@@ -104,13 +99,22 @@ vb_avg_water_crops_local_string <- "is the average water footprint if the same c
 vb_total_water_string <- "is the total water footprint of the ingredients from animal origin"
 
 water_world_string <- "Water footprint (World)"
-water_world_tooltip <- "Total water needed using world averages, resulting from summing all ingredient's total water footprint. **Units: m3**. This measure is just for comparison purposes only, and does not reflect actual ingredients' origin."
+water_world_tooltip <- "Total water needed using world averages, resulting from summing all ingredient's total water footprint. **Units: m3**. _This measure is just for comparison purposes only, and does not reflect actual ingredients' origin_."
 
 water_local_string <- "Water footprint (Poland)"
-water_local_tooltip <- "Total water needed if all ingredients were produced locally, resulting from summing all ingredient's total water footprint. **Units: m3**. This measure is just for comparison purposes only, and does not reflect actual ingredients' origin."
+water_local_tooltip <- "Total water needed if all ingredients were produced locally (if possible), resulting from summing all ingredient's total water footprint. **Units: m3**. _This measure is just for comparison purposes only, and does not reflect actual ingredients' origin_."
 
 water_used_string <- "Water Used"
-water_used_tooltip <- "Total water used, based on the actual origin of the ingredients. **Units: m3**"
+water_used_tooltip <- "Total water used, based on the actual origin of the ingredients. Results from the sum of ingredients' actual footprint.**Units: m3**"
+
+
+water_saving_string <- "Water Saving"
+water_saving_tooltip <- "Difference between the current choice of ingredients compared to the same ingredients using world averages. Negative values mean reduction of water and, therefore, are desirable."
+
+
+water_saving_potential_string <- "Potential water Saving"
+water_saving_potential_tooltip <- "Difference between the current choice of ingredients compared to the same ingredients being produced locally. Higher values represent greater room for improvement."
+
 
 water_green_string <- "Green"
 water_green_tooltip <- "Green water footprint is water from precipitation that is stored in the root zone of the soil and evaporated, transpired or incorporated by plants. It is particularly relevant for agricultural, horticultural and forestry products. **Units in m3/Ton**"
