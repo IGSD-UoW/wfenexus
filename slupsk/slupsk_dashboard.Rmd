@@ -35,7 +35,7 @@ ingredients_df <- read_csv("data-raw/ingredients.csv")
 dish_composition <- read_csv("data/dish_composition.csv")
 
 dishrating <- read_csv("data-raw/dishrating.csv") %>%
-  ci_dishratings_prep()
+  ci_dishratings_prep() 
   
 
 dishes_df <- read_csv("data/dishes.csv") %>% 
@@ -227,7 +227,7 @@ bscols(
         header = rt_with_tooltip(co2_emissions_string, co2_emissions_string_long),
         align = "right",
         cell = function(value) {
-          rt_bar_cell(value, df$emissions_transport, color_energy)
+          rt_bar_cell(round(value, 2), df$emissions_transport, color_energy)
         }
       ),
       rating_children = colDef(
@@ -496,6 +496,7 @@ bscols(
     highlight = TRUE, 
     height = 700,
     searchable = TRUE,
+    defaultSorted = list(health = "desc"),
     defaultColDef = colDef(sortNALast = TRUE),
     columns = list(
       picture =  colDef(
@@ -989,6 +990,42 @@ valueBox(value = paste0(format(total_wfp_crops_local, big.mark = ","), " m3/Ton"
 
 ## Water {.tabset}
 
+### Treemap
+
+```{r}
+
+tmp_row <- tibble(
+  name_en = c("animals", "crops"),
+  type = c("", ""),
+  water = c(0,0)
+)
+
+tmp_df <- dish_composition %>% 
+  select(name_en, type, water_used) %>% 
+  count(name_en, type, wt = water_used, sort = TRUE, name = "water") %>% 
+  mutate(water = round(water, 2)) %>% 
+  # head() %>% 
+  bind_rows(tmp_row) 
+
+water_ing_treemap <- plot_ly(
+  type = "treemap",
+  # branchvalues = "total",
+  labels = tmp_df$name_en,
+  parents = tmp_df$type,
+  values = tmp_df$water,
+  textinfo="label+value+percent parent+percent entry parent+percent root"
+  # hoverinfo="label"
+  
+)
+
+water_ing_treemap <- water_ing_treemap %>% 
+  layout(title = "Total water used (m3) by ingredient <br><sup>According to their origin and number of grams used across all the meals</sup>")
+
+water_ing_treemap
+
+
+```
+
 ### Ingredients
 
 ```{r ingredients_wfp}
@@ -1347,7 +1384,44 @@ valueBox(value = paste0(format(round(1.318653, 2), big.mark = ","), " kgCO2e/uni
          icon = "fas fa-plane")
 ```
 
-## Table {.tabset}
+## Tabs {.tabset}
+
+
+### Treemap
+
+```{r}
+
+tmp_row <- tibble(
+  name_en = c("animals", "crops"),
+  type = c("", ""),
+  emissions = c(0,0)
+)
+
+tmp_df <- dish_composition %>% 
+  select(name_en, type, emissions_transport) %>% 
+  count(name_en, type, wt = emissions_transport, sort = TRUE, name = "emissions") %>% 
+  mutate(emissions = round(emissions, 2)) %>% 
+  # head() %>% 
+  bind_rows(tmp_row) 
+
+emissions_treemap <- plot_ly(
+  type = "treemap",
+  # branchvalues = "total",
+  labels = tmp_df$name_en,
+  parents = tmp_df$type,
+  values = tmp_df$emissions,
+  textinfo="label+value+percent parent+percent entry parent+percent root"
+  # hoverinfo="label"
+  
+)
+
+emissions_treemap <- emissions_treemap %>% 
+  layout(title = "Total Tonnes of CO2 emitted in transport by ingredient <br><sup>According to their origin. Does not take into account food weight</sup>")
+
+emissions_treemap
+
+
+```
 
 ### Dishes' energy
 
@@ -1405,10 +1479,10 @@ bscols(
         }
       ),
       emissions_transport = colDef(
-        header = rt_with_tooltip("CO2 Emissions", "Total CO2 emitted in transportation. Units: kgCO2e"),
+        header = rt_with_tooltip(co2_emissions_string, co2_emissions_string_long),
         align = "right",
         cell = function(value) {
-          rt_bar_cell(value, df$emissions_transport, color_energy)
+          rt_bar_cell(round(value, 2), df$emissions_transport, color_energy)
         }
       ),
       rating_children = colDef(

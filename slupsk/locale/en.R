@@ -55,8 +55,8 @@ water_used_tooltip <- "Total Water Used, resulting from summing every ingredient
 
 emissions_transport_string <- "Transport emissions"
 
-co2_emissions_string <- "CO2 Emissions"
-co2_emissions_string_long <- "Total CO2 emitted in transportation. **Units: kgCO2e**"
+co2_emissions_string <- "TonCO2 Emitted"
+co2_emissions_string_long <- "Total of CO2 Tonnes emitted in transportation, based on the origin of the ingredients and means of transport. **Units: TonCO2e**"
 
 from_producer_string <- "Produced in Poland?"
 

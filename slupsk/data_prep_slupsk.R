@@ -242,7 +242,7 @@ emission_factor <- tibble(
 
 emissions_df <- energy_assumptions_df %>%
   left_join(emission_factor, by = c("transport")) %>%
-  mutate(emissions_transport = km * emission_factor)
+  mutate(emissions_transport = km * emission_factor/1000)
 
 dish_composition <- dish_composition %>%
   # select(dish_id, ingredient_id, name, name_en, from_producer) %>%
@@ -274,7 +274,7 @@ wfp_dish <- dish_composition %>%
             water_used = sum(water_used, na.rm = TRUE)) %>%
   mutate(water_saving_current = (water_used - water_world) / water_world,
          water_saving_local = (water_local - water_world) / water_world,
-         water_saving_potential =water_saving_local - water_saving_current)
+         water_saving_potential = water_saving_local - water_saving_current)
 
 energy_dish <- dish_composition %>%
   group_by(dish_id) %>%
