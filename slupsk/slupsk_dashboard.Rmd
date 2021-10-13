@@ -150,7 +150,7 @@ valueBox(value = nrow(dishrating),
          icon = "fas fa-vote-yea")
 ```
 
-## Dishes {.tabset}
+## Tabs {.tabset}
 
 ### Dishes' overview
 
@@ -171,12 +171,12 @@ bscols(
     # filter_select("kindergarten", "Kindergarten", df_shared, ~kindergarten),
     filter_select("type", meal_type_string, df_shared, ~type),
     filter_slider("calories", calories_string, df_shared, ~calories),
-    filter_slider("rating_children", rating_children_string, df_shared,
-                  ~rating_children, width = "100%"),
+    # filter_slider("rating_children", rating_children_string, df_shared,
+    #               ~rating_children, width = "100%"),
     # filter_slider("rating_parents", rating_parents_string, df_shared, 
     #               ~rating_parents, width = "100%"),
-    # filter_slider("rating_average", rating_average_string, df_shared, 
-    #               ~rating_average, width = "100%"),
+    filter_slider("rating_average", rating_average_string, df_shared,
+                  ~rating_average, width = "100%"),
     filter_slider("health", health_string, df_shared, 
                   ~health, width = "100%"),
     filter_slider("water_used", water_used_string, df_shared, 
@@ -364,9 +364,9 @@ bscols(
   list(
     filter_select("kindergarten", "Kindergarten", df_shared, ~kindergarten),
     # filter_checkbox("type", "Type", df_shared, ~type),
-    filter_slider("children_satisfaction", "Children Satisfaction", df_shared,
+    filter_slider("children_satisfaction", rating_children_string, df_shared,
                   ~children_satisfaction, width = "100%"),
-    filter_slider("parent_satisfaction", "Parents' satisfaction", df_shared, 
+    filter_slider("parent_satisfaction", rating_parents_string, df_shared, 
                   ~parent_satisfaction, width = "100%")
     
   ),
@@ -411,17 +411,6 @@ bscols(
 
 ```
 
-### Definitions {data-icon="ion-information-circled"}
-
-* **Calories**: total calories in a dish, based on its ingredients and weights
-* **Waste**: ?
-* **Rating (average)**: Average rating from parents and children for a particular dish. No specific criteria were provided to respondents, so ratings reflect individual's perception regarding a particular dishes. Dishes can be rated by parents and childres using [this tool](https://creatinginterfaces.demo.52north.org/slupsk-tool/).
-* **Perceived health**: `r health_string_long`
-* **Used Water**: `r water_used_tooltip`
-* **`r co2_emissions_string`**: `r co2_emissions_string_long`
-
-
-
 
 # `r food_menu`  {data-icon="fa-utensils"}
 
@@ -439,6 +428,7 @@ tmp_row <- tibble(
 
 tmp_df <- dish_composition %>% 
   select(name_en, type, weight_grams) %>% 
+  filter(!is.na(type)) %>% 
   count(name_en, type, wt = weight_grams, sort = TRUE, name = "weight") %>% 
   # head() %>% 
   bind_rows(tmp_row) 
@@ -665,7 +655,7 @@ g <- ggplot(ingredients_used_df,
   # geom_text(data=annotations_df, aes( x=x, y=y, label=label),
   #          color="grey", 
   #          size=2 , angle=45, fontface="bold" ) +
-  labs(title = ing_usg_wft_title,
+  labs(title = paste0(ing_usg_wft_title, "<br>",ing_usg_wft_subtitle, "<br><sup>Size represents ", water_used_string, "</sup>"),
        subtitle = ing_usg_wft_subtitle,
        x = ing_usg_wft_x,
        y = ing_usg_wft_y,
@@ -673,7 +663,7 @@ g <- ggplot(ingredients_used_df,
        size = NULL,
        alpha = NULL)
 
-ggplotly(g)
+ggplotly(g,  tooltip="name_en")
 
 # 
 # gw <- ggplot(ingredients_used_df,
@@ -1312,35 +1302,7 @@ ggplotly(p, tooltip="name")
   
 ```
 
-### Definitions and things to consider
 
-#### Variables' defintions and units.
-
-Ingredients:
-
-* **Used Water**: `r water_used_tooltip`
-* Water footprint:
-  * **`r water_green_string`**: `r water_green_tooltip`
-  * **`r water_blue_string`**: `r water_blue_tooltip`
-  * **`r water_grey_string`**: `r water_grey_tooltip`
-  * **Total water**: `r water_total_tooltip`
-
-Meals table:
-
-* **`r water_world_string`**: `r water_world_tooltip`
-* **`r water_local_string`**: `r water_local_tooltip`
-* **`r water_used_string`**: `r water_used_tooltip`
-* **`r water_saving_string`**: `r water_saving_tooltip`
-* **`r water_saving_potential_string`**: `r water_saving_potential_tooltip`
-
-
-
-#### About the data
-
--   Water footprint figures were obtained from <https://waterfootprint.org/>
--   Not all the ingredients used in Slupsk's kindergartens were listed in Hoepstra's work.
--   Fishes' water footprint is NULL (check that. At least, they do not appear in Hoepstra's work)
--   Not all crops can't be cultivated in Poland
 
 # `r energy_menu`  {data-icon="fa-burn"}
 
@@ -1397,6 +1359,7 @@ tmp_row <- tibble(
 
 tmp_df <- dish_composition %>% 
   select(name_en, type, emissions_transport) %>% 
+  filter(!is.na(type)) %>% 
   count(name_en, type, wt = emissions_transport, sort = TRUE, name = "emissions") %>% 
   mutate(emissions = round(emissions, 2)) %>% 
   # head() %>% 
@@ -1640,6 +1603,46 @@ ggplotly(p, tooltip="name")
   
 ```
 
+# Definitions and considerations {data-icon="ion-help"}
+
+#### `r food_menu`
+
+* **Calories**: total calories in a dish, based on its ingredients and weights
+* **Waste**: Amount of grams wasted food while preparing the meal.
+* **Rating (average)**: Average rating from parents and children for a particular dish. No specific criteria were provided to respondents, so ratings reflect individual's perception regarding a particular dishes. Dishes can be rated by parents and childres using [this tool](https://creatinginterfaces.demo.52north.org/slupsk-tool/).
+* **Perceived health**: `r health_string_long`
+
+#### `r water_menu`
+
+Ingredients footprint:
+
+
+* **`r water_green_string`**: `r water_green_tooltip`
+* **`r water_blue_string`**: `r water_blue_tooltip`
+* **`r water_grey_string`**: `r water_grey_tooltip`
+* **`r water_total_string`**: `r water_total_tooltip`
+
+Meals table:
+
+* **`r water_world_string`**: `r water_world_tooltip`
+* **`r water_local_string`**: `r water_local_tooltip`
+* **`r water_used_string`**: `r water_used_tooltip`
+* **`r water_saving_string`**: `r water_saving_tooltip`
+* **`r water_saving_potential_string`**: `r water_saving_potential_tooltip`
+
+#### `r energy_menu`
+
+* **`r co2_emissions_string`**: `r co2_emissions_string_long`
+
+
+#### Considerations
+
+-   Water footprint figures were obtained from <https://waterfootprint.org/>: The datasets are extremely comprehensive, but still, not all the ingredients used in Slupsk's kindergartens are listed there.
+-   Fishes' water footprint is NULL 
+-   Not all crops can't be cultivated in Poland
+
+
+
 # About {data-icon="ion-information-circled"}
 
 #### About this dashboard
@@ -1650,12 +1653,20 @@ An open source prototype for a visual interface to support research and Nexus en
 
 #### Aim
 
--   What are the consequences of our choices?
--   Which small changes can we make in our food to make them more sustainable?
+The aim of this tool is to provide an interface capable of understanding the implications of our decisions regarding food, and how can meals in kindergartens be turned into drivers for positive change for the health and the environment.
+
+The visualisation tool may be helpful to perform tasks such as:
+
+* Identify highly rated meals and the lower rated meals
+* Identify meals with higher footprint
+* Identify ingredients with higher footprint
+
+Which, ultimately, will lead to discussions and reflections on how food, energy and water are interlinked and how small changes in food can make a big impact.
+
 
 #### Source Code
 
 -   Source Code: <https://github.com/IGSD-UoW/wfenexus>
 -   Licence: [GPL](https://github.com/IGSD-UoW/wfenexus/blob/main/LICENSE)
 
-#### Definitions
+
