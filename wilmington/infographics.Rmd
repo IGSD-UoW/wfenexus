@@ -405,7 +405,7 @@ ggplot(spf_management_combined, aes(area = million_tonnes, fill = treatment, lab
   geom_treemap_subgroup_text(place = "bottomleft", grow = TRUE , alpha = 0.5, 
                              colour = "black", fontface = "italic", 
                              min.size = 0) +
-  facet_grid(. ~ location) +
+  facet_grid(. ~ fct_rev(location)) +
   labs(
     title = "Destination of Food Waste",
     subtitle = "More than half of food waste goes to food waste, in the U.S. and Delaware.",
