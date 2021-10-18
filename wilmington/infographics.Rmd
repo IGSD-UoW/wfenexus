@@ -195,6 +195,21 @@ ggplot(msw_origin, aes(area = value, fill = variable, label = label)) +
 knitr::kable(head(cars))
 ```
 
+# The cost of food waste
+
+The cost of surplus food is estimated at \$398 billion per year, with
+70% of that cost paying for waste management.
+
+If we exclude the surplus food generated on the farm and during
+manufacturing, the total surplus food produced by consumers,
+foodservice, and retail sectors is 53 million tons per year, or 324.6
+pounds per person, and costing \$350 billion. The U.S. EPA set a goal of
+reducing food waste disposed by 50% by 2030. Using a 2010 baseline
+estimate of 219 pounds per person (post-processing), that means a goal
+of disposing 109 pounds per person. The U.S. is far from reaching its
+2030 food waste goal.
+
+
 # Individual contribution (average)
 
 **Surplus food** is *"All **food that goes unsold or unused by a business or
@@ -275,19 +290,7 @@ carbon and water footprint.
 <embed src="img/food_waste_footprint.svg" type="image/svg+xml" style="max-width:100%"/>
 
 
-# The cost of food waste
 
-The cost of surplus food is estimated at \$398 billion per year, with
-70% of that cost paying for waste management.
-
-If we exclude the surplus food generated on the farm and during
-manufacturing, the total surplus food produced by consumers,
-foodservice, and retail sectors is 53 million tons per year, or 324.6
-pounds per person, and costing \$350 billion. The U.S. EPA set a goal of
-reducing food waste disposed by 50% by 2030. Using a 2010 baseline
-estimate of 219 pounds per person (post-processing), that means a goal
-of disposing 109 pounds per person. The U.S. is far from reaching its
-2030 food waste goal.
 
 
 # How is surplus food managed?
