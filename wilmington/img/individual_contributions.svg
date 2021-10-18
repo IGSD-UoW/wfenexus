@@ -24,7 +24,7 @@
      inkscape:document-units="px"
      showgrid="false"
      inkscape:zoom="0.5999148"
-     inkscape:cx="510.07243"
+     inkscape:cx="509.23898"
      inkscape:cy="327.54651"
      inkscape:window-width="1920"
      inkscape:window-height="1137"
@@ -102,7 +102,7 @@ Place this code in the empty space below. */
        id="text13568-54"><tspan
          sodipodi:role="line"
          id="tspan13566-6"
-         style="font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:16.9333px;font-family:Lato;-inkscape-font-specification:'Lato Bold';text-align:start;text-anchor:start;stroke-width:0.397933"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:16.9333px;font-family:Lato;-inkscape-font-specification:'Lato Bold';text-align:start;text-anchor:start;stroke-width:0.397933"
          x="10.709473"
          y="25.224133">Individual contributions to food waste</tspan></text>
     <text
@@ -134,11 +134,11 @@ Place this code in the empty space below. */
        style="font-size:42.6667px;line-height:1.25;font-family:Lato;-inkscape-font-specification:Lato;text-align:center;white-space:pre;shape-inside:url(#rect11506)"><tspan
          x="94.21524"
          y="399.73081"
-         id="tspan1036">Surplus
+         id="tspan33067">Surplus
 </tspan><tspan
          x="116.08183"
          y="453.06418"
-         id="tspan1038">Food</tspan></text>
+         id="tspan33069">Food</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0,-0.26458333,0.26458333,0,-84.812307,185.52525)"
@@ -146,11 +146,11 @@ Place this code in the empty space below. */
        style="font-size:42.6667px;line-height:1.25;font-family:Lato;-inkscape-font-specification:Lato;text-align:center;white-space:pre;shape-inside:url(#rect30830)"><tspan
          x="103.7725"
          y="399.73081"
-         id="tspan1040">Waste
+         id="tspan33071">Waste
 </tspan><tspan
          x="116.08183"
          y="453.06418"
-         id="tspan1042">Food</tspan></text>
+         id="tspan33073">Food</tspan></text>
     <g
        id="g920"
        transform="translate(-133.98754,-16.894794)">
