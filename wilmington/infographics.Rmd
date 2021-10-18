@@ -3,10 +3,10 @@ title: "Understanding food Waste in the US"
 author: "An exploration of their consequences and how to minimise them"
 date: ""
 output: 
-  rolldown::scrollama_sidebar:
-    number_sections: false
   html_document:
     number_sections: true
+  rolldown::scrollama_sidebar:
+    number_sections: false
 editor_options: 
   markdown: 
     wrap: 72
