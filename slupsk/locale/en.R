@@ -10,6 +10,10 @@ overview_menu <- "Overview"
 food_menu <- "Food"
 water_menu <- "Water"
 energy_menu <- "Energy"
+considerations_menu <- "Definitions and considerations"
+
+distribution_menu <- "Distribution"
+description_menu <- "Description"
 
 # General -----------------------------------------------------------------
 
@@ -67,6 +71,19 @@ weight_string <- "Weight (g)"
 
 # Food --------------------------------------------------------------------
 
+total_gr_animals <- "used in ingredients from livestock origin"
+total_gr_crops <- "used in ingredients from crops origin"
+
+food_description <- paste0(
+  "The water footprint of food preparation is not only the water we use to prepare the food. It represents the amount of water used in all stages of food production.\n
+  blue water footprint - water taken from surface and underground sources, used for example in agriculture for irrigation or for washing fruit and vegetables and cooking
+  green water footprint - refers to rainwater collected in the soil layer in the plant root zone, which is necessary for plant growth
+  grey water footprint refers to water which is necessary to dissolve the pollutants generated during the production process at least to the level of the quality standards in force.
+  ")
+
+
+
+
 # Plots
 top5_kindergartens_title <- "Top 5 kindergartens by food rating"
 top5_kindergartens_subtitle <- "Based on the average ratings made by parents and children"
@@ -91,10 +108,17 @@ rating_health_y <- "Perceived health"
 
 # Water -------------------------------------------------------------------
 
-vb_avg_water_animals_string <- "is the average water needed to graze worldwide the used ingredients from animal origin"
-vb_avg_water_crops_string <- "is the average water needed worldwide to grow the used ingredients from plant origin "
-vb_avg_water_animals_local_string <- "is the average water footprint if the same animals were grazed localy"
-vb_avg_water_crops_local_string <- "is the average water footprint if the same crops were grown locally (if possible). this represents XX less"
+vb_avg_water_animals_string <- "is the average water footprint of livestock farming worldwide"
+vb_avg_water_crops_string <- "is the average water footprint of crops worldwide"
+vb_avg_water_animals_local_string <- "is the average water footprint of livestock farming, locally"
+vb_avg_water_crops_local_string <- "is the average water footprint of crops locally (if possible)"
+
+vb_tot_water_animals_string <- "is the total water footprint of livestock farming worldwide"
+vb_tot_water_crops_string <- "is the total water footprint of crops worldwide"
+vb_tot_water_animals_local_string <- "is the total water footprint of livestock farming, locally"
+vb_tot_water_crops_local_string <- "is the total water footprint of crops locally (if possible)"
+
+
 
 vb_total_water_string <- "is the total water footprint of the ingredients from animal origin"
 
@@ -153,6 +177,11 @@ wfp_poland_string <- "Water Footprint (PL)"
 wfp_poland_tooltip <- "Total Water Footprint, assuming it was produced in Poland. **Units: m3/Ton**"
 
 # Energy ------------------------------------------------------------------
+
+vb_truck_emissions_string <- "are emitted to the atmosphere per km by truck"
+vb_train_emissions_string <- "are emitted to the atmosphere per km by train"
+vb_ferry_emissions_string <- "are emitted to the atmosphere per km by ferry"
+vb_plane_emissions_string <- "are emitted to the atmosphere per km by plane"
 
 comparison_rating_energy_title <- "Comparison of rating vs energy footprint"
 
