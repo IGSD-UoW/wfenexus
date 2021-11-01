@@ -11,9 +11,20 @@ food_menu <- "Żywność"
 water_menu <- "Woda"
 energy_menu <- "Energia"
 considerations_menu <- "Definicje i założenia"
+about_menu <- "About (PL)"
 
 distribution_menu <- "Dystrybucja"
 description_menu <- "Opis"
+
+dishes_overview_menu <- "Dishes Overview (PL)"
+rating_details_menu <- "Ratings' details (PL)"
+
+dishes_menu <- "Dishes (PL)"
+
+ingredients_string <- "Ingredients (PL)"
+meals_string <- "Meals (PL)"
+
+search_placeholder <- "Szukaj"
 
 # General -----------------------------------------------------------------
 
@@ -31,6 +42,8 @@ num_kindergartens <- "Przedszkola zaangażowane w projekt"
 num_dishes <- "Liczba posiłków"
 num_ingredients <- "Liczba produktów"
 num_votes <- "Liczba ocen posiłków"
+
+overview_text <- "For more details regarding ratings, calories and health, click on [Food menu](#food) menu. For more details on the water used by ingredients and meals, click on [Water menu](#water). For details about CO2 emissions in transport and energy footprint, click on [Energy menu](#energy). For a description of every variable and methods used to calculate them, visit [About menu](#about) "
 
 # Table and filters -------------------------------------------------------
 
@@ -80,6 +93,12 @@ food_description <- paste0(
   "zielony ślad wodny – odnosi się do wody opadowej zgromadzonej w warstwie gleby w strefie korzeniowej roślin, woda ta konieczna jest do wzrostu roślin \n",
   "szary ślad wodny  – odnosi się do wody, która jest konieczna do rozcieńczenia zanieczyszczeń powstałych w procesie produkcji przynajmniej do poziomu obowiązujacych standardów jakości")
 
+meals_details_menu <- "Meals' details (PL)"
+top_kindergartens_menu <- "Top rated kindergartens (PL)"
+top_ingredients_menu <- "Most used ingredients (PL)"
+top_meals_menu <- "Top rated meals (PL)"
+rating_correlations_menu <- "Rating Correlations (PL)"
+
 # Plots
 top5_kindergartens_title <- "5 najlepszych posiłków podawanych w przedszkolach"
 top5_kindergartens_subtitle <- "Na podstawie średnich ocen wystawionych przez rodziców i dzieci"
@@ -116,6 +135,8 @@ vb_tot_water_crops_local_string <- "całkowity ślad wodny w przypadku stosowani
 
 
 vb_total_water_string <- "Całkowity ślad wodny produktów pochodzenia zwierzęcego"
+
+ratings_wfp_menu <- "Ratings vs water footprint (PL)"
 
 water_world_string <- "Ślad wodny (świat)"
 water_world_tooltip <- "Całkowite zapotrzebowanie na wodę przy zastosowaniu średnich światowych, wynikające z sumowania całkowitego śladu wodnego wszystkich produktów. Wskźnik, który mierzy ilość zużywanej i zanieczyszczonej wody podczas produkcji towarów i usług do codziennego użytku.**Jednostki: m3**. _Ta miara słuzy jedynie do celów porównawczych i nie odzwierciedla rzeczywistego pochodzenia składników_.."
@@ -179,8 +200,9 @@ vb_train_emissions_string <- "jest emitowanych do atmosfery na kilometr przez po
 vb_ferry_emissions_string <- "jest emitowanych do atmosfery na kilometr przez statek"
 vb_plane_emissions_string <- "jest emitowanych do atmosfery na kilometr przez samolot"
 
+dishes_energy_menu <- "Dishes' energy (PL)"
+rating_energy_menu <- "Ratings vs energy footprint (PL)"
 comparison_rating_energy_title <- "Porównanie ocen i śladu eneregtycznego"
-
 
 
 # Build a dataframe -------------------------------------------------------

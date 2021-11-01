@@ -11,9 +11,20 @@ food_menu <- "Food"
 water_menu <- "Water"
 energy_menu <- "Energy"
 considerations_menu <- "Definitions and considerations"
+about_menu <- "About"
 
 distribution_menu <- "Distribution"
 description_menu <- "Description"
+
+dishes_overview_menu <- "Dishes Overview"
+rating_details_menu <- "Ratings' details"
+
+dishes_menu <- "Dishes"
+
+ingredients_string <- "Ingredients"
+meals_string <- "Meals"
+
+search_placeholder <- "Search..."
 
 # General -----------------------------------------------------------------
 
@@ -31,6 +42,8 @@ num_kindergartens <- "Kindergartens involved in the project."
 num_dishes <- "Number of dishes."
 num_ingredients <- "Number of ingredients."
 num_votes <- "Number of dish ratings."
+
+overview_text <- "For more details regarding ratings, calories and health, click on [Food menu](#food) menu. For more details on the water used by ingredients and meals, click on [Water menu](#water). For details about CO2 emissions in transport and energy footprint, click on [Energy menu](#energy). For a description of every variable and methods used to calculate them, visit [About menu](#about) "
 
 # Table and filters -------------------------------------------------------
 
@@ -81,8 +94,11 @@ food_description <- paste0(
   grey water footprint refers to water which is necessary to dissolve the pollutants generated during the production process at least to the level of the quality standards in force.
   ")
 
-
-
+meals_details_menu <- "Meals' details"
+top_kindergartens_menu <- "Top rated kindergartens"
+top_ingredients_menu <- "Most used ingredients"
+top_meals_menu <- "Top rated meals"
+rating_correlations_menu <- "Rating Correlations"
 
 # Plots
 top5_kindergartens_title <- "Top 5 kindergartens by food rating"
@@ -119,6 +135,7 @@ vb_tot_water_animals_local_string <- "is the total water footprint of livestock 
 vb_tot_water_crops_local_string <- "is the total water footprint of crops locally (if possible)"
 
 
+ratings_wfp_menu <- "Ratings vs water footprint"
 
 vb_total_water_string <- "is the total water footprint of the ingredients from animal origin"
 
@@ -183,5 +200,7 @@ vb_train_emissions_string <- "are emitted to the atmosphere per km by train"
 vb_ferry_emissions_string <- "are emitted to the atmosphere per km by ferry"
 vb_plane_emissions_string <- "are emitted to the atmosphere per km by plane"
 
+dishes_energy_menu <- "Dishes' energy"
+rating_energy_menu <- "Ratings vs energy footprint"
 comparison_rating_energy_title <- "Comparison of rating vs energy footprint"
 

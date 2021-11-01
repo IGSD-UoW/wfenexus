@@ -61,6 +61,14 @@ color_wfp_blue <- "#65C6F0"
 color_wfp_green <- "#A2D729"
 color_wfp_grey <- "#8f8f98"
 
+# Reactable config -------------------------------------------------------------
+
+#Default language settings
+options(reactable.language = reactableLang(
+  searchPlaceholder = search_placeholder,
+))
+
+
 pal_wfp_green <- function(x) rgb(colorRamp(c("white", color_wfp_green))(x), 
                                  maxColorValue = 255)
 pal_wfp_blue <- function(x) rgb(colorRamp(c(color_wfp_blue, "white"))(x), 
@@ -153,9 +161,9 @@ valueBox(value = nrow(dishrating),
 
 ## Tabs {.tabset}
 
-### Dishes' overview
+### `r dishes_overview_menu` 
 
-For more details regarding ratings, calories and health, click on [Food menu](#food) menu. For more details on the water used by ingredients and meals, click on [Water menu](#water). For details about CO2 emissions in transport and energy footprint, click on [Energy menu](#energy). For a description of every variable and methods used to calculate them, visit [About menu](#about) 
+`r overview_text`
 
 ```{r dish_summary}
 df <- dishes_df %>% 
@@ -349,7 +357,7 @@ bscols(
 
 ```
 
-### Ratings' details
+### `r rating_details_menu`
 
 ```{r}
 df <- dishrating %>% 
@@ -417,7 +425,7 @@ bscols(
 
 ## Valueboxes
 
-### dishes {.value-box .no-mobile}
+### `r dishes_menu` {.value-box .no-mobile}
 
 ```{r}
 
@@ -485,7 +493,7 @@ valueBox(value = paste0(format(grams_crops, big.mark = ","), " kg"),
 
 Ślad wodny, który powstaje podczas przygotowywania posiłków, to nie tylko woda, którą zużywamy do ich przygotowania. Oznacza ilość wody zużytą na wszystkich etapach produkcji produktów żywnościowych. 
 
-* `niebieski ślad wodny``  - woda pobrana ze źródeł powierzchniowych oraz podziemnych, używana na przykład w rolnictwie do nawadniania czy do mycia warzyw i owoców oraz gotowania 
+* `niebieski ślad wodny`  - woda pobrana ze źródeł powierzchniowych oraz podziemnych, używana na przykład w rolnictwie do nawadniania czy do mycia warzyw i owoców oraz gotowania 
 
 * `zielony ślad wodny` – odnosi się do wody opadowej zgromadzonej w warstwie gleby w strefie korzeniowej roślin, woda ta konieczna jest do wzrostu roślin 
 
@@ -530,7 +538,7 @@ ing_treemap
 ```
 
 
-### Meals' details
+### `r meals_details_menu`
 
 ```{r dish_food}
 df <- dishes_df %>% 
@@ -665,7 +673,7 @@ bscols(
 ```
 
 
-### Top rated Kindergartens
+### `r top_kindergartens_menu`
 
 ```{r }
 
@@ -698,7 +706,7 @@ p
 
 ```
 
-### Most used ingredients
+### `r top_ingredients_menu`
 
 ```{r}
 ingredients_used_df <- dish_composition %>% 
@@ -749,7 +757,7 @@ ggplotly(g,  tooltip="name_en")
 # ggplotly(gw)
 ```
 
-### Top rated meals
+### `r top_meals_menu` 
 
 ```{r ranking_dishes, fig.width=20}
 
@@ -825,7 +833,7 @@ p_lunch + p_breakfast + p_afternoon +
 
 ```
 
-### Rating Correlations
+### `r rating_correlations_menu`
 
 <div style='display:flex; flex-direction:row; justify-content:space-evenly; align-items:center;'>
 
@@ -1043,7 +1051,7 @@ valueBox(value = paste0(format(total_wfp_crops_local, big.mark = ","), " m3/Ton"
          icon = "fas fa-apple-alt")
 ```
 
-## Water {.tabset}
+## Water tabs {.tabset}
 
 ### `r description_menu`
 
@@ -1109,7 +1117,7 @@ water_ing_treemap
 
 ```
 
-### Ingredients
+### `r ingredients_string`
 
 ```{r ingredients_wfp}
 df <- wfp_combined %>% 
@@ -1217,7 +1225,7 @@ bscols(
 
 ```
 
-### Meals
+### `r meals_string`
 
 ```{r dish_water_table}
 # TODO: assign a different color to water_used: if water used = water_local, use
@@ -1363,7 +1371,7 @@ bscols(
 
 ```
 
-### Ratings vs water footprint
+### `r ratings_wfp_menu`
 
 ```{r}
 tmp_df <- dishes_df %>% 
@@ -1498,7 +1506,7 @@ emissions_treemap
 
 ```
 
-### Dishes' energy
+### `r dishes_energy_menu`
 
 
 ```{r dish_summary_energy}
@@ -1683,7 +1691,7 @@ bscols(
 
 ```
 
-### Ratings vs energy footprint
+### `r rating_energy_menu`
 
 ```{r}
 tmp_df <- dishes_df %>% 
@@ -1762,7 +1770,7 @@ Meals table:
 
 
 
-# About {data-icon="ion-information-circled"}
+# `r about_menu` {data-icon="ion-information-circled"}
 
 #### About this dashboard
 
