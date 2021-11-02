@@ -11,18 +11,18 @@ food_menu <- "Żywność"
 water_menu <- "Woda"
 energy_menu <- "Energia"
 considerations_menu <- "Definicje i założenia"
-about_menu <- "About (PL)"
+about_menu <- "Informacje"
 
 distribution_menu <- "Dystrybucja"
 description_menu <- "Opis"
 
-dishes_overview_menu <- "Dishes Overview (PL)"
-rating_details_menu <- "Ratings' details (PL)"
+dishes_overview_menu <- "Przegląd posiłków"
+rating_details_menu <- "Szczegóły ocen"
 
-dishes_menu <- "Dishes (PL)"
+dishes_menu <- "Danie"
 
-ingredients_string <- "Ingredients (PL)"
-meals_string <- "Meals (PL)"
+ingredients_string <- "Produkty"
+meals_string <- "Posiłki"
 
 search_placeholder <- "Szukaj"
 
@@ -43,7 +43,7 @@ num_dishes <- "Liczba posiłków"
 num_ingredients <- "Liczba produktów"
 num_votes <- "Liczba ocen posiłków"
 
-overview_text <- "For more details regarding ratings, calories and health, click on [Food menu](#food) menu. For more details on the water used by ingredients and meals, click on [Water menu](#water). For details about CO2 emissions in transport and energy footprint, click on [Energy menu](#energy). For a description of every variable and methods used to calculate them, visit [About menu](#about) "
+overview_text <- "Aby uzyskać więcej szczegółów dotyczących ocen, kalorii i zdrowia, kliknij na [Menu Żywność](#żywność). Aby uzyskać więcej szczegółów na temat wody zużywanej do produkcji produktów i posiłków, kliknij na [Menu woda](#woda). Aby uzyskać szczegółowe informacje na temat emisji CO2 w transporcie i śladu energetycznego, kliknij na [Menu Energia](#energia). Aby uzyskać opis każdej zmiennej i metod użytych do ich obliczenia, odwiedź [Menu Informacje](#informacje)"
 
 # Table and filters -------------------------------------------------------
 
@@ -93,11 +93,11 @@ food_description <- paste0(
   "zielony ślad wodny – odnosi się do wody opadowej zgromadzonej w warstwie gleby w strefie korzeniowej roślin, woda ta konieczna jest do wzrostu roślin \n",
   "szary ślad wodny  – odnosi się do wody, która jest konieczna do rozcieńczenia zanieczyszczeń powstałych w procesie produkcji przynajmniej do poziomu obowiązujacych standardów jakości")
 
-meals_details_menu <- "Meals' details (PL)"
-top_kindergartens_menu <- "Top rated kindergartens (PL)"
-top_ingredients_menu <- "Most used ingredients (PL)"
-top_meals_menu <- "Top rated meals (PL)"
-rating_correlations_menu <- "Rating Correlations (PL)"
+meals_details_menu <- "Szczegóły dotyczące posiłków"
+top_kindergartens_menu <- "Najwyżej ocenione w przedszkolach"
+top_ingredients_menu <- "Najczęściej używane produkty"
+top_meals_menu <- "Najwyżej ocenione posiłki"
+rating_correlations_menu <- "Zależoności w ocenach"
 
 # Plots
 top5_kindergartens_title <- "5 najlepszych posiłków podawanych w przedszkolach"
@@ -136,7 +136,7 @@ vb_tot_water_crops_local_string <- "całkowity ślad wodny w przypadku stosowani
 
 vb_total_water_string <- "Całkowity ślad wodny produktów pochodzenia zwierzęcego"
 
-ratings_wfp_menu <- "Ratings vs water footprint (PL)"
+ratings_wfp_menu <- "Ocena vs ślad wodny"
 
 water_world_string <- "Ślad wodny (świat)"
 water_world_tooltip <- "Całkowite zapotrzebowanie na wodę przy zastosowaniu średnich światowych, wynikające z sumowania całkowitego śladu wodnego wszystkich produktów. Wskźnik, który mierzy ilość zużywanej i zanieczyszczonej wody podczas produkcji towarów i usług do codziennego użytku.**Jednostki: m3**. _Ta miara słuzy jedynie do celów porównawczych i nie odzwierciedla rzeczywistego pochodzenia składników_.."
@@ -200,8 +200,8 @@ vb_train_emissions_string <- "jest emitowanych do atmosfery na kilometr przez po
 vb_ferry_emissions_string <- "jest emitowanych do atmosfery na kilometr przez statek"
 vb_plane_emissions_string <- "jest emitowanych do atmosfery na kilometr przez samolot"
 
-dishes_energy_menu <- "Dishes' energy (PL)"
-rating_energy_menu <- "Ratings vs energy footprint (PL)"
+dishes_energy_menu <- "Ślad energetyczny posiłków"
+rating_energy_menu <- "Ocena vs ślad energetyczny"
 comparison_rating_energy_title <- "Porównanie ocen i śladu eneregtycznego"
 
 
