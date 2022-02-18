@@ -1,0 +1,1799 @@
+---
+title: "Slupsk dashboard"
+output: 
+  flexdashboard::flex_dashboard:
+    theme: bootstrap
+    logo: "img/logo_creating-interfaces_100x48.png"
+    favicon: img/favicon.ico
+    css: dashboard.css
+    orientation: rows
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+library(ggplot2)
+library(reactable)
+library(crosstalk)
+library(patchwork)
+library(plotly)
+library(lubridate)
+library(tidyverse)
+library(scales)
+library(htmltools)
+library(wfenexus)
+
+# Multilingual configuration -------------------------------------------------
+
+# Choose either "en" or "pl".
+report_language = "en" 
+
+source(here::here("slupsk/locale", paste0(report_language, ".R")), 
+       encoding = "UTF-8")
+
+# Load data ------------------------------------------------------------------
+kindergarten_df <- read_csv("data-raw/kindergartens.csv")
+ingredients_df <- read_csv("data-raw/ingredients.csv")
+dish_composition <- read_csv("data/dish_composition.csv")
+
+dishrating <- read_csv("data-raw/dishrating.csv") %>%
+  ci_dishratings_prep() 
+  
+
+dishes_df <- read_csv("data/dishes.csv") %>% 
+  mutate(waste = fct_relevel(as.factor(waste), "<5", "5<10", "11<25", ">25" ))
+
+energy_df <- read.csv("data-raw/ERL_12_6_064016_figuredata.csv") %>% 
+  select(-Lead.Author, -Year.Published) %>% 
+  group_by(Group.Ordering, Food.Item) %>% 
+  summarise(across(where(is.numeric), ~ mean(.x, na.rm = TRUE)))
+
+# dishes_df <- ci_dishratings(dishes_df, dishrating)
+
+
+# Colours
+color_food <- "#95C448"
+color_water <- "#00A9AE"
+color_energy <- "#EBC11F"
+
+color_background <- "#34767A"
+
+color_wfp_blue <- "#65C6F0"
+color_wfp_green <- "#A2D729"
+color_wfp_grey <- "#8f8f98"
+
+# Reactable config -------------------------------------------------------------
+
+#Default language settings
+options(reactable.language = reactableLang(
+  searchPlaceholder = search_placeholder,
+))
+
+
+pal_wfp_green <- function(x) rgb(colorRamp(c("white", color_wfp_green))(x), 
+                                 maxColorValue = 255)
+pal_wfp_blue <- function(x) rgb(colorRamp(c(color_wfp_blue, "white"))(x), 
+                                 maxColorValue = 255)
+pal_wfp_grey <- function(x) rgb(colorRamp(c(color_wfp_grey, "white"))(x), 
+                                 maxColorValue = 255)
+pal_wfp_total <- function(x) rgb(colorRamp(c(color_water, "white"))(x), 
+                                 maxColorValue = 255)
+
+```
+
+```{r ggplot_defaults}
+# Custom ggplot theme.
+mytheme_minimal <- theme_minimal(base_size = 12) +
+  theme(panel.grid.minor = element_blank(),
+        panel.grid.major.x = element_blank(),
+        plot.caption = element_text(size = 8, face = "italic", 
+                                    colour = "grey60"),
+        plot.subtitle = element_text(size = 9, face = "plain", 
+                                     colour = "grey50"),
+        axis.ticks = element_line(colour = "grey80"),
+        axis.ticks.length = unit(2, "pt"),
+        strip.text = element_text(size = 12))
+
+mytheme <- theme_minimal(base_size = 12) +
+  theme(plot.caption = element_text(size = 8, face = "italic", 
+                                    colour = "grey60"),
+        plot.subtitle = element_text(size = 9, face = "plain", 
+                                     colour = "grey50"),
+        axis.ticks = element_line(colour = "grey80"),
+        axis.ticks.length = unit(2, "pt"),
+        strip.text = element_text(size = 12))
+
+theme_set(mytheme_minimal)
+
+
+```
+
+<!-- Inputs {.sidebar} -->
+
+<!-- ------------------------------------- -->
+
+<!-- This is not working. That would require configuring a shiny server. -->
+
+<!-- ```{r} -->
+
+<!-- # shiny inputs defined here -->
+
+<!-- ``` -->
+
+# `r overview_menu`
+
+## Valueboxes
+
+### kindergartens {.value-box .no-mobile}
+
+```{r}
+
+valueBox(value = format(nrow(kindergarten_df), big.mark = ","), 
+         caption = num_kindergartens, 
+         icon = "fas fa-school")
+```
+
+### dishes {.value-box .no-mobile}
+
+```{r}
+
+valueBox(value = nrow(ingredients_df), 
+         caption = num_dishes, 
+         icon = "fas fa-utensils")
+```
+
+### ingredients {.value-box .no-mobile}
+
+```{r}
+
+valueBox(value = nrow(dishes_df), 
+         caption = num_ingredients, 
+         icon = "fas fa-lemon")
+```
+
+### votes {.value-box .no-mobile}
+
+```{r}
+
+valueBox(value = nrow(dishrating), 
+         caption = num_votes, 
+         icon = "fas fa-vote-yea")
+```
+
+## Tabs {.tabset}
+
+### `r dishes_overview_menu` 
+
+`r overview_text`
+
+```{r dish_summary}
+df <- dishes_df %>% 
+  relocate(picture) %>% 
+  select(-kindergarten_id, -date, -allergens, -ends_with("label"), -water_world,
+         -water_local, -water_saving_local, -water_saving_potential) %>% 
+  mutate(water_used = round(water_used, 3))
+
+df_shared <- SharedData$new(df)
+
+bscols(
+  widths = c(2, 10),
+  list(
+    # filter_select("kindergarten", "Kindergarten", df_shared, ~kindergarten),
+    filter_select("type", meal_type_string, df_shared, ~type),
+    filter_slider("calories", calories_string, df_shared, ~calories),
+    # filter_slider("rating_children", rating_children_string, df_shared,
+    #               ~rating_children, width = "100%"),
+    # filter_slider("rating_parents", rating_parents_string, df_shared, 
+    #               ~rating_parents, width = "100%"),
+    filter_slider("rating_average", rating_average_string, df_shared,
+                  ~rating_average, width = "100%"),
+    filter_slider("health", health_string, df_shared, 
+                  ~health, width = "100%"),
+    filter_slider("water_used", water_used_string, df_shared, 
+                  ~water_used, width = "100%"),
+    filter_slider("emissions_transport", emissions_transport_string, df_shared,
+                  ~emissions_transport, width = "100%")
+    
+  ),
+  reactable(
+    df_shared,
+    pagination = FALSE, 
+    highlight = TRUE, 
+    height = 670,
+    searchable = TRUE,
+    defaultSorted = list(water_used = "desc"),
+    defaultColDef = colDef(sortNALast = TRUE),
+    columns = list(
+      picture =  colDef(
+        maxWidth = 110,
+        name = "",
+        cell = function(value) {
+          image <- img(src =  value, width = "100px", alt = value)
+        }),
+      id = colDef(show = FALSE),
+      name = colDef(
+        name = name_string,
+        # Show dish type under character names
+        cell = function(value, index) {
+          type <- df$type[index]
+          tagList(
+            div(style = list(fontWeight = 600), value),
+            div(style = list(fontSize = 12), type)
+          )
+        }
+      ),
+      calories = colDef(
+        name = calories_string,
+        align = "right",
+        cell = function(value) {
+          rt_bar_cell(value, df$calories, color_food)
+        }),
+      waste = colDef(
+        name = waste_string,
+        # width = 70,
+      ),
+      type = colDef(show = FALSE),
+      emissions_transport = colDef(
+        header = rt_with_tooltip(co2_emissions_string, co2_emissions_string_long),
+        align = "right",
+        cell = function(value) {
+          rt_bar_cell(round(value, 2), df$emissions_transport, color_energy)
+        }
+      ),
+      rating_children = colDef(
+        show = FALSE,
+        name = rating_children_string, 
+        # aggregate = "mean", 
+        format = colFormat(digits = 1),
+        cell = function(value) rt_rating_icons(value)
+        ),
+      rating_parents = colDef(
+        show = FALSE,
+        name = rating_parents_string, 
+        # aggregate = "mean", 
+        format = colFormat(digits = 1),
+        cell = function(value) rt_rating_icons(value, color = color_energy)
+        ),
+      rating_average = colDef(
+        name = rating_average_string, 
+        # aggregate = "mean", 
+        format = colFormat(digits = 1),
+        cell = function(value) rt_rating_icons(value, color = color_wfp_blue)
+        ),
+      health = colDef(
+        header = rt_with_tooltip(health_string, health_string_long),
+        # name = "Perceived Health",
+        aggregate = "mean",
+        format = colFormat(digits = 1),
+        cell = function(value) rt_rating_icons(value, icon = "heart", color = color_food)
+      ),
+      water_used = colDef(
+        header = rt_with_tooltip(water_used_string, water_used_tooltip),
+        align = "right",
+        cell = function(value) {
+          rt_bar_cell(value, df$water_used, color_water)
+        }),
+      water_saving_current = colDef(
+        show = FALSE,
+        header = rt_with_tooltip(water_saving_string, water_saving_tooltip),
+        format = colFormat(percent = TRUE, digits = 2),
+        style = function(value) {
+          if (is.na(value)) {
+            return()
+          } else if ( value > 0) {
+            color <- "red"
+          } else {
+            color <- "green"
+          }
+          list(color = color, fontWeight = "bold")
+        }
+      ),
+      water_saving_potential = colDef(
+        header = rt_with_tooltip(water_saving_potential_string, 
+                                 water_saving_potential_tooltip),
+        format = colFormat(percent = TRUE, digits = 2),
+        style = function(value) {
+          if (is.na(value)) {
+            return()
+          } else if ( value > 0) {
+            color <- "red"
+          } else {
+            color <- "green"
+          }
+          list(color = color, fontWeight = "bold")
+        }
+      )
+    ),
+    details = function(index) {
+    nested_data <- dish_composition %>% 
+      filter(dish_id == df$id[index]) %>% 
+      select(ingredient_label, name_en, from_producer, weight_grams, world_total, 
+             country_total, water_used, emissions_transport) %>% 
+      mutate(across(where(is.numeric), round, 3))
+    tbl <- reactable(nested_data, outlined = TRUE, highlight = TRUE, 
+                     fullWidth = TRUE,
+                     columns = list(
+                       ingredient_label = colDef(
+                         name = ingredient_string,
+                         minWidth = 300),
+                       from_producer = colDef(
+                         name = from_producer_string,
+                         cell = function(value) {
+                           if (!is.na(value)) {
+                             # Render as ✓ or ✘ or ?
+                             if(value == "local" | value == "national" | 
+                                value == "regional"| value == "yes") {
+                               "\u2713"
+                             } else if (value == "inside_europe" | 
+                                        value == "outside_europe") {
+                               "\u2718"
+                             } else {
+                               "?"
+                             }
+                           }
+                        }),
+                       weight_grams = colDef(name = weight_string),
+                       world_total = colDef(
+                         header = rt_with_tooltip(wfp_avg_string, 
+                                                  wfp_avg_tooltip)
+                       ),
+                       country_total = colDef(
+                         header = rt_with_tooltip(wfp_poland_string,
+                                                  wfp_poland_tooltip)
+                       ),
+                       water_used = colDef(
+                         header = rt_with_tooltip(water_used_string, 
+                                                  water_used_tooltip)
+                       ),
+                       emissions_transport = colDef(
+                         name = emissions_transport_string
+                       )
+                     ))
+    htmltools::div(class = "nested_table", tbl)
+  },
+  onClick = "expand",
+  rowStyle = list(cursor = "pointer")
+  )
+)
+
+```
+
+### `r rating_details_menu`
+
+```{r}
+df <- dishrating %>% 
+  select(-id, -kindergarten_id, -dish_id, -ends_with("_label")) %>% 
+  relocate(label, .before = date) %>% 
+  relocate(kindergarten, .before = label) %>% 
+  relocate(date, .before = comment)
+
+df_shared <- SharedData$new(df)
+
+bscols(
+  widths = c(2, 10),
+  list(
+    filter_select("kindergarten", "Kindergarten", df_shared, ~kindergarten),
+    # filter_checkbox("type", "Type", df_shared, ~type),
+    filter_slider("children_satisfaction", rating_children_string, df_shared,
+                  ~children_satisfaction, width = "100%"),
+    filter_slider("parent_satisfaction", rating_parents_string, df_shared, 
+                  ~parent_satisfaction, width = "100%")
+    
+  ),
+  reactable(
+    df_shared,
+    pagination = FALSE, 
+    highlight = TRUE, 
+    # height = 250,
+    searchable = TRUE,
+    groupBy = c("label"),
+    columns = list(
+      label = colDef(
+        name = "Dish"
+        # aggregate = "unique"
+      ),
+      children_satisfaction = colDef(
+        name = rating_children_string, 
+        # aggregate = function(value) rating_starts(mean(value))
+        aggregate = "mean", 
+        format = colFormat(digits = 1),
+        cell = function(value) rt_rating_icons(value)
+        ),
+      parent_satisfaction = colDef(
+        name = rating_parents_string,
+        aggregate = "mean",
+        format = colFormat(digits = 1),
+        cell = function(value) rt_rating_icons(value, color = color_energy)
+      ),
+      health = colDef(
+        name = health_string,
+        aggregate = "mean",
+        format = colFormat(digits = 1),
+        cell = function(value) rt_rating_icons(value, icon = "heart", 
+                                               color = color_food)
+      )
+    )
+  )
+)
+
+
+
+
+```
+
+
+# `r food_menu` {data-icon="fa-utensils"}
+
+## Valueboxes
+
+### `r dishes_menu` {.value-box .no-mobile}
+
+```{r}
+
+valueBox(value = nrow(ingredients_df), 
+         caption = num_dishes, 
+         icon = "fas fa-utensils")
+```
+
+### ingredients {.value-box .no-mobile}
+
+```{r}
+
+valueBox(value = nrow(dishes_df), 
+         caption = num_ingredients, 
+         icon = "fas fa-lemon")
+```
+
+### votes {.value-box .no-mobile}
+
+```{r}
+
+valueBox(value = nrow(dishrating), 
+         caption = num_votes, 
+         icon = "fas fa-vote-yea")
+```
+
+### grams_animals {.value-box .no-mobile}
+
+```{r}
+total_grams <- dish_composition %>% 
+  count(type, wt = weight_grams) %>% 
+  filter(!is.na(type))
+
+grams_animals <- as.numeric(total_grams[total_grams$type=="animals", "n"])
+grams_crops <- as.numeric(total_grams[total_grams$type=="crops", "n"])
+
+grams_total <- grams_animals + grams_crops
+
+percent_animals <- percent(grams_animals/grams_total)
+percent_crops <- percent(grams_crops/grams_total)
+
+```
+
+
+```{r}
+valueBox(value = paste0(format(grams_animals, big.mark = ","), " kg"), 
+         caption = paste0(total_gr_animals, " (", percent_animals, ")"), 
+         icon = "fas fa-drumstick-bite")
+```
+
+### grams_crops {.value-box .no-mobile}
+
+```{r}
+
+valueBox(value = paste0(format(grams_crops, big.mark = ","), " kg"), 
+         caption = paste0(total_gr_crops, " (", percent_crops, ")"), 
+         icon = "fas fa-apple-alt")
+```
+
+
+
+## Ranking dishes {.tabset}
+
+### `r description_menu`
+
+Ślad wodny, który powstaje podczas przygotowywania posiłków, to nie tylko woda, którą zużywamy do ich przygotowania. Oznacza ilość wody zużytą na wszystkich etapach produkcji produktów żywnościowych. 
+
+* `niebieski ślad wodny`  - woda pobrana ze źródeł powierzchniowych oraz podziemnych, używana na przykład w rolnictwie do nawadniania czy do mycia warzyw i owoców oraz gotowania 
+
+* `zielony ślad wodny` – odnosi się do wody opadowej zgromadzonej w warstwie gleby w strefie korzeniowej roślin, woda ta konieczna jest do wzrostu roślin 
+
+* `szary ślad wodny określa` – odnosi się do wody, która jest konieczna do rozcieńczenia zanieczyszczeń powstałych w procesie produkcji przynajmniej do poziomu obowiązujących standardów jakości.
+
+
+### `r distribution_menu`
+
+```{r}
+
+tmp_row <- tibble(
+  name_en = c("animals", "crops"),
+  type = c("", ""),
+  weight = c(0,0)
+)
+
+tmp_df <- dish_composition %>% 
+  select(name_en, type, weight_grams) %>% 
+  filter(!is.na(type)) %>% 
+  count(name_en, type, wt = weight_grams, sort = TRUE, name = "weight") %>% 
+  # head() %>% 
+  bind_rows(tmp_row) 
+
+ing_treemap <- plot_ly(
+  type = "treemap",
+  # branchvalues = "total",
+  labels = tmp_df$name_en,
+  parents = tmp_df$type,
+  values = tmp_df$weight,
+  textinfo="label+value+percent parent+percent entry parent+percent root"
+  # hoverinfo="label"
+  
+)
+
+ing_treemap <- ing_treemap %>% 
+  layout(
+    title = "Amount of ingredients used in the meals")
+
+ing_treemap
+
+
+```
+
+
+### `r meals_details_menu`
+
+```{r dish_food}
+df <- dishes_df %>% 
+  relocate(picture) %>% 
+  select(id, type, picture, name, calories, allergens, waste, 
+         starts_with("rating"), health)
+
+df_shared <- SharedData$new(df)
+
+bscols(
+  widths = c(2, 10),
+  list(
+    # filter_select("kindergarten", "Kindergarten", df_shared, ~kindergarten),
+    filter_select("type", meal_type_string, df_shared, ~type),
+    filter_slider("calories", calories_string, df_shared, ~calories),
+    filter_slider("rating_children", rating_children_string, df_shared,
+                  ~rating_children, width = "100%"),
+    filter_slider("rating_parents", rating_parents_string, df_shared,
+                  ~rating_parents, width = "100%"),
+    filter_slider("rating_average", rating_average_string, df_shared,
+                  ~rating_average, width = "100%"),
+    filter_slider("health", health_string, df_shared, 
+                  ~health, width = "100%")
+  ),
+  reactable(
+    df_shared,
+    pagination = FALSE, 
+    highlight = TRUE, 
+    height = 700,
+    searchable = TRUE,
+    defaultSorted = list(health = "desc"),
+    defaultColDef = colDef(sortNALast = TRUE),
+    columns = list(
+      picture =  colDef(
+        maxWidth = 110,
+        name = "",
+        cell = function(value) {
+          image <- img(src =  value, width = "100px", alt = value)
+        }),
+      id = colDef(show = FALSE),
+      name = colDef(
+        name = name_string,
+        # Show dish type under character names
+        cell = function(value, index) {
+          type <- df$type[index]
+          tagList(
+            div(style = list(fontWeight = 600), value),
+            div(style = list(fontSize = 12), type)
+          )
+        }
+      ),
+      calories = colDef(
+        name = calories_string),
+      allergens = colDef(
+        name = allergen_string),
+      waste = colDef(
+        name = waste_string),
+      type = colDef(show = FALSE),
+      rating_children = colDef(
+        name = rating_children_string, 
+        # aggregate = "mean", 
+        format = colFormat(digits = 1),
+        cell = function(value) rt_rating_icons(value)
+        ),
+      rating_parents = colDef(
+        name = rating_parents_string, 
+        # aggregate = "mean", 
+        format = colFormat(digits = 1),
+        cell = function(value) rt_rating_icons(value, color = color_energy)
+        ),
+      rating_average = colDef(
+        name = rating_average_string, 
+        format = colFormat(digits = 1),
+        cell = function(value) rt_rating_icons(value, color = color_wfp_blue)
+        ),
+      health = colDef(
+        header = rt_with_tooltip(health_string, health_string_long),
+        aggregate = "mean",
+        format = colFormat(digits = 1),
+        cell = function(value) rt_rating_icons(value, icon = "heart", color = color_food)
+      )
+    ),
+    details = function(index) {
+    nested_data <- dish_composition %>% 
+      filter(dish_id == df$id[index]) %>% 
+      select(ingredient_label, name_en, from_producer, weight_grams, world_total, 
+             country_total, water_used) %>% 
+      mutate(across(where(is.numeric), round, 3))
+    tbl <- reactable(nested_data, outlined = TRUE, highlight = TRUE, 
+                     fullWidth = TRUE,
+                     columns = list(
+                       ingredient_label = colDef(
+                         name = ingredient_string,
+                         minWidth = 300),
+                       from_producer = colDef(
+                         name = from_producer_string,
+                         cell = function(value) {
+                           if (!is.na(value)) {
+                             # Render as ✓ or ✘ or ?
+                             if(value == "local" | value == "national" | 
+                                value == "regional"| value == "yes") {
+                               "\u2713"
+                             } else if (value == "inside_europe" | 
+                                        value == "outside_europe") {
+                               "\u2718"
+                             } else {
+                               "?"
+                             }
+                           }
+                        }),
+                       weight_grams = colDef(name = weight_string),
+                       world_total = colDef(
+                         header = rt_with_tooltip(wfp_avg_string, 
+                                                  wfp_avg_tooltip)
+                       ),
+                       country_total = colDef(
+                         header = rt_with_tooltip(wfp_poland_string, 
+                                                  wfp_poland_tooltip)
+                       ),
+                       water_used = colDef(
+                         header = rt_with_tooltip(water_used_string, 
+                                                  water_used_tooltip)
+                       )
+                     ))
+    htmltools::div(class = "nested_table", tbl)
+  },
+  onClick = "expand",
+  rowStyle = list(cursor = "pointer")
+  )
+)
+
+```
+
+
+### `r top_kindergartens_menu`
+
+```{r }
+
+p <- dishrating %>% 
+  group_by(kindergarten) %>% 
+  summarise(avg_rating_children = mean(children_satisfaction, na.rm = TRUE), 
+            avg_rating_parents = mean(parent_satisfaction, na.rm = TRUE),
+            avg_health = mean(health, na.rm = TRUE)) %>% 
+  mutate(kindergarten = str_wrap(kindergarten, width = 10),
+         avg_rating = rowMeans(select(., avg_rating_children, avg_rating_parents))) %>% 
+  arrange(desc(avg_rating)) %>% 
+  head(5) %>% 
+  pivot_longer(!c(kindergarten, avg_health), values_to = "value", 
+               names_to = "variable") %>% 
+  mutate(value = round(value, 2)) %>% 
+  ggplot(aes(x = value, y = kindergarten, fill = variable)) +
+  geom_bar(stat="identity", position="dodge") +
+  geom_text(aes(label = value, x = value -0.2), color = "white",
+            position = position_dodge(0.9), vjust = 0.15) +
+  ggtitle(top5_kindergartens_title) +
+  labs(subtitle = top5_kindergartens_subtitle, x = "", y = "", fill = "") +
+  theme(legend.position = "bottom") +
+  scale_fill_manual(labels = c(rating_average_string, rating_children_string, 
+                               rating_parents_string),
+                     values = c(color_water, color_energy, "orange"))
+
+# ggplotly(p)
+p
+
+
+```
+
+### `r top_ingredients_menu`
+
+```{r}
+ingredients_used_df <- dish_composition %>% 
+  select(ingredient_id, name_en, type, weight_grams, world_total, country_total, water_used) %>% 
+  group_by(ingredient_id, name_en, type) %>% 
+  summarise(weight_grams = sum(weight_grams),
+            water_used = sum(water_used),
+            world_total = max(world_total),
+            country_total = max(country_total),
+            num_meals = n()) %>% 
+  mutate(type = as.factor(type)) %>% 
+  arrange(desc(weight_grams)) 
+
+avg_weight <- mean(ingredients_used_df$weight_grams)
+avg_wfp <- mean(ingredients_used_df$world_total, na.rm = TRUE)
+
+annotations_df <- data.frame(
+  x = c(50),
+  y = c(11000),
+  label = c("This is a label")
+)
+  
+g <- ggplot(ingredients_used_df, 
+            aes(x = weight_grams, y = world_total, color= type, 
+                size = water_used, label = name_en)) +
+  geom_hline(yintercept=avg_wfp, size = 0.25, color = "grey", linetype = 'dotted') +
+  geom_vline(xintercept = avg_weight, size = 0.25, color = "grey", linetype = 'dotted') +
+  geom_point(aes(alpha = 0.5)) +
+  # geom_text(data=annotations_df, aes( x=x, y=y, label=label),
+  #          color="grey", 
+  #          size=2 , angle=45, fontface="bold" ) +
+  labs(title = paste0(ing_usg_wft_title, "<br>",ing_usg_wft_subtitle, "<br><sup>Size represents ", water_used_string, "</sup>"),
+       subtitle = ing_usg_wft_subtitle,
+       x = ing_usg_wft_x,
+       y = ing_usg_wft_y,
+       color = ing_usg_wft_color,
+       size = NULL,
+       alpha = NULL)
+
+ggplotly(g,  tooltip="name_en")
+
+# 
+# gw <- ggplot(ingredients_used_df,
+#              aes(x = country_total, y = world_total, color = type,
+#                  size = water_used, label = name_en))+
+#   geom_point(aes(alpha = 0.5))
+# 
+# ggplotly(gw)
+```
+
+### `r top_meals_menu` 
+
+```{r ranking_dishes, fig.width=20}
+
+p_lunch <- dishes_df %>% 
+  filter(type == "lunch_pl") %>% 
+  arrange(desc(rating_average)) %>% 
+  head(5) %>% 
+  mutate(name = fct_reorder(str_wrap(name, width = 20), rating_average)) %>% 
+  select(name, rating_parents, rating_children, rating_average) %>% 
+  pivot_longer(!name, values_to = "value", 
+               names_to = "variable") %>% 
+  mutate(value = round(value, 2),
+         variable = fct_relevel(as.factor(variable),  "rating_children", 
+                                "rating_parents", "rating_average")) %>% 
+  ggplot(aes(x = value, y = name, fill = variable)) +
+  geom_bar(stat="identity", position="dodge") +
+  geom_text(aes(label = value, x = value -0.2), color = "white",
+            position = position_dodge(0.9), vjust = 0) +
+  ggtitle("Top 5 lunch dishes by food rating") +
+  labs(subtitle = top5_kindergartens_subtitle, x = "", y = "", fill = "") +
+  theme(legend.position = "bottom") +
+  scale_fill_manual(labels = c(rating_children_string, rating_parents_string, 
+                               rating_average_string),
+                     values = c(color_energy, "orange", color_water))
+
+p_breakfast <- dishes_df %>% 
+  filter(type == "breakfast_pl") %>% 
+  arrange(desc(rating_average)) %>% 
+  head(5) %>% 
+  mutate(name = fct_reorder(str_wrap(name, width = 20), rating_average)) %>% 
+  select(name, rating_parents, rating_children, rating_average) %>% 
+  pivot_longer(!name, values_to = "value", 
+               names_to = "variable") %>% 
+  mutate(value = round(value, 2),
+         variable = fct_relevel(as.factor(variable),  "rating_children", 
+                                "rating_parents", "rating_average")) %>% 
+  ggplot(aes(x = value, y = name, fill = variable)) +
+  geom_bar(stat="identity", position="dodge") +
+  geom_text(aes(label = value, x = value -0.2), color = "white",
+            position = position_dodge(0.9), vjust = 0) +
+  ggtitle(top5_breakfast_title) +
+  labs(subtitle = top5_kindergartens_subtitle, x = "", y = "", fill = "") +
+  theme(legend.position = "bottom") +
+  scale_fill_manual(labels = c(rating_children_string, rating_parents_string, 
+                               rating_average_string),
+                     values = c(color_energy, "orange", color_water))
+
+p_afternoon <- dishes_df %>% 
+  filter(type == "afternoon_tea_pl") %>% 
+  arrange(desc(rating_average)) %>% 
+  head(5) %>% 
+  mutate(name = fct_reorder(str_wrap(name, width = 20), rating_average)) %>% 
+  select(name, rating_parents, rating_children, rating_average) %>% 
+  pivot_longer(!name, values_to = "value", 
+               names_to = "variable") %>% 
+  mutate(value = round(value, 2),
+         variable = fct_relevel(as.factor(variable), "rating_children", 
+                                "rating_parents", "rating_average")) %>% 
+  ggplot(aes(x = value, y = name, fill = variable)) +
+  geom_bar(stat="identity", position="dodge") +
+  geom_text(aes(label = value, x = value -0.2), color = "white",
+            position = position_dodge(0.9), vjust = 0) +
+  ggtitle(top5_afternoon_title) +
+  labs(subtitle = top5_kindergartens_subtitle, x = "", y = "", fill = "") +
+  theme(legend.position = "bottom") +
+  scale_fill_manual(labels = c(rating_children_string, rating_parents_string, 
+                               rating_average_string),
+                     values = c(color_energy, "orange", color_water))
+
+p_lunch + p_breakfast + p_afternoon +
+   plot_layout(guides = 'collect') &
+  theme(legend.position='bottom')
+
+```
+
+### `r rating_correlations_menu`
+
+<div style='display:flex; flex-direction:row; justify-content:space-evenly; align-items:center;'>
+
+<div>
+
+```{r}
+tmp_df <- dishes_df %>% 
+  # filter(type == "afternoon_tea_pl") %>% 
+  mutate(kindergarten_label = str_wrap(kindergarten_label, 20))
+
+avg_x <- mean(tmp_df$rating_parents, na.rm = TRUE)
+avg_y <- mean(tmp_df$rating_children, na.rm = TRUE)
+
+p <- ggplot(tmp_df, aes(x = rating_parents, y = rating_children, 
+             color = kindergarten_label, label = name)) +
+  geom_point() +
+  geom_hline(yintercept=avg_y, size = 0.25, color = "grey", linetype = 'dotted') +
+  geom_vline(xintercept = avg_x, size = 0.25, color = "grey", linetype = 'dotted') +
+  labs(title = comparison_ratings_title,
+       subtitle = comparison_ratings_subtitle, 
+       x = parents_string, y = children_string, color = kindergarten_string) +
+  theme_minimal(base_size = 12) +
+  theme(legend.position = "bottom",
+        plot.caption = element_text(size = 8, face = "italic", 
+                                    colour = "grey60"),
+        plot.subtitle = element_text(size = 9, face = "plain", 
+                                     colour = "grey50"),
+        axis.ticks = element_line(colour = "grey80"),
+        axis.ticks.length = unit(2, "pt"),
+        strip.text = element_text(size = 12))
+
+ggplotly(p, tooltip="name")
+  
+```
+</div>
+
+<div>
+```{r}
+tmp_df <- dishes_df %>% 
+  # filter(type == "afternoon_tea_pl") %>% 
+  mutate(kindergarten_label = str_wrap(kindergarten_label, 20))
+
+avg_x <- mean(tmp_df$rating_average, na.rm = TRUE)
+avg_y <- mean(tmp_df$health, na.rm = TRUE)
+
+p <- ggplot(tmp_df, aes(x = rating_average, y = health, 
+             color = kindergarten_label, label = name)) +
+  geom_point() +
+  geom_hline(yintercept=avg_y, size = 0.25, color = "grey", linetype = 'dotted') +
+  geom_vline(xintercept = avg_x, size = 0.25, color = "grey", linetype = 'dotted') +
+  labs(title = rating_health_title,
+       subtitle = rating_health_title, 
+       x = rating_health_x, y = rating_health_y, color = kindergarten_string) +
+  theme_minimal(base_size = 12) +
+  theme(legend.position = "bottom",
+        plot.caption = element_text(size = 8, face = "italic", 
+                                    colour = "grey60"),
+        plot.subtitle = element_text(size = 9, face = "plain", 
+                                     colour = "grey50"),
+        axis.ticks = element_line(colour = "grey80"),
+        axis.ticks.length = unit(2, "pt"),
+        strip.text = element_text(size = 12))
+
+ggplotly(p, tooltip="name")
+  
+```
+</div>
+
+</div>
+
+
+
+<!-- ### Rating Correlations2 -->
+
+```{r eval=FALSE, include=FALSE}
+
+p <- dishrating %>% 
+  group_by(dish) %>% 
+  summarise(avg_rating_children = mean(children_satisfaction, na.rm = TRUE), 
+            avg_rating_parents = mean(parent_satisfaction, na.rm = TRUE),
+            avg_health = mean(health, na.rm = TRUE)) %>% 
+  ungroup() %>% 
+  select(-dish) %>% 
+  count(avg_rating_children, avg_rating_parents, avg_health, wt = NULL, sort = TRUE, name = "total") %>% 
+  ggplot(aes(x = avg_rating_parents, y = avg_rating_children, alpha = avg_health, 
+             size = total)) +
+  geom_point(color = "#95C448") +
+  labs(title = comparison_ratings_title,
+       subtitle = comparison_ratings_subtitle, x = "", y = "", fill = "") +
+  theme_minimal(base_size = 12) +
+  theme(legend.position = "bottom",
+        plot.caption = element_text(size = 8, face = "italic", 
+                                    colour = "grey60"),
+        plot.subtitle = element_text(size = 9, face = "plain", 
+                                     colour = "grey50"),
+        axis.ticks = element_line(colour = "grey80"),
+        axis.ticks.length = unit(2, "pt"),
+        strip.text = element_text(size = 12))
+
+p
+
+```
+
+# `r water_menu`  {data-icon="fa-water"}
+
+```{r}
+wfp_combined <- read.csv(file = "data/wfp_combined.csv") %>% 
+  select(-id, -name, -name_wf, -description) %>% 
+  mutate(green_variation = (-world_green + country_green)/world_green,
+         blue_variation = (-world_blue + country_blue)/world_blue,
+         grey_variation = (-world_grey + country_grey)/world_grey,
+         total_variation = (-world_total + country_total)/world_total) %>%
+  # mutate(across(ends_with("_variation"), scales::percent)) %>%
+  mutate(across(where(is.numeric), round, 2)) %>%
+  relocate(green_variation, .after = country_green) %>%
+  relocate(blue_variation, .after = country_blue) %>%
+  relocate(grey_variation, .after = country_grey) %>%
+  relocate(total_variation, .after = country_total) %>%
+  arrange(desc(world_total)) %>% 
+  relocate(type, .before = "name_en")
+
+stats_wfp <- wfp_combined %>% 
+  group_by(type) %>% 
+  summarise(mean = mean(world_total), total = sum(world_total),
+            mean_local = mean(country_total, na.rm = TRUE), 
+            total_local = sum(country_total, na.rm = TRUE))
+
+avg_wfp_animals <- round(stats_wfp$mean[1], 2)
+avg_wfp_crops <- round(stats_wfp$mean[2], 2)
+
+avg_wfp_animals_local <- round(stats_wfp$mean_local[1], 2)
+avg_wfp_crops_local <- round(stats_wfp$mean_local[2], 2)
+
+
+total_wfp_animals <- round(stats_wfp$total[1], 2)
+total_wfp_crops <- round(stats_wfp$total[2], 2)
+total_wfp_animals_local <- round(stats_wfp$total_local[1], 2)
+total_wfp_crops_local <- round(stats_wfp$total_local[2], 2)
+  
+```
+
+## Valueboxes
+
+### wfp_animals {.value-box .no-mobile}
+
+```{r}
+
+valueBox(value = paste0(format(avg_wfp_animals, big.mark = ","), " m3/Ton"), 
+         caption = vb_avg_water_animals_string, 
+         icon = "fas fa-drumstick-bite")
+```
+
+### wfp_crops {.value-box .no-mobile}
+
+```{r}
+
+valueBox(value = paste0(format(avg_wfp_crops, big.mark = ","), " m3/Ton"), 
+         caption = vb_avg_water_crops_string, 
+         icon = "fas fa-apple-alt")
+```
+
+### wfp_animals_local {.value-box .no-mobile}
+
+```{r}
+
+valueBox(value = paste0(format(avg_wfp_animals_local, big.mark = ","), " m3/Ton"), 
+         caption = vb_avg_water_animals_local_string, 
+         icon = "fas fa-drumstick-bite")
+```
+
+### wfp_crops_local {.value-box .no-mobile}
+
+```{r}
+
+valueBox(value = paste0(format(avg_wfp_crops_local, big.mark = ","), " m3/Ton"), 
+         caption = vb_avg_water_crops_local_string, 
+         icon = "fas fa-apple-alt")
+```
+
+## Valueboxes
+
+### wfp_animals {.value-box .no-mobile}
+
+```{r}
+
+valueBox(value = paste0(format(total_wfp_animals, big.mark = ","), " m3/Ton"), 
+         caption = vb_tot_water_animals_string, 
+         icon = "fas fa-drumstick-bite")
+```
+
+### wfp_crops {.value-box .no-mobile}
+
+```{r}
+
+valueBox(value = paste0(format(total_wfp_crops, big.mark = ","), " m3/Ton"), 
+         caption = vb_tot_water_crops_string, 
+         icon = "fas fa-apple-alt")
+```
+
+### wfp_animals_local {.value-box .no-mobile}
+
+```{r}
+
+valueBox(value = paste0(format(total_wfp_animals_local, big.mark = ","), " m3/Ton"), 
+         caption = vb_tot_water_animals_local_string, 
+         icon = "fas fa-drumstick-bite")
+```
+
+### wfp_crops_local {.value-box .no-mobile}
+
+```{r}
+
+valueBox(value = paste0(format(total_wfp_crops_local, big.mark = ","), " m3/Ton"), 
+         caption = vb_tot_water_crops_local_string, 
+         icon = "fas fa-apple-alt")
+```
+
+## Water tabs {.tabset}
+
+### `r description_menu`
+
+**Ślad wodny posiłków i produktów żywnościowych**
+
+Ślad wodny, który powstaje podczas przygotowywania posiłków, to nie tylko woda, którą zużywamy do ich przygotowania. Oznacza ilość wody zużytą na wszystkich etapach produkcji produktów żywnościowych. 
+
+niebieski ślad wodny  - woda pobrana ze źródeł powierzchniowych oraz podziemnych, używana na przykład w rolnictwie do nawadniania czy do mycia warzyw i owoców oraz gotowania 
+
+zielony ślad wodny – odnosi się do wody opadowej zgromadzonej w warstwie gleby w strefie korzeniowej roślin, woda ta konieczna jest do wzrostu roślin 
+
+szary ślad wodny określa – odnosi się do wody, która jest konieczna do rozcieńczenia zanieczyszczeń powstałych w procesie produkcji przynajmniej do poziomu obowiązujących standardów jakości.
+
+
+**Ślad wodny wybranych produktów**
+
+* 1 kg wołowiny – 15 415 litrów wody
+* 1 kg wieprzowiny – 5 988 litrów wody
+* 1 kg kurczaka – 4 325 litrów wody
+* 1 kg czekolady – 17 196 litrów wody
+* 1 kg jajek – 3265 litrów wody
+* 1 kg sera żółtego – 3 178 litrów wody
+* 1 kg ryżu – 2 497 litrów wody
+* 1 kg ziemniaków – 225 litrów wody
+* 1 jabłko – 125 litrów wody
+* 1 pomidor – 50 litrów wody
+* 1 szklanka mleka – 255 litrów wody
+
+
+### `r distribution_menu`
+
+```{r}
+
+tmp_row <- tibble(
+  name_en = c("animals", "crops"),
+  type = c("", ""),
+  water = c(0,0)
+)
+
+tmp_df <- dish_composition %>% 
+  select(name_en, type, water_used) %>% 
+  count(name_en, type, wt = water_used, sort = TRUE, name = "water") %>% 
+  mutate(water = round(water, 2)) %>% 
+  # head() %>% 
+  bind_rows(tmp_row) 
+
+water_ing_treemap <- plot_ly(
+  type = "treemap",
+  # branchvalues = "total",
+  labels = tmp_df$name_en,
+  parents = tmp_df$type,
+  values = tmp_df$water,
+  textinfo="label+value+percent parent+percent entry parent+percent root"
+  # hoverinfo="label"
+  
+)
+
+water_ing_treemap <- water_ing_treemap %>% 
+  layout(title = "Total water used (m3) by ingredient <br><sup>According to their origin and number of grams used across all the meals</sup>")
+
+water_ing_treemap
+
+
+```
+
+### `r ingredients_string`
+
+```{r ingredients_wfp}
+df <- wfp_combined %>% 
+  select(-green_variation, -blue_variation, -grey_variation)
+
+
+df_shared <- SharedData$new(df)
+
+bscols(
+  widths = c(2, 10),
+  list(
+    filter_checkbox("type", "Type", df_shared, ~type),
+    filter_slider("world_total", "Total Footprint (World)", df_shared, ~world_total, width = "100%"),
+    filter_slider("country_total", "Total Footprint (Poland)", df_shared, ~country_total, width = "100%"),
+    filter_select("name_en", "Ingredient", df_shared, ~name_en)
+  ),
+  reactable(
+    df_shared,
+    pagination = FALSE, highlight = TRUE, 
+    height = 700,
+    searchable = TRUE,
+    # groupBy = "type",
+    defaultSorted = list(world_total = "desc"),
+    defaultColDef = colDef(
+      # header = function(value) gsub("_", " ", value, fixed = TRUE),
+      # cell = function(value) format(value, nsmall = 1),
+      # align = "center",
+      minWidth = 50,
+      # headerStyle = list(background = "#f7f7f8"),
+      format = colFormat(separators = TRUE),
+      sortNALast = TRUE,
+      footerStyle = list(fontWeight = "bold")
+    ),
+    columns = list(
+      type = colDef(show = FALSE),
+      name_en = colDef(name = "Ingredient", minWidth = 100),
+      world_green = colDef(
+        # name = "Green",
+        header = rt_with_tooltip(water_green_string, water_green_tooltip),
+        cell = function(value) {
+          rt_bar_cell(value, df$world_green, color_wfp_green)
+        }),
+      world_blue = colDef(
+        # name = "Blue", 
+        align = "right",
+        header = rt_with_tooltip(water_blue_string, water_blue_tooltip),
+        cell = function(value) {
+          rt_bar_cell(value, df$world_blue, color_wfp_blue)
+        }),
+      world_grey = colDef(
+        # name = "Grey", 
+        header = rt_with_tooltip(water_grey_string, water_grey_tooltip),
+        align = "right",
+        cell = function(value) {
+          rt_bar_cell(value, df$world_grey, color_wfp_grey)
+        }),
+      world_total = colDef(
+        # name = "Total", 
+        header = rt_with_tooltip(water_total_string, water_total_tooltip),
+        align = "right",
+        cell = function(value){
+          rt_bar_cell(value, df$world_total, color_water, "#e1e1e1")
+        }),
+      country_green = colDef(name = "Green", align = "right",
+         cell = function(value){
+          rt_bar_cell(value, df$country_green, color_wfp_green)
+        }),
+      country_blue = colDef(name = "Blue", align = "right",
+        cell = function(value) {
+          rt_bar_cell(value, df$country_blue, color_wfp_blue)
+        }),
+      country_grey = colDef(name = "Grey", align = "right",
+        cell = function(value) {
+          rt_bar_cell(value, df$country_grey, color_wfp_grey)
+        }),
+      country_total = colDef(name = "Total", align = "right",
+        cell = function(value) {
+          rt_bar_cell(value, df$country_total, color_water)
+        }),
+      total_variation = colDef(
+        header = rt_with_tooltip("Variation", "Difference between World's average Total Waterfootprint and Total footprint if the same ingredients were produced locally. Negative values imply waterfootprint reduction. Ingredients without local data have not been included."),
+        format = colFormat(percent = TRUE, digits = 2),
+        style = function(value) {
+          if (is.na(value)) {
+            return()
+          } else if ( value > 0) {
+            color <- "red"
+          } else {
+            color <- "green"
+          }
+          list(color = color, fontWeight = "bold")
+        }
+        )
+    ),
+    columnGroups = list(
+      colGroup(name = "World", 
+               columns = c("world_green", "world_blue", "world_grey",
+                           "world_total")),
+      colGroup(name = "Poland", 
+               columns = c("country_green", "country_blue", "country_grey",
+                           "country_total"))
+      )
+  )
+)
+
+```
+
+### `r meals_string`
+
+```{r dish_water_table}
+# TODO: assign a different color to water_used: if water used = water_local, use
+# the same colour as water local, if not, use the color of water_world.
+
+df <- dishes_df %>% 
+  relocate(picture) %>% 
+  select(-kindergarten_id, -date, -ends_with("label"), -starts_with("rating"),
+         -health, -waste, -allergens, -calories, -emissions_transport, -water_saving_local) %>% 
+  mutate(across(is.numeric, round, 3))
+
+df_shared <- SharedData$new(df)
+
+bscols(
+  widths = c(2, 10),
+  list(
+    # filter_select("kindergarten", "Kindergarten", df_shared, ~kindergarten),
+    filter_select("type", "Type", df_shared, ~type),
+    filter_slider("water_used", "Used Water", df_shared, 
+                  ~water_used, width = "100%")
+    
+  ),
+  reactable(
+    df_shared,
+    pagination = FALSE, 
+    highlight = TRUE, 
+    height = 700,
+    searchable = TRUE,
+    defaultSorted = list(water_used = "desc"),
+    defaultColDef = colDef(sortNALast = TRUE),
+    columns = list(
+      picture =  colDef(
+        maxWidth = 110,
+        name = "",
+        cell = function(value) {
+          image <- img(src =  value, width = "100px", alt = value)
+        }),
+      id = colDef(show = FALSE),
+      name = colDef(
+        # Show dish type under character names
+        cell = function(value, index) {
+          type <- df$type[index]
+          tagList(
+            div(style = list(fontWeight = 600), value),
+            div(style = list(fontSize = 12), type)
+          )
+        }
+      ),
+      type = colDef(show = FALSE),
+      water_world = colDef(
+        header = rt_with_tooltip(water_world_string, water_world_tooltip),
+        align = "right",
+        cell = function(value) {
+          rt_bar_cell(value, df$water_world, "#2e5266")
+        }),
+      water_local = colDef(
+        header = rt_with_tooltip(water_local_string, water_local_tooltip),
+        align = "right",
+        cell = function(value) {
+          rt_bar_cell(value, df$water_local, color_wfp_blue)
+        }),
+      water_used = colDef(
+        header = rt_with_tooltip(water_used_string, water_used_tooltip),
+        align = "right",
+        cell = function(value) {
+          rt_bar_cell(value, df$water_used, color_water)
+        }),
+      water_saving_current = colDef(
+        header = rt_with_tooltip(water_saving_string, water_saving_tooltip),
+        # format = colFormat(percent = TRUE, digits = 2),
+        style = function(value) {
+          if (is.na(value)) {
+            return()
+          } else if ( value > 0) {
+            color <- "red"
+          } else {
+            color <- "green"
+          }
+          list(color = color, fontWeight = "bold")
+        }
+      ),
+      water_saving_potential = colDef(
+        header = rt_with_tooltip(water_saving_potential_string, 
+                                 water_saving_potential_tooltip),
+        # format = colFormat(percent = TRUE, digits = 2),
+        style = function(value) {
+          if (is.na(value)) {
+            return()
+          } else if ( value > 0) {
+            color <- "red"
+          } else {
+            color <- "green"
+          }
+          list(color = color, fontWeight = "bold")
+        }
+      )
+    ),
+    details = function(index) {
+    nested_data <- dish_composition %>% 
+      filter(dish_id == df$id[index]) %>% 
+      select(ingredient_label, name_en, from_producer, weight_grams, world_total, 
+             country_total, water_used) %>% 
+      mutate(across(where(is.numeric), round, 3))
+    tbl <- reactable(nested_data, outlined = TRUE, highlight = TRUE, 
+                     fullWidth = TRUE,
+                     columns = list(
+                       ingredient_label = colDef(
+                         name = ingredient_string,
+                         minWidth = 300),
+                       from_producer = colDef(
+                         name = produced_locally_string,
+                         cell = function(value) {
+                           if (!is.na(value)) {
+                             # Render as ✓ or ✘ or ?
+                             if(value == "local" | value == "national" | 
+                                value == "regional"| value == "yes") {
+                               "\u2713"
+                             } else if (value == "inside_europe" | 
+                                        value == "outside_europe") {
+                               "\u2718"
+                             } else {
+                               "?"
+                             }
+                           }
+                        }),
+                       weight_grams = colDef(name = weight_string),
+                       world_total = colDef(
+                         header = rt_with_tooltip(wfp_avg_string, wfp_avg_tooltip)
+                       ),
+                       country_total = colDef(
+                         header = rt_with_tooltip(wfp_poland_string, wfp_poland_tooltip)
+                       ),
+                       water_used = colDef(
+                         header = rt_with_tooltip(water_used_string, water_used_tooltip)
+                       )
+                     ))
+    htmltools::div(class = "nested_table", tbl)
+  },
+  onClick = "expand",
+  rowStyle = list(cursor = "pointer")
+  )
+)
+
+```
+
+### `r ratings_wfp_menu`
+
+```{r}
+tmp_df <- dishes_df %>% 
+  # filter(type == "afternoon_tea_pl") %>% 
+  mutate(kindergarten_label = str_wrap(kindergarten_label, 20))
+
+avg_x <- mean(tmp_df$rating_average, na.rm = TRUE)
+avg_y <- mean(tmp_df$water_used, na.rm = TRUE)
+
+p <- ggplot(tmp_df, aes(x = rating_average, y = water_used, 
+             color = kindergarten_label, label = name)) +
+  geom_point() +
+  geom_hline(yintercept=avg_y, size = 0.25, color = "grey", linetype = 'dotted') +
+  geom_vline(xintercept = avg_x, size = 0.25, color = "grey", linetype = 'dotted') +
+  labs(title = comparison_ratings_title,
+       subtitle = comparison_ratings_subtitle, 
+       x = rating_avg_string, y = water_footprint_string, color = kindergarten_string) +
+  theme_minimal(base_size = 12) +
+  theme(legend.position = "bottom",
+        plot.caption = element_text(size = 8, face = "italic", 
+                                    colour = "grey60"),
+        plot.subtitle = element_text(size = 9, face = "plain", 
+                                     colour = "grey50"),
+        axis.ticks = element_line(colour = "grey80"),
+        axis.ticks.length = unit(2, "pt"),
+        strip.text = element_text(size = 12))
+
+ggplotly(p, tooltip="name")
+  
+```
+
+
+
+# `r energy_menu`  {data-icon="fa-burn"}
+
+## Valueboxes
+
+### emissions_truck {.value-box .no-mobile}
+
+```{r}
+
+valueBox(value = paste0(format(round(1.470042, 2), big.mark = ","), " kgCO2e/unit"), 
+         caption = vb_truck_emissions_string, 
+         icon = "fas fa-truck-moving")
+```
+
+### emissinos_train {.value-box .no-mobile}
+
+```{r}
+
+valueBox(value = paste0(format(round(0.0232094, 2), big.mark = ","), " kgCO2e/unit"), 
+         caption = vb_train_emissions_string, 
+         icon = "fas fa-train")
+```
+
+### emissinos_ship {.value-box .no-mobile}
+
+```{r}
+
+valueBox(value = paste0(format(round(0.060074, 2), big.mark = ","), " kgCO2e/unit"), 
+         caption = vb_ferry_emissions_string, 
+         icon = "fas fa-ship")
+```
+
+### emissions_air {.value-box .no-mobile}
+
+```{r}
+
+valueBox(value = paste0(format(round(1.318653, 2), big.mark = ","), " kgCO2e/unit"), 
+         caption = vb_plane_emissions_string, 
+         icon = "fas fa-plane")
+```
+
+## Tabs {.tabset}
+
+### `r description_menu`
+
+**Ślad transportowy emisji CO2 posiłków i produktów żywnościowych**
+
+Transport żywności z miejsc ich produkcji do sklepów, czy później do naszych domów to jeden z elementów składowych śladu węglowego, czyli emisji  dwutlenku węgla i innych gazów cieplarnianych. Ślad węglowy to pojęcie szersze niż emisja CO2 związana z transportem produktów żywnościowych. 
+
+Przykładowo, całkowity ślad węglowy podróży samochodem uwzględnia emisje wynikające z: 
+
+* spalania paliwa w silniku, 
+* produkcją, utrzymaniem i utylizacją samochodu, 
+* wydobyciem, rafinacją i dystrybucją paliwa,
+* budową i  utrzymaniem dróg oraz  parkingów. 
+
+**Emisje CO2 można zmniejszyć poprzez:** 
+
+* pozyskiwanie żywności lokalnej (średnio o 0,4 tony CO2 rocznie) 
+* pozyskiwanie żywności sezonowej (średnio o 0,2 tony CO2 rocznie)
+* ograniczenie marnowania żywności (średnio o 0,3 tony CO2 rocznie)
+* używanie wydajnego sprzętu do gotowania (średnio o 0,6 tony CO2 rocznie)
+
+
+
+### `r distribution_menu`
+
+```{r}
+
+tmp_row <- tibble(
+  name_en = c("animals", "crops"),
+  type = c("", ""),
+  emissions = c(0,0)
+)
+
+tmp_df <- dish_composition %>% 
+  select(name_en, type, emissions_transport) %>% 
+  filter(!is.na(type)) %>% 
+  count(name_en, type, wt = emissions_transport, sort = TRUE, name = "emissions") %>% 
+  mutate(emissions = round(emissions, 2)) %>% 
+  # head() %>% 
+  bind_rows(tmp_row) 
+
+emissions_treemap <- plot_ly(
+  type = "treemap",
+  # branchvalues = "total",
+  labels = tmp_df$name_en,
+  parents = tmp_df$type,
+  values = tmp_df$emissions,
+  textinfo="label+value+percent parent+percent entry parent+percent root"
+  # hoverinfo="label"
+  
+)
+
+emissions_treemap <- emissions_treemap %>% 
+  layout(title = "Total Tonnes of CO2 emitted in transport by ingredient <br><sup>According to their origin. Does not take into account food weight</sup>")
+
+emissions_treemap
+
+
+```
+
+### `r dishes_energy_menu`
+
+
+```{r dish_summary_energy}
+df <- dishes_df %>% 
+  relocate(picture) %>% 
+  select(-kindergarten_id, -date, -allergens, -health, -ends_with("label"), -starts_with("water")) %>% 
+  relocate(emissions_transport, .after = name)
+  
+df_shared <- SharedData$new(df)
+
+bscols(
+  widths = c(2, 10),
+  list(
+    # filter_select("kindergarten", "Kindergarten", df_shared, ~kindergarten),
+    filter_select("type", "Type", df_shared, ~type),
+    filter_slider("calories", "Calories", df_shared, ~calories),
+    filter_slider("emissions_transport", "Transport emissions", df_shared,
+                  ~emissions_transport, width = "100%")
+    
+  ),
+  reactable(
+    df_shared,
+    pagination = FALSE, 
+    highlight = TRUE, 
+    height = 700,
+    searchable = TRUE,
+    defaultSorted = list(emissions_transport = "desc"),
+    defaultColDef = colDef(sortNALast = TRUE),
+    columns = list(
+      picture =  colDef(
+        maxWidth = 110,
+        name = "",
+        cell = function(value) {
+          image <- img(src =  value, width = "100px", alt = value)
+        }),
+      id = colDef(show = FALSE),
+      name = colDef(
+        # Show dish type under character names
+        cell = function(value, index) {
+          type <- df$type[index]
+          tagList(
+            div(style = list(fontWeight = 600), value),
+            div(style = list(fontSize = 12), type)
+          )
+        }
+      ),
+      type = colDef(show = FALSE),
+      calories = colDef(
+        name = calories_string,
+        align = "right",
+        cell = function(value) {
+          rt_bar_cell(value, df$calories, color_food)
+        }
+      ),
+      emissions_transport = colDef(
+        header = rt_with_tooltip(co2_emissions_string, co2_emissions_string_long),
+        align = "right",
+        cell = function(value) {
+          rt_bar_cell(round(value, 2), df$emissions_transport, color_energy)
+        }
+      ),
+      rating_children = colDef(
+        show = TRUE,
+        name = "Rating Children",
+        # aggregate = "mean",
+        format = colFormat(digits = 1),
+        cell = function(value) rt_rating_icons(value)
+        ),
+      rating_parents = colDef(
+        show = TRUE,
+        name = "Rating Parents",
+        # aggregate = "mean",
+        format = colFormat(digits = 1),
+        cell = function(value) rt_rating_icons(value, color = color_energy)
+        ),
+      rating_average = colDef(
+        name = "Rating (Average)", 
+        # aggregate = "mean", 
+        format = colFormat(digits = 1),
+        cell = function(value) rt_rating_icons(value, color = color_wfp_blue)
+        ),
+      water_used = colDef(
+        header = rt_with_tooltip("Water used", "Total Water Used. Units: m3"),
+        align = "right",
+        cell = function(value) {
+          rt_bar_cell(value, df$water_used, color_water)
+        })
+    ),
+    details = function(index) {
+    nested_data <- dish_composition %>% 
+      filter(dish_id == df$id[index]) %>% 
+      select(ingredient_label, name_en, from_producer, weight_grams, world_total, 
+             country_total, water_used, emissions_transport) %>% 
+      mutate(across(where(is.numeric), round, 3))
+    tbl <- reactable(nested_data, outlined = TRUE, highlight = TRUE, 
+                     fullWidth = TRUE,
+                     columns = list(
+                       ingredient_label = colDef(
+                         name = ingredient_string,
+                         minWidth = 300),
+                       from_producer = colDef(
+                         name = produced_locally_string,
+                         cell = function(value) {
+                           if (!is.na(value)) {
+                             # Render as ✓ or ✘ or ?
+                             if(value == "local" | value == "national" | 
+                                value == "regional"| value == "yes") {
+                               "\u2713"
+                             } else if (value == "inside_europe" | 
+                                        value == "outside_europe") {
+                               "\u2718"
+                             } else {
+                               "?"
+                             }
+                           }
+                        }),
+                       weight_grams = colDef(name = "Weight (g)"),
+                       world_total = colDef(
+                         header = rt_with_tooltip("Water Footprint (Avg)", "Total Water Footprint, using world averages. Units: m3/Ton")
+                       ),
+                       country_total = colDef(
+                         header = rt_with_tooltip("Water Footprint (PL)", "Total Water Footprint, assuming it was produced in Poland. Units: m3/Ton")
+                       ),
+                       water_used = colDef(
+                         header = rt_with_tooltip("Water used", "Total Water Used. Units: m3")
+                       )
+                     ))
+    htmltools::div(class = "nested_table", tbl)
+  },
+  onClick = "expand",
+  rowStyle = list(cursor = "pointer")
+  )
+)
+
+```
+
+
+<!-- # Menu builder -->
+
+```{r eval=FALSE, include=FALSE}
+ingredients_dic <- read_csv("data-raw/ingredients_dictionary.csv") %>% 
+  select(name_en, category)
+
+ingredients_dic_shared <- SharedData$new(ingredients_dic, key = ~name_en, 
+                                         group = "menu_builider")
+wfp_shared <- SharedData$new(wfp_combined, key = ~name_en, 
+                             group = "menu_builider")
+
+bscols(
+  widths = c(1, 2, 9),
+  list(
+    filter_checkbox("type", "Type", ingredients_dic_shared, ~category)
+  ),
+  reactable(ingredients_dic_shared, 
+            # filterable = TRUE,
+            selection = "multiple", 
+            defaultSelected = NULL,
+            onClick = "select",
+            pagination = FALSE, 
+            height = 600,
+            columns = list(
+              category = colDef(show = FALSE),
+              name_en = colDef(name = "Ingredient") 
+              ),
+            ),
+  reactable(wfp_shared,
+            pagination = FALSE, 
+            height = 600,
+            columns = list(
+              type = colDef(show = FALSE),
+              name_en = colDef(
+                footer = "Total"
+              ),
+              world_total = colDef(
+                footer = function(values) sum(values, na.rm = TRUE)
+              )
+            ),
+            defaultColDef = colDef(footerStyle = list(fontWeight = "bold"))
+            )
+)
+
+
+```
+
+### `r rating_energy_menu`
+
+```{r}
+tmp_df <- dishes_df %>% 
+  # filter(type == "afternoon_tea_pl") %>% 
+  mutate(kindergarten_label = str_wrap(kindergarten_label, 20))
+
+avg_x <- mean(tmp_df$rating_average, na.rm = TRUE)
+avg_y <- mean(tmp_df$emissions_transport, na.rm = TRUE)
+
+p <- ggplot(tmp_df, aes(x = rating_average, y = emissions_transport, 
+             color = kindergarten_label, label = name)) +
+  geom_point() +
+  geom_hline(yintercept=avg_y, size = 0.25, color = "grey", linetype = 'dotted') +
+  geom_vline(xintercept = avg_x, size = 0.25, color = "grey", linetype = 'dotted') +
+  labs(title = comparison_rating_energy_title,
+       subtitle = "", 
+       x = rating_avg_string, 
+       y = emissions_transport_string, 
+       color = kindergarten_string) +
+  theme_minimal(base_size = 12) +
+  theme(legend.position = "bottom",
+        plot.caption = element_text(size = 8, face = "italic", 
+                                    colour = "grey60"),
+        plot.subtitle = element_text(size = 9, face = "plain", 
+                                     colour = "grey50"),
+        axis.ticks = element_line(colour = "grey80"),
+        axis.ticks.length = unit(2, "pt"),
+        strip.text = element_text(size = 12))
+
+ggplotly(p, tooltip="name")
+  
+```
+
+# `r considerations_menu` {data-icon="ion-help"}
+
+
+
+#### `r food_menu`
+
+* **Calories**: total calories in a dish, based on its ingredients and weights
+* **Waste**: Amount of grams wasted food while preparing the meal.
+* **Rating (average)**: Average rating from parents and children for a particular dish. No specific criteria were provided to respondents, so ratings reflect individual's perception regarding a particular dishes. Dishes can be rated by parents and childres using [this tool](https://creatinginterfaces.demo.52north.org/slupsk-tool/).
+* **Perceived health**: `r health_string_long`
+
+
+#### `r water_menu`
+
+Ingredients footprint:
+
+
+* **`r water_green_string`**: `r water_green_tooltip`
+* **`r water_blue_string`**: `r water_blue_tooltip`
+* **`r water_grey_string`**: `r water_grey_tooltip`
+* **`r water_total_string`**: `r water_total_tooltip`
+
+Meals table:
+
+* **`r water_world_string`**: `r water_world_tooltip`
+* **`r water_local_string`**: `r water_local_tooltip`
+* **`r water_used_string`**: `r water_used_tooltip`
+* **`r water_saving_string`**: `r water_saving_tooltip`
+* **`r water_saving_potential_string`**: `r water_saving_potential_tooltip`
+
+#### `r energy_menu`
+
+* **`r co2_emissions_string`**: `r co2_emissions_string_long`
+
+
+#### Considerations
+
+-   Water footprint figures were obtained from <https://waterfootprint.org/>: The datasets are extremely comprehensive, but still, not all the ingredients used in Slupsk's kindergartens are listed there.
+-   Fishes' water footprint is NULL
+-   Not all crops can't be cultivated in Poland
+
+
+
+
+
+# `r about_menu` {data-icon="ion-information-circled"}
+
+#### About this dashboard
+
+An open source prototype for a visual interface to support research and Nexus engagements, designed collaborativelly as part of [Creating interfaces](https://creatinginterfaces.eifer.kit.edu/)' WP4, developed by the [Institute for Global Sustainable Development](https://warwick.ac.uk/fac/arts/schoolforcross-facultystudies/igsd) at the [University of Warwick](https://warwick.ac.uk/).
+
+![](img/IGSD_logo.jpg)
+
+#### Aim
+
+The aim of this tool is to provide an interface capable of understanding the implications of our decisions regarding food, and how can meals in kindergartens be turned into drivers for positive change for the health and the environment.
+
+The visualisation tool may be helpful to perform tasks such as:
+
+* Identify highly rated meals and the lower rated meals
+* Identify meals with higher footprint
+* Identify ingredients with higher footprint
+
+Which, ultimately, will lead to discussions and reflections on how food, energy and water are interlinked and how small changes in food can make a big impact.
+
+
+#### Source Code
+
+-   Source Code: <https://github.com/IGSD-UoW/wfenexus>
+-   Licence: [GPL](https://github.com/IGSD-UoW/wfenexus/blob/main/LICENSE)
+
+
