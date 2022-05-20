@@ -11,5 +11,6 @@ authors:
   given-names: "Greg"
 title: "Visualisation tool for a grounded FEW Nexus"
 version: 0.0.99
+doi: https://zenodo.org/badge/latestdoi/339765992
 date-released: 2022-05-20
 url: "https://github.com/IGSD-UoW/wfenexus"
