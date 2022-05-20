@@ -1,7 +1,10 @@
-# Visualizing Water-Food-Energy Nexus
+# Visualisation tool for a grounded FEW Nexus
 
 <!-- badges: start -->
 
+
+
+[![DOI](https://zenodo.org/badge/339765992.svg)](https://zenodo.org/badge/latestdoi/339765992)
 [![R-CMD-check](https://github.com/IGSD-UoW/wfenexus/workflows/R-CMD-check/badge.svg)](https://github.com/IGSD-UoW/wfenexus/actions)
 
 <!-- badges: end -->
